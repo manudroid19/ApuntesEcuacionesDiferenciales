@@ -1,0 +1,266 @@
+
+
+%-----------------------------------------------------------------------------------------------------  
+%	INCLUSIÓN DE PAQUETES BÁSICOS.
+%-----------------------------------------------------------------------------------------------------
+
+\documentclass{article}
+\usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+
+
+
+%-----------------------------------------------------------------------------------------------------
+%	SELECCIÓN DEL LENGUAJE
+%-----------------------------------------------------------------------------------------------------
+
+% Paquetes para adaptar Látex al Español:
+\usepackage[spanish,es-noquoting, es-tabla, es-lcroman]{babel} % Cambia
+\usepackage[utf8]{inputenc}                                    % Permite los acentos.
+\selectlanguage{spanish}                                       % Selecciono como lenguaje el Español.
+
+%flechassssss
+\def\flechaSobreyectiva{\mathrel{\mkern16mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
+		\mkern-25mu{\longrightarrow}}}
+\def\flechaInyectiva{\mathrel{\mkern0mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
+		\mkern-9mu{\longrightarrow}}}
+\def\flechaBiyectiva{\mathrel{\mkern16mu  \vcenter{\hbox{$\scriptscriptstyle+$}}\mkern-25mu{\mathrel{\mkern0mu\vcenter{\hbox{$\scriptscriptstyle+$}}\mkern-9mu{\longrightarrow}}}}}
+\def\xFlechaInyectiva #1{\mathrel{\ooalign{\thinspace\thinspace$\mapstochar\mkern5mu$\hfil\cr$\xrightarrow{#1}$\cr}}}
+\def\xFlechaSobreyectiva #1{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\thinspace\thinspace\cr$\xrightarrow{#1}$\cr}}}
+%llave a la derecha
+\newenvironment{rcases}
+{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
+
+%-----------------------------------------------------------------------------------------------------
+%	SELECCIÓN DE LA FUENTE
+%-----------------------------------------------------------------------------------------------------
+
+% Fuente utilizada.
+\usepackage{courier}                    % Fuente Courier.
+\usepackage{microtype}                  % Mejora la letra final de cara al lector.
+
+%-----------------------------------------------------------------------------------------------------
+%	ESTILO DE PÁGINA
+%-----------------------------------------------------------------------------------------------------
+
+% Paquetes para el diseño de página:
+\usepackage{fancyhdr}               % Utilizado para hacer títulos propios.
+\usepackage{lastpage}               % Referencia a la última página. Utilizado para el pie de página.
+\usepackage{extramarks}             % Marcas extras. Utilizado en pie de página y cabecera.
+\usepackage[parfill]{parskip}       % Crea una nueva línea entre párrafos.
+\usepackage{geometry}               % Asigna la "geometría" de las páginas.
+
+% Se elige el estilo fancy y márgenes de 3 centímetros.
+\pagestyle{fancy}
+\geometry{left=3cm,right=3cm,top=3cm,bottom=3cm,headheight=1cm,headsep=0.5cm} % Márgenes y cabecera.
+% Se limpia la cabecera y el pie de página para poder rehacerlos luego.
+\fancyhf{}
+
+% Espacios en el documento:
+\linespread{1.1}                        % Espacio entre líneas.
+\setlength\parindent{0pt}               % Selecciona la indentación para cada inicio de párrafo.
+
+% Cabecera del documento. Se ajusta la línea de la cabecera.
+\renewcommand\headrule{
+	\begin{minipage}{1\textwidth}
+		\hrule width \hsize
+	\end{minipage}
+}
+
+% Texto de la cabecera:
+\lhead{\docauthor}                          % Parte izquierda.
+\chead{}                                    % Centro.
+\rhead{IEDO}              % Parte derecha.
+
+% Pie de página del documento. Se ajusta la línea del pie de página.
+\renewcommand\footrule{
+	\begin{minipage}{1\textwidth}
+		\hrule width \hsize
+	\end{minipage}\par
+}
+
+\lfoot{}                                                 % Parte izquierda.
+\cfoot{}                                                 % Centro.
+\rfoot{Página\ \thepage\ de\ \protect\pageref{LastPage}} % Parte derecha.
+
+%----------------------------------------------------------------------------------------
+%	MATEMÁTICAS
+%----------------------------------------------------------------------------------------
+
+% Paquetes para matemáticas:
+\usepackage{amsmath, amsthm, amssymb, amsfonts, amscd} % Teoremas, fuentes y símbolos.
+
+\usepackage[all]{xy} %para diagramas conmutativos
+
+% Nuevo estilo para definiciones
+\newtheoremstyle{definition-style} % Nombre del estilo
+{5pt}                % Espacio por encima
+{5pt}                % Espacio por debajo
+{}                   % Fuente del cuerpo
+{}                   % Identación: vacío= sin identación, \parindent = identación del parráfo
+{\bf}                % Fuente para la cabecera
+{.}                  % Puntuación tras la cabecera
+{.5em}               % Espacio tras la cabecera: { } = espacio usal entre palabras, \newline = nueva línea
+{}                   % Especificación de la cabecera (si se deja vaía implica 'normal')
+
+% Nuevo estilo para teoremas
+\newtheoremstyle{theorem-style} % Nombre del estilo
+{5pt}                % Espacio por encima
+{5pt}                % Espacio por debajo
+{\itshape}           % Fuente del cuerpo
+{}                   % Identación: vacío= sin identación, \parindent = identación del parráfo
+{\bf}                % Fuente para la cabecera
+{.}                  % Puntuación tras la cabecera
+{.5em}               % Espacio tras la cabecera: { } = espacio usal entre palabras, \newline = nueva línea
+{}                   % Especificación de la cabecera (si se deja vaía implica 'normal')
+
+% Nuevo estilo para ejemplos y ejercicios
+\newtheoremstyle{example-style} % Nombre del estilo
+{5pt}                % Espacio por encima
+{5pt}                % Espacio por debajo
+{}                   % Fuente del cuerpo
+{}                   % Identación: vacío= sin identación, \parindent = identación del parráfo
+{\scshape}                % Fuente para la cabecera
+{:}                  % Puntuación tras la cabecera
+{.5em}               % Espacio tras la cabecera: { } = espacio usal entre palabras, \newline = nueva línea
+{}                   % Especificación de la cabecera (si se deja vaía implica 'normal')
+
+% Teoremas:
+\theoremstyle{theorem-style}  % Otras posibilidades: plain (por defecto), definition, remark
+\newtheorem{theorem}{Teorema}[section]  % [section] indica que el contador se reinicia cada sección
+\newtheorem{corollary}[theorem]{Corolario} % [theorem] indica que comparte el contador con theorem
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{proposition}[theorem]{Proposición}
+
+% Definiciones, notas, conjeturas
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}[section]
+\newtheorem{conjecture}{Conjetura}[section]
+\newtheorem*{note}{Nota} % * indica que no tiene contador
+\newtheorem*{observation}{Observación} % * indica que no tiene contador
+\newtheorem*{properties}{Propiedades}
+\newtheorem*{comment}{Comentario clase}
+
+% Ejemplos, ejercicios
+\theoremstyle{example-style}
+\newtheorem{example}{Ejemplo}[section]
+\newtheorem{exercise}{Ejercicio}[section]
+
+%-----------------------------------------------------------------------------------------------------
+%	PORTADA
+%-----------------------------------------------------------------------------------------------------
+
+% Elija uno de los siguientes formatos.
+% No olvide incluir los archivos .sty asociados en el directorio del documento.
+%\usepackage{title1}
+\usepackage{title2}
+%\usepackage{title3}
+
+%-----------------------------------------------------------------------------------------------------
+%	TÍTULO, AUTOR Y OTROS DATOS DEL DOCUMENTO
+%-----------------------------------------------------------------------------------------------------
+
+% Título del documento.
+\newcommand{\doctitle}{}%git clone https://github.com/manudroid19/ApuntesEstructuras.git
+% Subtítulo.
+\newcommand{\docsubtitle}{}
+% Fecha.
+\newcommand{\docdate}{5 \ de \ Noviembre \ de \ 2018}
+% Asignatura.
+\newcommand{\subject}{Introducción a las Ecuaciones Diferenciales Ordinarias}
+% Autor.
+\newcommand{\docauthor}{Sergio Mayo, Manuel de Prada, Jorge Vázquez}
+\newcommand{\docaddress}{Universidade de Santiago de Compostela}
+\newcommand{\docemail}{lalala@gmail.com}
+
+%-----------------------------------------------------------------------------------------------------
+%	RESUMEN
+%-------------------------------					----------------------------------------------------------------------
+
+% Resumen del documento. Va en la portada.
+% Puedes también dejarlo vacío, en cuyo caso no aparece en la portada.
+%\newcommand{\docabstract}{}
+\newcommand{\docabstract}{Apuntes de la materia impartida en la USC}
+
+\begin{document}
+
+%\maketitle
+
+%-----------------------------------------------------------------------------------------------------
+%	ÍNDICE
+%-----------------------------------------------------------------------------------------------------
+
+% Profundidad del Índice:
+%\setcounter{tocdepth}{1}
+
+\newpage
+\tableofcontents
+\newpage
+
+%----------------------------------------------------------------------------------------
+%	Sección 1: Deficiones y teoremas
+%----------------------------------------------------------------------------------------
+
+\section{Tema 1.}
+
+\subsection{Motivaciones, generalidades y ejemplos de ecuaciones diferenciales ordinarias.}
+\begin{example}
+	Un tren viaja a 90 km/h. A las 10:00 está en el kilómetro 22. ¿Dónde está a las 12:30?
+\end{example}
+\begin{proof}[Solución]
+	Tomando $x(t)$ como la posición en el instante $t$, sabemos que $ x'(t)=90 $, por lo que $ x(t)=90t+k $. Además, $ x(10)=22 $, por lo que con la ecuación anterior, $ k=-878 $. 
+	
+	Es decir, $ x(t)=90t-878 $ y en particular $ x(12,5)= 247 $.
+\end{proof}
+
+\begin{example}
+	Un tren está parado en una ciudad A y avanza con una velocidad $ v(t)=2170t+20t^3 $ en m/min hasta que llega a la velocidad de crucero, que es de 4500 m/min. Se pide hallar:
+	\begin{enumerate}[a)]
+		\item Distancia recorrida en 1 minuto.
+		\item Tiempo que tarda en alcanzar la velocidad de crucero.
+		\item Metros recorridos cuando se alcanza la velocidad de crucero.
+		\item Kilómetros recorridos en 30 minutos.
+		\item Hora a la que pasará por la ciudad B, situada a 243 km de distancia, saliendo a las 7:00.
+	\end{enumerate}
+\end{example}
+\begin{proof}[Solución]
+	b) Sea $x(t)$ la posición en el instante $t$. Tomando $v(t)=x'(t)=2170t+20t^3=4500$, despejando resulta $ t=2 $. 
+	
+	a) Buscamos $ x(1) $, para lo que primeros obtendremos la expresión general $ x(t) $ que cumpla la condición $ x'(t)=2170t+20t^3 $.
+	
+	La primitiva de esta expresión es $ x(t)=\frac{2170t^2}{2}+\frac{20t^4}{4}+k $. Como $ x(0)=0 $, $ k=0 $ y $ x(1)=1090 $.
+	
+	c) Trivial a partir de los apartados a) y b). $ x(2)=4420 $m.
+	
+	d) En los dos primeros minutos, hasta alcanzar la velocidad de crucero ya hemos visto que se recorren 4420m. Para los 28 restantes, la velocidad es constante por lo que planteamos la ecuación $ x'(t)=4500 $. 
+	
+	Por tanto, $ x(t)=4500t+k $. Sabiendo que $ x(2)=4420 $, resulta $ k=-4580 $ y $ x(t)=4500t-4580 $ para $ t>2 $. En particular, $ x(30)=130420 $m $ =130,420 $km.
+	
+	e) Sabemos por el apartado anterior que se alcanza el punto D (130420m) a los 30 minutos. Los 112,58 metros restantes se recorren en $ \frac{112,58}{4,5\text{m/min}}\simeq 25 $ minutos, por lo que el trayecto en total requiere de 55 minutos y la hora de llegada es las 7:55. 
+	
+	Otra manera rápida es despejar $ t $ en la ecuación $ x(t)= 243000=4500t-4580 $.
+\end{proof}
+\begin{example}
+	$ x(t) $ es la cantidad de medicamento presente en el organismo en un instante $ t $. La cantidad disminuye proporcionalmente a la cantidad de producto que tomamos. En $ t_0 $, tomamos 500mg. En 1 hora, la cantidad de medicamento en el organismo es de 380mg.
+	\begin{enumerate}[a)]
+		\item ¿Qué cantidad quedará en el cuerpo en 6h?
+		\item ¿Cada cuanto tiempo hay que tomar el medicamento para que haya entre 100mg y 700mg en el organismo? 
+	\end{enumerate}
+\end{example}
+\begin{proof}[Solución]
+
+\end{proof}
+
+
+
+\subsection{Concepto de solución.}
+\subsection{Problema de Cauchy.}
+\section{Tema 2.}
+\section{Tema 3.}
+\section{Tema 4.}
+\subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
+\subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
+
+\end{document}
