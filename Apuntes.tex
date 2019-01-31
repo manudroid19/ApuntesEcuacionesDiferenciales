@@ -269,6 +269,39 @@ $ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, 
 \section{Tema 3.}
 \section{Tema 4.}
 \subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
+\begin{definition}
+	Sea $ f:A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow \mathbb{R}^n$
+	
+	Se llama Ecuación Diferencial Ordinaria de primer orden (solo aparece la primera derivada) en forma normal ($ x' $ aparece separada en uno de los miembros de la ecuación) relativa a la función $ f $ a la expresión $ x'=f(t,x) $.
+\end{definition}
+\begin{definition}
+	Dada $ \varphi : t\in I\subset \mathbb{R} \longrightarrow \varphi(t)\in \mathbb{R}^n  $, con $ \varphi $ definida en $ I $ un intervalo cualquiera.
+	
+	Decimos que $ \varphi $ es solución de $ x'=f(t,x) $ si verifica:
+	\begin{enumerate}[i)]
+		\item $(t,\varphi(t)) \in A, \forall t \in I$.
+		\item $ \exists \varphi'(t), \forall t\in I $. (Si $ I $ contiene a uno de sus extremos entenderemos la condición como la existencia de la derivada lateral)
+		\item $ \varphi'(t)=f(t,\varphi(t)), \forall t \in I $.
+	\end{enumerate}
+\end{definition}
+\begin{observation}
+	\[ \varphi : t\in\mathbb{R}^n \longrightarrow\mathbb{R}^n\]
+	\[ t \longmapsto (\varphi_1(t), \dots \varphi_n(t)) \]
+	Por tanto, $ \varphi'(t)=f(t,\varphi(t)) $ significa lo siguiente: 
+	\[ \varphi'(t)=(\varphi'_1(t), \dots,\varphi'_n(t))  \]
+	\[ f(t,(x_1, \dots , x_n))=(f_1(t, x_1, \dots , x_n), \dots , f_n(t,x_1, \dots , x_n) \]
+	\[ \begin{pmatrix}
+	\varphi'_1(t) \\
+	\vdots \\
+	\varphi'_n(t)
+	\end{pmatrix}=
+	 \begin{pmatrix}
+	 f_1(t) &\\
+	 \vdots \\
+	 f_n(t)
+	 \end{pmatrix}\]
+\end{observation}
+
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
 \end{document}
