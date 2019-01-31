@@ -243,14 +243,22 @@
 	Otra manera rápida es despejar $ t $ en la ecuación $ x(t)= 243000=4500t-4580 $.
 \end{proof}
 \begin{example}
-	$ x(t) $ es la cantidad de medicamento presente en el organismo en un instante $ t $. La cantidad disminuye proporcionalmente a la cantidad de producto que tomamos. En $ t_0 $, tomamos 500mg. En 1 hora, la cantidad de medicamento en el organismo es de 380mg.
+	$ x(t) $ es la cantidad de medicamento presente en el organismo en un instante $ t $. La cantidad disminuye proporcionalmente a la cantidad de producto presente en el organismo. En $ t_0 $, tomamos 500mg. En 1 hora, la cantidad de medicamento en el organismo es de 380mg.
 	\begin{enumerate}[a)]
 		\item ¿Qué cantidad quedará en el cuerpo en 6h?
 		\item ¿Cada cuanto tiempo hay que tomar el medicamento para que haya entre 100mg y 700mg en el organismo? 
 	\end{enumerate}
 \end{example}
 \begin{proof}[Solución]
+a) Como la cantidad disminuye proporcionalmente a la cantidad de medicamento en el cuerpo, tenemos que si $ x(t) $ es la cantidad de medicamento en un instante $ t $, $ x'(t)=-kx(t) $. Además sabemos que $ x(0)=500 $ y $ x(1)=380 $. Para obtener la expresión correspondiente, razonamos:
 
+Si $ x'(t)=x(t) $, la única opción es que se trate de la exponencial. Nuestra expresión es parecida, tratemos de cumplir la igualdad $ x'(t)=-kx(t) $. Observamos que se cumple para $ x(t)=e^{-kt} $. Ahora nos fijamos en el primer punto,  $ x(0)=500 $. Con  $ x(t)=500e^{-kt} $ cumplimos esa condición. Por último, nos queda hallar una $ k $ que cumpla $ x(1)=500e^{-k}=380 $. 
+
+Nos queda $ k=-\log(\frac{38}{50}) $ y por lo tanto $ x(t)=500e^{\log(\frac{38}{50})t} =500(\frac{19}{25})^t$. En consecuencia, $ x(6)=96,35 $mg.
+
+b) Queremos obtener el $ t $ que cumpla $ 100<x(t)<200 $, para que la dosis no baje de los 100mg prescritos y al tomar de nuevo la dosis de 500mg no supere los 700mg.
+
+$ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
 \end{proof}
 
 
