@@ -265,8 +265,10 @@ $ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, 
 
 \subsection{Concepto de solución.}
 \subsection{Problema de Cauchy.}
+\pagebreak
 \section{Tema 2.}
 \section{Tema 3.}
+\pagebreak
 \section{Tema 4.}
 \subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
 \begin{definition}
@@ -296,12 +298,36 @@ $ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, 
 	\varphi'_n(t)
 	\end{pmatrix}=
 	 \begin{pmatrix}
-	 f_1(t) &\\
+	 f_1(t, \varphi_1(t), \dots, \varphi_n(t))\\
 	 \vdots \\
-	 f_n(t)
-	 \end{pmatrix}\]
+	 f_n(t,\varphi_1(t), \dots, \varphi_1(t))
+	 \end{pmatrix} 
+	 \text{, i.e: }\begin{cases}
+	 \varphi'_1(t)=f_1(t, \varphi_1(t), \dots, \varphi_n(t))\\
+	 \qquad\qquad\qquad\vdots\\
+	 \varphi'_n(t)=f_n(t, \varphi_1(t), \dots, \varphi_n(t))
+	 \end{cases}\]
 \end{observation}
+\subsubsection{Método de resolución de EDOs por variables separadas.}
+Se utiliza para ecuaciones del tipo $ x'=\frac{\partial x}{\partial t}=h(t)g(x) $. Pasos para resolverlas:
+\begin{enumerate}[1)]
+	\item $ \frac{1}{g(x)}\cdot\frac{\partial x}{\partial t}=h(t) $
+	\item $ \frac{1}{g(x)}\cdot\partial x=h(t)\partial t $
+	\item $ \int \frac{1}{g(x)} \partial x= \int h(t) \partial t \Rightarrow G(x)+c_1=H(t)+c_2 \Rightarrow G(x)=H(t)+c$
+\end{enumerate}
+Si se pide la solución pasando por $ (t_0,x_0) $, hallamos la $ c $ que cumple $ G(x_0)=H(t_0)+c $, es decir, $ G(x)=H(t)+G(x_0)-H(t_0) \Rightarrow G(x)-G(x_0)=H(t)-H(t_0)$.
 
+Otra forma de llegar a este resultado es observar:
+\[ \int_{x_0}^{x} \frac{1}{g(x)} \partial x= \int_{t_0}^{t} h(t) \partial t \Rightarrow G(x)-G(x_0)=H(t)-H(t_0)\]
+\begin{exercise}
+	Hallar la solución general de las siguientes variables separadas:
+	\begin{enumerate}[a)]
+		\item $ x'=\frac{t^2x^2}{1+t} $, pasando por $ (1,7) $.
+		\item $ x'=\frac{\cos^2(x)t}{\sin (x)} $.
+		\item $ (tx^4)\partial t +(x^2+2)e^{-3t}\partial x=0 $
+		
+	\end{enumerate}
+\end{exercise}
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
 \end{document}
