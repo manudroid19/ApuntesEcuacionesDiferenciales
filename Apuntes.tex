@@ -8,7 +8,9 @@
 \usepackage{enumerate}
 \usepackage{wrapfig}
 \usepackage{graphicx}
-
+\usepackage{tikz}
+\usepackage{wrapfig}
+\usepackage{cutwin}
 
 
 %-----------------------------------------------------------------------------------------------------
@@ -261,12 +263,156 @@ b) Queremos obtener el $ t $ que cumpla $ 100<x(t)<200 $, para que la dosis no b
 $ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
 \end{proof}
 
+BEGIN MANU 6/2 exp
 
+¿Una circunferencia puede ser solución de una EDO?
+\[ t^2+x^2=c \]
+ \begin{wrapfigure}{l}{3.5cm}   
+\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=0.5}]
+\draw[thick] (0cm,0cm) circle(1cm);
+\node[circle,draw=white, fill=white, inner sep=0pt,minimum size=5pt] (b) at (1cm,0) {};
+\node[circle,draw=white, fill=white, inner sep=0pt,minimum size=5pt] (b) at (-1cm,0) {};
+\draw[->] (-1.5cm,0cm) -- (1.5cm,0cm) node[right,fill=white]{$t$};
+\draw[->] (0cm,-1.5cm) -- (0cm,1.5cm) node[above,fill=white]{};
+\node[above left] at (-1cm,0) {$(-\sqrt{c},0)$};
+\node[above right] at (1cm,0) {$(\sqrt{c},0)$};
+\node[above right] at (0.7cm,0.7cm) {$x_1(t)$};
+\node[below right] at (0.7cm,-0.7cm) {$x_2(t)$};
+\end{tikzpicture}
+\end{wrapfigure}
+No, ya que no es una función. Sin embargo, si tomamos $ x_1=\sqrt{c-t^2} $ y $ x_1=\sqrt{c-t^2} $, son solución de la ecuación $ xx'+t=0 $.
+
+Veámoslo para $ x_1 $.
+\[ (c-t^2)^{\frac{1}{2}}\frac{1}{2} (c-t^2)^{-\frac{1}{2}}(-2t)+t=-t+t=0 \]
+Su intervalo de definición será $ c-t^2\geq 0 \Rightarrow t \in [-\sqrt{c}, \sqrt{c}], c>0 $ y es derivable en $ (-\sqrt{c}, \sqrt{c}) $.
+
+La solución escogida será una o otra en función de la condición inicial.
+\[ t\in (-\sqrt{c}, \sqrt{c}) \longrightarrow \begin{cases}
+x_1(t)=\sqrt{c-t^2}\\
+x_2(t)=-\sqrt{c-t^2}
+\end{cases}  \]
 
 \subsection{Concepto de solución.}
 \subsection{Problema de Cauchy.}
 \pagebreak
-\section{Tema 2.}
+\section{Tema 2. Existencia y unicidad de solución.}
+
+\begin{definition}
+	Sea $ \varphi:t\in I \subset \mathbb{R}\longrightarrow \mathbb{R}^n $, con $ I $ intervalo, solución de la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+\end{definition}
+
+Llamamos trayectoria de $ \varphi $ al conjunto $ \tau (\varphi)=\{ (t, \varphi(t)), t\in I\} $
+
+Si $ \varphi(t_0)=x_0 $, llamaremos semitrayectoria positiva de $ \varphi $ al conjunto $ \tau^+ (\varphi)=\{ (t, \varphi(t)) : t\in I, t>t_0\} $
+
+Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \tau^- (\varphi)=\{ (t, \varphi(t)) : t\in I, t\leq t_0\} $.
+
+\begin{definition}
+	Sea la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+	
+	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una solución $ \varepsilon $-aproximada si verifica:
+	
+	\begin{enumerate}[1)]
+		\item $ (t,\pi (\varepsilon))\in A, \forall t \in I $.
+		\item $ \pi $ continua y $C^1$ a trozos (es decir, es $C^1$ salvo a lo sumo una cantidad finita de puntos)
+		\item $ || \pi'(t)-f(t, \pi(t))|| \leq \varepsilon$. (Las normas son equivalentes en dimensión finita).
+	\end{enumerate} 
+\end{definition}
+\begin{proposition}
+	Sea la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+	
+	Sea $ f $ continua y sea $ \pi : t \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, entonces:
+	
+	$ \pi  $ solución $ \Leftrightarrow $ $ \pi $ solución 0-aproximada.
+\end{proposition}
+\begin{proof}
+	"$ \Rightarrow $". Ejercicio propuesto.
+	
+	
+	"$ \Leftarrow $". Suponemos que $ \pi $ solución 0-aproximada y veamos que $ \pi $ es solución.
+
+	1) se verifica trivialmente.
+	
+	Sea $ \{t_i\}_{i=1}^k $ los puntos en los que $ \pi $ puede, en principio, no ser derivable, y veamos que existe la derivada en ellos.
+	
+	Por una parte, por ser  $ \pi $ solución 0-aproximada, $ ||\pi'(t)-f(t,\pi(t))||\leq 0\Rightarrow ||\pi'(t)-f(t,\pi(t))||=0 \Rightarrow \pi'(t)=f(t, \pi(t)), \forall t \in I, t\neq t_i$.
+	
+	Fijado $ t_i\in \{t_1, \dots, t_k\} $, como $ f $ y $ \pi $ son continuas, 
+	\[ \lim\limits_{t\rightarrow t_i^-}\pi'(t)=\lim\limits_{t\rightarrow t_i^-} f(t, \pi(t))= f(t_i, \pi(t_i))= \lim\limits_{t\rightarrow t_i^+} f(t, \pi(t))=\lim\limits_{t\rightarrow t_i^+}\pi'(t)\]
+	Y por lo tanto:
+	\[ \begin{rcases}
+	\lim\limits_{t\rightarrow t_i^-}\pi'(t)=\lim\limits_{t\rightarrow t_i^+}\pi'(t) \\
+	\pi \text{ continua en } t_i
+	\end{rcases}\Rightarrow \exists \pi'(t_i), \forall i \in \{1,\dots,k \} \]
+	
+\end{proof}
+
+\begin{theorem}
+	Sea $ \pi: t  \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, con $ I  $ intervalo, una solución $ \varepsilon $-aproximada de la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+	
+	$ f $ continua, entonces:
+	\[ ||\pi(t)-\pi(t_0)-\int_{t_0}^{t}f(s,\pi(s))ds||\leq \varepsilon |t-t_0|, \forall t, t_0 \in I\]
+	 
+\end{theorem}
+\begin{proof}
+	Caso I.
+	
+	Supongamos $ \pi \in C^1 $ salvo en los puntos $ t_1<\dots<t_k $.
+	
+	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+	\foreach \x/\y in {0/t_1, 1/t_2, 4/t_k}
+	\draw[thick] (\x,0.25) -- (\x,-0.25) node[below]{$\y$};
+	\draw[thick] (-0.5,0)--(4.5,0);
+	\draw (2.5,-0.25) -- (2.5,-0.25) node[below]{$\dots$};
+	\end{tikzpicture}
+	
+	Supongamos $ t,t_0 \in [t_i, t_{i+1}], i \in \{1, \dots, k-1\}$, es decir:
+	
+	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+	\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
+	\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
+	\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
+	\draw[very thick] (2/1.5,0.10) -- (2/1.5,-0.10) node[below]{$t$};
+	\draw[thick] (-0.5,0)--(4.5,0);
+	\end{tikzpicture}
+	
+	Sea $ J=[t_0,t], J \subset [t_i, t_{i+1}] $.
+	
+	Sea la función 
+	\begin{align*}
+	g:J&\longrightarrow \mathbb{R}^n\\
+	u&\longrightarrow g(u)=\pi(u)-\pi(t_0)- \int_{t_0}^{u}f(s, \pi(s)) ds
+	\end{align*}	
+	$\begin{rcases}
+	 \pi  \text{ continua por ser solución }  \varepsilon \text{-aproximada.}\\
+	 s\longrightarrow (s, \pi(s))\longrightarrow f(s, \pi(s)) \text{ es composición de continuas.}\\
+	 F:J\longrightarrow \mathbb{R} \text{ que lleva } u\longrightarrow  \int_{t_0}^{u}f(s, \pi(s)) ds \text{ continua.}
+	\end{rcases}$ $ \Rightarrow g $ continua en $ J $.
+	
+	$ \begin{rcases}
+	 \pi  \text{ derivable en } \mathring{J} \\
+	 F \text{ derivable en } J 
+	\end{rcases} $ $ \Rightarrow g $ derivable en $ \mathring{J} $.
+	
+	$ \begin{rcases}
+	 g \text{ derivable en }  J \\
+	gF \text{ derivable en } \mathring{J} 
+	\end{rcases} $ $ \Rightarrow $ (por th. incrementos finitos) $ ||g(t)-g(t_0)||\leq \sup ||g'(\xi)||  |t-t_0| \Rightarrow $ (def. de $ g $)
+	
+	\begin{align*}
+	\Rightarrow ||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds -(\pi(t_0-\pi(t_0))-\int_{t_0}^{t_0} f(s,\pi(s)) ds)|| =\\ =||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \sup ||g'(\xi)|| |t-t_0|
+	\end{align*}  
+	Ahora bien, por el Teorema Fundamental del Cálculo y la definición de solución $\varepsilon$-aproximada: 
+	\begin{align*}
+	g'(u)=\pi'(u)-f(u,\pi(u))\Rightarrow ||g'(u)||=||\pi'(u)-f(u,\pi(u))||\leq \varepsilon 
+	\end{align*}
+	Y finalmente:
+	\[ \begin{rcases}
+	||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \sup ||g'(\xi)|| |t-t_0|\\
+	||g'(u)||=||\pi'(u)-f(u,\pi(u))||\leq \varepsilon 
+	\end{rcases} \Rightarrow	||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \varepsilon |t-t_0|\]
+
+\end{proof}
 \section{Tema 3.}
 \pagebreak
 \section{Tema 4.}
