@@ -262,23 +262,28 @@ b) Queremos obtener el $ t $ que cumpla $ 100<x(t)<200 $, para que la dosis no b
 
 $ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
 \end{proof}
+BEGIN JORGE 4/2
+
+
+\subsection{Concepto de solución.}
+\subsection{Problema de Cauchy.}
 
 BEGIN MANU 6/2 exp
 
 ¿Una circunferencia puede ser solución de una EDO?
 \[ t^2+x^2=c \]
- \begin{wrapfigure}{l}{3.5cm}   
-\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=0.5}]
-\draw[thick] (0cm,0cm) circle(1cm);
-\node[circle,draw=white, fill=white, inner sep=0pt,minimum size=5pt] (b) at (1cm,0) {};
-\node[circle,draw=white, fill=white, inner sep=0pt,minimum size=5pt] (b) at (-1cm,0) {};
-\draw[->] (-1.5cm,0cm) -- (1.5cm,0cm) node[right,fill=white]{$t$};
-\draw[->] (0cm,-1.5cm) -- (0cm,1.5cm) node[above,fill=white]{};
-\node[above left] at (-1cm,0) {$(-\sqrt{c},0)$};
-\node[above right] at (1cm,0) {$(\sqrt{c},0)$};
-\node[above right] at (0.7cm,0.7cm) {$x_1(t)$};
-\node[below right] at (0.7cm,-0.7cm) {$x_2(t)$};
-\end{tikzpicture}
+\begin{wrapfigure}{l}{3.5cm}   
+	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=0.5}]
+	\draw[thick] (0cm,0cm) circle(1cm);
+	\node[circle,draw=white, fill=white, inner sep=0pt,minimum size=5pt] (b) at (1cm,0) {};
+	\node[circle,draw=white, fill=white, inner sep=0pt,minimum size=5pt] (b) at (-1cm,0) {};
+	\draw[->] (-1.5cm,0cm) -- (1.5cm,0cm) node[right,fill=white]{$t$};
+	\draw[->] (0cm,-1.5cm) -- (0cm,1.5cm) node[above,fill=white]{};
+	\node[above left] at (-1cm,0) {$(-\sqrt{c},0)$};
+	\node[above right] at (1cm,0) {$(\sqrt{c},0)$};
+	\node[above right] at (0.7cm,0.7cm) {$x_1(t)$};
+	\node[below right] at (0.7cm,-0.7cm) {$x_2(t)$};
+	\end{tikzpicture}
 \end{wrapfigure}
 No, ya que no es una función. Sin embargo, si tomamos $ x_1=\sqrt{c-t^2} $ y $ x_1=\sqrt{c-t^2} $, son solución de la ecuación $ xx'+t=0 $.
 
@@ -291,9 +296,6 @@ La solución escogida será una o otra en función de la condición inicial.
 x_1(t)=\sqrt{c-t^2}\\
 x_2(t)=-\sqrt{c-t^2}
 \end{cases}  \]
-
-\subsection{Concepto de solución.}
-\subsection{Problema de Cauchy.}
 \pagebreak
 \section{Tema 2. Existencia y unicidad de solución.}
 
