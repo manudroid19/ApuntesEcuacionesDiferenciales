@@ -262,11 +262,117 @@ b) Queremos obtener el $ t $ que cumpla $ 100<x(t)<200 $, para que la dosis no b
 
 $ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
 \end{proof}
+
 BEGIN JORGE 4/2
 
-
 \subsection{Concepto de solución.}
+\begin{definition}
+	Sea $f: A \in \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \underline{Ecuaciones Lineales Ordinarias} (EDO) de primer orden en forma normal relativa a la función $f$ a $x' = f(t, x)$. $\\$
+	Se dice que es de primer orden porque solo aparece la primera derivada y forma normal porque $x'$ está despejada (si no sería $h(t, x, x')$).
+\end{definition}
+\begin{definition}
+	Dada $\varphi: t \in I \subset \mathbb{R} \longrightarrow \varphi (t) \in \mathbb{R}^n$ decimos que $\varphi$ es solución de $x'=f(t, x)$ si verifica:
+	\begin{enumerate}
+		\item $(t, \varphi (t)) \in A$, $\forall t \in I$.
+		\item $\exists \varphi' (t)$, $\forall t \in I$.
+		\item $f(t, \varphi(t))$,  $\forall t \in I$.
+	\end{enumerate}
+	Tenemos que si $I$ contiene a uno de sus extremos entenderemos en el punto $2$ que exista su derivada lateral.
+\end{definition}
+\begin{observation}
+	Teniendo que $\varphi: t \in \mathbb{R} \longrightarrow \mathbb{R}^n$ con $\varphi (t) = (\varphi_1 (t), ..., \varphi_n (t))$. Por tanto, que $\varphi' (t) = f(t, \varphi (t))$ significa lo siguiente:
+	\[\varphi' (t) = (\varphi_1' (t), ..., \varphi_n' (t))\] 
+	lo que se traduce en:
+	\[f(t, (x_1, ..., x_n)) = (f_1(t, (x_1, ..., x_n)), ..., f_n(t, (x_1, ..., x_n))) \]
+	\[
+	M=
+	\left({\begin{array}{cc}
+		\varphi_1' (t) \\
+		\vdots \\
+		\varphi_n' (t)
+		\end{array} } \right)
+	=
+	\left({\begin{array}{cc}
+		f_1(t, \varphi_1 (t), ..., \varphi_n (t)) \\
+		\vdots \\
+		f_n(t, \varphi_1 (t), ..., \varphi_n (t))
+		\end{array} } \right).
+	\]
+	Por lo que, tenemos que:
+	\[\left\{ {\begin{array}{cc}
+		\varphi_1' (t) = f_1(t, \varphi_1 (t), ..., \varphi_n (t)) \\
+		\cdots \\
+		\varphi_n' (t) = f_n(t, \varphi_1 (t), ..., \varphi_n (t))
+		\end{array} } \right. \]
+\end{observation}
+\begin{proposition}
+	Si $f$ es continua en $A$, entonces $\varphi$ es de clase $C^1$ en $I$.
+\end{proposition}
+\begin{proof}
+	Por definición de solución $\varphi' (t) = f(t, \varphi (t))$, $t \in I$. Componiendo de la siguiente forma
+	\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t))\]
+	tenemos que, tal y como está definida, $g$ es una función continua por estar compuesta de $id$, que es la identidad, y de $\varphi$, que es continua por ser derivable en todos sus puntos. Además, como $f$ es continua por definición y tenemos que $\varphi' (t) = f(t, \varphi (t))$, $\varphi'$ es continua por composición de continuas.
+\end{proof}
+\begin{theorem}
+	Si $f \in C^1$, $r \in \mathbb{N}$ y $r \leq 1$, entonces $\varphi \in C^{r+1}(I)$.
+\end{theorem}
+\begin{proof}
+	Realizaremos la prueba empleando inducción. En primer lugar lo probaremos para $r=1$, es decir, veamos que:
+	\[f\in C^1(A) \Rightarrow \varphi \in C^2(I).\]
+	Como $\varphi' (t) = f(t, \varphi (t))$, como hemos visto antes tenemos que:
+		\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t)),\]
+	pero, tenemos que $f \in C^1(A)$ por lo que $f$ es continua y por la proposición anterior tenemos que $\varphi \in C^1$. Por lo tanto, la composición anterior cumple que es de clase $C^1$, por lo que concluímos que $\varphi \in C^2$. \\
+	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{HIP}{\Rightarrow}$). Veamos que $\varphi \in C^{r+1}$.
+	\[t \longrightarrow (t, \varphi (t)) \longrightarrow f(t, \varphi (t)) = \varphi' (t).\]
+	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
+\end{proof}
+
+\begin{example}
+	Sea $x' = x^2$, es decir, $f(t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. \\
+	En primer lugar tenemos que ver que $x'(t) = (x(t))'$.
+	\[x'(t) = \frac{1}{(t+c)^2} \Rightarrow x'(t) = (\frac{-1}{t+c})^2\]
+	Además, de esta solución sabemos que:
+	\[\left. {\begin{array}{cc}
+		\lim\limits_{t \to (-c)^{-}} x(t) = \lim\limits_{t \to (-c)^{-}} \frac{-1}{t+c} = +\infty\\
+		\lim\limits_{t \to (-c)^{+}} x(t) = \lim\limits_{t \to (-c)^{+}} \frac{-1}{t+c} = -\infty
+		\end{array}} \right\} \Rightarrow t = -c \hspace*{0.2cm} AV\]
+	por lo que la función tiene una asíntota vertical en $t = -c$. También sabemos que:
+	\[\left. {\begin{array}{cc}
+		\lim\limits_{t \to +\infty} x(t) = \lim\limits_{t \to +\infty} \frac{-1}{t+c} = 0^-\\
+		\lim\limits_{t \to -\infty} x(t) = \lim\limits_{t \to -+\infty} \frac{-1}{t+c} = 0^+
+		\end{array}} \right\} \Rightarrow x = 0 \hspace*{0.2cm} AH\]
+	por lo que tenemos una asíntota horizontal en $x = 0$. 
+	
+	%GRAFICA ---------------------------------------------------
+	
+	En este caso $A = \mathbb{R} \times \mathbb{R} = \mathbb{R}^2$. Además,
+	\[t \in (- \infty, - c) \longrightarrow h(t) = \frac{-1}{t+c}\]
+	\begin{enumerate}
+		\item $(t, h(t)) \in A$
+		\item $\exists \varphi' (t) \forall t \in I$
+		\item $\varphi (t) = f(t, \varphi (t))$
+	\end{enumerate}
+	Por lo tanto, $h$ es una solución de $x'=x^2$. Además,
+	\[t \in (-c, +\infty ) \longrightarrow \varphi(t) = \frac{-1}{t+c}\]
+	también es solución, mientras que:
+	\[t \in (- \infty, - c) \cup (-c, +\infty ) \longrightarrow f(t) = \frac{-1}{t+c}\]
+	no es solución ya que no está definida en un intervalo. \\
+	Además, si queremos calcular la solución de $x'=x^2$ que en $t =1$ valga $3$ tenemos que:
+	\[3 = x(1) = \frac{-1}{1+c} \Rightarrow 3 + 3c = -1 \Rightarrow c = -\frac{4}{3}\]
+	Por tanto, $x(t) = \frac{-1}{t-\frac{4}{3}}$ verifica que $x'(t) = (x(t))^2$. Además, por lo visto anteriormente, $h$ y $\varphi$ son soluciones si hacemos que $c = - \frac{4}{3}$.
+	
+	%GRAFICA ------------------------------------------------------
+	
+	
+\end{example}
+
 \subsection{Problema de Cauchy.}
+
+\begin{definition}
+	Dada $x' = f(t, x)$ con $f: A \subset \mathbb{R} \times \mathbb{R}^n longrightarrow \mathbb{R}^n$ y un punto $(t_0, x_0) \in A$, el problema de Cauchy consiste en buscar una función:
+	\[\varphi : I \subset \mathbb{R} \longrightarrow \mathbb{R}^n\]
+	con $I$ un intervalo, que sea solución de $x' = f(t, x)$ tal que $\varphi (t_0) = x_0$.
+\end{definition}
 
 BEGIN MANU 6/2 exp
 
@@ -314,7 +420,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	
 	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una solución $ \varepsilon $-aproximada si verifica:
 	
-	\begin{enumerate}[1)]
+	\begin{enumerate}
 		\item $ (t,\pi (\varepsilon))\in A, \forall t \in I $.
 		\item $ \pi $ continua y $C^1$ a trozos (es decir, es $C^1$ salvo a lo sumo una cantidad finita de puntos)
 		\item $ || \pi'(t)-f(t, \pi(t))|| \leq \varepsilon$. (Las normas son equivalentes en dimensión finita).
