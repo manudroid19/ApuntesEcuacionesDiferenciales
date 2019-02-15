@@ -462,8 +462,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	\[ ||\pi(t)-\pi(t_0)-\int_{t_0}^{t}f(s,\pi(s))ds||\leq \varepsilon |t-t_0|, \forall t, t_0 \in I\]
 	 
 \end{theorem}
-\begin{proof}
-	Caso I.
+\begin{proof} \textbf{Caso I.}
 	
 	Supongamos $ \pi \in C^1 $ salvo en los puntos $ t_1<\dots<t_k $.
 	
@@ -519,7 +518,22 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \sup ||g'(\xi)|| |t-t_0|\\
 	||g'(u)||=||\pi'(u)-f(u,\pi(u))||\leq \varepsilon 
 	\end{rcases} \Rightarrow	||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \varepsilon |t-t_0|\]
-
+	
+	\textbf{Caso II.}
+	En este caso el caso a analizar va a ser el de dos puntos en dos intervalos diferentes pero consecutivos. Es decir:
+	
+	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+	\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
+	\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
+	\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
+	\draw[very thick] (4/1.5,0.10) -- (4/1.5,-0.10) node[below]{$t$};
+	\draw[thick] (-0.5,0)--(4.5,0);
+	\end{tikzpicture}
+	
+	Así, en este caso, tenemos que $t_o \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_o, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo se tiene que:
+	\begin{enumerate}
+		\item asdasdasd
+	\end{enumerate}
 \end{proof}
 \section{Tema 3.}
 \pagebreak
