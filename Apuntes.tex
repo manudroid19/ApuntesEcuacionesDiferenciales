@@ -54,6 +54,7 @@
 \usepackage[parfill]{parskip}       % Crea una nueva línea entre párrafos.
 \usepackage{geometry}               % Asigna la "geometría" de las páginas.
 
+\providecommand{\norm}[1]{\lVert#1\rVert}
 % Se elige el estilo fancy y márgenes de 3 centímetros.
 \pagestyle{fancy}
 \geometry{left=3cm,right=3cm,top=3cm,bottom=3cm,headheight=1cm,headsep=0.5cm} % Márgenes y cabecera.
@@ -519,6 +520,8 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	||g'(u)||=||\pi'(u)-f(u,\pi(u))||\leq \varepsilon 
 	\end{rcases} \Rightarrow	||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \varepsilon |t-t_0|\]
 	
+	BEGIN JORGE 11/2
+	
 	\textbf{Caso II.}
 	En este caso el caso a analizar va a ser el de dos puntos en dos intervalos diferentes pero consecutivos. Es decir:
 	
@@ -532,10 +535,43 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	
 	Así, en este caso, tenemos que $t_o \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_o, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo se tiene que:
 	\begin{enumerate}
-		\item asdasdasd
+		\item $\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} \leq \varepsilon |t - t_{i+1} |$ en $J_r$.
+		\item $\norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \leq \varepsilon |t_{i+1} - t_0|$ en $J_j$.
 	\end{enumerate}
+	Considerando ahora la suma siguiente:
+	\[\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds = \pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds \]
+	Por otro lado sabemos que:
+	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{Desigualdad Triangular}{\leq} \norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. y 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
+	Por lo que, como queríamos probar:
+	\[\norm{\pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds} \leq \varepsilon |t-t_0|\]
+	
+	\textbf{Caso III.} Ejercicio propuesto. Basta con realizar inducción y basarse en el caso III.
 \end{proof}
-BEGIN JORGE 11/2
+\begin{theorem}
+	Dada la ecuación (*) con $f$ continua y $\varPhi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$ se tiene:
+	\begin{center}
+		$\varphi$ solución de (*) $\Leftrightarrow \begin{cases}
+		(1) \hspace{0,2cm} \varphi \hspace{0,2cm} continua \\
+		(2) \hspace{0,2cm} \varphi (t)= \varphi (t_0) + \int_{t_0}^{t} f(s, \pi (s))ds
+		\end{cases}$
+	\end{center}
+\end{theorem}
+\begin{proof}
+	$"\Rightarrow"$ \\
+	Supongamos $\varphi$ solución de $x' = f(t, x) \Rightarrow
+	\begin{cases}
+	i) \hspace{0,2cm} (t, \varphi (t)) \in A \forall t \in I
+	ii) \hspace{0,2cm} \exists \varphi' (t) \forall t \in I
+	iii) \hspace{0,2cm} \varphi' (t) = f(t, \varphi (t)) t \in I
+	\end{cases}$. \\
+	En primer lugar $ii) \Rightarrow \varphi$ continua. Además, por $iii)$ sabemos que $\varphi' (t) = f(t, \varphi (t))$. Vemos que la composición:
+	\[t \stackrel{g}{\longrightarrow } (t, \varphi (t)) \stackrel{f}{\longrightarrow } f(t, \varphi (t))\]
+	es continua por ser continuas $g$ y $f$, por lo que $\varphi '$ es integrable. Entonces,
+	\[\varphi (t) - \varphi (t_0) = \int_{t_0}^{t} \varphi' (s)ds = \int_{t_0}^{t} f(s, \varphi (s))ds \Rightarrow \varphi (t) = \varphi (t_0) + \int_{t_0}^{t} f(s, \varphi (s))ds\]
+	$"\Leftarrow"$ \\
+	Ahora supongo que se cumplen $(1)$ y $(2)$.
+	
+\end{proof}
 
 
 BEGIN MANU 13/2 
