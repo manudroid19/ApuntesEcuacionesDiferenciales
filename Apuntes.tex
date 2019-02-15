@@ -521,6 +521,76 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	\end{rcases} \Rightarrow	||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \varepsilon |t-t_0|\]
 
 \end{proof}
+BEGIN JORGE 11/2
+
+
+BEGIN MANU 13/2 
+
+\begin{theorem}[Construccion de solución $ \varepsilon $-aproximada.]
+	Dada (*), con $ A $ abierto, $ f $ continua y acotada en $ A $ y sea $ \varepsilon>0, \varepsilon\in \mathbb{R} $. 
+	
+	Entonces fijado $ (t_0, x_0) \in A $ existe solución $ \varepsilon $-aproximada pasando por $ (t_0, x_0)$.
+	
+	DIBUJO
+\end{theorem}
+\begin{proof}
+	Sea $ d=d_\infty((t_0, x_0), \text{Fr} (A))>0 $ (ya que $ A $ abierto).
+	\[ \inf \{d_\infty (t_0,x_0), (t,x):(t,x)\in \text{Fr} (A) \}=\inf \{\max \{||t-t_0||,||x-x_0||\}\}\]
+	Como $ f $ acotada, $ \exists H $ para $ f $, tal que $ \forall(t,x) \in A, ||f(t,x)||<H $.
+	
+	Definamos el siguiente conjunto $ R $, con $ \delta $ tal que $ 0<\delta<\min \{d, \frac{d}{H}\} $:
+	\[ R=\{(t,x):|t-t_0|<\varDelta, ||x-x_0||\leq H\delta\} \]
+	$ R \subset A $ (Ejercicio). Idea para demostración: $ (t_1,x_1)\in R \Rightarrow (t_1,x_1)\in A $ y $ d_\infty ((t_1,x_1), (t_0,x_0))<d $.
+	
+	Si existe solución para (*) la tangente en $ (t_0,x_0) $ sería (ya que $ \varphi $ es solución):
+	\[ \varphi'(t)|_{t_0}=f(t, \varphi(t))|_{t_0}=f(t_0,\varphi (t_0))=f(t_0,x_0) \]
+	Definimos la siguiente función: 
+	\[ \rho_1:I\subset \mathbb{R}\longrightarrow \mathbb{R}^n \]
+	\[ t \mapsto \rho_1(t)=x_0+f(t_0,x_0)(t-t_0) \]
+	Es la ecuación de la recta pasando por $ (t_0,x_0) $ con pendiente $ f(t_0,x_0) $.
+	
+	Veamos para que valores de $ t $, $ \rho_1(t) $ es solución $ \varepsilon $-aproximada. 
+	Si $ t\geq t_0 $, la pendiente de $ \rho_1 $ en $ t $ es $ f(t_0,x_0) $.
+	Como $ f $ acotada en $ H $, tenemos $ ||f(t_0,x_0)||\leq H $.
+	
+	Veamos si $ \rho_1 $ verifica las condiciones de ser $ \varepsilon $-aproximada.
+	
+	i) $ (t,\rho(t)) \in \mathbb{R}\subset A$.
+	
+	ii) $ \rho_1 $ es continua y $ C^n $ a trozos ya que $ \rho_1 \in C^\infty $.
+	
+	iii) ¿Se cumple $ ||\rho_1'(t)-f(t,\rho_1(t))||\leq \varepsilon| $?
+	\[ ||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0+f(t_0,x_0))(t-t_0)|| \]
+	\[ \begin{rcases}
+	f \text{ continua en } A\\
+	R\subset A \text{ compacto}
+	\end{rcases} \Rightarrow f \text{ uniformemente continua en } R\text{, es decir, } \]\[ \forall \varepsilon > 0 \exists \hat{\delta} >0 : \forall y,z \in R, ||y-z||<\hat{\delta} \Rightarrow||f(y)-f(z)||<\varepsilon \]
+	Tengo que demostrar $ ||y-z||=||f(t_0,x_0)-f(t,x_0)+f(t_0,x_0)(t-t_0)||<\varepsilon $.
+	
+	Sea $ \varepsilon>0 $, como $ f $ uniformemente continua, si $ ||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} $ ya queda probado.
+	Veamos para que valores de $ t $, se tiene $ ||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} \Rightarrow ||(t_0-t), x_0-x_0 -f(t_0,x_0)(t-t_0)||< \hat{\delta} $.
+	
+	NOTA: trabajo con la norma infinito, que es el máximo de los valores absolutos de las componentes.
+	
+	(1)
+	\[ \begin{rcases}
+	 \text{Si } ||t-t_0||< \hat{\delta}\\
+	|| -f(t_0,x_0)(t-t_0)||< \hat{\delta}
+	\end{rcases} \Rightarrow ||(t_0-t), f(t_0,x_0)(t-t_0)||< \hat{\delta} \]
+	Sea $ \alpha >0 $ tal que $ \alpha < \min \{ \hat{\delta}, \frac{\hat{\delta}}{H}\} $ veamos que $ \forall t \in [t_0,t_0+\alpha] $, $\rho_1(t)$ es solución $ \varepsilon $-aproximada. 
+	
+	\[ t \in [t_0, t_0+\alpha]\Rightarrow |t-t_0|\leq \alpha  
+	\begin{cases}
+	< \hat{\delta} \text{ si } (min\{ \hat{\delta}, \frac{\hat{\delta}}{H}\}= \hat{\delta}) \\
+	< \frac{\hat{\delta}}{H}\}<\hat{\delta} \text{ si }  (min\{ \hat{\delta}, \frac{\hat{\delta}}{H}\}=  \frac{\hat{\delta}}{H})
+	\end{cases}
+	 \]
+	 \[  t \in [t_0, t_0+\alpha]\Rightarrow ||-f(t_0,x_0)(t-t_0)|| = || f(t_0,x_0)|| , |t-t_0|<H\alpha < H \frac{\hat{\delta}}{H}= \hat{\delta} \]
+	Entonces, tenemos visto que $ \rho_1 $ es solución $ \varepsilon $-aproximada en $ [t_0,t_0+\alpha] $. Sea ahora $ t_1=t_0+\alpha $ y $ x_1=\rho_1(t_1) $ y definimos la siguiente función:
+	\[ \rho_2:I\longrightarrow \mathbb{R} \]
+	\[ t \longmapsto \rho_2(t)=x_1+f(t_1,x_1)(t-t_1) \]
+	y veamos que $ \rho_2(t) $ es solución $ \varepsilon $-aproximada $  \forall t \in [t_1,t_1+\alpha]  $ y repetimos el proceso.
+\end{proof}
 \section{Tema 3.}
 \pagebreak
 \section{Tema 4.}
