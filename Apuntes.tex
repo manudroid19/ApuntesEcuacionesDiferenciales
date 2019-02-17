@@ -544,7 +544,8 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	Considerando ahora la suma siguiente:
 	\[\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds = \pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds \]
 	Por otro lado sabemos que:
-	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{Desigualdad Triangular}{\leq} \norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. y 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
+	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{Des. Triangular}{\leq} \]
+	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. y 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
 	Por lo que, como queríamos probar:
 	\[\norm{\pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds} \leq \varepsilon |t-t_0|\]
 	
@@ -572,10 +573,36 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	es continua por ser continuas $g$ y $f$, por lo que $\varphi '$ es integrable. Entonces,
 	\[\varphi (t) - \varphi (t_0) = \int_{t_0}^{t} \varphi' (s)ds = \int_{t_0}^{t} f(s, \varphi (s))ds \Rightarrow \varphi (t) = \varphi (t_0) + \int_{t_0}^{t} f(s, \varphi (s))ds\]
 	$"\Leftarrow"$ \\
-	Ahora supongo que se cumplen $(1)$ y $(2)$.
-	
+	Ahora supongo que se cumplen $(1)$ y $(2)$. Por hipótesis $(t, \varphi (t))$ $\forall t \in I$. Pero, ¿$\exists \varphi' (t)$ $\forall t \in I$?\\
+	Tenemos en primer lugar que $f$ continua y que $\varphi$ es continua, lo que implica que $\int_{t_0}^{t} f(s, \varphi (t))ds$ es derivable y su derivada vale $f(t, \varphi (t))$. Por tanto $\varphi (t)$ es derivable y $\varphi' (t_0) = 0$. \\
+	Por tanto, $\varphi' (t) = f(t, \varphi (t))$.
 \end{proof}
+\begin{theorem}
+	Sea $\{\varepsilon_m\}$ sucesión de números reales $\varepsilon_m \geq 0$ tal que $\{\varepsilon\}_{m\in \mathbb{N}}$ y sea $I \subset \mathbb{R}$ intervalo compacto. Dado (*) con $A$ abierto, $f$ continua en $A$ y supongamos que $\exists \pi_m : t \in I \longrightarrow \mathbb{R}^n$ solución $\varepsilon$-aproximada de (*). Entonces, si $\exists \varphi : t \in I \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in I$ y $\{\pi_m\}$ converge a $\varphi$ uniformemente en $I$ e implica que $\varepsilon$ solución de (*). 
+\end{theorem}
 
+\begin{definition}
+	Sea $I \subset \mathbb{R}$ intervalo compacto, $M \subset C(I, \mathbb{R})$ es equicontinuo si:
+	\[\forall \epsilon > 0 \hspace{0,2cm} \exists \delta > 0 \hspace{0,2cm} / \hspace{0,2cm} \forall x, y\in |x-y| < \delta \Rightarrow \norm{h(x) - h(y)} < \varepsilon\]
+	$\forall h \in M$.
+\end{definition}
+\begin{example}
+	\begin{enumerate}
+		\item Un conjunto finito de funciones de $C(I, \mathbb{R}^n)$. Tomemos $n = 2$. Sea $\varepsilon_0 > 0$ se tiene que:
+		\begin{center}
+			$\begin{cases}
+			h_1 \hspace{0,2cm} continua \hspace{0,2cm} \exists \delta_1 > 0 \hspace{0,2cm} / \hspace{0,2cm} |x-y|<\delta_1 \Rightarrow \norm{h_1(x) - h_1(y)} < \varepsilon_0 \\
+			h_2 \hspace{0,2cm} continua \hspace{0,2cm} \exists \delta_2 > 0 \hspace{0,2cm} / \hspace{0,2cm} |x-y|<\delta_2 \Rightarrow \norm{h_2(x) - h_2(y)} < \varepsilon_0
+			\end{cases}$
+		\end{center}
+		Basta tomar $\delta = min\{\delta_1, \delta_2\}$.
+		\item Un conjunto de funciones lipschitziana con la misma constante de Lipschitz $K$.
+		\begin{center}
+			$\norm{h(x) - h(y)}\leq k|x-y|$ $\forall h \in M$ \\
+			$\varepsilon > 0$ $\exists \delta > 0$ tal que $|x-y|<\delta \Rightarrow \norm{h(x) - h(y)} < k\delta = \varepsilon$
+		\end{center}
+	\end{enumerate}
+\end{example}
 
 BEGIN MANU 13/2 
 
