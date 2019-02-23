@@ -318,7 +318,7 @@ BEGIN JORGE 4/2
 	tenemos que, tal y como está definida, $g$ es una función continua por estar compuesta de $id$, que es la identidad, y de $\varphi$, que es continua por ser derivable en todos sus puntos. Además, como $f$ es continua por definición y tenemos que $\varphi' (t) = f(t, \varphi (t))$, $\varphi'$ es continua por composición de continuas.
 \end{proof}
 \begin{theorem}
-	Si $f \in C^1$, $r \in \mathbb{N}$ y $r \leq 1$, entonces $\varphi \in C^{r+1}(I)$.
+	Si $f \in C^r$, $r \in \mathbb{N}$ y $r \leq 1$, entonces $\varphi \in C^{r+1}(I)$.
 \end{theorem}
 \begin{proof}
 	Realizaremos la prueba empleando inducción. En primer lugar lo probaremos para $r=1$, es decir, veamos que:
@@ -326,14 +326,14 @@ BEGIN JORGE 4/2
 	Como $\varphi' (t) = f(t, \varphi (t))$, como hemos visto antes tenemos que:
 		\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t)),\]
 	pero, tenemos que $f \in C^1(A)$ por lo que $f$ es continua y por la proposición anterior tenemos que $\varphi \in C^1$. Por lo tanto, la composición anterior cumple que es de clase $C^1$, por lo que concluímos que $\varphi \in C^2$. \\
-	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{HIP}{\Rightarrow}$). Veamos que $\varphi \in C^{r+1}$.
+	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{HIP}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+1}$.
 	\[t \longrightarrow (t, \varphi (t)) \longrightarrow f(t, \varphi (t)) = \varphi' (t).\]
 	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
 \end{proof}
 
 \begin{example}
-	Sea $x' = x^2$, es decir, $f(t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. \\
-	En primer lugar tenemos que ver que $x'(t) = (x(t))'$.
+	Sea $x' = x^2$, es decir, $f: (t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. \\
+	En primer lugar tenemos que ver que $x'(t) = (x(t))^2 = f(t, x(t))$.
 	\[x'(t) = \frac{1}{(t+c)^2} \Rightarrow x'(t) = (\frac{-1}{t+c})^2\]
 	Además, de esta solución sabemos que:
 	\[\left. {\begin{array}{cc}
@@ -358,7 +358,7 @@ BEGIN JORGE 4/2
 	\end{enumerate}
 	Por lo tanto, $h$ es una solución de $x'=x^2$. Además,
 	\[t \in (-c, +\infty ) \longrightarrow \varphi(t) = \frac{-1}{t+c}\]
-	también es solución, mientras que:
+	también es solución por la misma razón que $h$, mientras que:
 	\[t \in (- \infty, - c) \cup (-c, +\infty ) \longrightarrow f(t) = \frac{-1}{t+c}\]
 	no es solución ya que no está definida en un intervalo. \\
 	Además, si queremos calcular la solución de $x'=x^2$ que en $t =1$ valga $3$ tenemos que:
@@ -373,7 +373,7 @@ BEGIN JORGE 4/2
 \subsection{Problema de Cauchy.}
 
 \begin{definition}
-	Dada $x' = f(t, x)$ con $f: A \subset \mathbb{R} \times \mathbb{R}^n longrightarrow \mathbb{R}^n$ y un punto $(t_0, x_0) \in A$, el problema de Cauchy consiste en buscar una función:
+	Dada $x' = f(t, x)$ con $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ y un punto $(t_0, x_0) \in A$, el problema de Cauchy consiste en buscar una función:
 	\[\varphi : I \subset \mathbb{R} \longrightarrow \mathbb{R}^n\]
 	con $I$ un intervalo, que sea solución de $x' = f(t, x)$ tal que $\varphi (t_0) = x_0$.
 \end{definition}
@@ -425,7 +425,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una solución $ \varepsilon $-aproximada si verifica:
 	
 	\begin{enumerate}
-		\item $ (t,\pi (\varepsilon))\in A, \forall t \in I $.
+		\item $ (t,\pi (t))\in A, \forall t \in I $.
 		\item $ \pi $ continua y $C^1$ a trozos (es decir, es $C^1$ salvo a lo sumo una cantidad finita de puntos)
 		\item $ || \pi'(t)-f(t, \pi(t))|| \leq \varepsilon$. (Las normas son equivalentes en dimensión finita).
 	\end{enumerate} 
@@ -434,21 +434,17 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	Sea la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
 	
 	Sea $ f $ continua y sea $ \pi : t \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, entonces:
-	
-	$ \pi  $ solución $ \Leftrightarrow $ $ \pi $ solución 0-aproximada.
+	\begin{center}
+		$ \pi  $ solución $ \Leftrightarrow $ $ \pi $ solución 0-aproximada.
+	\end{center}
 \end{proposition}
 \begin{proof}
 	"$ \Rightarrow $". Ejercicio propuesto.
 	
 	
-	"$ \Leftarrow $". Suponemos que $ \pi $ solución 0-aproximada y veamos que $ \pi $ es solución.
-
-	1) se verifica trivialmente.
-	
-	Sea $ \{t_i\}_{i=1}^k $ los puntos en los que $ \pi $ puede, en principio, no ser derivable, y veamos que existe la derivada en ellos.
-	
-	Por una parte, por ser  $ \pi $ solución 0-aproximada, $ ||\pi'(t)-f(t,\pi(t))||\leq 0\Rightarrow ||\pi'(t)-f(t,\pi(t))||=0 \Rightarrow \pi'(t)=f(t, \pi(t)), \forall t \in I, t\neq t_i$.
-	
+	"$ \Leftarrow $". \\Suponemos que $ \pi $ solución 0-aproximada y veamos que $ \pi $ es solución. En primer lugar tenemos que $(t, \pi (t)) \in A$, $\forall t \in I$, se verifica trivialmente. \\
+	Sea $ \{t_i\}_{i=1}^k $ los puntos en los que $ \pi $ puede, en principio, no ser derivable, y veamos que existe la derivada en ellos. Por una parte, por ser  $ \pi $ solución 0-aproximada:
+	 \[ ||\pi'(t)-f(t,\pi(t))||\leq 0\Rightarrow ||\pi'(t)-f(t,\pi(t))||=0 \Rightarrow \pi'(t)=f(t, \pi(t)), \forall t \in I, t\neq t_i.\]
 	Fijado $ t_i\in \{t_1, \dots, t_k\} $, como $ f $ y $ \pi $ son continuas, 
 	\[ \lim\limits_{t\rightarrow t_i^-}\pi'(t)=\lim\limits_{t\rightarrow t_i^-} f(t, \pi(t))= f(t_i, \pi(t_i))= \lim\limits_{t\rightarrow t_i^+} f(t, \pi(t))=\lim\limits_{t\rightarrow t_i^+}\pi'(t)\]
 	Y por lo tanto:
@@ -469,49 +465,44 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 \begin{proof} \textbf{Caso I.}
 	
 	Supongamos $ \pi \in C^1 $ salvo en los puntos $ t_1<\dots<t_k $.
+	\begin{center}
+		\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+			\foreach \x/\y in {0/t_1, 1/t_2, 4/t_k}
+			\draw[thick] (\x,0.25) -- (\x,-0.25) node[below]{$\y$};
+			\draw[thick] (-0.5,0)--(4.5,0);
+			\draw (2.5,-0.25) -- (2.5,-0.25) node[below]{$\dots$};
+		\end{tikzpicture}
+	\end{center}
 	
-	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
-	\foreach \x/\y in {0/t_1, 1/t_2, 4/t_k}
-	\draw[thick] (\x,0.25) -- (\x,-0.25) node[below]{$\y$};
-	\draw[thick] (-0.5,0)--(4.5,0);
-	\draw (2.5,-0.25) -- (2.5,-0.25) node[below]{$\dots$};
-	\end{tikzpicture}
 	
 	Supongamos $ t,t_0 \in [t_i, t_{i+1}], i \in \{1, \dots, k-1\}$, es decir:
-	
-	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
-	\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
-	\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
-	\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
-	\draw[very thick] (2/1.5,0.10) -- (2/1.5,-0.10) node[below]{$t$};
-	\draw[thick] (-0.5,0)--(4.5,0);
-	\end{tikzpicture}
-	
-	Sea $ J=[t_0,t], J \subset [t_i, t_{i+1}] $.
-	
-	Sea la función 
+	\begin{center}
+		\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+			\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
+			\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
+			\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
+			\draw[very thick] (2/1.5,0.10) -- (2/1.5,-0.10) node[below]{$t$};
+			\draw[thick] (-0.5,0)--(4.5,0);
+		\end{tikzpicture}
+	\end{center}
+	Sea $ J=[t_0,t], J \subset [t_i, t_{i+1}] $. Sea la función:
 	\begin{align*}
 	g:J&\longrightarrow \mathbb{R}^n\\
 	u&\longrightarrow g(u)=\pi(u)-\pi(t_0)- \int_{t_0}^{u}f(s, \pi(s)) ds
-	\end{align*}	
-	$\begin{rcases}
-	 \pi  \text{ continua por ser solución }  \varepsilon \text{-aproximada.}\\
-	 s\longrightarrow (s, \pi(s))\longrightarrow f(s, \pi(s)) \text{ es composición de continuas.}\\
-	 F:J\longrightarrow \mathbb{R} \text{ que lleva } u\longrightarrow  \int_{t_0}^{u}f(s, \pi(s)) ds \text{ continua.}
-	\end{rcases}$ $ \Rightarrow g $ continua en $ J $.
-	
-	$ \begin{rcases}
-	 \pi  \text{ derivable en } \mathring{J} \\
-	 F \text{ derivable en } J 
-	\end{rcases} $ $ \Rightarrow g $ derivable en $ \mathring{J} $.
-	
-	$ \begin{rcases}
-	 g \text{ derivable en }  J \\
-	gF \text{ derivable en } \mathring{J} 
-	\end{rcases} $ $ \Rightarrow $ (por th. incrementos finitos) $ ||g(t)-g(t_0)||\leq \sup ||g'(\xi)||  |t-t_0| \Rightarrow $ (def. de $ g $)
-	
+	\end{align*}
+	Sabemos que:
+	\begin{enumerate}
+	 \item $\pi$  continua por ser solución  $\varepsilon$-aproximada.\\
+	 \item $s \longrightarrow (s, \pi(s))\longrightarrow f(s, \pi(s))$ es composición de continuas.\\
+	 \item $F:J\longrightarrow \mathbb{R}$ que lleva $u \longrightarrow  \int_{t_0}^{u}f(s, \pi(s)) ds$ continua.
+	\end{enumerate}
+	Por lo tanto, podemos afirmar que $g$ es continua en $J$. Además $\pi$ es derivable en $\mathring{J}$ y $F$ es derivable en $J$, por lo que $g$ es derivable en $\mathring{J}$. Con esto y con que $gF$ es derivable en $\mathring{J}$ tenemos que, por el Teorema de Incrementos Finitos\textsuperscript{1}:
+	%\textsuperscript{1} El Teorema de Incrementos Finitos dice que dada cualquier función $f$ continua en el conjunto $A$ y diferenciable en $\mathring{A}$ entonces existe al menos algún punto $\xi$ en $\mathring{A}$ tal que $\norm{f(t)-f(t_0)}\leq \sup\norm{f'(\xi)}|t-t_0|$ QUIERO PONER ESTO A PIE DE PAGINAAAAAAAA
+	%----------------------------------------------------------
+	\[\norm{g(t)-g(t_0)}\leq \sup \norm{g'(\xi)}|t-t_0|\]
+	y, por la definición de $g$,
 	\begin{align*}
-	\Rightarrow ||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds -(\pi(t_0-\pi(t_0))-\int_{t_0}^{t_0} f(s,\pi(s)) ds)|| =\\ =||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \sup ||g'(\xi)|| |t-t_0|
+	\norm{\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds -(\pi(t_0)-\pi(t_0)-\int_{t_0}^{t_0} f(s,\pi(s)) ds)} =\\ =\norm{\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds} \leq \sup \norm{g'(\xi)} |t-t_0|
 	\end{align*}  
 	Ahora bien, por el Teorema Fundamental del Cálculo y la definición de solución $\varepsilon$-aproximada: 
 	\begin{align*}
@@ -527,32 +518,32 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	
 	\textbf{Caso II.}
 	En este caso el caso a analizar va a ser el de dos puntos en dos intervalos diferentes pero consecutivos. Es decir:
-	
-	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
-	\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
-	\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
-	\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
-	\draw[very thick] (4/1.5,0.10) -- (4/1.5,-0.10) node[below]{$t$};
-	\draw[thick] (-0.5,0)--(4.5,0);
-	\end{tikzpicture}
-	
+	\begin{center}
+		\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+			\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
+			\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
+			\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
+			\draw[very thick] (4/1.5,0.10) -- (4/1.5,-0.10) node[below]{$t$};
+			\draw[thick] (-0.5,0)--(4.5,0);
+		\end{tikzpicture}
+	\end{center}
 	Así, en este caso, tenemos que $t_o \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_o, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo se tiene que:
 	\begin{enumerate}
 		\item $\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} \leq \varepsilon |t - t_{i+1} |$ en $J_r$.
 		\item $\norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \leq \varepsilon |t_{i+1} - t_0|$ en $J_j$.
 	\end{enumerate}
-	Considerando ahora la suma siguiente:
+	Consideramos ahora la suma siguiente:
 	\[\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds = \pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds \]
 	Por otro lado sabemos que:
 	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{Des. Triangular}{\leq} \]
-	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. y 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
+	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. \text{ y } 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
 	Por lo que, como queríamos probar:
 	\[\norm{\pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds} \leq \varepsilon |t-t_0|\]
 	
 	\textbf{Caso III.} Ejercicio propuesto. Basta con realizar inducción y basarse en el caso III.
 \end{proof}
 \begin{theorem}
-	Dada la ecuación (*) con $f$ continua y $\varPhi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$ se tiene:
+	Dada la ecuación $x' = f(t, x)$ (*) con $f$ continua y $\varphi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$ se tiene:
 	\begin{center}
 		$\varphi$ solución de (*) $\Leftrightarrow \begin{cases}
 		(1) \hspace{0,2cm} \varphi \hspace{0,2cm} continua \\
@@ -562,28 +553,28 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 \end{theorem}
 \begin{proof}
 	$"\Rightarrow"$ \\
-	Supongamos $\varphi$ solución de $x' = f(t, x) \Rightarrow
-	\begin{cases}
-	i) \hspace{0,2cm} (t, \varphi (t)) \in A \forall t \in I
-	ii) \hspace{0,2cm} \exists \varphi' (t) \forall t \in I
-	iii) \hspace{0,2cm} \varphi' (t) = f(t, \varphi (t)) t \in I
-	\end{cases}$. \\
-	En primer lugar $ii) \Rightarrow \varphi$ continua. Además, por $iii)$ sabemos que $\varphi' (t) = f(t, \varphi (t))$. Vemos que la composición:
-	\[t \stackrel{g}{\longrightarrow } (t, \varphi (t)) \stackrel{f}{\longrightarrow } f(t, \varphi (t))\]
-	es continua por ser continuas $g$ y $f$, por lo que $\varphi '$ es integrable. Entonces,
+	Supongamos $\varphi$ solución de $x' = f(t, x)$ tenemos entonces que:
+	\begin{enumerate}
+	\item  $(t, \varphi (t)) \in A$ $\forall t \in I$.
+	\item  $ \exists \varphi' (t)$ $\forall t \in I$.
+	\item  $ \varphi' (t) = f(t, \varphi (t)) t \in I$.
+	\end{enumerate}
+	En primer lugar $ii)$ implica que $\varphi$ continua. Además, por $iii)$ sabemos que $\varphi' (t) = f(t, \varphi (t))$. Vemos que la composición:
+	\[t \stackrel{g}{\longrightarrow } (t, \varphi (t)) \stackrel{f}{\longrightarrow } f(t, \varphi (t)) = \varphi'(t)\]
+	es continua por ser continuas $g$ y $f$, por lo que $\varphi '$ es integrable. Entonces, por el Teorema Fundamental del cálculo,
 	\[\varphi (t) - \varphi (t_0) = \int_{t_0}^{t} \varphi' (s)ds = \int_{t_0}^{t} f(s, \varphi (s))ds \Rightarrow \varphi (t) = \varphi (t_0) + \int_{t_0}^{t} f(s, \varphi (s))ds\]
 	$"\Leftarrow"$ \\
-	Ahora supongo que se cumplen $(1)$ y $(2)$. Por hipótesis $(t, \varphi (t))$ $\forall t \in I$. Pero, ¿$\exists \varphi' (t)$ $\forall t \in I$?\\
-	Tenemos en primer lugar que $f$ continua y que $\varphi$ es continua, lo que implica que $\int_{t_0}^{t} f(s, \varphi (t))ds$ es derivable y su derivada vale $f(t, \varphi (t))$. Por tanto $\varphi (t)$ es derivable y $\varphi' (t_0) = 0$. \\
+	Ahora supongo que se cumplen $(1)$ y $(2)$. Por hipótesis $(t, \varphi (t)) \in A$ $\forall t \in I$. Pero, ¿$\exists \varphi' (t)$ $\forall t \in I$?\\
+	Tenemos en primer lugar que $f$ continua y que $\varphi$ es continua, lo que implica que $\int_{t_0}^{t} f(s, \varphi (s))ds$ es derivable y su derivada vale $f(t, \varphi (t))$. Por tanto $\varphi (t)$ es derivable y $(\varphi (t_0))' = 0$. \\
 	Por tanto, $\varphi' (t) = f(t, \varphi (t))$.
 \end{proof}
 \begin{theorem}
-	Sea $\{\varepsilon_m\}$ sucesión de números reales $\varepsilon_m \geq 0$ tal que $\{\varepsilon\}_{m\in \mathbb{N}}$ y sea $I \subset \mathbb{R}$ intervalo compacto. Dado (*) con $A$ abierto, $f$ continua en $A$ y supongamos que $\exists \pi_m : t \in I \longrightarrow \mathbb{R}^n$ solución $\varepsilon$-aproximada de (*). Entonces, si $\exists \varphi : t \in I \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in I$ y $\{\pi_m\}$ converge a $\varphi$ uniformemente en $I$ e implica que $\varepsilon$ solución de (*). 
+	Sea $\{\varepsilon_m\}$ sucesión de números reales $\varepsilon_m \geq 0$ tal que $\{\varepsilon_m\}_{m\in \mathbb{N}}$ y sea $I \subset \mathbb{R}$ intervalo compacto. Dado (*) con $A$ abierto, $f$ continua en $A$ y supongamos que $\exists \pi_m : I \longrightarrow \mathbb{R}^n$ solución $\varepsilon$-aproximada de (*). Entonces, si $\exists \varphi : t \in I \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in I$ y $\{\pi_m\}_{m\in \mathbb{N}}$ converge a $\varphi$ uniformemente en $I$, entonces $\varphi$ solución de (*). 
 \end{theorem}
 
 \begin{definition}
 	Sea $I \subset \mathbb{R}$ intervalo compacto, $M \subset C(I, \mathbb{R})$ es equicontinuo si:
-	\[\forall \epsilon > 0 \hspace{0,2cm} \exists \delta > 0 \hspace{0,2cm} / \hspace{0,2cm} \forall x, y\in |x-y| < \delta \Rightarrow \norm{h(x) - h(y)} < \varepsilon\]
+	\[\forall \varepsilon > 0 \hspace{0,2cm} \exists \delta > 0 \hspace{0,2cm} / \hspace{0,2cm} \forall x, y\in |x-y| < \delta \Rightarrow \norm{h(x) - h(y)} < \varepsilon\]
 	$\forall h \in M$.
 \end{definition}
 \begin{example}
