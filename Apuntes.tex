@@ -58,6 +58,7 @@
 \usepackage{geometry}               % Asigna la "geometría" de las páginas.
 
 \providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\abs}[1]{\lvert#1\rvert}
 % Se elige el estilo fancy y márgenes de 3 centímetros.
 \pagestyle{fancy}
 \geometry{left=3cm,right=3cm,top=3cm,bottom=3cm,headheight=1cm,headsep=0.5cm} % Márgenes y cabecera.
@@ -703,6 +704,116 @@ BEGIN MANU 13/2
 	\[ t \longmapsto \rho_2(t)=x_1+f(t_1,x_1)(t-t_1) \]
 	se ve de forma análoga que $ \rho_2(t) $ es solución $ \varepsilon $-aproximada $  \forall t \in [t_1,t_1+\alpha]  $ y repetimos el proceso construyendo la solución $ \varepsilon $-aproximada en todo $ R $.
 \end{proof}
+BEGIN PRADA 18/02
+
+BEGIN JORGE 20/02
+
+\begin{example}
+	El siguiente ejemplo es de una ecuación con varias soluciones. Es la ecuación:
+	\[x'=x^{\frac{2}{3}}\]
+	Así, tenemos que:
+	\[f:(t, x)\in A = \mathbb{R} \times \mathbb{R} \longrightarrow f(t, x) = x^{\frac{2}{3}} \in \mathbb{R}\]
+	y, 
+	\begin{enumerate}
+		\item Tenemos que la aplicación:
+		\begin{align*}
+		\varphi_1: t \in I \subset \mathbb{R}& \longrightarrow \mathbb{R}\\
+		t& \longrightarrow \varphi_1 (t) = 0
+		\end{align*}
+		es solución pasando por el $(0,0)$, ya que:\\
+		$
+		\begin{rcases}
+			&\text{i) } (t, \varphi_1 (t)) \in A \\
+			&\text{ii) }\exists \varphi_1' (t),  \hspace{0,2cm} \forall t \in I \\
+			&\text{iii) } \varphi_1' = f(t, \varphi_1 (t)), \hspace{0,2cm} \forall t \in I
+		\end{rcases}$ $\Rightarrow \varphi_1$ solución de $x'=x^{\frac{2}{3}}$ pasando por $(0,0)$
+		
+		\item También se tiene que $\varphi_2: t \in \mathbb{R} \longrightarrow \varphi_2 (t) = (\frac{t}{3})^3$ es solución, ya que:\\
+		$
+		\begin{rcases}
+			&\text{i) } (t, \varphi_2 (t)) \in A \\
+			&\text{ii) }\exists \varphi_2' (t),  \hspace{0,2cm} \forall t \in I \\
+			&\text{iii) } \varphi_2' = f(t, \varphi_2 (t)), \hspace{0,2cm} \forall t \in I
+		\end{rcases}$
+		\item Por el mismo motivo también son solución:\\
+		$\varphi_3 (t) = \begin{cases}
+			0, &t\leq 0 \\
+			(\frac{t}{3})^3, &t>0 
+		\end{cases}$ \\
+		$\varphi_4 (t) = \begin{cases}
+		(\frac{t}{3})^3, &t\leq 0\\
+		0, &t>0 
+		\end{cases}$ 
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	Sea \begin{align*}
+	f: A \subset \mathbb{R} \times \mathbb{R}^n& \longrightarrow \mathbb{R}^n \\
+	(t, x)& \longrightarrow f(t,x)
+	\end{align*} y $x' = f(t, x)$ (*). Decimos que (*) tienen solución única pasando por $(t_0, x_0) \in A$ si cualquiera que sean $\varphi_1 : I_1 \longrightarrow \mathbb{R}^n$ y $\varphi_2 : I_2 \longrightarrow \mathbb{R}^n$ soluciones pasando por $(t_0, x_0)$ si cumple que $\varphi_1 (t) = \varphi_2 (t)$ $\forall t \in I_1 \cap I_2$.
+\end{definition}
+\begin{definition}
+	Sea \begin{align*}
+	f: A \subset \mathbb{R} \times \mathbb{R}^n& \longrightarrow \mathbb{R}^n \\
+	(t, x)& \longrightarrow f(t,x)
+	\end{align*}. Diremos que $f$ es lipschitziana en $A$ con respecto a la variable $x$ si $\exists k \in \mathbb{R}$, $k \geq 0$ tal que:
+	\[\norm{f(t, x) - f(t, y)} \leq k\norm{x-y} \hspace{0,2cm} \forall (t, x), (t, y) \in A\]
+	Se denota $f\in L(A, x)$ o bien $f \in L_k (A, x)$.
+\end{definition}
+\begin{example}
+	Sea $f(t, x) = x^2$, ¿es $f$ lipschitziana con respecto a $x$? Será lipschitziana si $\norm{f(t, x) - f(t, y) < k\norm{x-y}}$. ¿Existe tal $k$? \\
+	Si $x \neq y$, 
+	\[\frac{\norm{x^2 - y^2}}{x-y} \stackrel{??}{\leq} k\]
+	\[\frac{\norm{x^2 - y^2}}{x-y} \leq \frac{\abs{x^2 - y^2}}{\abs{x - y}} = \abs{\frac{x^2 - y^2}{x - y}} = \abs{x+y} \leq k\]
+	Por lo que no existe $k$ tal que $\abs{x+y} \leq k$, luego $f$ no es lipschitziana.
+\end{example}
+\begin{note}
+	Una de las condiciones que pedimos para que $f$ sea lipschitziana es que:
+	\[\frac{\norm{f(t, x) - f(t, y)}}{\norm{x - y}}\]
+	está acotado. 
+\end{note}
+\begin{definition}
+	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ decimos que $f$ es localmente lipschitziana en $A$ con respecto a la variable $x$ si $\forall (t_0, x_0) \in A$, $\exists\xi_0$ entorno de $(t_0, x_0)$ tal que $f \in L(\xi_0, x)$. Se denota como $f \in L_{loc}(A, x)$.
+\end{definition}
+\begin{theorem}
+	Sea $A = I \times V$, con $I$ intervalo e $V$ convexo. Se tiene:
+	\begin{enumerate}
+		\item Si $\exists D_x f$ y está acotada $\Rightarrow f \in L(A, x)$
+		\item Si $\exists D_x f$ y es continua $\Rightarrow f \in L_{loc}(A, x)$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item Por el teorema de incrementos finitos:
+		\[\norm{f(t, x_1) - f(t, x_2)} \leq \norm{D_xf(t, x_3)} \norm{x_2 - x_1} \leq k\norm{x_2 - x_1}\]
+		\item De la misma forma que para el punto 1).
+	\end{enumerate}
+\end{proof}
+\begin{definition}
+	Sea $(M, d)$ un espacio métrico y sea $T: M \longrightarrow M$, $0 \leq \lambda < 1$. Se dice que $T$ es una $\lambda$-contracción si $\forall x, y \in M$, 
+	\[d(T(x), T(y)) \leq k \, d(x, y) \stackrel{k < 1}{\Leftrightarrow} d(T(x), T(y)) < d(x, y)\]
+\end{definition}
+\begin{theorem}
+	(Teorema de la transformada contractiva). Sea $(M, d)$ un espacio métrico completo y $T: M \longrightarrow M$ una $\lambda$-contracción entonces $T$ tiene un único punto fijo, es decir,
+	\[\exists! \, x \in M \,/\, T(x) = x\]
+\end{theorem}
+\begin{theorem}
+	(Teorema de Picar - Lipschitz). Sea $x' = f(t, x)$, $f : A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Si:
+	\begin{enumerate}[i)]
+		\item $A$ abierto.
+		\item $f \in C(A)$.
+		\item $f \in L_{loc} (A, x)$.
+	\end{enumerate}
+	entonces, fijado $(t_0, x_0) \in A$, existe solución pasando por $(t_0, x_0) \in A$ y es única.
+\end{theorem}
+\begin{note}
+	Si $f(t, x) = x' = x^{\frac{2}{3}}$ es continua y no tiene solución única, entonces $f \notin L_{loc}$. \\
+	En $(t, 0)$ $f \notin L_{loc}$ pues si $\xi$ es un entorno de $(t, 0)$, tomando $(t, x), \, (t, y) \in \xi$, con $y=0$:
+	\[\frac{\abs{f(t, x) - f(t, y)}}{\abs{x - y}} = \abs{\frac{x^{\frac{2}{3}}}{x}} = \abs{x^{-\frac{1}{3}}}\]
+	y como:
+	\[\lim\limits_{x \to 0} \frac{1}{x^{\frac{1}{3}}} = +\infty\] 
+	vemos lo que afirmamos al principio.
+\end{note}
 \section{Tema 3.}
 \pagebreak
 \section{Tema 4.}
