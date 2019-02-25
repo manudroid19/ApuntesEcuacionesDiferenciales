@@ -58,6 +58,7 @@
 \usepackage{geometry}               % Asigna la "geometría" de las páginas.
 
 \providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\abs}[1]{\lvert#1\rvert}
 % Se elige el estilo fancy y márgenes de 3 centímetros.
 \pagestyle{fancy}
 \geometry{left=3cm,right=3cm,top=3cm,bottom=3cm,headheight=1cm,headsep=0.5cm} % Márgenes y cabecera.
@@ -318,7 +319,7 @@ BEGIN JORGE 4/2
 	tenemos que, tal y como está definida, $g$ es una función continua por estar compuesta de $id$, que es la identidad, y de $\varphi$, que es continua por ser derivable en todos sus puntos. Además, como $f$ es continua por definición y tenemos que $\varphi' (t) = f(t, \varphi (t))$, $\varphi'$ es continua por composición de continuas.
 \end{proof}
 \begin{theorem}
-	Si $f \in C^1$, $r \in \mathbb{N}$ y $r \leq 1$, entonces $\varphi \in C^{r+1}(I)$.
+	Si $f \in C^r$, $r \in \mathbb{N}$ y $r \leq 1$, entonces $\varphi \in C^{r+1}(I)$.
 \end{theorem}
 \begin{proof}
 	Realizaremos la prueba empleando inducción. En primer lugar lo probaremos para $r=1$, es decir, veamos que:
@@ -326,14 +327,14 @@ BEGIN JORGE 4/2
 	Como $\varphi' (t) = f(t, \varphi (t))$, como hemos visto antes tenemos que:
 		\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t)),\]
 	pero, tenemos que $f \in C^1(A)$ por lo que $f$ es continua y por la proposición anterior tenemos que $\varphi \in C^1$. Por lo tanto, la composición anterior cumple que es de clase $C^1$, por lo que concluímos que $\varphi \in C^2$. \\
-	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{HIP}{\Rightarrow}$). Veamos que $\varphi \in C^{r+1}$.
+	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{HIP}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+1}$.
 	\[t \longrightarrow (t, \varphi (t)) \longrightarrow f(t, \varphi (t)) = \varphi' (t).\]
 	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
 \end{proof}
 
 \begin{example}
-	Sea $x' = x^2$, es decir, $f(t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. \\
-	En primer lugar tenemos que ver que $x'(t) = (x(t))'$.
+	Sea $x' = x^2$, es decir, $f: (t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. \\
+	En primer lugar tenemos que ver que $x'(t) = (x(t))^2 = f(t, x(t))$.
 	\[x'(t) = \frac{1}{(t+c)^2} \Rightarrow x'(t) = (\frac{-1}{t+c})^2\]
 	Además, de esta solución sabemos que:
 	\[\left. {\begin{array}{cc}
@@ -358,7 +359,7 @@ BEGIN JORGE 4/2
 	\end{enumerate}
 	Por lo tanto, $h$ es una solución de $x'=x^2$. Además,
 	\[t \in (-c, +\infty ) \longrightarrow \varphi(t) = \frac{-1}{t+c}\]
-	también es solución, mientras que:
+	también es solución por la misma razón que $h$, mientras que:
 	\[t \in (- \infty, - c) \cup (-c, +\infty ) \longrightarrow f(t) = \frac{-1}{t+c}\]
 	no es solución ya que no está definida en un intervalo. \\
 	Además, si queremos calcular la solución de $x'=x^2$ que en $t =1$ valga $3$ tenemos que:
@@ -373,7 +374,7 @@ BEGIN JORGE 4/2
 \subsection{Problema de Cauchy.}
 
 \begin{definition}
-	Dada $x' = f(t, x)$ con $f: A \subset \mathbb{R} \times \mathbb{R}^n longrightarrow \mathbb{R}^n$ y un punto $(t_0, x_0) \in A$, el problema de Cauchy consiste en buscar una función:
+	Dada $x' = f(t, x)$ con $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ y un punto $(t_0, x_0) \in A$, el problema de Cauchy consiste en buscar una función:
 	\[\varphi : I \subset \mathbb{R} \longrightarrow \mathbb{R}^n\]
 	con $I$ un intervalo, que sea solución de $x' = f(t, x)$ tal que $\varphi (t_0) = x_0$.
 \end{definition}
@@ -425,7 +426,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una solución $ \varepsilon $-aproximada si verifica:
 	
 	\begin{enumerate}
-		\item $ (t,\pi (\varepsilon))\in A, \forall t \in I $.
+		\item $ (t,\pi (t))\in A, \forall t \in I $.
 		\item $ \pi $ continua y $C^1$ a trozos (es decir, es $C^1$ salvo a lo sumo una cantidad finita de puntos)
 		\item $ || \pi'(t)-f(t, \pi(t))|| \leq \varepsilon$. (Las normas son equivalentes en dimensión finita).
 	\end{enumerate} 
@@ -434,21 +435,17 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	Sea la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
 	
 	Sea $ f $ continua y sea $ \pi : t \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, entonces:
-	
-	$ \pi  $ solución $ \Leftrightarrow $ $ \pi $ solución 0-aproximada.
+	\begin{center}
+		$ \pi  $ solución $ \Leftrightarrow $ $ \pi $ solución 0-aproximada.
+	\end{center}
 \end{proposition}
 \begin{proof}
 	"$ \Rightarrow $". Ejercicio propuesto.
 	
 	
-	"$ \Leftarrow $". Suponemos que $ \pi $ solución 0-aproximada y veamos que $ \pi $ es solución.
-
-	1) se verifica trivialmente.
-	
-	Sea $ \{t_i\}_{i=1}^k $ los puntos en los que $ \pi $ puede, en principio, no ser derivable, y veamos que existe la derivada en ellos.
-	
-	Por una parte, por ser  $ \pi $ solución 0-aproximada, $ ||\pi'(t)-f(t,\pi(t))||\leq 0\Rightarrow ||\pi'(t)-f(t,\pi(t))||=0 \Rightarrow \pi'(t)=f(t, \pi(t)), \forall t \in I, t\neq t_i$.
-	
+	"$ \Leftarrow $". \\Suponemos que $ \pi $ solución 0-aproximada y veamos que $ \pi $ es solución. En primer lugar tenemos que $(t, \pi (t)) \in A$, $\forall t \in I$, se verifica trivialmente. \\
+	Sea $ \{t_i\}_{i=1}^k $ los puntos en los que $ \pi $ puede, en principio, no ser derivable, y veamos que existe la derivada en ellos. Por una parte, por ser  $ \pi $ solución 0-aproximada:
+	 \[ ||\pi'(t)-f(t,\pi(t))||\leq 0\Rightarrow ||\pi'(t)-f(t,\pi(t))||=0 \Rightarrow \pi'(t)=f(t, \pi(t)), \forall t \in I, t\neq t_i.\]
 	Fijado $ t_i\in \{t_1, \dots, t_k\} $, como $ f $ y $ \pi $ son continuas, 
 	\[ \lim\limits_{t\rightarrow t_i^-}\pi'(t)=\lim\limits_{t\rightarrow t_i^-} f(t, \pi(t))= f(t_i, \pi(t_i))= \lim\limits_{t\rightarrow t_i^+} f(t, \pi(t))=\lim\limits_{t\rightarrow t_i^+}\pi'(t)\]
 	Y por lo tanto:
@@ -469,49 +466,44 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 \begin{proof} \textbf{Caso I.}
 	
 	Supongamos $ \pi \in C^1 $ salvo en los puntos $ t_1<\dots<t_k $.
+	\begin{center}
+		\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+			\foreach \x/\y in {0/t_1, 1/t_2, 4/t_k}
+			\draw[thick] (\x,0.25) -- (\x,-0.25) node[below]{$\y$};
+			\draw[thick] (-0.5,0)--(4.5,0);
+			\draw (2.5,-0.25) -- (2.5,-0.25) node[below]{$\dots$};
+		\end{tikzpicture}
+	\end{center}
 	
-	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
-	\foreach \x/\y in {0/t_1, 1/t_2, 4/t_k}
-	\draw[thick] (\x,0.25) -- (\x,-0.25) node[below]{$\y$};
-	\draw[thick] (-0.5,0)--(4.5,0);
-	\draw (2.5,-0.25) -- (2.5,-0.25) node[below]{$\dots$};
-	\end{tikzpicture}
 	
 	Supongamos $ t,t_0 \in [t_i, t_{i+1}], i \in \{1, \dots, k-1\}$, es decir:
-	
-	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
-	\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
-	\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
-	\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
-	\draw[very thick] (2/1.5,0.10) -- (2/1.5,-0.10) node[below]{$t$};
-	\draw[thick] (-0.5,0)--(4.5,0);
-	\end{tikzpicture}
-	
-	Sea $ J=[t_0,t], J \subset [t_i, t_{i+1}] $.
-	
-	Sea la función 
+	\begin{center}
+		\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+			\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
+			\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
+			\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
+			\draw[very thick] (2/1.5,0.10) -- (2/1.5,-0.10) node[below]{$t$};
+			\draw[thick] (-0.5,0)--(4.5,0);
+		\end{tikzpicture}
+	\end{center}
+	Sea $ J=[t_0,t], J \subset [t_i, t_{i+1}] $. Sea la función:
 	\begin{align*}
 	g:J&\longrightarrow \mathbb{R}^n\\
 	u&\longrightarrow g(u)=\pi(u)-\pi(t_0)- \int_{t_0}^{u}f(s, \pi(s)) ds
-	\end{align*}	
-	$\begin{rcases}
-	 \pi  \text{ continua por ser solución }  \varepsilon \text{-aproximada.}\\
-	 s\longrightarrow (s, \pi(s))\longrightarrow f(s, \pi(s)) \text{ es composición de continuas.}\\
-	 F:J\longrightarrow \mathbb{R} \text{ que lleva } u\longrightarrow  \int_{t_0}^{u}f(s, \pi(s)) ds \text{ continua.}
-	\end{rcases}$ $ \Rightarrow g $ continua en $ J $.
-	
-	$ \begin{rcases}
-	 \pi  \text{ derivable en } \mathring{J} \\
-	 F \text{ derivable en } J 
-	\end{rcases} $ $ \Rightarrow g $ derivable en $ \mathring{J} $.
-	
-	$ \begin{rcases}
-	 g \text{ derivable en }  J \\
-	gF \text{ derivable en } \mathring{J} 
-	\end{rcases} $ $ \Rightarrow $ (por th. incrementos finitos) $ ||g(t)-g(t_0)||\leq \sup ||g'(\xi)||  |t-t_0| \Rightarrow $ (def. de $ g $)
-	
+	\end{align*}
+	Sabemos que:
+	\begin{enumerate}
+	 \item $\pi$  continua por ser solución  $\varepsilon$-aproximada.\\
+	 \item $s \longrightarrow (s, \pi(s))\longrightarrow f(s, \pi(s))$ es composición de continuas.\\
+	 \item $F:J\longrightarrow \mathbb{R}$ que lleva $u \longrightarrow  \int_{t_0}^{u}f(s, \pi(s)) ds$ continua.
+	\end{enumerate}
+	Por lo tanto, podemos afirmar que $g$ es continua en $J$. Además $\pi$ es derivable en $\mathring{J}$ y $F$ es derivable en $J$, por lo que $g$ es derivable en $\mathring{J}$. Con esto y con que $gF$ es derivable en $\mathring{J}$ tenemos que, por el Teorema de Incrementos Finitos\textsuperscript{1}:
+	%\textsuperscript{1} El Teorema de Incrementos Finitos dice que dada cualquier función $f$ continua en el conjunto $A$ y diferenciable en $\mathring{A}$ entonces existe al menos algún punto $\xi$ en $\mathring{A}$ tal que $\norm{f(t)-f(t_0)}\leq \sup\norm{f'(\xi)}|t-t_0|$ QUIERO PONER ESTO A PIE DE PAGINAAAAAAAA
+	%----------------------------------------------------------
+	\[\norm{g(t)-g(t_0)}\leq \sup \norm{g'(\xi)}|t-t_0|\]
+	y, por la definición de $g$,
 	\begin{align*}
-	\Rightarrow ||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds -(\pi(t_0-\pi(t_0))-\int_{t_0}^{t_0} f(s,\pi(s)) ds)|| =\\ =||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \sup ||g'(\xi)|| |t-t_0|
+	\norm{\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds -(\pi(t_0)-\pi(t_0)-\int_{t_0}^{t_0} f(s,\pi(s)) ds)} =\\ =\norm{\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds} \leq \sup \norm{g'(\xi)} |t-t_0|
 	\end{align*}  
 	Ahora bien, por el Teorema Fundamental del Cálculo y la definición de solución $\varepsilon$-aproximada: 
 	\begin{align*}
@@ -527,31 +519,32 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	
 	\textbf{Caso II.}
 	En este caso el caso a analizar va a ser el de dos puntos en dos intervalos diferentes pero consecutivos. Es decir:
-	
-	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
-	\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
-	\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
-	\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
-	\draw[very thick] (4/1.5,0.10) -- (4/1.5,-0.10) node[below]{$t$};
-	\draw[thick] (-0.5,0)--(4.5,0);
-	\end{tikzpicture}
-	
+	\begin{center}
+		\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
+			\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
+			\draw[thick] (\x/1.5,0.25) -- (\x/1.5,-0.25) node[below]{$\y$};
+			\draw[very thick] (1/1.5,0.10) -- (1/1.5,-0.10) node[below]{$t_0$};	
+			\draw[very thick] (4/1.5,0.10) -- (4/1.5,-0.10) node[below]{$t$};
+			\draw[thick] (-0.5,0)--(4.5,0);
+		\end{tikzpicture}
+	\end{center}
 	Así, en este caso, tenemos que $t_o \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_o, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo se tiene que:
 	\begin{enumerate}
 		\item $\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} \leq \varepsilon |t - t_{i+1} |$ en $J_r$.
 		\item $\norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \leq \varepsilon |t_{i+1} - t_0|$ en $J_j$.
 	\end{enumerate}
-	Considerando ahora la suma siguiente:
+	Consideramos ahora la suma siguiente:
 	\[\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds = \pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds \]
 	Por otro lado sabemos que:
-	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{Desigualdad Triangular}{\leq} \norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. y 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
+	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{Des. Triangular}{\leq} \]
+	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. \text{ y } 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
 	Por lo que, como queríamos probar:
 	\[\norm{\pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds} \leq \varepsilon |t-t_0|\]
 	
 	\textbf{Caso III.} Ejercicio propuesto. Basta con realizar inducción y basarse en el caso III.
 \end{proof}
 \begin{theorem}
-	Dada la ecuación (*) con $f$ continua y $\varPhi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$ se tiene:
+	Dada la ecuación $x' = f(t, x)$ (*) con $f$ continua y $\varphi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$ se tiene:
 	\begin{center}
 		$\varphi$ solución de (*) $\Leftrightarrow \begin{cases}
 		(1) \hspace{0,2cm} \varphi \hspace{0,2cm} continua \\
@@ -561,21 +554,47 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 \end{theorem}
 \begin{proof}
 	$"\Rightarrow"$ \\
-	Supongamos $\varphi$ solución de $x' = f(t, x) \Rightarrow
-	\begin{cases}
-	i) \hspace{0,2cm} (t, \varphi (t)) \in A \forall t \in I
-	ii) \hspace{0,2cm} \exists \varphi' (t) \forall t \in I
-	iii) \hspace{0,2cm} \varphi' (t) = f(t, \varphi (t)) t \in I
-	\end{cases}$. \\
-	En primer lugar $ii) \Rightarrow \varphi$ continua. Además, por $iii)$ sabemos que $\varphi' (t) = f(t, \varphi (t))$. Vemos que la composición:
-	\[t \stackrel{g}{\longrightarrow } (t, \varphi (t)) \stackrel{f}{\longrightarrow } f(t, \varphi (t))\]
-	es continua por ser continuas $g$ y $f$, por lo que $\varphi '$ es integrable. Entonces,
+	Supongamos $\varphi$ solución de $x' = f(t, x)$ tenemos entonces que:
+	\begin{enumerate}
+	\item  $(t, \varphi (t)) \in A$ $\forall t \in I$.
+	\item  $ \exists \varphi' (t)$ $\forall t \in I$.
+	\item  $ \varphi' (t) = f(t, \varphi (t)) t \in I$.
+	\end{enumerate}
+	En primer lugar $ii)$ implica que $\varphi$ continua. Además, por $iii)$ sabemos que $\varphi' (t) = f(t, \varphi (t))$. Vemos que la composición:
+	\[t \stackrel{g}{\longrightarrow } (t, \varphi (t)) \stackrel{f}{\longrightarrow } f(t, \varphi (t)) = \varphi'(t)\]
+	es continua por ser continuas $g$ y $f$, por lo que $\varphi '$ es integrable. Entonces, por el Teorema Fundamental del cálculo,
 	\[\varphi (t) - \varphi (t_0) = \int_{t_0}^{t} \varphi' (s)ds = \int_{t_0}^{t} f(s, \varphi (s))ds \Rightarrow \varphi (t) = \varphi (t_0) + \int_{t_0}^{t} f(s, \varphi (s))ds\]
 	$"\Leftarrow"$ \\
-	Ahora supongo que se cumplen $(1)$ y $(2)$.
-	
+	Ahora supongo que se cumplen $(1)$ y $(2)$. Por hipótesis $(t, \varphi (t)) \in A$ $\forall t \in I$. Pero, ¿$\exists \varphi' (t)$ $\forall t \in I$?\\
+	Tenemos en primer lugar que $f$ continua y que $\varphi$ es continua, lo que implica que $\int_{t_0}^{t} f(s, \varphi (s))ds$ es derivable y su derivada vale $f(t, \varphi (t))$. Por tanto $\varphi (t)$ es derivable y $(\varphi (t_0))' = 0$. \\
+	Por tanto, $\varphi' (t) = f(t, \varphi (t))$.
 \end{proof}
+\begin{theorem}
+	Sea $\{\varepsilon_m\}$ sucesión de números reales $\varepsilon_m \geq 0$ tal que $\{\varepsilon_m\}_{m\in \mathbb{N}}$ y sea $I \subset \mathbb{R}$ intervalo compacto. Dado (*) con $A$ abierto, $f$ continua en $A$ y supongamos que $\exists \pi_m : I \longrightarrow \mathbb{R}^n$ solución $\varepsilon$-aproximada de (*). Entonces, si $\exists \varphi : t \in I \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in I$ y $\{\pi_m\}_{m\in \mathbb{N}}$ converge a $\varphi$ uniformemente en $I$, entonces $\varphi$ solución de (*). 
+\end{theorem}
 
+\begin{definition}
+	Sea $I \subset \mathbb{R}$ intervalo compacto, $M \subset C(I, \mathbb{R})$ es equicontinuo si:
+	\[\forall \varepsilon > 0 \hspace{0,2cm} \exists \delta > 0 \hspace{0,2cm} / \hspace{0,2cm} \forall x, y\in |x-y| < \delta \Rightarrow \norm{h(x) - h(y)} < \varepsilon\]
+	$\forall h \in M$.
+\end{definition}
+\begin{example}
+	\begin{enumerate}
+		\item Un conjunto finito de funciones de $C(I, \mathbb{R}^n)$. Tomemos $n = 2$. Sea $\varepsilon_0 > 0$ se tiene que:
+		\begin{center}
+			$\begin{cases}
+			h_1 \hspace{0,2cm} continua \hspace{0,2cm} \exists \delta_1 > 0 \hspace{0,2cm} / \hspace{0,2cm} |x-y|<\delta_1 \Rightarrow \norm{h_1(x) - h_1(y)} < \varepsilon_0 \\
+			h_2 \hspace{0,2cm} continua \hspace{0,2cm} \exists \delta_2 > 0 \hspace{0,2cm} / \hspace{0,2cm} |x-y|<\delta_2 \Rightarrow \norm{h_2(x) - h_2(y)} < \varepsilon_0
+			\end{cases}$
+		\end{center}
+		Basta tomar $\delta = min\{\delta_1, \delta_2\}$.
+		\item Un conjunto de funciones lipschitziana con la misma constante de Lipschitz $K$.
+		\begin{center}
+			$\norm{h(x) - h(y)}\leq k|x-y|$ $\forall h \in M$ \\
+			$\varepsilon > 0$ $\exists \delta > 0$ tal que $|x-y|<\delta \Rightarrow \norm{h(x) - h(y)} < k\delta = \varepsilon$
+		\end{center}
+	\end{enumerate}
+\end{example}
 
 BEGIN MANU 13/2 
 
@@ -798,6 +817,116 @@ BEGIN MANU 13/2
 	Doto a mi conjunto $ X $
 	
 \end{proof}
+BEGIN PRADA 18/02
+
+BEGIN JORGE 20/02
+
+\begin{example}
+	El siguiente ejemplo es de una ecuación con varias soluciones. Es la ecuación:
+	\[x'=x^{\frac{2}{3}}\]
+	Así, tenemos que:
+	\[f:(t, x)\in A = \mathbb{R} \times \mathbb{R} \longrightarrow f(t, x) = x^{\frac{2}{3}} \in \mathbb{R}\]
+	y, 
+	\begin{enumerate}
+		\item Tenemos que la aplicación:
+		\begin{align*}
+		\varphi_1: t \in I \subset \mathbb{R}& \longrightarrow \mathbb{R}\\
+		t& \longrightarrow \varphi_1 (t) = 0
+		\end{align*}
+		es solución pasando por el $(0,0)$, ya que:\\
+		$
+		\begin{rcases}
+			&\text{i) } (t, \varphi_1 (t)) \in A \\
+			&\text{ii) }\exists \varphi_1' (t),  \hspace{0,2cm} \forall t \in I \\
+			&\text{iii) } \varphi_1' = f(t, \varphi_1 (t)), \hspace{0,2cm} \forall t \in I
+		\end{rcases}$ $\Rightarrow \varphi_1$ solución de $x'=x^{\frac{2}{3}}$ pasando por $(0,0)$
+		
+		\item También se tiene que $\varphi_2: t \in \mathbb{R} \longrightarrow \varphi_2 (t) = (\frac{t}{3})^3$ es solución, ya que:\\
+		$
+		\begin{rcases}
+			&\text{i) } (t, \varphi_2 (t)) \in A \\
+			&\text{ii) }\exists \varphi_2' (t),  \hspace{0,2cm} \forall t \in I \\
+			&\text{iii) } \varphi_2' = f(t, \varphi_2 (t)), \hspace{0,2cm} \forall t \in I
+		\end{rcases}$
+		\item Por el mismo motivo también son solución:\\
+		$\varphi_3 (t) = \begin{cases}
+			0, &t\leq 0 \\
+			(\frac{t}{3})^3, &t>0 
+		\end{cases}$ \\
+		$\varphi_4 (t) = \begin{cases}
+		(\frac{t}{3})^3, &t\leq 0\\
+		0, &t>0 
+		\end{cases}$ 
+	\end{enumerate}
+\end{example}
+\begin{definition}
+	Sea \begin{align*}
+	f: A \subset \mathbb{R} \times \mathbb{R}^n& \longrightarrow \mathbb{R}^n \\
+	(t, x)& \longrightarrow f(t,x)
+	\end{align*} y $x' = f(t, x)$ (*). Decimos que (*) tienen solución única pasando por $(t_0, x_0) \in A$ si cualquiera que sean $\varphi_1 : I_1 \longrightarrow \mathbb{R}^n$ y $\varphi_2 : I_2 \longrightarrow \mathbb{R}^n$ soluciones pasando por $(t_0, x_0)$ si cumple que $\varphi_1 (t) = \varphi_2 (t)$ $\forall t \in I_1 \cap I_2$.
+\end{definition}
+\begin{definition}
+	Sea \begin{align*}
+	f: A \subset \mathbb{R} \times \mathbb{R}^n& \longrightarrow \mathbb{R}^n \\
+	(t, x)& \longrightarrow f(t,x)
+	\end{align*}. Diremos que $f$ es lipschitziana en $A$ con respecto a la variable $x$ si $\exists k \in \mathbb{R}$, $k \geq 0$ tal que:
+	\[\norm{f(t, x) - f(t, y)} \leq k\norm{x-y} \hspace{0,2cm} \forall (t, x), (t, y) \in A\]
+	Se denota $f\in L(A, x)$ o bien $f \in L_k (A, x)$.
+\end{definition}
+\begin{example}
+	Sea $f(t, x) = x^2$, ¿es $f$ lipschitziana con respecto a $x$? Será lipschitziana si $\norm{f(t, x) - f(t, y) < k\norm{x-y}}$. ¿Existe tal $k$? \\
+	Si $x \neq y$, 
+	\[\frac{\norm{x^2 - y^2}}{x-y} \stackrel{??}{\leq} k\]
+	\[\frac{\norm{x^2 - y^2}}{x-y} \leq \frac{\abs{x^2 - y^2}}{\abs{x - y}} = \abs{\frac{x^2 - y^2}{x - y}} = \abs{x+y} \leq k\]
+	Por lo que no existe $k$ tal que $\abs{x+y} \leq k$, luego $f$ no es lipschitziana.
+\end{example}
+\begin{note}
+	Una de las condiciones que pedimos para que $f$ sea lipschitziana es que:
+	\[\frac{\norm{f(t, x) - f(t, y)}}{\norm{x - y}}\]
+	está acotado. 
+\end{note}
+\begin{definition}
+	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ decimos que $f$ es localmente lipschitziana en $A$ con respecto a la variable $x$ si $\forall (t_0, x_0) \in A$, $\exists\xi_0$ entorno de $(t_0, x_0)$ tal que $f \in L(\xi_0, x)$. Se denota como $f \in L_{loc}(A, x)$.
+\end{definition}
+\begin{theorem}
+	Sea $A = I \times V$, con $I$ intervalo e $V$ convexo. Se tiene:
+	\begin{enumerate}
+		\item Si $\exists D_x f$ y está acotada $\Rightarrow f \in L(A, x)$
+		\item Si $\exists D_x f$ y es continua $\Rightarrow f \in L_{loc}(A, x)$
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	\begin{enumerate}
+		\item Por el teorema de incrementos finitos:
+		\[\norm{f(t, x_1) - f(t, x_2)} \leq \norm{D_xf(t, x_3)} \norm{x_2 - x_1} \leq k\norm{x_2 - x_1}\]
+		\item De la misma forma que para el punto 1).
+	\end{enumerate}
+\end{proof}
+\begin{definition}
+	Sea $(M, d)$ un espacio métrico y sea $T: M \longrightarrow M$, $0 \leq \lambda < 1$. Se dice que $T$ es una $\lambda$-contracción si $\forall x, y \in M$, 
+	\[d(T(x), T(y)) \leq k \, d(x, y) \stackrel{k < 1}{\Leftrightarrow} d(T(x), T(y)) < d(x, y)\]
+\end{definition}
+\begin{theorem}
+	(Teorema de la transformada contractiva). Sea $(M, d)$ un espacio métrico completo y $T: M \longrightarrow M$ una $\lambda$-contracción entonces $T$ tiene un único punto fijo, es decir,
+	\[\exists! \, x \in M \,/\, T(x) = x\]
+\end{theorem}
+\begin{theorem}
+	(Teorema de Picar - Lipschitz). Sea $x' = f(t, x)$, $f : A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Si:
+	\begin{enumerate}[i)]
+		\item $A$ abierto.
+		\item $f \in C(A)$.
+		\item $f \in L_{loc} (A, x)$.
+	\end{enumerate}
+	entonces, fijado $(t_0, x_0) \in A$, existe solución pasando por $(t_0, x_0) \in A$ y es única.
+\end{theorem}
+\begin{note}
+	Si $f(t, x) = x' = x^{\frac{2}{3}}$ es continua y no tiene solución única, entonces $f \notin L_{loc}$. \\
+	En $(t, 0)$ $f \notin L_{loc}$ pues si $\xi$ es un entorno de $(t, 0)$, tomando $(t, x), \, (t, y) \in \xi$, con $y=0$:
+	\[\frac{\abs{f(t, x) - f(t, y)}}{\abs{x - y}} = \abs{\frac{x^{\frac{2}{3}}}{x}} = \abs{x^{-\frac{1}{3}}}\]
+	y como:
+	\[\lim\limits_{x \to 0} \frac{1}{x^{\frac{1}{3}}} = +\infty\] 
+	vemos lo que afirmamos al principio.
+\end{note}
 \section{Tema 3.}
 \pagebreak
 \section{Tema 4.}
