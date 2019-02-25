@@ -12,7 +12,7 @@
 \usepackage{wrapfig}
 \usepackage{cutwin}
 \usetikzlibrary{quotes,angles}
-
+\usepackage{changepage}
 \usetikzlibrary{decorations.pathmorphing}
 
 
@@ -579,7 +579,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 
 BEGIN MANU 13/2 
 
-\begin{theorem}[Construccion de solución $ \varepsilon $-aproximada.]
+\begin{theorem}[Construccion de solución $ \varepsilon $-aproximada.]\label{thm:sol}
 	Consideramos la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $, con $ A $ abierto, $ f $ continua y acotada en $ A $ y sea $ \varepsilon>0, \varepsilon\in \mathbb{R} $. 
 	
 	Entonces fijado $ (t_0, x_0) \in A $ existe solución $ \varepsilon $-aproximada pasando por $ (t_0, x_0)$.
@@ -683,7 +683,120 @@ BEGIN MANU 13/2
 	Entonces, tenemos visto que $ \rho_1 $ es solución $ \varepsilon $-aproximada en $ [t_0,t_0+\alpha] $. Sea ahora $ t_1=t_0+\alpha $ y $ x_1=\rho_1(t_1) $ y definimos la siguiente función:
 	\[ \rho_2:I\longrightarrow \mathbb{R} \]
 	\[ t \longmapsto \rho_2(t)=x_1+f(t_1,x_1)(t-t_1) \]
-	se ve de forma análoga que $ \rho_2(t) $ es solución $ \varepsilon $-aproximada $  \forall t \in [t_1,t_1+\alpha]  $ y repetimos el proceso construyendo la solución $ \varepsilon $-aproximada en todo $ R $.
+	veremos de forma análoga que $ \rho_2(t) $ es solución $ \varepsilon $-aproximada $  \forall t \in [t_1,t_1+\alpha]  $, repitiendo el proceso para construir la solución $ \varepsilon $-aproximada por poligonales. 
+	
+	Así, $ \varphi_2 $ es solución $ \forall t \in [t_1,t_1+\alpha] $, si $ t_1+\alpha\leq t_0+\delta $ o bien $\forall t \in [t_1, t_0+\delta] $ si $ t_1+\alpha >t_0+\delta $. 
+	
+	Si $ t_1+\alpha \leq t_0 +\delta $, seguimos construyendo hasta encontrar un $ k $ tal que $ \begin{cases}
+	t_0+\alpha (k-1)<t_0+\delta\\
+	t_0+\alpha k\geq t_0 +\delta
+	\end{cases} $.
+	
+	Llamando $ t_i=t_0+\alpha i $,
+	
+	\begin{adjustwidth}{1cm}{}
+		$ \rho_1(t)=x_0+f(t_0,x_0)(t-t_0) $
+	
+		$ \rho_2(t)=x_1+f(t_1,x_1)(t-t_1)=\rho_1(t_1)+f(t_1,x_1)(t-t_1) $
+	
+		$ \qquad \vdots $
+	
+		$\rho_i (t)=\rho_{i-1}(t_{i-1})+f(t_{i-1},x_{i-1})(t-t_{i-1})  $, con $ x_{i-1}=\rho_{i-1}(t_{i-1}) $
+	\end{adjustwidth}
+
+	Entonces $ \pi: t \in [t_0, t_0+\delta]\longrightarrow \pi(t)=\rho_i(t), t \in [t_{i-1}, t_i], i=1\dots k  $ es solución $ \varepsilon $-aproximada de la ecuación diferencial del enunciado en $ [t_0, t_0+\delta] $. Falta el caso $ t\leq t_0 $ para en $ [t_0-\delta, t_0] $
+\end{proof}
+
+\begin{exercise}
+	La solución  $ \varepsilon $-aproximada construida verifica:
+	
+	1) $ ||\pi(t)||\leq |x_0|+H\delta \ \forall t \in [t_0-\delta,t_0+\delta]$
+	
+	2) $ \pi $ es lipschitziana con constante $ H $, i.e., $ ||\pi(t)- \pi(s)|| \leq H |t-s| \ \forall t,s \in [t_0-\delta, t_0+\delta] $
+\end{exercise}
+
+\begin{definition}
+	Diremos que un conjunto $ M $ es relativamente compacto si verifica: toda sucesión de elementos de de $ M $ posee una subsucesión convergente
+\end{definition}
+\begin{theorem}[Ascoli-Arzelá]
+	Sea $ I\subset \mathbb{R} $ intervalo compacto, $ M \subset \mathcal{C} (I, \mathbb{R}^n) $.
+	
+	$ M $ es relativamente compacto si y solo si:
+	
+	1) $ M $ es equicontinuo.
+	
+	2) $ M $ es puntualmente acotado ($ \forall t \in I,\exists K $ cte $ :||h(t)||\leq k , \forall h \in M$)
+\end{theorem}
+\begin{theorem}[Cauchy-Peano]
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación:
+	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
+	con $  x'=f(t,x) $ su ecuación diferencial asociada. Si $ f $ es continua en $ A $, fijado un punto $ (t_0,x_0) \in A $ existe solución de la ecuación pasando por $ (t_0,x_0) $, definida en un entorno de $ t_0 $.
+\end{theorem}
+\begin{proof} \ 
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+		\draw  plot[tension=.7] coordinates {(1.5,1.5) (1.5,2.5) (3,2.5) (3,1.5) (1.5,1.5) }; %conjunto R
+		\draw  plot[scale=0.53,shift={(4.3,3)},smooth, tension=.7] coordinates {(-3.5,0.5) (-3,2.5) (-1,3.5) (1.5,3) (4,3.5) (5,2.5) (5,0.5) (2.5,-2) (0.5,-1.5) (-3,-2) (-3.5,0.5)}; % conjunto A
+		\coordinate[label=above:A] (A) at (5.2,2.8); %etiqueta de A
+		\coordinate[label=above:R] (R) at (2.7,2.4); %etiqueta de R
+		\coordinate[label=above:K] (K) at (3.3,2.2); %etiqueta de K
+		\fill (2.0,2)  circle[radius=1pt]; %punto en t0,x_0
+		\coordinate[label={[scale=0.6] right:$(t_0,x_0)$}] (p0) at (2,2); %etiqueta de t0 x0
+		\draw (2,2) circle (1.2);
+		\end{tikzpicture}
+		\caption{Esquema de la demostración.} \label{M2}
+	\end{figure}
+	Sea $ \{\varepsilon_n \} $ sucesión de números reales, $ \varepsilon_n>0  $ tal que $ \lim\limits_{n\to\infty} \{\varepsilon_n\} =0$.
+	
+	Sea $ K $ compacto ($ K $ bola de centro $ (t_0,x_0) $ y radio $ r<d_\infty((t_0,x_0), \text{Fr}(A)), K\subset A, (t_0,x_0) \in \mathring{K} $).
+	
+	$ \begin{rcases}
+	K \text{ compacto}\\
+	f \text{ continua en } K
+	\end{rcases} \Rightarrow  f $ acotada en $ K $.
+	
+	Aplicando el teorema de construcción de solución $ \varepsilon $-aproximada, $ \exists I=[t_0-\delta, t_0+\delta] $ en el cual esta definida $ \pi_m $ solución  $ \varepsilon $-aproximada para cada $ \varepsilon_n $.
+	
+	Por el ejercicio, $ \begin{cases}
+		||\pi_m(t)||< x_0+H\delta \ \forall m \text{ con } H \text{ cota para } f.\ (1)\\
+		\pi_m \text{ es } H\text{-lipschitziana.}
+	\end{cases} $
+	
+	$ M = \{\pi_m\} \subset  \mathcal{C} (I, \mathbb{R}^n)$ es equicontinuo porque todas sus elementos son funciones lipschitzianas con la misma constante $ H $.
+	
+	$ M $ es puntualmente acotado por (1). 
+	
+	Como $ M $ es puntualmente acotado y equicontinuo, por el Teorema de Ascoli-Arzelá, $ M$ es relativamente compacto $ \Rightarrow \ \exists \{\pi_{n_k}\}$ subsucesión de $ \{\pi_n\} $ que converge a una función $ \varphi\in \mathcal{C}(I, \mathbb{R}^n) $.
+	
+	$ \begin{rcases}
+		\text{Por tanto } \exists \varphi: I\longrightarrow \mathbb{R}^n \text{ tal que } \{\pi_{n_k} \}\longrightarrow \varphi \text{ uniformemente }\\
+		\{\varepsilon_{n_k}\xrightarrow{k\to \infty}0  \} \text{ por ser subsucesión.}
+	\end{rcases} \Rightarrow \varphi$ solución de $ x'=f(t,x) $, por el Teorema \ref{thm:sol}.
+	
+	Por construcción, $ \pi_{n_k}(t_0)=x_0 \Rightarrow \varphi(t_0) = \lim\limits_{k\to \infty}\pi_{n_k}(t_0)=x_0$.
+\end{proof}
+
+
+	BEGIN MANU 25/02
+\begin{proof}
+	La demostración se basa en dos resultados, el teorema de la transformada contractiva (CITAR) y el teorema de caracterización de la solución (CITAR).
+	
+	Sea $ B_1 $  entorno abierto de $ (t_0,x_0) $ en el cual $ f $ está acotada. Sea $ H $ cota para $ f $.
+	
+	Sea $ B_2 $ un entorno abierto de $ (t_0,x_0) $ en el cual $ f $ es lipschitziana. (Sea $ K $ constante de Lipschitz).
+	
+	Sea $ B=B_1 \cap B_2 $, $ B $ abierto, $ (t_0,x_0) \in B$.
+	
+	Sea $ d=d_\infty((t_0,x_0),\text{Fr}(B)) $ y elegimos $ \delta : 0<\delta <\min \{d,\frac{d}{H},\frac{1}{K}\} $. Añadimos $ \frac{1}{K} $ para probar $ \lambda $-contracción.
+	
+	Llamamos $ R=\{(t,x) : |t-t_0|\leq \delta, ||x-x_0||\leq H\delta \}\subset B $.
+	DIBUJO
+	
+	Definimos $ X=\{\varphi : I=[t_0-\delta, t_0+\delta]\longrightarrow \mathbb{R}^n : \varphi \text{ continua, } ||\phi(t)-x_0||\leq H \delta \forall t \in I  \} $, continua cuyo grafo esté en $ \mathbb{R} $.
+	
+	Doto a mi conjunto $ X $
+	
 \end{proof}
 \section{Tema 3.}
 \pagebreak
