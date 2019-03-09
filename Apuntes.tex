@@ -797,6 +797,8 @@ BEGIN MANU 13/2
 	
 	Por construcción, $ \pi_{n_k}(t_0)=x_0 \Rightarrow \varphi(t_0) = \lim\limits_{k\to \infty}\pi_{n_k}(t_0)=x_0$.
 \end{proof}
+BEGIN PRADA 18/02
+
 
 BEGIN JORGE 20/02
 
@@ -899,7 +901,7 @@ BEGIN JORGE 20/02
 	entonces, fijado $(t_0, x_0) \in A$, existe solución pasando por $(t_0, x_0) \in A$ y es única.
 \end{theorem}
 \begin{note}
-	Si $f(t, x) = x' = x^{\frac{2}{3}}$ es continua y no tiene solución única, entonces $f \notin L_{loc}$. \\
+	Si $f(t, x) = x' = x^{\frac{2}{3}}$ tenemos que es continua y no tiene solución única, entonces $f \notin L_{loc}$. \\
 	En $(t, 0)$ $f \notin L_{loc}$ pues si $\xi$ es un entorno de $(t, 0)$, tomando $(t, x), \, (t, y) \in \xi$, con $y=0$:
 	\[\frac{\abs{f(t, x) - f(t, y)}}{\abs{x - y}} = \abs{\frac{x^{\frac{2}{3}}}{x}} = \abs{x^{-\frac{1}{3}}}\]
 	y como:
@@ -907,24 +909,57 @@ BEGIN JORGE 20/02
 	vemos lo que afirmamos al principio.
 \end{note}
 
-BEGIN JORGE 25/02
+	BEGIN JORGE 25/02
 \begin{proof}
-	La demostración se basa en dos resultados, el teorema de la transformada contractiva (CITAR) y el teorema de caracterización de la solución (CITAR).
+	La demostración se basa en dos resultados, el teorema de la transformada contractiva (CITAR) y el teorema de caracterización de la solución (CITAR). En primer lugar definiremos una serie de elementos que se emplearán a lo largo de la demostración:
+	\begin{enumerate}
+		\item Sea $ B_1 $  entorno abierto de $ (t_0,x_0) $ en el cual $ f $ está acotada. Sea $ H $ cota para $ f $.
+		
+		\item Sea $ B_2 $ un entorno abierto de $ (t_0,x_0) $ en el cual $ f $ es lipschitziana. (Sea $ K $ constante de Lipschitz).
+		
+		\item Sea $ B=B_1 \cap B_2 $, $ B $ abierto, $ (t_0,x_0) \in B$.
+		
+		\item Sea $ d=d_\infty((t_0,x_0),\text{Fr}(B)) $ y elegimos $ \delta : 0<\delta <\min \{d,\frac{d}{H},\frac{1}{K}\} $. Añadimos $ \frac{1}{K} $ para probar $ \lambda $-contracción.
+		\item Llamamos $ R=\{(t,x) : |t-t_0|\leq \delta, ||x-x_0||\leq H\delta \}\subset B $.
+		DIBUJO
+	\end{enumerate}
 	
-	Sea $ B_1 $  entorno abierto de $ (t_0,x_0) $ en el cual $ f $ está acotada. Sea $ H $ cota para $ f $.
-	
-	Sea $ B_2 $ un entorno abierto de $ (t_0,x_0) $ en el cual $ f $ es lipschitziana. (Sea $ K $ constante de Lipschitz).
-	
-	Sea $ B=B_1 \cap B_2 $, $ B $ abierto, $ (t_0,x_0) \in B$.
-	
-	Sea $ d=d_\infty((t_0,x_0),\text{Fr}(B)) $ y elegimos $ \delta : 0<\delta <\min \{d,\frac{d}{H},\frac{1}{K}\} $. Añadimos $ \frac{1}{K} $ para probar $ \lambda $-contracción.
-	
-	Llamamos $ R=\{(t,x) : |t-t_0|\leq \delta, ||x-x_0||\leq H\delta \}\subset B $.
-	DIBUJO
-	
-	Definimos $ X=\{\varphi : I=[t_0-\delta, t_0+\delta]\longrightarrow \mathbb{R}^n : \varphi \text{ continua, } ||\phi(t)-x_0||\leq H \delta \forall t \in I  \} $, continua cuyo grafo esté en $ \mathbb{R} $.
-	
-	Doto a mi conjunto $ X $
+	Después de todo esto definimos el conjunto:
+	 \[X=\{\varphi : I=[t_0-\delta, t_0+\delta]\longrightarrow \mathbb{R}^n : \varphi \text{ continua, } ||\phi(t)-x_0||\leq H \delta \hspace{0,2cm} \forall t \in I  \} \]
+	de las aplicaciones continuas cuyo grafo está en $R$. Dotaremos a este conjunto $ X $ con la siguiente métrica. Dadas $\varphi, \psi \in X$, $d(\varphi, \psi) = sup_{t \in I} \norm{\varphi (t) - \psi (t)}$ (como ejercicio probar que es una métrica). Así tenemos que:\\
+	\[\begin{rcases}
+		\text{Se tiene que }C(I, \mathbb{R}^n) \text{ espacio métrico completo}\\
+		X = B_{C(I)} [x_0, H\delta] \subset C(I, \mathbb{R}^n) \text{ cerrado } \\
+	\end{rcases} \Rightarrow (X, d) \text{ completo.}\]
+	Definimos ahora, 
+	\[T:\varphi \in X \longrightarrow T\varphi = x_0 + \int_{t_0}^{t} f(s, \varphi(s))ds\]
+	Quiero usar el teorema de la aplicación contractiva, por tanto, tengo que demostrar:
+	\begin{enumerate}
+		\item $T\varphi \in X$.
+		\item $T$ en $\lambda$-contracción.
+	\end{enumerate}
+	Para ver que $T\varphi \in X$ tengo que ver:
+	\begin{enumerate}[	i.]
+		\item $T\varphi$ continua
+		\item $\norm{T\varphi (t) - x_0} \leq H\delta$, $\forall t \in I$
+	\end{enumerate}
+	En primer lugar, tenemos que:
+	\[s \stackrel{g}{\longrightarrow} (s, \varphi (s)) \stackrel{f}{\longrightarrow} f(s, \varphi (s))\]
+	por lo que, $T\varphi$ continua por composición de funciones continuas. \\
+	En segundo lugar, 
+	\[\norm{T\varphi - x_0} = \norm{x_0 + \int_{t_0}^{t} f(s, \varphi (s)) ds - x_0} = \norm{\int_{t_0}^{t} f(s, \varphi (s)) ds} \leq \]
+	\[\abs{\int_{t_0}^{t} \norm{f(s, \varphi (s))}ds} \leq \abs{\int_{t_0}^{t} H ds} = \abs{H(t - t_0)} = H\abs{t - t_0} \leq H\delta \]
+	Veamos ahora que $T$ es una $\lambda$-contracción, es decir, $\exists \lambda \in \mathbb{R}$, $0 \leq \lambda < 1$ tal que
+	\[d(T\varphi, T\psi) \leq \lambda d(\varphi, \psi) \hspace{0,2cm} \forall \varphi \psi \in X\]
+	Sean $\varphi, \psi \in X$, \\
+	\[d(\varphi, \psi) = sup_{t \in I} \norm{\varphi (t) - \psi (t)} = sup_{t \in I} \norm{x_0 + \int_{t_0}^{t} f(s, \varphi(s))ds - x_0 - \int_{t_0}^{t} f(s, \psi(s))ds} = \]
+	\[sup_{t \in I} \norm{\int_{t_0}^{t} (f(s, \varphi(s)) - f(s, \psi(s)))ds} \leq sup_{t \in I} \abs{\int_{t_0}^{t} \norm{(f(s, \varphi(s)) - f(s, \psi(s)))}ds} \stackrel{f \in L_{loc} (A, x)}{\leq} \] 
+	\[sup_{t \in I} \abs{\int_{t_0}^{t} k\norm{\varphi(s) - \psi(s)}ds} \leq sup_{t \in I} \abs{\int_{t_0}^{t} k sup\norm{\varphi(s) - \psi(s)}ds} \leq sup_{t \in I} \abs{\int_{t_0}^{t} k d(\varphi, \psi)ds} = \]
+	\[sup_{t \in I} kd(\varphi, \psi)\abs{t - t_0} \leq kd(\varphi, \psi)\delta \leq \lambda d(\varphi, \psi)\]
+	tomando $\lambda = \delta k$, como $\delta < \frac{1}{k}$ tenemos que $\lambda < 1$.
+	Por lo tanto, $T$ es $\lambda$-contracción. Por tanto, por el Teorema de la transformada contractiva:
+	\[\exists ! \varphi \in X : \varphi \text{ punto fijo de } T\]
+	por lo que $\varphi (t) = T\varphi (t) = x_0 + \int_{t_0}^{t} f(s, \varphi (s))ds$, con $\varphi$ continua.
 	
 \end{proof}
 
@@ -973,9 +1008,6 @@ BEGIN PRADA 27/02
 	
 	Hacemos en $ (t_1, x_1) $ lo mismo que en $ (t_0,x_0) $ (construyo el rectángulo, etc...) y llego a que en $ (t_1-\delta_1, t_1+\delta _1), \varphi_1(t)=\varphi_2(t) $ y esto NO es posible ya que, por construcción, $ t_1=\inf \{t\in I_1\cap I_2 : t>t_0, \varphi_1(t)\neq \varphi_2(t)\} $.
 \end{proof}
-
-
-
 
 \section{Tema 3.}
 \pagebreak
