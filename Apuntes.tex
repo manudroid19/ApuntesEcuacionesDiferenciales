@@ -867,7 +867,7 @@ BEGIN JORGE 20/02
 	está acotado. 
 \end{note}
 \begin{definition}
-	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ decimos que $f$ es localmente lipschitziana en $A$ con respecto a la variable $x$ si $\forall (t_0, x_0) \in A$, $\exists\xi_0$ entorno de $(t_0, x_0)$ tal que $f \in L(\xi_0, x)$. Se denota como $f \in L_{loc}(A, x)$.
+	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Decimos que $f$ es localmente lipschitziana en $A$ con respecto a la variable $x$ si $\forall (t_0, x_0) \in A$, $\exists\xi_0$ entorno de $(t_0, x_0)$ tal que $f \in L(\xi_0, x)$. Se denota como $f \in L_{loc}(A, x)$.
 \end{definition}
 \begin{theorem}
 	Sea $A = I \times V$, con $I$ intervalo e $V$ convexo. Se tiene:
@@ -1009,7 +1009,102 @@ BEGIN PRADA 27/02
 	Hacemos en $ (t_1, x_1) $ lo mismo que en $ (t_0,x_0) $ (construyo el rectángulo, etc...) y llego a que en $ (t_1-\delta_1, t_1+\delta _1), \varphi_1(t)=\varphi_2(t) $ y esto NO es posible ya que, por construcción, $ t_1=\inf \{t\in I_1\cap I_2 : t>t_0, \varphi_1(t)\neq \varphi_2(t)\} $.
 \end{proof}
 
+
 \section{Tema 3.}
+BEGIN PRADA 6/3
+\begin{example}
+	Dada la ecuación diferencial $ x'=x^2 $, pasando por el punto $ x(1)=1 $, tenemos que $ x(t)=\frac{-1}{t} $ es solución. $ x'(t)=x(t)^2 $ es una ecuación planteada para todo $ t \in \mathbb{R} $, pero $ x(t)=\frac{-1}{t} $ está definida para $ t \in \mathbb{R}-\{0\} $.
+	
+	Entonces tenemos que dependiendo de las condiciones iniciales la solución de la EDO estará definida para $ t\in (0,\infty) $ o $ t\in (-\infty,0) $.
+	
+	Fijemonos en dos aspectos: con las condiciones iniciales propuestas, $ x(1)=1 $, podemos definir la solución en el intervalo $ (0,3) $. Sin embargo, esta solución podría ser prolongada a un dominio de $ (0,\infty) $, y la posibilidad de esta prolongación será objeto de estudio.
+	
+	Por otra parte, vemos que al cambiar las condiciones iniciales (por ejemplo, $ x_0=-0.0001 $ o $ x_0=0.00001 $), la solución de la ecuación no es la misma, y en otros caso, podría variar su expresión analítica. Nos interesará que para variaciones "pequeñas" de las condiciones iniciales, la solución de la ecuación no varíe "casi nada".
+\end{example}
+
+\begin{note}
+	Los teoremas de Cauchy-Peano como Picard-Lipschitz definen existencia y unicidad de soluciones a nivel local, en un entorno arbitrariamente pequeño. Son preguntas naturales: \begin{itemize}
+		\item ¿Cuál es el mayor intervalo en el que están definidas esas soluciones?
+		\item ¿Hasta donde puedo prolongar las mismas?
+	\end{itemize}
+\end{note}
+\subsection{Prolongación de soluciones. Soluciones maximales.}
+\begin{definition}
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
+	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
+	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	
+	Sean además $ \varphi_1:I_1\longrightarrow \mathbb{R} $ y  $ \varphi_2:I_2\longrightarrow \mathbb{R} $ soluciones de dicha ecuación diferencial. Diremos que $ \varphi_2 $ es una prolongación de $ \varphi_1 $ si:
+	\begin{enumerate}
+		\item $ I_1\subseteq I_2 $
+		\item $ \varphi_1(t) =\varphi_2(t) \forall t \in I_1$
+	\end{enumerate}
+
+	Además, si $ I_1 \varsubsetneq I_2 $ diremos que $ \varphi_2 $ es una prolongación propia de $ \varphi_1 $.
+\end{definition}
+\begin{note}
+	Una solución es prolongación de si misma, pero no es prolongación propia.
+\end{note}
+\begin{definition}
+	Si $ \varphi $ es solución de una ecuación diferencial, diremos que $ \varphi $ es maximal si no admite prolongación propia. En este caso, el intervalo de definición es llamado intervalo maximal.
+\end{definition}
+\begin{lemma}[Lema de Zorn]
+	Todo conjunto parcialmente ordenado no vacío, en el que toda cadena (subconjunto parcialmente ordenado) admite cota superior, contiene elementos maximales.
+\end{lemma}
+\begin{theorem}
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
+	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
+	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	
+	Dado $ (t_0,x_0)\in A $, existe una solución maximal de la ecuación diferencial que pasa por $ (t_0,x_0) $.
+	
+\end{theorem}
+\begin{proof}
+	Haremos uso del Lema de Zorn. Representaremos las soluciones de la ecuación diferencial mediante el par $ (I,\varphi) $ donde $ \varphi $ es la solución e $ I $ su intervalo de definición.
+	
+	En este conjunto definimos la relación de orden parcial "ser prolongación". Si $ \psi $ es prolongación de $ \varphi $:
+	\[ (I,\varphi)\leq (J,\psi)\Leftrightarrow I\subseteq J, \varphi(t)=\psi(t) \ \forall t \in I \]
+	Ahora, sea $ (I_0,\varphi_0) $ solución de $ x'=f(t,x) $ y veamos que se puede prolongar hasta una solución maximal.
+	
+	Trabajamos solo con soluciones que sean prolongación de $ \varphi_0 $. Es un conjunto no vacío, ya que $ (I_0,\varphi_0) $ es prolongación de si mismo.Utilizamos la relación de orden parcial definida anteriormente y comprobaremos que se cumplen las hipótesis del Lema de Zorn.
+	
+	Sea $ \{(I_j,\varphi_j) \}_{j\in I} $ una cadena de ese conjunto y veamos que admite cota superior. Sea $ \varphi $ la función definida en $ I=\bigcup_{j\in I}I_j $ mediante $ \varphi(t)=\varphi_j(t) \forall j \in I $. $ \varphi $ es claramente cota superior de la cadena.
+	
+	Por tanto, por el lema de Zorn, existen elementos maximales que son las soluciones maximales que prolongan a $ \varphi_0 $.
+	
+\end{proof}
+
+\begin{definition}
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
+	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
+	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	
+	Sean $ \varphi_1:(a,b)\longrightarrow \mathbb{R}^n $ y $ \varphi_2:(c,d)\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y $ b\in(c,d) $, diremos que $ \varphi_2 $ es prolongación de $ \varphi_1 $ a través de $ b $.
+\end{definition}
+
+\begin{definition}[General]
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
+	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
+	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	
+	Sean $ \varphi_1:I_1\longrightarrow \mathbb{R}^n $ y $ \varphi_2:I_2\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y existe $ q\in \text{Fr}(I_1) $ tal que $ q\in \mathring{I_2}$, diremos que $ \varphi_2 $ es prolongación de $ \varphi_1 $ a través de $ q $.
+\end{definition}
+\begin{theorem}[Teorema de prolongación]
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
+	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
+	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	Además de estas condiciones habituales, pediremos que $ f\in L_{\text{loc}}(A,x) $, es decir, que $ f $ sea lipschitziana localmente.
+	
+	Si $ \varphi:(a,b)\longrightarrow\mathbb{R}^n $ es solución de la ecuación diferencial anterior, entonces;
+	\begin{enumerate}[i)]
+		\item $ \varphi $ prolongable a través de $ b \Leftrightarrow \exists \lim\limits_{t\to b^-}\varphi(t)=p, \text{ con } (b,p) \in A $
+		\item $ \varphi $ prolongable a través de $ a \Leftrightarrow \exists \lim\limits_{t\to a^-}\varphi(t)=q, \text{ con } (a,q) \in A $
+	\end{enumerate}
+\end{theorem}
+
+\subsection{Dependencia de la solución respecto de las soluciones iniciales.}
+
+BEGIN JORGE 11/3
 \pagebreak
 \section{Tema 4.}
 \subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
@@ -1050,9 +1145,10 @@ BEGIN PRADA 27/02
 	 \varphi'_n(t)=f_n(t, \varphi_1(t), \dots, \varphi_n(t))
 	 \end{cases}\]
 \end{observation}
-\subsubsection{Método de resolución de EDOs por variables separadas.}
-Se utiliza para ecuaciones del tipo $ x'=\frac{\partial x}{\partial t}=h(t)g(x) $. Pasos para resolverlas:
-\begin{enumerate}[1)]
+\subsubsection{EDOs de variables separadas.}
+Son ecuaciones de la forma $ x'=\frac{\partial x}{\partial t}=h(t)g(x) $. 
+\paragraph{Método de resolución}
+\begin{enumerate}
 	\item $ \frac{1}{g(x)}\cdot\frac{\partial x}{\partial t}=h(t) $
 	\item $ \frac{1}{g(x)}\cdot\partial x=h(t)\partial t $
 	\item $ \int \frac{1}{g(x)} \partial x= \int h(t) \partial t \Rightarrow G(x)+c_1=H(t)+c_2 \Rightarrow G(x)=H(t)+c$
@@ -1061,6 +1157,24 @@ Si se pide la solución pasando por $ (t_0,x_0) $, hallamos la $ c $ que cumple 
 
 Otra forma de llegar a este resultado es observar:
 \[ \int_{x_0}^{x} \frac{1}{g(x)} \partial x= \int_{t_0}^{t} h(t) \partial t \Rightarrow G(x)-G(x_0)=H(t)-H(t_0)\]
+\subsubsection{EDOs homogéneas.}
+Son ecuaciones de la forma $ x'=g(\frac{x}{t}), $ o bien $ x'=\frac{f(t,x)}{h(t,x)} $, con $ f,h $ funciones homogéneas del mismo grado.
+\begin{definition}
+	$ f $ homogénea de grado $ k $ si $ \forall r \in \mathbb{R}, f(rt,rx)=r^kf(t,x)$.
+\end{definition}
+\paragraph{Método de resolución}
+Sean $ f,h $ homogéneas del mismo grado. Todas las homogéneas se pueden dejar como $ x'=g(\frac{x}{t})$:
+Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $: REVISAR
+	\[ x'= \frac{f(t,x)}{h(t,x)}=\frac{r^kf(rt,rx)}{r^kh(rt,rx)}=\frac{f(rt,rx)}{h(rt,rx)}=\frac{f(1,\frac{x}{t})}{h(1,\frac{x}{t})}=g(\frac{x}{t})\]
+	Una vez tenemos la ecuación en la forma $ x'=g(\frac{x}{t}) $:
+	\begin{enumerate}
+		\item $ \frac{x}{t}=u\Rightarrow x=u\cdot t $.
+		\item $ x'(t)=u(t)+tu'(t)=g(u) \Rightarrow tu'(t)=g(u)-u(t) $
+		\item Resolver $ u'(t)=\frac{g(u)-u}{t} $, que es una EDO de variables separadas.
+	\end{enumerate}
+
+\subsection{EDOs reducibles a homogéneas.}
+
 
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
