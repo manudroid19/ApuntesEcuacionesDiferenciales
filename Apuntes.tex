@@ -1105,6 +1105,151 @@ BEGIN PRADA 6/3
 \subsection{Dependencia de la solución respecto de las soluciones iniciales.}
 
 BEGIN JORGE 11/3
+
+BEGIN PRADA 13/03
+
+\begin{exercise}
+	Se proponen los siguientes ejercicios teóricos:
+	\begin{enumerate}
+		\item Razona veracidad o falsedad:
+		
+		\begin{enumerate}[\quad a)]
+			\item Si $ \varphi_1, \varphi_2 $ son soluciones de (1), definidas en $ [a, t_0], [t_0,b] $, y además sea $ \varphi_1(t_0)=\varphi_2(t_0) $, entonces $ \varphi $ definida en $ [a,b] $ como:
+			\[ \varphi(t)=\begin{cases}
+			\varphi_1(t), \quad t\in [a,t_0]\\
+			\varphi_2(t), \quad t\in [t_0,b]
+			\end{cases} \]
+			es solución de (1).
+			\item Sea (1), entonces toda solución maximal está definida en un abierto.
+		\end{enumerate}
+	\item $ x'=f(t,x) $
+	\[ f:(t,x)\in (-\pi, 33)\times \mathbb{R} \] DEL SEMINARIO
+	\end{enumerate}
+\end{exercise}
+\begin{proof}[Solución]
+	\begin{enumerate}
+		\item \ 
+		
+		\begin{enumerate}[\quad a)]
+			\item Verdadero. Veamos si $ \varphi $ es solución.
+			\begin{enumerate}[\quad i)]
+				\item $ (t,\varphi(t))\in A \forall t \in [a,b], ya que \begin{cases}
+				\forall t\in [a,t_0] \quad (t, \varphi_1(t)) \in A, \text{ ya que }\varphi_1 \text{ es solución.}\\
+				\forall t\in [t_0,b] \quad (t, \varphi_2(t)) \in A, \text{ ya que }\varphi_2 \text{ es solución.}\\
+				\text{Además, } \varphi_1(t)=\varphi_2(t).
+				\end{cases}$
+				\item $ \forall t \in [a,t_0) \exists \varphi_1'(t)$
+				
+				$ \forall t \in []t_0,b) \exists \varphi_2'(t) $
+				
+				Veamos si existe la derivada en $ t_0 $, utilizando la continuidad de $ \varphi_1 $ y $ \varphi_2 $:
+				\[ \lim\limits_{t \to t_0^-} \varphi'_1(t)=\lim\limits_{t \to t_0^-} f(t, \varphi_1(t))=f(t_0,\varphi_1(t_0)) \]
+				\[ \lim\limits_{t \to t_0^+} \varphi'_2(t)=\lim\limits_{t \to t_0^+} f(t, \varphi_2(t))=f(t_0,\varphi_2(t_0)) \]
+				Como $ \varphi_1(t_0)=\varphi_2(t_0) \Rightarrow \lim\limits_{t \to t_0^-} \varphi'(t)=\lim\limits_{t \to t_0^+} \varphi'(t)$, y $\varphi $ continua en $ t_0 $, entonces $ \exists \varphi'(t_0) $
+				\item Inmediata visto lo anterior.
+			\end{enumerate} 
+		\item Probemos que es falso por reducción al absurdo. Supongamos que está definida en un intervalo de la forma $ ( $
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+
+BEGIN PRADA 20/03
+
+\begin{proof}
+	$ F:\varphi\in S\longrightarrow F(\varphi)=\varphi(t_=)\in \mathbb{R}^n $, para un $ t_0\in I $ fijado. 
+	Tenemos que demostrar:
+	\begin{enumerate}
+		\item $ S $ espacio vectorial. 
+		\begin{enumerate}[\quad i)]
+			\item $ \varphi_1, \varphi_2 \in S \Rightarrow \varphi_1 + \varphi_2 \in S$.
+			
+			$ (\varphi_1 + \varphi_2)' =\varphi_1'+\varphi_2'=A(t)\varphi_1 +A(t)\varphi_2 = A(t)(\varphi_1 + \varphi_2)\Rightarrow (\varphi_1+\varphi_2)\in S$
+			\item $ \lambda\in \mathbb{R}, \varphi\in S $
+			
+			$ (\lambda \varphi)'=\lambda \varphi'=\lambda A(t)\varphi=A(t)(\lambda \varphi)\Rightarrow \lambda\varphi\in S $.
+		\end{enumerate}
+	\item $ F $ isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n $.
+	\begin{enumerate}[\quad i)]
+		\item $ F $ inyectiva. 
+		
+		Sean $ \varphi_1,\varphi_2 \in S $ tal que $ F(\varphi_1)=F(\varphi_2) $, con $ x_0=\varphi_1(t_0)=\varphi_2(t_0) $.
+		
+		$ \varphi_1 $ solución del sistema homogéneo $ x'=A(t)x $ pasando por $ (t_0,x_0) $.
+		
+		$ \varphi_2 $ solución del sistema homogéneo $ x'=A(t)x $ pasando por $ (t_0,x_0) $.
+		
+		Entonces por unicidad de solución pasando por $ (t_0,x_0) \Rightarrow \varphi_1=\varphi_2\Rightarrow F$ inyectiva.
+		\item $ F $ sobreyectiva. 
+		
+		Sea $ z \in \mathbb{R}^n $ y veamos que $ \exists \varphi \in S : F(\varphi)=z $. Tomo como $ \varphi $ la solución que pasa por $ (t_0, z) $ y por tanto $ F(\varphi)=\varphi(t_0)=z $.	
+		\item $ F $ lineal. 
+		\[  F(\varphi_1+\varphi_2)=(\varphi_1+\varphi_2)(t_0)=\varphi_1(t_0)+\varphi_2(t_0)=F(\varphi_1)+F(\varphi_2)  \]
+		\[ F(\lambda\varphi)=(\lambda\varphi)(t_0)=\lambda \varphi(t_0)= \lambda F(\varphi), \quad \lambda \in \mathbb{R}, \varphi \in S \]	
+		
+	\end{enumerate}
+Por lo tanto $ F $ es un isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n \Rightarrow \dim_\mathbb{R}S=\dim_{\mathbb{R}^n}\mathbb{R}^n=n $
+	\end{enumerate}
+\end{proof}
+\begin{observation}
+	Si $ \{e_1, \dots, e_n\} $ base de $ \mathbb{R}^n $, $ \{ F^1(e_1), \dots F^n(e_n) \} $ base de $ S $. Es decir:
+	
+	$ F^i(e_i)=\varphi_i $ solución de $ x'=A(t)x $ que pasa por $ (t_0, e_i) $.
+\end{observation}
+\begin{definition}
+	Sea $ \phi(t) \in M_{n\times n}(\mathbb{R}), t\in I$, diremos que $ \phi $ es una matriz solución para el sistema homogéneo $ x'=A(t)x $ si cada columna es solución de él. 
+	\[ \begin{pmatrix}
+		\vdots & \vdots  \\
+		\varphi_1  & \varphi_2 & \dots \\
+		\vdots & \vdots  
+	\end{pmatrix}  \]
+\end{definition}
+\begin{exercise}
+	$ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
+\end{exercise}
+\begin{definition}
+	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que esta es fundamental para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
+\end{definition}
+\begin{theorem}[Caracterización de matrices fundamentales]
+	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
+	\begin{enumerate}[\quad i)]
+		\item $ \phi(t) $ matriz fundamental.
+		\item $ \det(\phi(t))\neq 0, \ \forall t \in I $.
+		\item $ \exists t_0 \in I, \det(\phi(t_0))\neq 0 $
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Se hará en un laboratorio COMPLETAR.
+\end{proof}
+\begin{definition}
+	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es principal en $ t_0\in I $ si $ \phi(t_0)=I_n $
+\end{definition}
+\begin{proposition}[Solución general del sistema homogéneo]
+	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces las soluciones del sistema son de la forma $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $.	
+\end{proposition}
+\begin{proof}
+	$ \phi(t)= (\varphi_1 | \varphi_2 | \dots | \varphi_n) $ matriz fundamental.
+	
+	$ \{\varphi_1, \varphi_2, \dots,  \varphi_n \} $ base de $ S $.
+	
+	Si $ \varphi $ es solución, $ \varphi = c_1\varphi_1(t)+ \dots + c_n \varphi_n(t) $, con $ c_1, \dots, c_n\in \mathbb{R} $, lo cual se puede escribir de forma matricial.
+	
+	Por tanto, $ x(t)=\phi(t)\phi^{-1}(t_0)x_0 $.
+\end{proof}
+¿Que ocurre si cambiamos de base?
+\begin{theorem}
+	$ \phi(t) $ matriz fundamental para $ x'=A(t)x $.
+	
+	$ \psi(t) \in M_{n\times n}(\mathbb{R})$ es matriz fundamental para SH $ \Leftrightarrow \exists \varOmega \in M_{n\times n}(\mathbb{R})$ constante y no singular tal que $ \psi(t) = \phi(t)\varOmega $.
+\end{theorem}
+\begin{proof}
+	"$ \Leftarrow $": Veamos que $ \psi(t)=\phi(t)\varOmega $ es matriz fundamental:
+	\begin{enumerate}[\quad i)]
+		\item $ \psi(t)=\phi(t)\varOmega $ es solución de $ x'=A(t)x $ pues $ (\varphi(t))'=(\phi(t)\varOmega)'=\phi'(t)\varOmega=A(t)\phi(t)\varOmega =A(t)\psi $
+		\item $ \psi(t) $ es fundamental.
+		
+		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.0
+	\end{enumerate}
+\end{proof}
 \pagebreak
 \section{Tema 4.}
 \subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
