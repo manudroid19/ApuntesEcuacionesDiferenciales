@@ -1102,9 +1102,92 @@ BEGIN PRADA 6/3
 	\end{enumerate}
 \end{theorem}
 
+BEGIN JORGE 11/3
+
+\begin{proof}
+	\begin{enumerate} [i)]
+		\item "$\Rightarrow$" \\
+		Si $\varphi$ prolongable a través de $b$, entonces $\exists \varphi_2 : (a, d) \longrightarrow \mathbb{R}^n$ prolongación de $\varphi$ (es decir, $\varphi_2 = \varphi$ $\forall t \in (a, b)$, $b \in (a, b)$). Por ser $\varphi_2$ solución, $\varphi_2$ es continua por la izquierda en $t = b$, por lo que:
+		\[\lim\limits_{t \to b^-} \varphi_2(t) = \varphi_2(b) \text{, } \lim\limits_{t \to b^-} \varphi_2(t) = \lim\limits_{t \to b^-} \varphi(t)\]
+		y tenemos entonces que:
+		\[\lim\limits_{t \to b^-} \varphi(t) = \varphi_2(t)\]
+		Además, $(b, \varphi(b)) \in A$ por ser $\varphi_2$ solución. \\
+		"$\Leftarrow$" \\
+		Suponemos que:
+		\[\exists \lim\limits_{t \to b^-} \varphi(t) = p \text{, } (b, p) \in A\]
+		Sea $\overline{B} = B((b, p), r) \subset A$ con $f$ acotada en $\overline{B}$ y $f \in L_k (B, x)$. Tomamos $0 < \delta < min\{\frac{r}{2}, \frac{r/2}{H}, \frac{1}{k}\}$, siendo $H$ cota de $f$.
+		
+		DIBUJO
+		
+		Como $\lim\limits_{t \to b^-} \varphi (t) = p$ y, por ser continua, es secuencialmente continua, lo que implica que existe una sucesión $\{t_m\} \longrightarrow b^-$ tal que $\{\varphi(t_n) \longrightarrow p\}$. Elegimos entonces un $n_0 \in \mathbb{N}$ tal que $\abs{t_{n_0} - b} < \delta$ y $(t_{n_0}, \varphi (t_{n_0})) \in \overline{B}$. Para la condición inicial $(t_{n_0}, \varphi (t_{n_0}))$ existe una solución única pasando por el punto definido en $[t_{n_0} - \delta, t_{n_0} + \delta]$ que denoto $\overline{\varPhi}$. Entonces la función:
+		\[\psi: (a, t_{n_0} + \delta] \longrightarrow \psi (t) = \begin{cases}
+		\varphi(t) &t \in (a, b) \\ 
+		\overline{\varphi} (t) &t \in [b, t_{n_0} + \delta).
+		\end{cases}\]
+		Así, tenemos que $\psi$ es solución de $x' = f(t. x)$ y, de hecho, $\psi$ prolonga a $\varphi$ a través de $b$.
+		
+		DIBUJO
+		
+	\end{enumerate} 
+\end{proof}
+\begin{observation}
+	En primer lugar, la afirmación $i)$ es equivalente a decir:
+	\[\exists \{t_m\} \longrightarrow b^- : \exists \lim\limits_{t_n \to b^-} \varphi(t_n) = p \hspace{0.2cm} (b, p) \in A\]
+	Llega trabajar con una sucesión. Además, no es necesario pedir que $f \in L_{loc}(A, x)$, sin ella no podemos concluir la unicidad y la demostración sería mucho más complicada.
+\end{observation}
+\begin{corollary}
+	Si $A$ está acotado, yo puedo prolongar hasta la frontera.
+\end{corollary}
+\begin{theorem}
+	(Teorema de la banda) \\
+	Dada $x' = f(t, x)$, $f: (t, x) \in \mathbb{R} \times \mathbb{R}^n \longrightarrow f(t, x) \in \mathbb{R}^n$ siendo $A = (a, b) \times \mathbb{R}^n$. Si se cumpla una de las siguientes condiciones:
+	\begin{enumerate}
+		\item  $f$ continua en $A$, $f \in L_k (A, x)$ ó
+		\item  $f$ continua y acotada en $A$ ($f \in L{loc} (A, x)$).
+	\end{enumerate}
+	
+	DIBUJO
+	
+	entonces, fijado $(t_0, x) \in (a, b) \times \mathbb{R}^n$, la solución maximal que pasa por él, está definida en $(a, b)$.
+\end{theorem}
+\begin{observation}
+	\begin{enumerate}
+		\item No es necesario pedir $f \in L_{loc} (A, x)$.
+		\item $a$, $b$ no tienen porque ser finitos, es decir, puedo tener intervalos de la forma $(- \infty, b)$.
+	\end{enumerate}
+\end{observation}
+\begin{theorem}
+	Dado $x' = f(t, x)$, $f: [a, b] \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Si se cumple una de las siguientes condiciones:
+	\begin{enumerate}
+		\item $f$ continua en $A = [a, b] \times \mathbb{R}^n$, $f \in L_k (A, x)$ ó
+		\item $f$ continua en $A$, $f \in L_{loc} (A, x)$ entonces, fijado $(t_0, x) \in A$ la solución pasando por ese punto y la solución maximal está definida en $[a, b]$. 
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Definimos la siguiente función, donde $A \subset (c, d) \times \mathbb{R}^n$:
+	\[g: (t, x) \in (c, d) \times \mathbb{R}^n \longrightarrow g(t, x) = \begin{cases}
+	f(a, x), &t \in (c, a] \\
+	f(t, x), &t \in [a, b] \\
+	f(b, x), &t \in [b, d] 
+	\end{cases}\]
+	y con $g$ continua. Esta función verifica las hipótesis del teorema anterior en $(c, d) \times \mathbb{R}^n$ ya que:
+	\begin{enumerate}[-]
+		\item Si $f \in L_k(A, x) \Rightarrow g \in L_k ((c, d) \times \mathbb{R}^n)$
+		\item Si $f$ acotado y $f \in L_{loc} (A, x)$, entonces $g$ acotada y $g \in L_{loc} ((c, d) \times \mathbb{R}^n, x)$.
+	\end{enumerate}
+	Por tanto, fijado $(t_0, x_0) \in A \subset (c, d) \times \mathbb{R}^n$ existe la solución maximal pasando por $(t_0, x_0)$ y definida en $(c, d)$. Por tanto,
+	\[\varphi = \psi|_{[a, b]} \text{es la solución maximal}\]
+	de $x' = f(t, x)$ pasando por $(t_0, x_0)$.
+	
+	DIBUJO
+	
+\end{proof}
+
+
 \subsection{Dependencia de la solución respecto de las soluciones iniciales.}
 
-BEGIN JORGE 11/3
+
+
 
 BEGIN PRADA 13/03
 
