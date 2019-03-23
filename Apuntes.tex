@@ -8,7 +8,10 @@
 \usepackage{enumerate}
 \usepackage{wrapfig}
 \usepackage{graphicx}
-\usepackage{tikz}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
 \usepackage{wrapfig}
 \usepackage{cutwin}
 \usetikzlibrary{quotes,angles}
@@ -191,6 +194,21 @@
 %\newcommand{\docabstract}{}
 \newcommand{\docabstract}{Apuntes de la materia impartida en la USC}
 
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+	\pushQED{\qed}%
+	\normalfont \topsep6\p@\@plus6\p@\relax
+	\list{}{%
+		\settowidth{\leftmargin}{\quad:\hskip\labelsep}%
+		\setlength{\labelwidth}{0pt}%
+		\setlength{\itemindent}{-\leftmargin}%
+	}%
+	\item[\hskip\labelsep\itshape#1\@addpunct{:}]\ignorespaces
+}{%
+	\popQED\endlist\@endpefalse
+}
+\makeatother
+
 \begin{document}
 
 %\maketitle
@@ -224,7 +242,7 @@
 
 \begin{example}
 	Un tren está parado en una ciudad A y avanza con una velocidad $ v(t)=2170t+20t^3 $ en m/min hasta que llega a la velocidad de crucero, que es de 4500 m/min. Se pide hallar:
-	\begin{enumerate}[a)]
+	\begin{enumerate}[\qquad a)]
 		\item Distancia recorrida en 1 minuto.
 		\item Tiempo que tarda en alcanzar la velocidad de crucero.
 		\item Metros recorridos cuando se alcanza la velocidad de crucero.
@@ -232,60 +250,64 @@
 		\item Hora a la que pasará por la ciudad B, situada a 243 km de distancia, saliendo a las 7:00.
 	\end{enumerate}
 \end{example}
-\begin{proof}[Solución]
-	b) Sea $x(t)$ la posición en el instante $t$. Tomando $v(t)=x'(t)=2170t+20t^3=4500$, despejando resulta $ t=2 $. 
+\begin{proof}[Solución] \ 
+	\begin{enumerate}[\qquad a)]
+	\item[b)] Sea $x(t)$ la posición en el instante $t$. Tomando $v(t)=x'(t)=2170t+20t^3=4500$, despejando resulta $ t=2 $. 
 	
-	a) Buscamos $ x(1) $, para lo que primeros obtendremos la expresión general $ x(t) $ que cumpla la condición $ x'(t)=2170t+20t^3 $.
+	\item Buscamos $ x(1) $, para lo que primeros obtendremos la expresión general $ x(t) $ que cumpla la condición $ x'(t)=2170t+20t^3 $.
 	
 	La primitiva de esta expresión es $ x(t)=\frac{2170t^2}{2}+\frac{20t^4}{4}+k $. Como $ x(0)=0 $, $ k=0 $ y $ x(1)=1090 $.
 	
-	c) Trivial a partir de los apartados a) y b). $ x(2)=4420 $m.
+	\item[c)] Trivial a partir de los apartados a) y b). $ x(2)=4420 $m.
 	
-	d) En los dos primeros minutos, hasta alcanzar la velocidad de crucero ya hemos visto que se recorren 4420m. Para los 28 restantes, la velocidad es constante por lo que planteamos la ecuación $ x'(t)=4500 $. 
+	\item[d)] En los dos primeros minutos, hasta alcanzar la velocidad de crucero ya hemos visto que se recorren 4420m. Para los 28 restantes, la velocidad es constante por lo que planteamos la ecuación $ x'(t)=4500 $. 
 	
 	Por tanto, $ x(t)=4500t+k $. Sabiendo que $ x(2)=4420 $, resulta $ k=-4580 $ y $ x(t)=4500t-4580 $ para $ t>2 $. En particular, $ x(30)=130420 $m $ =130,420 $km.
 	
-	e) Sabemos por el apartado anterior que se alcanza el punto D (130420m) a los 30 minutos. Los 112,58 metros restantes se recorren en $ \frac{112,58}{4,5\text{m/min}}\simeq 25 $ minutos, por lo que el trayecto en total requiere de 55 minutos y la hora de llegada es las 7:55. 
+	\item[e)] Sabemos por el apartado anterior que se alcanza el punto D (130420m) a los 30 minutos. Los 112,58 metros restantes se recorren en $ \frac{112,58}{4,5\text{m/min}}\simeq 25 $ minutos, por lo que el trayecto en total requiere de 55 minutos y la hora de llegada es las 7:55. 
 	
 	Otra manera rápida es despejar $ t $ en la ecuación $ x(t)= 243000=4500t-4580 $.
+	\end{enumerate}
 \end{proof}
 \begin{example}
 	$ x(t) $ es la cantidad de medicamento presente en el organismo en un instante $ t $. La cantidad disminuye proporcionalmente a la cantidad de producto presente en el organismo. En $ t_0 $, tomamos 500mg. En 1 hora, la cantidad de medicamento en el organismo es de 380mg.
-	\begin{enumerate}[a)]
+	\begin{enumerate}[\qquad a)]
 		\item ¿Qué cantidad quedará en el cuerpo en 6h?
 		\item ¿Cada cuanto tiempo hay que tomar el medicamento para que haya entre 100mg y 700mg en el organismo? 
 	\end{enumerate}
 \end{example}
-\begin{proof}[Solución]
-a) Como la cantidad disminuye proporcionalmente a la cantidad de medicamento en el cuerpo, tenemos que si $ x(t) $ es la cantidad de medicamento en un instante $ t $, $ x'(t)=-kx(t) $. Además sabemos que $ x(0)=500 $ y $ x(1)=380 $. Para obtener la expresión correspondiente, razonamos:
+\begin{proof}[Solución] \ 
+	\begin{enumerate}[\qquad a)]
+		\item Como la cantidad disminuye proporcionalmente a la cantidad de medicamento en el cuerpo, tenemos que si $ x(t) $ es la cantidad de medicamento en un instante $ t $, $ x'(t)=-kx(t) $. Además sabemos que $ x(0)=500 $ y $ x(1)=380 $. Para obtener la expresión correspondiente, razonamos:
 
-Si $ x'(t)=x(t) $, la única opción es que se trate de la exponencial. Nuestra expresión es parecida, tratemos de cumplir la igualdad $ x'(t)=-kx(t) $. Observamos que se cumple para $ x(t)=e^{-kt} $. Ahora nos fijamos en el primer punto,  $ x(0)=500 $. Con  $ x(t)=500e^{-kt} $ cumplimos esa condición. Por último, nos queda hallar una $ k $ que cumpla $ x(1)=500e^{-k}=380 $. 
+		Si $ x'(t)=x(t) $, la única opción es que se trate de la exponencial. Nuestra expresión es parecida, tratemos de cumplir la igualdad $ x'(t)=-kx(t) $. Observamos que se cumple para $ x(t)=e^{-kt} $. Ahora nos fijamos en el primer punto,  $ x(0)=500 $. Con  $ x(t)=500e^{-kt} $ cumplimos esa condición. Por último, nos queda hallar una $ k $ que cumpla $ x(1)=500e^{-k}=380 $. 
+		
+		Nos queda $ k=-\log(\frac{38}{50}) $ y por lo tanto $ x(t)=500e^{\log(\frac{38}{50})t} =500(\frac{19}{25})^t$. En consecuencia, $ x(6)=96,35 $mg.
 
-Nos queda $ k=-\log(\frac{38}{50}) $ y por lo tanto $ x(t)=500e^{\log(\frac{38}{50})t} =500(\frac{19}{25})^t$. En consecuencia, $ x(6)=96,35 $mg.
+		\item Queremos obtener el $ t $ que cumpla $ 100<x(t)<200 $, para que la dosis no baje de los 100mg prescritos y al tomar de nuevo la dosis de 500mg no supere los 700mg.
 
-b) Queremos obtener el $ t $ que cumpla $ 100<x(t)<200 $, para que la dosis no baje de los 100mg prescritos y al tomar de nuevo la dosis de 500mg no supere los 700mg.
-
-$ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
+		$ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
+	\end{enumerate}
 \end{proof}
-
 BEGIN JORGE 4/2
-
 \subsection{Concepto de solución.}
 \begin{definition}
-	Sea $f: A \in \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \underline{Ecuaciones Lineales Ordinarias} (EDO) de primer orden en forma normal relativa a la función $f$ a $x' = f(t, x)$. $\\$
-	Se dice que es de primer orden porque solo aparece la primera derivada y forma normal porque $x'$ está despejada (si no sería $h(t, x, x')$).
+	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \emph{Ecuación Diferencial Ordinaria} (EDO) de primer orden dada en forma normal relativa a la función $f$ a: 
+	\[ x' = f(t, x) \]
+	Se dice que es de primer orden porque solamente aparece la primera derivada y en forma normal ya que $x'$ está despejada (si no sería en forma implícita, es decir, $h(t, x, x')=0$).
 \end{definition}
+
 \begin{definition}
-	Dada $\varphi: t \in I \subset \mathbb{R} \longrightarrow \varphi (t) \in \mathbb{R}^n$ decimos que $\varphi$ es solución de $x'=f(t, x)$ si verifica:
-	\begin{enumerate}
+	Dada $\varphi: t \in I \subseteq \mathbb{R} \longrightarrow \varphi (t) \in \mathbb{R}^n$ decimos que $\varphi$ es \emph{solución} de $x'=f(t, x)$ si verifica:
+	\begin{enumerate}[\quad i)]
 		\item $(t, \varphi (t)) \in A$, $\forall t \in I$.
-		\item $\exists \varphi' (t)$, $\forall t \in I$.
+		\item Existe $ \varphi' (t)$, $\forall t \in I$ (derivada lateral en caso de que $ I $ contenga un extremo).
 		\item $\varphi'(t)=f(t, \varphi(t))$,  $\forall t \in I$.
 	\end{enumerate}
 	Tenemos que si $I$ contiene a uno de sus extremos entenderemos en el punto $2$ que exista su derivada lateral.
 \end{definition}
 \begin{observation}
-	Teniendo que $\varphi: t \in \mathbb{R} \longrightarrow \mathbb{R}^n$ con $\varphi (t) = (\varphi_1 (t), ..., \varphi_n (t))$. Por tanto, que $\varphi' (t) = f(t, \varphi (t))$ significa lo siguiente:
+	Tenemos que $\varphi: t \in \mathbb{R} \longrightarrow \mathbb{R}^n$ con $\varphi (t) = (\varphi_1 (t), ..., \varphi_n (t))$. Por tanto, que $\varphi' (t) = f(t, \varphi (t))$ significa lo siguiente:
 	\[\varphi' (t) = (\varphi_1' (t), ..., \varphi_n' (t))\] 
 	lo que se traduce en:
 	\[f(t, (x_1, ..., x_n)) = (f_1(t, (x_1, ..., x_n)), ..., f_n(t, (x_1, ..., x_n))) \]
@@ -301,12 +323,12 @@ BEGIN JORGE 4/2
 		f_1(t, \varphi_1 (t), ..., \varphi_n (t)) \\
 		\vdots \\
 		f_n(t, \varphi_1 (t), ..., \varphi_n (t))
-		\end{array} } \right).
+		\end{array} } \right)
 	\]
 	Por lo que, tenemos que:
 	\[\left\{ {\begin{array}{cc}
 		\varphi_1' (t) = f_1(t, \varphi_1 (t), ..., \varphi_n (t)) \\
-		\cdots \\
+		\vdots \\
 		\varphi_n' (t) = f_n(t, \varphi_1 (t), ..., \varphi_n (t))
 		\end{array} } \right. \]
 \end{observation}
@@ -319,7 +341,7 @@ BEGIN JORGE 4/2
 	tenemos que, tal y como está definida, $g$ es una función continua por estar compuesta de $id$, que es la identidad, y de $\varphi$, que es continua por ser derivable en todos sus puntos. Además, como $f$ es continua por definición y tenemos que $\varphi' (t) = f(t, \varphi (t))$, $\varphi'$ es continua por composición de continuas.
 \end{proof}
 \begin{theorem}
-	Si $f \in C^r$, $r \in \mathbb{N}$ y $r \leq 1$, entonces $\varphi \in C^{r+1}(I)$.
+	Si $f \in C^r$, $r \in \mathbb{N}$ y $r \geq 1$, entonces $\varphi \in C^{r+1}(I)$.
 \end{theorem}
 \begin{proof}
 	Realizaremos la prueba empleando inducción. En primer lugar lo probaremos para $r=1$, es decir, veamos que:
@@ -327,13 +349,16 @@ BEGIN JORGE 4/2
 	Como $\varphi' (t) = f(t, \varphi (t))$, como hemos visto antes tenemos que:
 		\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t)),\]
 	pero, tenemos que $f \in C^1(A)$ por lo que $f$ es continua y por la proposición anterior tenemos que $\varphi \in C^1$. Por lo tanto, la composición anterior cumple que es de clase $C^1$, por lo que concluímos que $\varphi \in C^2$. \\
-	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{HIP}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+1}$.
+	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{\text{hip.}}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+1}$.
 	\[t \longrightarrow (t, \varphi (t)) \longrightarrow f(t, \varphi (t)) = \varphi' (t).\]
 	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
 \end{proof}
-
+\subsubsection{Problema del valor inicial.}
+Con el siguiente ejemplo introducimos la problemática de elegir correctamente el intervalo de definición de la solución, entre aquellos candidatos. Nos servirá para introducir la siguiente sección.
 \begin{example}
-	Sea $x' = x^2$, es decir, $f: (t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. \\
+	Sea $x' = x^2$, es decir, $f: (t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. Estudiar en $ t=1 $.
+\end{example}
+\begin{proof}[Solución]
 	En primer lugar tenemos que ver que $x'(t) = (x(t))^2 = f(t, x(t))$.
 	\[x'(t) = \frac{1}{(t+c)^2} \Rightarrow x'(t) = (\frac{-1}{t+c})^2\]
 	Además, de esta solución sabemos que:
@@ -348,7 +373,31 @@ BEGIN JORGE 4/2
 		\end{array}} \right\} \Rightarrow x = 0 \hspace*{0.2cm} AH\]
 	por lo que tenemos una asíntota horizontal en $x = 0$. 
 	
-	%GRAFICA ---------------------------------------------------
+	
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm,scale=0.7]
+		\begin{axis}[
+		x=1cm,y=1cm,
+		axis lines=middle,
+		xmin=-2.2696161464380893,
+		xmax=5.5453285056459745,
+		ymin=-3.5608451100207597,
+		ymax=3.87288272976652,
+		xtick={-2,-1,...,5},
+		ytick={-3,-2,...,3},]
+		\clip(-2.2696161464380893,-3.5608451100207597) rectangle (5.5453285056459745,3.87288272976652);
+		\draw[line width=1pt,smooth,samples=100,domain=-2.2696161464380893:5.5453285056459745] plot(\x,{0-1/((\x)-5/4)});
+		
+		\draw (1.371004410996194,0.7087831877032161) node[anchor=north west] {x=5/4};
+		\end{axis}
+		\end{tikzpicture}
+		\caption{Solución del ejemplo.} \label{E1}
+	\end{figure}
+	
+	
+
+	
 	
 	En este caso $A = \mathbb{R} \times \mathbb{R} = \mathbb{R}^2$. Además,
 	\[t \in (- \infty, - c) \longrightarrow h(t) = \frac{-1}{t+c}\]
@@ -365,12 +414,7 @@ BEGIN JORGE 4/2
 	Además, si queremos calcular la solución de $x'=x^2$ que en $t =1$ valga $3$ tenemos que:
 	\[3 = x(1) = \frac{-1}{1+c} \Rightarrow 3 + 3c = -1 \Rightarrow c = -\frac{4}{3}\]
 	Por tanto, $x(t) = \frac{-1}{t-\frac{4}{3}}$ verifica que $x'(t) = (x(t))^2$. Además, por lo visto anteriormente, $h$ y $\varphi$ son soluciones si hacemos que $c = - \frac{4}{3}$.
-	
-	%GRAFICA ------------------------------------------------------
-	
-	
-\end{example}
-
+\end{proof}
 \subsection{Problema de Cauchy.}
 
 \begin{definition}
@@ -1140,7 +1184,9 @@ BEGIN PRADA 13/03
 				\item Inmediata visto lo anterior.
 			\end{enumerate} 
 		\item Probemos que es falso por reducción al absurdo. Supongamos que está definida en un intervalo de la forma $ (a,b] $.
-		Como $ A $ es abierto, $ (b,\varphi(b))\in A \Rightarrow (b, \varphi(b)) \in \mathring{A} $
+		Como $ A $ es abierto, $ (b,\varphi(b))\in A \Rightarrow (b, \varphi(b)) \in \mathring{A} $.
+		
+		Estamos en la hipótesis de Cauchy-Peano. Por lo tanto, pasando por $ (b, \varphi(b)) $ existe solución. Podemos construir una prolongación que sea solución (por el apartado a) y entonces no es maximal.
 		\end{enumerate}
 \end{proof}
 
@@ -1238,7 +1284,7 @@ Por lo tanto $ F $ es un isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n \Right
 		\item $ \psi(t)=\phi(t)\varOmega $ es solución de $ x'=A(t)x $ pues $ (\varphi(t))'=(\phi(t)\varOmega)'=\phi'(t)\varOmega=A(t)\phi(t)\varOmega =A(t)\psi $
 		\item $ \psi(t) $ es fundamental.
 		
-		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.0
+		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.
 	\end{enumerate}
 \end{proof}
 \pagebreak
