@@ -967,16 +967,6 @@ BEGIN PRADA 27/02
 
 \begin{proof}
 	¿Podría existir una función que fuera solución pasando por el punto y que el grafo no esté en $ R $? Probemos que no.
-	DIBUJO
-	
-	Veamos que si $ \psi : I \longrightarrow\mathbb{R}^n $ solución de $ x'=f(t,x) $ pasando por $ (t_0,x_0) $, entonces $ \psi \in X $, es decir, $ ||\psi(t)-x_0||\leq H\delta \ \forall t \in I $.
-	
-	Probémoslo por reducción al absurdo. Supongamos que $ \exists H_1\in I : ||\psi(t_1)-x_0||>H\delta$, por ser $ \psi $ continua $ \exists t_2\in (t_0,t_1) $ en el cual $ ||\psi(t_2)-x_0||H\delta $.
-	
-	Sea $ t^* = \inf \{t : ||\psi(t)-x_0||=H\delta, t>t_0 \} \Rightarrow ||\psi(t^*)-\psi(t_0)||=H\delta$, con $ \psi(t_0)=x_0 $.
-	
-	Por otra parte, $ ||\psi(t^*)-\psi(t_0)||\leq ||\psi'(t)||\cdot |t^*-t_0|<H\delta $, lo cual es una contradicción.
-	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}
@@ -996,6 +986,16 @@ BEGIN PRADA 27/02
 		\end{tikzpicture}
 		\caption{Esquema de la demostración.} \label{M1}
 	\end{figure}
+	
+	Veamos que si $ \psi : I \longrightarrow\mathbb{R}^n $ solución de $ x'=f(t,x) $ pasando por $ (t_0,x_0) $, entonces $ \psi \in X $, es decir, $ ||\psi(t)-x_0||\leq H\delta \ \forall t \in I $.
+	
+	Probémoslo por reducción al absurdo. Supongamos que $ \exists H_1\in I : ||\psi(t_1)-x_0||>H\delta$, por ser $ \psi $ continua $ \exists t_2\in (t_0,t_1) $ en el cual $ ||\psi(t_2)-x_0||H\delta $.
+	
+	Sea $ t^* = \inf \{t : ||\psi(t)-x_0||=H\delta, t>t_0 \} \Rightarrow ||\psi(t^*)-\psi(t_0)||=H\delta$, con $ \psi(t_0)=x_0 $.
+	
+	Por otra parte, $ ||\psi(t^*)-\psi(t_0)||\leq ||\psi'(t)||\cdot |t^*-t_0|<H\delta $, lo cual es una contradicción.
+	
+	
 	Veamos que esto tampoco puede pasar. Supongamos que $ \varphi_1: I_1\longrightarrow\mathbb{R}^n, \varphi_2:I_2 \longrightarrow \mathbb{R}^n $ son soluciones de $ x'=f(t,x) $ pasando por $ (t_0,x_=) $ y $ \exists t\in I_1\cap I_2 : \varphi_1(t)\neq \varphi_2(t) $.
 	
 	Sea por ejemplo $ t>t_0 $. Sea $ t_1=\inf \{t \in I_1\cap I_2 :t>t_0, \varphi_1(t)\neq \varphi_2(t)  \} $.
@@ -1109,10 +1109,7 @@ BEGIN JORGE 11/3
 BEGIN PRADA 13/03
 
 \begin{exercise}
-	Se proponen los siguientes ejercicios teóricos:
-	\begin{enumerate}
-		\item Razona veracidad o falsedad:
-		
+	Razona veracidad o falsedad:
 		\begin{enumerate}[\quad a)]
 			\item Si $ \varphi_1, \varphi_2 $ son soluciones de (1), definidas en $ [a, t_0], [t_0,b] $, y además sea $ \varphi_1(t_0)=\varphi_2(t_0) $, entonces $ \varphi $ definida en $ [a,b] $ como:
 			\[ \varphi(t)=\begin{cases}
@@ -1122,15 +1119,9 @@ BEGIN PRADA 13/03
 			es solución de (1).
 			\item Sea (1), entonces toda solución maximal está definida en un abierto.
 		\end{enumerate}
-	\item $ x'=f(t,x) $
-	\[ f:(t,x)\in (-\pi, 33)\times \mathbb{R} \] DEL SEMINARIO
-	\end{enumerate}
 \end{exercise}
 \begin{proof}[Solución]
-	\begin{enumerate}
-		\item \ 
-		
-		\begin{enumerate}[\quad a)]
+	\begin{enumerate}[\quad a)]
 			\item Verdadero. Veamos si $ \varphi $ es solución.
 			\begin{enumerate}[\quad i)]
 				\item $ (t,\varphi(t))\in A \forall t \in [a,b], ya que \begin{cases}
@@ -1148,9 +1139,9 @@ BEGIN PRADA 13/03
 				Como $ \varphi_1(t_0)=\varphi_2(t_0) \Rightarrow \lim\limits_{t \to t_0^-} \varphi'(t)=\lim\limits_{t \to t_0^+} \varphi'(t)$, y $\varphi $ continua en $ t_0 $, entonces $ \exists \varphi'(t_0) $
 				\item Inmediata visto lo anterior.
 			\end{enumerate} 
-		\item Probemos que es falso por reducción al absurdo. Supongamos que está definida en un intervalo de la forma $ ( $
+		\item Probemos que es falso por reducción al absurdo. Supongamos que está definida en un intervalo de la forma $ (a,b] $.
+		Como $ A $ es abierto, $ (b,\varphi(b))\in A \Rightarrow (b, \varphi(b)) \in \mathring{A} $
 		\end{enumerate}
-	\end{enumerate}
 \end{proof}
 
 BEGIN PRADA 20/03
