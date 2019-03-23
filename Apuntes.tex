@@ -335,7 +335,7 @@ BEGIN JORGE 4/2
 \begin{proposition}
 	Si $f$ es continua en $A$, entonces $\varphi$ es de clase $C^1$ en $I$.
 \end{proposition}
-\begin{proof}
+\begin{proof} \ \\
 	Por definición de solución $\varphi' (t) = f(t, \varphi (t))$, $t \in I$. Componiendo de la siguiente forma
 	\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t))\]
 	tenemos que, tal y como está definida, $g$ es una función continua por estar compuesta de $id$, que es la identidad, y de $\varphi$, que es continua por ser derivable en todos sus puntos. Además, como $f$ es continua por definición y tenemos que $\varphi' (t) = f(t, \varphi (t))$, $\varphi'$ es continua por composición de continuas.
@@ -343,13 +343,13 @@ BEGIN JORGE 4/2
 \begin{theorem}
 	Si $f \in C^r$, $r \in \mathbb{N}$ y $r \geq 1$, entonces $\varphi \in C^{r+1}(I)$.
 \end{theorem}
-\begin{proof}
+\begin{proof}\ \\
 	Realizaremos la prueba empleando inducción. En primer lugar lo probaremos para $r=1$, es decir, veamos que:
 	\[f\in C^1(A) \Rightarrow \varphi \in C^2(I).\]
 	Como $\varphi' (t) = f(t, \varphi (t))$, como hemos visto antes tenemos que:
 		\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t)),\]
 	pero, tenemos que $f \in C^1(A)$ por lo que $f$ es continua y por la proposición anterior tenemos que $\varphi \in C^1$. Por lo tanto, la composición anterior cumple que es de clase $C^1$, por lo que concluímos que $\varphi \in C^2$. \\
-	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{\text{hip.}}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+1}$.
+	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{\text{hip.}}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+2}$.
 	\[t \longrightarrow (t, \varphi (t)) \longrightarrow f(t, \varphi (t)) = \varphi' (t).\]
 	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
 \end{proof}
@@ -358,7 +358,7 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 \begin{example}
 	Sea $x' = x^2$, es decir, $f: (t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. Estudiar en $ t=1 $.
 \end{example}
-\begin{proof}[Solución]
+\begin{proof}[Solución]\ \\
 	En primer lugar tenemos que ver que $x'(t) = (x(t))^2 = f(t, x(t))$.
 	\[x'(t) = \frac{1}{(t+c)^2} \Rightarrow x'(t) = (\frac{-1}{t+c})^2\]
 	Además, de esta solución sabemos que:
@@ -400,14 +400,14 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 	
 	
 	En este caso $A = \mathbb{R} \times \mathbb{R} = \mathbb{R}^2$. Además,
-	\[t \in (- \infty, - c) \longrightarrow h(t) = \frac{-1}{t+c}\]
+	\[h:t \in (- \infty, - c) \longrightarrow h(t) = \frac{-1}{t+c}\]
 	\begin{enumerate}
 		\item $(t, h(t)) \in A$
-		\item $\exists \varphi' (t) \forall t \in I$
+		\item $\exists \varphi' (t) \ \forall t \in I$
 		\item $\varphi (t) = f(t, \varphi (t))$
 	\end{enumerate}
 	Por lo tanto, $h$ es una solución de $x'=x^2$. Además,
-	\[t \in (-c, +\infty ) \longrightarrow \varphi(t) = \frac{-1}{t+c}\]
+	\[\varphi:t \in (-c, +\infty ) \longrightarrow \varphi(t) = \frac{-1}{t+c}\]
 	también es solución por la misma razón que $h$, mientras que:
 	\[t \in (- \infty, - c) \cup (-c, +\infty ) \longrightarrow f(t) = \frac{-1}{t+c}\]
 	no es solución ya que no está definida en un intervalo. \\
@@ -424,8 +424,9 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 \end{definition}
 
 BEGIN MANU 6/2 exp
-
+\begin{observation}
 ¿Una circunferencia puede ser solución de una EDO?
+\end{observation}
 \[ t^2+x^2=c \]
 \begin{wrapfigure}{l}{3.5cm}   
 	\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=0.5}]
@@ -451,6 +452,7 @@ La solución escogida será una o otra en función de la condición inicial.
 x_1(t)=\sqrt{c-t^2}\\
 x_2(t)=-\sqrt{c-t^2}
 \end{cases}  \]
+
 \pagebreak
 \section{Tema 2. Existencia y unicidad de solución.}
 
@@ -483,7 +485,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 		$ \pi  $ solución $ \Leftrightarrow $ $ \pi $ solución 0-aproximada.
 	\end{center}
 \end{proposition}
-\begin{proof}
+\begin{proof}\ \\
 	"$ \Rightarrow $". Ejercicio propuesto.
 	
 	
@@ -504,10 +506,11 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	Sea $ \pi: t  \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, con $ I  $ intervalo, una solución $ \varepsilon $-aproximada de la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
 	
 	$ f $ continua, entonces:
-	\[ ||\pi(t)-\pi(t_0)-\int_{t_0}^{t}f(s,\pi(s))ds||\leq \varepsilon |t-t_0|, \forall t, t_0 \in I\]
+	\[ ||\pi(t)-\pi(t_0)-\int_{t_0}^{t}f(s,\pi(s))ds||\leq \varepsilon |t-t_0|,\  \forall t, t_0 \in I\]
 	 
 \end{theorem}
-\begin{proof} \textbf{Caso I.}
+\begin{proof}\ \\ 
+	\textbf{Caso I.}
 	
 	Supongamos $ \pi \in C^1 $ salvo en los puntos $ t_1<\dots<t_k $.
 	\begin{center}
@@ -585,7 +588,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	Por lo que, como queríamos probar:
 	\[\norm{\pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds} \leq \varepsilon |t-t_0|\]
 	
-	\textbf{Caso III.} Ejercicio propuesto. Basta con realizar inducción y basarse en el caso III.
+	\textbf{Caso III.} Ejercicio propuesto. Basta con realizar inducción y basarse en el caso II.
 \end{proof}
 \begin{theorem}
 	Dada la ecuación $x' = f(t, x)$ (*) con $f$ continua y $\varphi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$ se tiene:
@@ -596,7 +599,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 		\end{cases}$
 	\end{center}
 \end{theorem}
-\begin{proof}
+\begin{proof}\ \\
 	$"\Rightarrow"$ \\
 	Supongamos $\varphi$ solución de $x' = f(t, x)$ tenemos entonces que:
 	\begin{enumerate}
@@ -703,12 +706,13 @@ BEGIN MANU 13/2
 	Como $ f $ acotada en $ A $, tenemos $ ||f(t_0,x_0)||\leq H $.
 	
 	Veamos si $ \rho_1 $ verifica las condiciones de ser $ \varepsilon $-aproximada.
-	
-	i) $ (t,\rho(t)) \in \mathbb{R}\subset A$.
-	
-	ii) $ \rho_1 $ es continua y $ C^n $ a trozos ya que $ \rho_1 \in C^\infty $.
-	
-	iii) ¿Se cumple $ ||\rho_1'(t)-f(t,\rho_1(t))||\leq \varepsilon $?
+	\begin{enumerate}[\quad i)]
+		\item  $ (t,\rho(t)) \in \mathbb{R}\subset A$.
+		
+		\item $ \rho_1 $ es continua y $ C^n $ a trozos ya que $ \rho_1 \in C^\infty $.
+		
+		\item ¿Se cumple $ ||\rho_1'(t)-f(t,\rho_1(t))||\leq \varepsilon $?
+	\end{enumerate}
 	
 	Por una parte, $ ||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0+f(t_0,x_0)(t-t_0))||  $
 	
@@ -721,10 +725,9 @@ BEGIN MANU 13/2
 	
 	Por lo anterior ($ f $ uniformemente continua), si para $ \varepsilon>0 $ demuestro que $||y-z||=||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} $, ya queda probado.
 	
-	Veamos para que valores de $ t $, se tiene $ ||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} \Rightarrow ||(t_0-t), x_0-x_0 -f(t_0,x_0)(t-t_0)||=||t_0-t,f(t_0,x_0)(t-t_0)||< \hat{\delta} $.
+	Veamos para que valores de $ t $, se tiene $ ||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} \Rightarrow ||(t_0-t),( x_0-x_0 -f(t_0,x_0)(t-t_0))||=||(t_0-t),(f(t_0,x_0)(t-t_0))||< \hat{\delta} $.
 	
-	Notemos que al trabajar con la norma infinito tengo que comprobar que los máximos de los valores absolutos de las componentes son menores que la cota.
-	
+	Notemos que al trabajar con la norma infinito tengo que comprobar que los máximos de los valores absolutos de las componentes son menores que la cota.	
 	\[ \begin{rcases}
 	 |t-t_0|< \hat{\delta}\\
 	 \text{ y }\qquad\\
@@ -787,17 +790,17 @@ BEGIN MANU 13/2
 	Sea $ I\subset \mathbb{R} $ intervalo compacto, $ M \subset \mathcal{C} (I, \mathbb{R}^n) $.
 	
 	$ M $ es relativamente compacto si y solo si:
-	
-	1) $ M $ es equicontinuo.
-	
-	2) $ M $ es puntualmente acotado ($ \forall t \in I,\exists K $ cte $ :||h(t)||\leq k , \forall h \in M$)
+	\begin{enumerate}[\quad 1)]
+		\item $ M $ es equicontinuo.
+		\item  $ M $ es puntualmente acotado ($ \forall t \in I,\exists K $ cte $ :||h(t)||\leq k , \forall h \in M$)
+	\end{enumerate}
 \end{theorem}
 \begin{theorem}[Cauchy-Peano]
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación:
 	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
 	con $  x'=f(t,x) $ su ecuación diferencial asociada. Si $ f $ es continua en $ A $, fijado un punto $ (t_0,x_0) \in A $ existe solución de la ecuación pasando por $ (t_0,x_0) $, definida en un entorno de $ t_0 $.
 \end{theorem}
-\begin{proof} \ 
+\begin{proof} \ \\
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}
@@ -841,8 +844,8 @@ BEGIN MANU 13/2
 	
 	Por construcción, $ \pi_{n_k}(t_0)=x_0 \Rightarrow \varphi(t_0) = \lim\limits_{k\to \infty}\pi_{n_k}(t_0)=x_0$.
 \end{proof}
+marca impresion 18/02 prada
 BEGIN PRADA 18/02
-
 
 BEGIN JORGE 20/02
 
@@ -861,7 +864,7 @@ BEGIN JORGE 20/02
 		es solución pasando por el $(0,0)$, ya que:\\
 		$
 		\begin{rcases}
-			&\text{i) } (t, \varphi_1 (t)) \in A \\
+			\quad&\text{i) } (t, \varphi_1 (t)) \in A \\
 			&\text{ii) }\exists \varphi_1' (t),  \hspace{0,2cm} \forall t \in I \\
 			&\text{iii) } \varphi_1' = f(t, \varphi_1 (t)), \hspace{0,2cm} \forall t \in I
 		\end{rcases}$ $\Rightarrow \varphi_1$ solución de $x'=x^{\frac{2}{3}}$ pasando por $(0,0)$
@@ -869,7 +872,7 @@ BEGIN JORGE 20/02
 		\item También se tiene que $\varphi_2: t \in \mathbb{R} \longrightarrow \varphi_2 (t) = (\frac{t}{3})^3$ es solución, ya que:\\
 		$
 		\begin{rcases}
-			&\text{i) } (t, \varphi_2 (t)) \in A \\
+			\quad&\text{i) } (t, \varphi_2 (t)) \in A \\
 			&\text{ii) }\exists \varphi_2' (t),  \hspace{0,2cm} \forall t \in I \\
 			&\text{iii) } \varphi_2' = f(t, \varphi_2 (t)), \hspace{0,2cm} \forall t \in I
 		\end{rcases}$
@@ -894,12 +897,13 @@ BEGIN JORGE 20/02
 	Sea \begin{align*}
 	f: A \subset \mathbb{R} \times \mathbb{R}^n& \longrightarrow \mathbb{R}^n \\
 	(t, x)& \longrightarrow f(t,x)
-	\end{align*}. Diremos que $f$ es lipschitziana en $A$ con respecto a la variable $x$ si $\exists k \in \mathbb{R}$, $k \geq 0$ tal que:
+	\end{align*}
+	Diremos que $f$ es lipschitziana en $A$ con respecto a la variable $x$ si $\exists k \in \mathbb{R}$, $k \geq 0$ tal que:
 	\[\norm{f(t, x) - f(t, y)} \leq k\norm{x-y} \hspace{0,2cm} \forall (t, x), (t, y) \in A\]
 	Se denota $f\in L(A, x)$ o bien $f \in L_k (A, x)$.
 \end{definition}
 \begin{example}
-	Sea $f(t, x) = x^2$, ¿es $f$ lipschitziana con respecto a $x$? Será lipschitziana si $\norm{f(t, x) - f(t, y) < k\norm{x-y}}$. ¿Existe tal $k$? \\
+	Sea $f(t, x) = x^2$, ¿es $f$ lipschitziana con respecto a $x$? Será lipschitziana si $\norm{f(t, x) - f(t, y)} < k\norm{x-y}$. ¿Existe tal $k$? \\
 	Si $x \neq y$, 
 	\[\frac{\norm{x^2 - y^2}}{x-y} \stackrel{??}{\leq} k\]
 	\[\frac{\norm{x^2 - y^2}}{x-y} \leq \frac{\abs{x^2 - y^2}}{\abs{x - y}} = \abs{\frac{x^2 - y^2}{x - y}} = \abs{x+y} \leq k\]
@@ -920,7 +924,7 @@ BEGIN JORGE 20/02
 		\item Si $\exists D_x f$ y es continua $\Rightarrow f \in L_{loc}(A, x)$
 	\end{enumerate}
 \end{theorem}
-\begin{proof}
+\begin{proof}\ 
 	\begin{enumerate}
 		\item Por el teorema de incrementos finitos:
 		\[\norm{f(t, x_1) - f(t, x_2)} \leq \norm{D_xf(t, x_3)} \norm{x_2 - x_1} \leq k\norm{x_2 - x_1}\]
@@ -937,7 +941,7 @@ BEGIN JORGE 20/02
 \end{theorem}
 \begin{theorem}
 	(Teorema de Picard - Lipschitz). Sea $x' = f(t, x)$, $f : A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Si:
-	\begin{enumerate}[i)]
+	\begin{enumerate}[\quad i)]
 		\item $A$ abierto.
 		\item $f \in C(A)$.
 		\item $f \in L_{loc} (A, x)$.
@@ -954,7 +958,7 @@ BEGIN JORGE 20/02
 \end{note}
 
 	BEGIN JORGE 25/02
-\begin{proof}
+\begin{proof}\ \\
 	La demostración se basa en dos resultados, el teorema de la transformada contractiva (CITAR) y el teorema de caracterización de la solución (CITAR). En primer lugar definiremos una serie de elementos que se emplearán a lo largo de la demostración:
 	\begin{enumerate}
 		\item Sea $ B_1 $  entorno abierto de $ (t_0,x_0) $ en el cual $ f $ está acotada. Sea $ H $ cota para $ f $.
@@ -969,7 +973,7 @@ BEGIN JORGE 20/02
 	\end{enumerate}
 	
 	Después de todo esto definimos el conjunto:
-	 \[X=\{\varphi : I=[t_0-\delta, t_0+\delta]\longrightarrow \mathbb{R}^n : \varphi \text{ continua, } ||\phi(t)-x_0||\leq H \delta \hspace{0,2cm} \forall t \in I  \} \]
+	 \[X=\{\varphi : I=[t_0-\delta, t_0+\delta]\longrightarrow \mathbb{R}^n : \varphi \text{ continua, } ||\varphi(t)-x_0||\leq H \delta \hspace{0,2cm} \forall t \in I  \} \]
 	de las aplicaciones continuas cuyo grafo está en $R$. Dotaremos a este conjunto $ X $ con la siguiente métrica. Dadas $\varphi, \psi \in X$, $d(\varphi, \psi) = sup_{t \in I} \norm{\varphi (t) - \psi (t)}$ (como ejercicio probar que es una métrica). Así tenemos que:\\
 	\[\begin{rcases}
 		\text{Se tiene que }C(I, \mathbb{R}^n) \text{ espacio métrico completo}\\
@@ -1004,12 +1008,8 @@ BEGIN JORGE 20/02
 	Por lo tanto, $T$ es $\lambda$-contracción. Por tanto, por el Teorema de la transformada contractiva:
 	\[\exists ! \varphi \in X : \varphi \text{ punto fijo de } T\]
 	por lo que $\varphi (t) = T\varphi (t) = x_0 + \int_{t_0}^{t} f(s, \varphi (s))ds$, con $\varphi$ continua.
-	
-\end{proof}
-
 BEGIN PRADA 27/02
 
-\begin{proof}
 	¿Podría existir una función que fuera solución pasando por el punto y que el grafo no esté en $ R $? Probemos que no.
 	\begin{figure}[h]
 		\centering
@@ -1103,7 +1103,7 @@ BEGIN PRADA 6/3
 	Dado $ (t_0,x_0)\in A $, existe una solución maximal de la ecuación diferencial que pasa por $ (t_0,x_0) $.
 	
 \end{theorem}
-\begin{proof}
+\begin{proof} \ \\	
 	Haremos uso del Lema de Zorn. Representaremos las soluciones de la ecuación diferencial mediante el par $ (I,\varphi) $ donde $ \varphi $ es la solución e $ I $ su intervalo de definición.
 	
 	En este conjunto definimos la relación de orden parcial "ser prolongación". Si $ \psi $ es prolongación de $ \varphi $:
@@ -1148,7 +1148,7 @@ BEGIN PRADA 6/3
 
 BEGIN JORGE 11/3
 
-\begin{proof}
+\begin{proof}\ 
 	\begin{enumerate} [i)]
 		\item "$\Rightarrow$" \\
 		Si $\varphi$ prolongable a través de $b$, entonces $\exists \varphi_2 : (a, d) \longrightarrow \mathbb{R}^n$ prolongación de $\varphi$ (es decir, $\varphi_2 = \varphi$ $\forall t \in (a, b)$, $b \in (a, b)$). Por ser $\varphi_2$ solución, $\varphi_2$ es continua por la izquierda en $t = b$, por lo que:
@@ -1207,7 +1207,7 @@ BEGIN JORGE 11/3
 		\item $f$ continua en $A$, $f \in L_{loc} (A, x)$ entonces, fijado $(t_0, x) \in A$ la solución pasando por ese punto y la solución maximal está definida en $[a, b]$. 
 	\end{enumerate}
 \end{theorem}
-\begin{proof}
+\begin{proof}\ \\
 	Definimos la siguiente función, donde $A \subset (c, d) \times \mathbb{R}^n$:
 	\[g: (t, x) \in (c, d) \times \mathbb{R}^n \longrightarrow g(t, x) = \begin{cases}
 	f(a, x), &t \in (c, a] \\
@@ -1224,14 +1224,8 @@ BEGIN JORGE 11/3
 	de $x' = f(t, x)$ pasando por $(t_0, x_0)$.
 	
 	DIBUJO
-	
-\end{proof}
-
-
+	\end{proof}
 \subsection{Dependencia de la solución respecto de las soluciones iniciales.}
-
-
-
 
 BEGIN PRADA 13/03
 
@@ -1247,7 +1241,7 @@ BEGIN PRADA 13/03
 			\item Sea (1), entonces toda solución maximal está definida en un abierto.
 		\end{enumerate}
 \end{exercise}
-\begin{proof}[Solución]
+\begin{proof}[Solución]\ 
 	\begin{enumerate}[\quad a)]
 			\item Verdadero. Veamos si $ \varphi $ es solución.
 			\begin{enumerate}[\quad i)]
@@ -1271,104 +1265,6 @@ BEGIN PRADA 13/03
 		
 		Estamos en la hipótesis de Cauchy-Peano. Por lo tanto, pasando por $ (b, \varphi(b)) $ existe solución. Podemos construir una prolongación que sea solución (por el apartado a) y entonces no es maximal.
 		\end{enumerate}
-\end{proof}
-
-BEGIN PRADA 20/03
-
-\begin{proof}
-	$ F:\varphi\in S\longrightarrow F(\varphi)=\varphi(t_=)\in \mathbb{R}^n $, para un $ t_0\in I $ fijado. 
-	Tenemos que demostrar:
-	\begin{enumerate}
-		\item $ S $ espacio vectorial. 
-		\begin{enumerate}[\quad i)]
-			\item $ \varphi_1, \varphi_2 \in S \Rightarrow \varphi_1 + \varphi_2 \in S$.
-			
-			$ (\varphi_1 + \varphi_2)' =\varphi_1'+\varphi_2'=A(t)\varphi_1 +A(t)\varphi_2 = A(t)(\varphi_1 + \varphi_2)\Rightarrow (\varphi_1+\varphi_2)\in S$
-			\item $ \lambda\in \mathbb{R}, \varphi\in S $
-			
-			$ (\lambda \varphi)'=\lambda \varphi'=\lambda A(t)\varphi=A(t)(\lambda \varphi)\Rightarrow \lambda\varphi\in S $.
-		\end{enumerate}
-	\item $ F $ isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n $.
-	\begin{enumerate}[\quad i)]
-		\item $ F $ inyectiva. 
-		
-		Sean $ \varphi_1,\varphi_2 \in S $ tal que $ F(\varphi_1)=F(\varphi_2) $, con $ x_0=\varphi_1(t_0)=\varphi_2(t_0) $.
-		
-		$ \varphi_1 $ solución del sistema homogéneo $ x'=A(t)x $ pasando por $ (t_0,x_0) $.
-		
-		$ \varphi_2 $ solución del sistema homogéneo $ x'=A(t)x $ pasando por $ (t_0,x_0) $.
-		
-		Entonces por unicidad de solución pasando por $ (t_0,x_0) \Rightarrow \varphi_1=\varphi_2\Rightarrow F$ inyectiva.
-		\item $ F $ sobreyectiva. 
-		
-		Sea $ z \in \mathbb{R}^n $ y veamos que $ \exists \varphi \in S : F(\varphi)=z $. Tomo como $ \varphi $ la solución que pasa por $ (t_0, z) $ y por tanto $ F(\varphi)=\varphi(t_0)=z $.	
-		\item $ F $ lineal. 
-		\[  F(\varphi_1+\varphi_2)=(\varphi_1+\varphi_2)(t_0)=\varphi_1(t_0)+\varphi_2(t_0)=F(\varphi_1)+F(\varphi_2)  \]
-		\[ F(\lambda\varphi)=(\lambda\varphi)(t_0)=\lambda \varphi(t_0)= \lambda F(\varphi), \quad \lambda \in \mathbb{R}, \varphi \in S \]	
-		
-	\end{enumerate}
-Por lo tanto $ F $ es un isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n \Rightarrow \dim_\mathbb{R}S=\dim_{\mathbb{R}^n}\mathbb{R}^n=n $
-	\end{enumerate}
-\end{proof}
-\begin{observation}
-	Si $ \{e_1, \dots, e_n\} $ base de $ \mathbb{R}^n $, $ \{ F^1(e_1), \dots F^n(e_n) \} $ base de $ S $. Es decir:
-	
-	$ F^i(e_i)=\varphi_i $ solución de $ x'=A(t)x $ que pasa por $ (t_0, e_i) $.
-\end{observation}
-\begin{definition}
-	Sea $ \phi(t) \in M_{n\times n}(\mathbb{R}), t\in I$, diremos que $ \phi $ es una matriz solución para el sistema homogéneo $ x'=A(t)x $ si cada columna es solución de él. 
-	\[ \begin{pmatrix}
-		\vdots & \vdots  \\
-		\varphi_1  & \varphi_2 & \dots \\
-		\vdots & \vdots  
-	\end{pmatrix}  \]
-\end{definition}
-\begin{exercise}
-	$ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
-\end{exercise}
-\begin{definition}
-	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que esta es fundamental para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
-\end{definition}
-\begin{theorem}[Caracterización de matrices fundamentales]
-	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
-	\begin{enumerate}[\quad i)]
-		\item $ \phi(t) $ matriz fundamental.
-		\item $ \det(\phi(t))\neq 0, \ \forall t \in I $.
-		\item $ \exists t_0 \in I, \det(\phi(t_0))\neq 0 $
-	\end{enumerate}
-\end{theorem}
-\begin{proof}
-	Se hará en un laboratorio COMPLETAR.
-\end{proof}
-\begin{definition}
-	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es principal en $ t_0\in I $ si $ \phi(t_0)=I_n $
-\end{definition}
-\begin{proposition}[Solución general del sistema homogéneo]
-	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces las soluciones del sistema son de la forma $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $.	
-\end{proposition}
-\begin{proof}
-	$ \phi(t)= (\varphi_1 | \varphi_2 | \dots | \varphi_n) $ matriz fundamental.
-	
-	$ \{\varphi_1, \varphi_2, \dots,  \varphi_n \} $ base de $ S $.
-	
-	Si $ \varphi $ es solución, $ \varphi = c_1\varphi_1(t)+ \dots + c_n \varphi_n(t) $, con $ c_1, \dots, c_n\in \mathbb{R} $, lo cual se puede escribir de forma matricial.
-	
-	Por tanto, $ x(t)=\phi(t)\phi^{-1}(t_0)x_0 $.
-\end{proof}
-¿Que ocurre si cambiamos de base?
-\begin{theorem}
-	$ \phi(t) $ matriz fundamental para $ x'=A(t)x $.
-	
-	$ \psi(t) \in M_{n\times n}(\mathbb{R})$ es matriz fundamental para SH $ \Leftrightarrow \exists \varOmega \in M_{n\times n}(\mathbb{R})$ constante y no singular tal que $ \psi(t) = \phi(t)\varOmega $.
-\end{theorem}
-\begin{proof}
-	"$ \Leftarrow $": Veamos que $ \psi(t)=\phi(t)\varOmega $ es matriz fundamental:
-	\begin{enumerate}[\quad i)]
-		\item $ \psi(t)=\phi(t)\varOmega $ es solución de $ x'=A(t)x $ pues $ (\varphi(t))'=(\phi(t)\varOmega)'=\phi'(t)\varOmega=A(t)\phi(t)\varOmega =A(t)\psi $
-		\item $ \psi(t) $ es fundamental.
-		
-		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.
-	\end{enumerate}
 \end{proof}
 \pagebreak
 \section{Tema 4.}
@@ -1442,5 +1338,103 @@ Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $: REVISAR
 
 
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
+\section{Tema 5. Sistemas de ecuacións lineais. Propiedades das solucións. Matriz fundamental.}
+BEGIN JORGE 18/03
 
+BEGIN PRADA 20/03
+\begin{proof}\ \\
+	$ F:\varphi\in S\longrightarrow F(\varphi)=\varphi(t_=)\in \mathbb{R}^n $, para un $ t_0\in I $ fijado. 
+	Tenemos que demostrar:
+	\begin{enumerate}
+		\item $ S $ espacio vectorial. 
+		\begin{enumerate}[\quad i)]
+			\item $ \varphi_1, \varphi_2 \in S \Rightarrow \varphi_1 + \varphi_2 \in S$.
+			
+			$ (\varphi_1 + \varphi_2)' =\varphi_1'+\varphi_2'=A(t)\varphi_1 +A(t)\varphi_2 = A(t)(\varphi_1 + \varphi_2)\Rightarrow (\varphi_1+\varphi_2)\in S$
+			\item $ \lambda\in \mathbb{R}, \varphi\in S $
+			
+			$ (\lambda \varphi)'=\lambda \varphi'=\lambda A(t)\varphi=A(t)(\lambda \varphi)\Rightarrow \lambda\varphi\in S $.
+		\end{enumerate}
+		\item $ F $ isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n $.
+		\begin{enumerate}[\quad i)]
+			\item $ F $ inyectiva. 
+			
+			Sean $ \varphi_1,\varphi_2 \in S $ tal que $ F(\varphi_1)=F(\varphi_2) $, con $ x_0=\varphi_1(t_0)=\varphi_2(t_0) $.
+			
+			$ \varphi_1 $ solución del sistema homogéneo $ x'=A(t)x $ pasando por $ (t_0,x_0) $.
+			
+			$ \varphi_2 $ solución del sistema homogéneo $ x'=A(t)x $ pasando por $ (t_0,x_0) $.
+			
+			Entonces por unicidad de solución pasando por $ (t_0,x_0) \Rightarrow \varphi_1=\varphi_2\Rightarrow F$ inyectiva.
+			\item $ F $ sobreyectiva. 
+			
+			Sea $ z \in \mathbb{R}^n $ y veamos que $ \exists \varphi \in S : F(\varphi)=z $. Tomo como $ \varphi $ la solución que pasa por $ (t_0, z) $ y por tanto $ F(\varphi)=\varphi(t_0)=z $.	
+			\item $ F $ lineal. 
+			\[  F(\varphi_1+\varphi_2)=(\varphi_1+\varphi_2)(t_0)=\varphi_1(t_0)+\varphi_2(t_0)=F(\varphi_1)+F(\varphi_2)  \]
+			\[ F(\lambda\varphi)=(\lambda\varphi)(t_0)=\lambda \varphi(t_0)= \lambda F(\varphi), \quad \lambda \in \mathbb{R}, \varphi \in S \]	
+			
+		\end{enumerate}
+		Por lo tanto $ F $ es un isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n \Rightarrow \dim_\mathbb{R}S=\dim_{\mathbb{R}^n}\mathbb{R}^n=n $
+	\end{enumerate}
+\end{proof}
+\begin{observation}
+	Si $ \{e_1, \dots, e_n\} $ base de $ \mathbb{R}^n $, $ \{ F^1(e_1), \dots F^n(e_n) \} $ base de $ S $. Es decir:
+	
+	$ F^i(e_i)=\varphi_i $ solución de $ x'=A(t)x $ que pasa por $ (t_0, e_i) $.
+\end{observation}
+\begin{definition}
+	Sea $ \phi(t) \in M_{n\times n}(\mathbb{R}), t\in I$, diremos que $ \phi $ es una matriz solución para el sistema homogéneo $ x'=A(t)x $ si cada columna es solución de él. 
+	\[ \begin{pmatrix}
+	\vdots & \vdots  \\
+	\varphi_1  & \varphi_2 & \dots \\
+	\vdots & \vdots  
+	\end{pmatrix}  \]
+\end{definition}
+\begin{exercise}
+	$ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
+\end{exercise}
+\begin{definition}
+	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que esta es fundamental para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
+\end{definition}
+\begin{theorem}[Caracterización de matrices fundamentales]
+	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
+	\begin{enumerate}[\quad i)]
+		\item $ \phi(t) $ matriz fundamental.
+		\item $ \det(\phi(t))\neq 0, \ \forall t \in I $.
+		\item $ \exists t_0 \in I, \det(\phi(t_0))\neq 0 $
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\ \\
+	Se hará en un laboratorio COMPLETAR.
+\end{proof}
+\begin{definition}
+	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es principal en $ t_0\in I $ si $ \phi(t_0)=I_n $
+\end{definition}
+\begin{proposition}[Solución general del sistema homogéneo]
+	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces las soluciones del sistema son de la forma $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $.	
+\end{proposition}
+\begin{proof}\ \\
+	$ \phi(t)= (\varphi_1 | \varphi_2 | \dots | \varphi_n) $ matriz fundamental.
+	
+	$ \{\varphi_1, \varphi_2, \dots,  \varphi_n \} $ base de $ S $.
+	
+	Si $ \varphi $ es solución, $ \varphi = c_1\varphi_1(t)+ \dots + c_n \varphi_n(t) $, con $ c_1, \dots, c_n\in \mathbb{R} $, lo cual se puede escribir de forma matricial.
+	
+	Por tanto, $ x(t)=\phi(t)\phi^{-1}(t_0)x_0 $.
+\end{proof}
+¿Que ocurre si cambiamos de base?
+\begin{theorem}
+	$ \phi(t) $ matriz fundamental para $ x'=A(t)x $.
+	
+	$ \psi(t) \in M_{n\times n}(\mathbb{R})$ es matriz fundamental para SH $ \Leftrightarrow \exists \varOmega \in M_{n\times n}(\mathbb{R})$ constante y no singular tal que $ \psi(t) = \phi(t)\varOmega $.
+\end{theorem}
+\begin{proof}\ \\
+	"$ \Leftarrow $": Veamos que $ \psi(t)=\phi(t)\varOmega $ es matriz fundamental:
+	\begin{enumerate}[\quad i)]
+		\item $ \psi(t)=\phi(t)\varOmega $ es solución de $ x'=A(t)x $ pues $ (\varphi(t))'=(\phi(t)\varOmega)'=\phi'(t)\varOmega=A(t)\phi(t)\varOmega =A(t)\psi $
+		\item $ \psi(t) $ es fundamental.
+		
+		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.
+	\end{enumerate}
+\end{proof}
 \end{document}
