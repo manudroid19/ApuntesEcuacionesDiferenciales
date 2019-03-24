@@ -17,7 +17,7 @@
 \usetikzlibrary{quotes,angles}
 \usepackage{changepage}
 \usetikzlibrary{decorations.pathmorphing}
-
+\usepackage[bottom]{footmisc}
 
 %-----------------------------------------------------------------------------------------------------
 %	SELECCIÓN DEL LENGUAJE
@@ -290,7 +290,7 @@
 	\end{enumerate}
 \end{proof}
 BEGIN JORGE 4/2
-\subsection{Concepto de solución.}
+\subsection{Concepto de EDO y solución.}
 \begin{definition}
 	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \emph{Ecuación Diferencial Ordinaria} (EDO) de primer orden dada en forma normal relativa a la función $f$ a: 
 	\[ x' = f(t, x) \]
@@ -301,15 +301,14 @@ BEGIN JORGE 4/2
 	Dada $\varphi: t \in I \subseteq \mathbb{R} \longrightarrow \varphi (t) \in \mathbb{R}^n$ decimos que $\varphi$ es \emph{solución} de $x'=f(t, x)$ si verifica:
 	\begin{enumerate}[\quad i)]
 		\item $(t, \varphi (t)) \in A$, $\forall t \in I$.
-		\item Existe $ \varphi' (t)$, $\forall t \in I$ (derivada lateral en caso de que $ I $ contenga un extremo).
+		\item Existe $ \varphi' (t)$, $\forall t \in I$.
 		\item $\varphi'(t)=f(t, \varphi(t))$,  $\forall t \in I$.
 	\end{enumerate}
-	Tenemos que si $I$ contiene a uno de sus extremos entenderemos en el punto $2$ que exista su derivada lateral.
+	Si $I$ contiene a uno de sus extremos entenderemos en el punto $2$ que exista su derivada lateral.
 \end{definition}
 \begin{observation}
 	Tenemos que $\varphi: t \in \mathbb{R} \longrightarrow \mathbb{R}^n$ con $\varphi (t) = (\varphi_1 (t), ..., \varphi_n (t))$. Por tanto, que $\varphi' (t) = f(t, \varphi (t))$ significa lo siguiente:
 	\[\varphi' (t) = (\varphi_1' (t), ..., \varphi_n' (t))\] 
-	lo que se traduce en:
 	\[f(t, (x_1, ..., x_n)) = (f_1(t, (x_1, ..., x_n)), ..., f_n(t, (x_1, ..., x_n))) \]
 	\[
 	M=
@@ -325,13 +324,17 @@ BEGIN JORGE 4/2
 		f_n(t, \varphi_1 (t), ..., \varphi_n (t))
 		\end{array} } \right)
 	\]
-	Por lo que, tenemos que:
-	\[\left\{ {\begin{array}{cc}
+	Es decir:
+	\[\left . {\begin{array}{cc}
 		\varphi_1' (t) = f_1(t, \varphi_1 (t), ..., \varphi_n (t)) \\
 		\vdots \\
 		\varphi_n' (t) = f_n(t, \varphi_1 (t), ..., \varphi_n (t))
 		\end{array} } \right. \]
 \end{observation}
+\subsubsection{Continuidad y clase de la solución de una EDO.}
+\begin{definition}
+	Decimos que $ f:A\longrightarrow B $ es de clase $ r $, y escribimos $ f\in C^r(A) $ si sus derivadas parciales de orden $ r $ son continuas.
+\end{definition}
 \begin{proposition}
 	Si $f$ es continua en $A$, entonces $\varphi$ es de clase $C^1$ en $I$.
 \end{proposition}
@@ -351,7 +354,7 @@ BEGIN JORGE 4/2
 	pero, tenemos que $f \in C^1(A)$ por lo que $f$ es continua y por la proposición anterior tenemos que $\varphi \in C^1$. Por lo tanto, la composición anterior cumple que es de clase $C^1$, por lo que concluímos que $\varphi \in C^2$. \\
 	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{\text{hip.}}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+2}$.
 	\[t \longrightarrow (t, \varphi (t)) \longrightarrow f(t, \varphi (t)) = \varphi' (t).\]
-	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
+	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2)}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
 \end{proof}
 \subsubsection{Problema del valor inicial.}
 Con el siguiente ejemplo introducimos la problemática de elegir correctamente el intervalo de definición de la solución, entre aquellos candidatos. Nos servirá para introducir la siguiente sección.
@@ -365,12 +368,12 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 	\[\left. {\begin{array}{cc}
 		\lim\limits_{t \to (-c)^{-}} x(t) = \lim\limits_{t \to (-c)^{-}} \frac{-1}{t+c} = +\infty\\
 		\lim\limits_{t \to (-c)^{+}} x(t) = \lim\limits_{t \to (-c)^{+}} \frac{-1}{t+c} = -\infty
-		\end{array}} \right\} \Rightarrow t = -c \hspace*{0.2cm} AV\]
+		\end{array}} \right . \]
 	por lo que la función tiene una asíntota vertical en $t = -c$. También sabemos que:
 	\[\left. {\begin{array}{cc}
 		\lim\limits_{t \to +\infty} x(t) = \lim\limits_{t \to +\infty} \frac{-1}{t+c} = 0^-\\
 		\lim\limits_{t \to -\infty} x(t) = \lim\limits_{t \to -+\infty} \frac{-1}{t+c} = 0^+
-		\end{array}} \right\} \Rightarrow x = 0 \hspace*{0.2cm} AH\]
+		\end{array}} \right .\]
 	por lo que tenemos una asíntota horizontal en $x = 0$. 
 	
 	
@@ -387,12 +390,12 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 		xtick={-2,-1,...,5},
 		ytick={-3,-2,...,3},]
 		\clip(-2.2696161464380893,-3.5608451100207597) rectangle (5.5453285056459745,3.87288272976652);
-		\draw[line width=1pt,smooth,samples=100,domain=-2.2696161464380893:5.5453285056459745] plot(\x,{0-1/((\x)-5/4)});
+		\draw[line width=1pt,smooth,samples=100,domain=-2.2696161464380893:5.5453285056459745] plot(\x,{0-1/((\x)-4/3)});
 		
-		\draw (1.371004410996194,0.7087831877032161) node[anchor=north west] {x=5/4};
+		\draw (1.371004410996194,0.7087831877032161) node[anchor=north west] {x=4/3};
 		\end{axis}
 		\end{tikzpicture}
-		\caption{Solución del ejemplo.} \label{E1}
+		\caption{Solución del ejemplo para $ c=-4/3 $.} \label{E1}
 	\end{figure}
 	
 	
@@ -400,20 +403,20 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 	
 	
 	En este caso $A = \mathbb{R} \times \mathbb{R} = \mathbb{R}^2$. Además,
-	\[h:t \in (- \infty, - c) \longrightarrow h(t) = \frac{-1}{t+c}\]
+	\[\psi:t \in (- \infty, - c) \longrightarrow \psi(t) = \frac{-1}{t+c}\]
 	\begin{enumerate}
-		\item $(t, h(t)) \in A$
-		\item $\exists \varphi' (t) \ \forall t \in I$
-		\item $\varphi (t) = f(t, \varphi (t))$
+		\item $(t, \psi(t)) \in A$
+		\item $\exists \psi' (t) \ \forall t \in I$
+		\item $\psi (t) = f(t, \psi (t))$
 	\end{enumerate}
-	Por lo tanto, $h$ es una solución de $x'=x^2$. Además,
+	Por lo tanto, $\psi$ es una solución de $x'=x^2$. Además,
 	\[\varphi:t \in (-c, +\infty ) \longrightarrow \varphi(t) = \frac{-1}{t+c}\]
-	también es solución por la misma razón que $h$, mientras que:
+	también es solución por la misma razón que $\psi$, mientras que:
 	\[t \in (- \infty, - c) \cup (-c, +\infty ) \longrightarrow f(t) = \frac{-1}{t+c}\]
 	no es solución ya que no está definida en un intervalo. \\
 	Además, si queremos calcular la solución de $x'=x^2$ que en $t =1$ valga $3$ tenemos que:
 	\[3 = x(1) = \frac{-1}{1+c} \Rightarrow 3 + 3c = -1 \Rightarrow c = -\frac{4}{3}\]
-	Por tanto, $x(t) = \frac{-1}{t-\frac{4}{3}}$ verifica que $x'(t) = (x(t))^2$. Además, por lo visto anteriormente, $h$ y $\varphi$ son soluciones si hacemos que $c = - \frac{4}{3}$.
+	Por tanto, $x(t) = \frac{-1}{t-\frac{4}{3}}$ verifica que $x'(t) = (x(t))^2$, pasando por $ t=1 $. Además, por lo visto anteriormente, $\psi$ y $\varphi$ son soluciones en sus respectivos intervalos si hacemos que $c = - \frac{4}{3}$. Sin embargo, en este caso, solo $ \psi $ está definida en $ t=1 $.
 \end{proof}
 \subsection{Problema de Cauchy.}
 
@@ -457,28 +460,29 @@ x_2(t)=-\sqrt{c-t^2}
 \section{Tema 2. Existencia y unicidad de solución.}
 
 \begin{definition}
-	Sea $ \varphi:t\in I \subset \mathbb{R}\longrightarrow \mathbb{R}^n $, con $ I $ intervalo, solución de la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+	Sea $ \varphi:t\in I \subset \mathbb{R}\longrightarrow \mathbb{R}^n $, con $ I $ intervalo, solución de la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $.
 \end{definition}
 
-Llamamos trayectoria de $ \varphi $ al conjunto $ \tau (\varphi)=\{ (t, \varphi(t)), t\in I\} $
-
-Si $ \varphi(t_0)=x_0 $, llamaremos semitrayectoria positiva de $ \varphi $ al conjunto $ \tau^+ (\varphi)=\{ (t, \varphi(t)) : t\in I, t>t_0\} $
-
-Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \tau^- (\varphi)=\{ (t, \varphi(t)) : t\in I, t\leq t_0\} $.
+Llamamos \emph{trayectoria} de $ \varphi $ al conjunto:
+\[  \tau (\varphi)=\{ (t, \varphi(t)), t\in I\} \]
+Si $ \varphi(t_0)=x_0 $, llamaremos \emph{semitrayectoria positiva} de $ \varphi $ al conjunto:
+\[ \tau^+ (\varphi)=\{ (t, \varphi(t)) : t\in I, t>t_0\}  \]
+Análogamente, la \emph{semitrayectoria negativa}  de $ \varphi $ será el conjunto:
+\[ \tau^- (\varphi)=\{ (t, \varphi(t)) : t\in I, t\leq t_0\} \]
 
 \begin{definition}
-	Sea la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+	Sea la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $.
 	
-	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una solución $ \varepsilon $-aproximada si verifica:
+	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una \emph{solución $ \varepsilon $-aproximada} si verifica:
 	
 	\begin{enumerate}
 		\item $ (t,\pi (t))\in A, \forall t \in I $.
 		\item $ \pi $ continua y $C^1$ a trozos (es decir, es $C^1$ salvo a lo sumo una cantidad finita de puntos)
-		\item $ || \pi'(t)-f(t, \pi(t))|| \leq \varepsilon$. (Las normas son equivalentes en dimensión finita).
+		\item $ || \pi'(t)-f(t, \pi(t))|| \leq \varepsilon$ para los puntos $ t\in I $ donde $ \pi $ es derivable. (Nótese que todas las normas son equivalentes en dimensión finita).
 	\end{enumerate} 
 \end{definition}
 \begin{proposition}
-	Sea la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+	Sea la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $.
 	
 	Sea $ f $ continua y sea $ \pi : t \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, entonces:
 	\begin{center}
@@ -486,26 +490,33 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	\end{center}
 \end{proposition}
 \begin{proof}\ \\
-	"$ \Rightarrow $". Ejercicio propuesto.
+	"$ \Rightarrow $"
 	
+	$ \pi $	solución $\Rightarrow \begin{cases}
+	i)\  (t, \pi (t)) \in A, \forall t \in I.\\
+	ii)\  \text{Existe }  \pi' (t), \forall t \in I \Rightarrow \pi \in C^1(I). \\
+	iii)\  \pi'(t)=f(t, \pi(t)),  \forall t \in I \Rightarrow \pi'(t)-f(t, \pi(t))=0 \Rightarrow \norm{\pi'(t)-f(t, \pi(t))}=0.
+	\end{cases}$ 
 	
-	"$ \Leftarrow $". \\Suponemos que $ \pi $ solución 0-aproximada y veamos que $ \pi $ es solución. En primer lugar tenemos que $(t, \pi (t)) \in A$, $\forall t \in I$, se verifica trivialmente. \\
+	es decir, es solución 0-aproximada.
+	
+	"$ \Leftarrow $" \\Suponemos que $ \pi $ solución 0-aproximada y veamos que $ \pi $ es solución. En primer lugar tenemos que $(t, \pi (t)) \in A$, $\forall t \in I$, se verifica trivialmente. \\
 	Sea $ \{t_i\}_{i=1}^k $ los puntos en los que $ \pi $ puede, en principio, no ser derivable, y veamos que existe la derivada en ellos. Por una parte, por ser  $ \pi $ solución 0-aproximada:
 	 \[ ||\pi'(t)-f(t,\pi(t))||\leq 0\Rightarrow ||\pi'(t)-f(t,\pi(t))||=0 \Rightarrow \pi'(t)=f(t, \pi(t)), \forall t \in I, t\neq t_i.\]
-	Fijado $ t_i\in \{t_1, \dots, t_k\} $, como $ f $ y $ \pi $ son continuas, 
+	De lo que deducimos que cumple el punto iii) de la definición de solución. Además, fijado $ t_i\in \{t_1, \dots, t_k\} $, punto en el que $ \pi $ podría no ser derivable, como $ f $ y $ \pi $ son continuas, 
 	\[ \lim\limits_{t\rightarrow t_i^-}\pi'(t)=\lim\limits_{t\rightarrow t_i^-} f(t, \pi(t))= f(t_i, \pi(t_i))= \lim\limits_{t\rightarrow t_i^+} f(t, \pi(t))=\lim\limits_{t\rightarrow t_i^+}\pi'(t)\]
 	Y por lo tanto:
 	\[ \begin{rcases}
 	\lim\limits_{t\rightarrow t_i^-}\pi'(t)=\lim\limits_{t\rightarrow t_i^+}\pi'(t) \\
 	\pi \text{ continua en } t_i
 	\end{rcases}\Rightarrow \exists \pi'(t_i), \forall i \in \{1,\dots,k \} \]
-	
+	Con lo que se tiene que también cumple la condición ii).	
 \end{proof}
 
 \begin{theorem}
-	Sea $ \pi: t  \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, con $ I  $ intervalo, una solución $ \varepsilon $-aproximada de la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $.
+	Sea $ \pi: t  \in I \subset \mathbb{R} \longrightarrow\mathbb{R}^n $, con $ I  $ intervalo, una solución $ \varepsilon $-aproximada de la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $.
 	
-	$ f $ continua, entonces:
+	Si $ f $ es continua, entonces:
 	\[ ||\pi(t)-\pi(t_0)-\int_{t_0}^{t}f(s,\pi(s))ds||\leq \varepsilon |t-t_0|,\  \forall t, t_0 \in I\]
 	 
 \end{theorem}
@@ -523,7 +534,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	\end{center}
 	
 	
-	Supongamos $ t,t_0 \in [t_i, t_{i+1}], i \in \{1, \dots, k-1\}$, es decir:
+	Supongamos $ t,t_0 \in [t_i, t_{i+1}], i \in \{1, \dots, k-1\}$, es decir, supongamos que están en el mismo intervalo y que $ t_0<t $, sin perdida de generalidad:
 	\begin{center}
 		\begin{tikzpicture}[cap=round,>=latex,every node/.style={scale=1}]
 			\foreach \x/\y in {0/t_i, 3/t_{i+1}, 6/t_{i+2}}
@@ -544,9 +555,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	 \item $s \longrightarrow (s, \pi(s))\longrightarrow f(s, \pi(s))$ es composición de continuas.\\
 	 \item $F:J\longrightarrow \mathbb{R}$ que lleva $u \longrightarrow  \int_{t_0}^{u}f(s, \pi(s)) ds$ continua.
 	\end{enumerate}
-	Por lo tanto, podemos afirmar que $g$ es continua en $J$. Además $\pi$ es derivable en $\mathring{J}$ y $F$ es derivable en $J$, por lo que $g$ es derivable en $\mathring{J}$. Con esto y con que $gF$ es derivable en $\mathring{J}$ tenemos que, por el Teorema de Incrementos Finitos\textsuperscript{1}:
-	%\textsuperscript{1} El Teorema de Incrementos Finitos dice que dada cualquier función $f$ continua en el conjunto $A$ y diferenciable en $\mathring{A}$ entonces existe al menos algún punto $\xi$ en $\mathring{A}$ tal que $\norm{f(t)-f(t_0)}\leq \sup\norm{f'(\xi)}|t-t_0|$ QUIERO PONER ESTO A PIE DE PAGINAAAAAAAA
-	%----------------------------------------------------------
+	Por lo tanto, podemos afirmar que $g$ es continua en $J$. Además $\pi$ es derivable en $\mathring{J}$ y $F$ es derivable en $J$, por lo que $g$ es derivable en $\mathring{J}$. Por el Teorema de los Incrementos Finitos\footnote{El Teorema de los Incrementos Finitos dice que dada cualquier función $f$ continua en el conjunto $A$ y diferenciable en $\mathring{A}$ entonces existe al menos algún punto $\xi$ en $\mathring{A}$ tal que $\norm{f(t)-f(t_0)}\leq \sup\norm{f'(\xi)}|t-t_0|$.}:
 	\[\norm{g(t)-g(t_0)}\leq \sup \norm{g'(\xi)}|t-t_0|\]
 	y, por la definición de $g$,
 	\begin{align*}
@@ -575,7 +584,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 			\draw[thick] (-0.5,0)--(4.5,0);
 		\end{tikzpicture}
 	\end{center}
-	Así, en este caso, tenemos que $t_o \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_o, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo se tiene que:
+	Así, en este caso, tenemos que $t_o \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_o, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo respecto al extremo común, se tiene que:
 	\begin{enumerate}
 		\item $\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} \leq \varepsilon |t - t_{i+1} |$ en $J_r$.
 		\item $\norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \leq \varepsilon |t_{i+1} - t_0|$ en $J_j$.
@@ -591,9 +600,11 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 	\textbf{Caso III.} Ejercicio propuesto. Basta con realizar inducción y basarse en el caso II.
 \end{proof}
 \begin{theorem}
-	Dada la ecuación $x' = f(t, x)$ (*) con $f$ continua y $\varphi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$ se tiene:
+	Sea la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $. 
+	
+	Sea $f$ continua y $\varphi :t \in I \subset \mathbb{R} \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in A$. Equivalen:
 	\begin{center}
-		$\varphi$ solución de (*) $\Leftrightarrow \begin{cases}
+		$\varphi$ solución de la ecuación $\Leftrightarrow \begin{cases}
 		(1) \hspace{0,2cm} \varphi \hspace{0,2cm} continua \\
 		(2) \hspace{0,2cm} \varphi (t)= \varphi (t_0) + \int_{t_0}^{t} f(s, \pi (s))ds
 		\end{cases}$
@@ -602,30 +613,35 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 \begin{proof}\ \\
 	$"\Rightarrow"$ \\
 	Supongamos $\varphi$ solución de $x' = f(t, x)$ tenemos entonces que:
-	\begin{enumerate}
-	\item  $(t, \varphi (t)) \in A$ $\forall t \in I$.
-	\item  $ \exists \varphi' (t)$ $\forall t \in I$.
-	\item  $ \varphi' (t) = f(t, \varphi (t)) t \in I$.
+	\begin{enumerate}[\qquad i)]
+	\item $(t, \varphi (t)) \in A$ $\forall t \in I$.
+	\item $ \exists \varphi' (t)$ $\forall t \in I$.
+	\item $ \varphi' (t) = f(t, \varphi (t)) t \in I$.
 	\end{enumerate}
 	En primer lugar $ii)$ implica que $\varphi$ continua. Además, por $iii)$ sabemos que $\varphi' (t) = f(t, \varphi (t))$. Vemos que la composición:
 	\[t \stackrel{g}{\longrightarrow } (t, \varphi (t)) \stackrel{f}{\longrightarrow } f(t, \varphi (t)) = \varphi'(t)\]
 	es continua por ser continuas $g$ y $f$, por lo que $\varphi '$ es integrable. Entonces, por el Teorema Fundamental del cálculo,
 	\[\varphi (t) - \varphi (t_0) = \int_{t_0}^{t} \varphi' (s)ds = \int_{t_0}^{t} f(s, \varphi (s))ds \Rightarrow \varphi (t) = \varphi (t_0) + \int_{t_0}^{t} f(s, \varphi (s))ds\]
 	$"\Leftarrow"$ \\
-	Ahora supongo que se cumplen $(1)$ y $(2)$. Por hipótesis $(t, \varphi (t)) \in A$ $\forall t \in I$. Pero, ¿$\exists \varphi' (t)$ $\forall t \in I$?\\
-	Tenemos en primer lugar que $f$ continua y que $\varphi$ es continua, lo que implica que $\int_{t_0}^{t} f(s, \varphi (s))ds$ es derivable y su derivada vale $f(t, \varphi (t))$. Por tanto $\varphi (t)$ es derivable y $(\varphi (t_0))' = 0$. \\
-	Por tanto, $\varphi' (t) = f(t, \varphi (t))$.
+	Ahora supongamos que se cumplen $(1)$ y $(2)$. Por hipótesis $(t, \varphi (t)) \in A$ $\forall t \in I$. Pero, ¿$\exists \varphi' (t)$ $\forall t \in I$?\\
+	Tenemos en primer lugar que $f$ continua y que $\varphi$ es continua, lo que implica que $\int_{t_0}^{t} f(s, \varphi (s))ds$ es derivable y su derivada vale $f(t, \varphi (t))$. Por tanto $\varphi (t)$ es suma de una constante y una función derivable con derivada $ f(t,\varphi(t)) $. \\
+	Es decir, es derivable y $\varphi' (t) = f(t, \varphi (t))$.
 \end{proof}
+\subsection{Teorema de Cauchy-Peano.}
 \begin{theorem}\label{thm:sucesion}
-	Sea $\{\varepsilon_m\}$ sucesión de números reales $\varepsilon_m \geq 0$ tal que $\{\varepsilon_m\}_{m\in \mathbb{N}}$ y sea $I \subset \mathbb{R}$ intervalo compacto. Dado (*) con $A$ abierto, $f$ continua en $A$ y supongamos que $\exists \pi_m : I \longrightarrow \mathbb{R}^n$ solución $\varepsilon$-aproximada de (*). Entonces, si $\exists \varphi : t \in I \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in I$ y $\{\pi_m\}_{m\in \mathbb{N}}$ converge a $\varphi$ uniformemente en $I$, entonces $\varphi$ solución de (*). 
+	Sea $\{\varepsilon_m\}$ sucesión de números reales $\varepsilon_m \geq 0$ tal que $\{\varepsilon_m\}_{m\in \mathbb{N}}\xrightarrow{m\to \infty}0$ y sea $I \subset \mathbb{R}$ intervalo compacto. 
+	Sea la ecuación diferencial habitual, $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $, con $A$ abierto y $f$ continua en $A$.
+	
+	Supongamos que $\exists \pi_m : I \longrightarrow \mathbb{R}^n$ sucesión de soluciones $\varepsilon_m$-aproximadas de la ecuación diferencial. Entonces, si $\exists \ \varphi : t \in I \longrightarrow \mathbb{R}^n$ tal que $(t, \varphi (t)) \in A$ $\forall t \in I$ y $\{\pi_m\}_{m\in \mathbb{N}}$ converge a $\varphi$ uniformemente en $I$, entonces $\varphi$ es solución de la ecuación diferencial. 
 \end{theorem}
 
 \begin{definition}
-	Sea $I \subset \mathbb{R}$ intervalo compacto, $M \subset C(I, \mathbb{R})$ es equicontinuo si:
-	\[\forall \varepsilon > 0 \hspace{0,2cm} \exists \delta > 0 \hspace{0,2cm} / \hspace{0,2cm} \forall x, y\in |x-y| < \delta \Rightarrow \norm{h(x) - h(y)} < \varepsilon\]
-	$\forall h \in M$.
+	Sea $I \subset \mathbb{R}$ intervalo compacto, $M \subset C(I, \mathbb{R})$ es \emph{equicontinuo}\footnote{ $ C(I, \mathbb{R})$ denota el conjunto de funciones continuas de $ I $ en $ \mathbb{R} $.} si:
+	\[\forall \varepsilon > 0 \hspace{0,2cm} \exists \delta > 0 \hspace{0,2cm} / \hspace{0,2cm} \forall x, y\in |x-y| < \delta \Rightarrow \norm{h(x) - h(y)} < \varepsilon, \forall \ h \in M.\]
+	Intuitivamente, significa que todas las funciones de un conjunto sean continuas y varíen de manera parecida sobre entornos del dominio.
 \end{definition}
-\begin{example}
+\begin{example} \ \\
+	Ejemplos de conjuntos de funciones equicontinuos son:
 	\begin{enumerate}
 		\item Un conjunto finito de funciones de $C(I, \mathbb{R}^n)$. Tomemos $n = 2$. Sea $\varepsilon_0 > 0$ se tiene que:
 		\begin{center}
@@ -635,7 +651,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 			\end{cases}$
 		\end{center}
 		Basta tomar $\delta = min\{\delta_1, \delta_2\}$.
-		\item Un conjunto de funciones lipschitziana con la misma constante de Lipschitz $K$.
+		\item Un conjunto de funciones lipschitzianas con la misma constante de Lipschitz $k$.
 		\begin{center}
 			$\norm{h(x) - h(y)}\leq k|x-y|$ $\forall h \in M$ \\
 			$\varepsilon > 0$ $\exists \delta > 0$ tal que $|x-y|<\delta \Rightarrow \norm{h(x) - h(y)} < k\delta = \varepsilon$
@@ -646,7 +662,7 @@ Análogamente, la semitrayectoria negativa  de $ \varphi $ será el conjunto $ \
 BEGIN MANU 13/2 
 
 \begin{theorem}[Construccion de solución $ \varepsilon $-aproximada.]
-	Consideramos la ecuación diferencial definida por $ f:A \subset \mathbb{R}\times \mathbb{R}^n$, que lleva $(t,x)\longrightarrow f(t,x)$ y tal que $ x'=f(t,x) $, con $ A $ abierto, $ f $ continua y acotada en $ A $ y sea $ \varepsilon>0, \varepsilon\in \mathbb{R} $. 
+	Consideramos la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $, con $ A $ abierto, $ f $ continua y acotada en $ A $ y $ \varepsilon\in \mathbb{R}, \varepsilon>0$. 
 	
 	Entonces fijado $ (t_0, x_0) \in A $ existe solución $ \varepsilon $-aproximada pasando por $ (t_0, x_0)$.
 \end{theorem}
@@ -674,7 +690,7 @@ BEGIN MANU 13/2
 	\coordinate[label={[scale=0.6] above:$\rho_1$}] (rho1) at (2.7,2.0); %etiqueta de rho 1
 	\draw[-,dashed] (2.5,0.9275) -- (2.5, 1.75) node[right=1mm][below=3mm][scale=0.6]{$d$}; %linea punteada de distancia
 	\end{tikzpicture}
-	\caption{Esquema de la demostración.} \label{M1}
+	\caption{Esquema orientativo de la demostración.} \label{M1}
 \end{figure}
 	
 	Sea $ d=d_\infty((t_0, x_0), \text{Fr} (A))>0 $ (ya que $ A $ abierto).
@@ -706,7 +722,7 @@ BEGIN MANU 13/2
 	Como $ f $ acotada en $ A $, tenemos $ ||f(t_0,x_0)||\leq H $.
 	
 	Veamos si $ \rho_1 $ verifica las condiciones de ser $ \varepsilon $-aproximada.
-	\begin{enumerate}[\quad i)]
+	\begin{enumerate}[\qquad i)]
 		\item  $ (t,\rho(t)) \in \mathbb{R}\subset A$.
 		
 		\item $ \rho_1 $ es continua y $ C^n $ a trozos ya que $ \rho_1 \in C^\infty $.
@@ -721,13 +737,13 @@ BEGIN MANU 13/2
 	R\subset A \text{ compacto}
 	\end{rcases} \Rightarrow f \text{ uniformemente continua en } R\text{, es decir, } \forall \varepsilon > 0 \ \exists \hat{\delta} >0 : \forall y,z \in R, ||y-z||<\hat{\delta} \Rightarrow||f(y)-f(z)||<\varepsilon $.
 	
-	Tengo que demostrar que $ ||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0)+f(t_0,x_0)(t-t_0)||=||f(y)-f(z)||<\varepsilon $. 
+	Tenemos que demostrar que $ ||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0)+f(t_0,x_0)(t-t_0)||=||f(y)-f(z)||<\varepsilon $. 
 	
-	Por lo anterior ($ f $ uniformemente continua), si para $ \varepsilon>0 $ demuestro que $||y-z||=||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} $, ya queda probado.
+	Por lo anterior ($ f $ uniformemente continua), si para $ \varepsilon>0 $ probamos que $||y-z||=||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} $, ya queda demostrado que $ ||f(y)-f(z)||<\varepsilon \Leftrightarrow iii) $.
 	
-	Veamos para que valores de $ t $, se tiene $ ||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} \Rightarrow ||(t_0-t),( x_0-x_0 -f(t_0,x_0)(t-t_0))||=||(t_0-t),(f(t_0,x_0)(t-t_0))||< \hat{\delta} $.
+	Veamos para que valores de $ t $, se tiene $ ||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} \Rightarrow ||(t_0-t),( x_0-x_0 -f(t_0,x_0)(t-t_0))||=||(t_0-t),(-f(t_0,x_0)(t-t_0))||< \hat{\delta} $.
 	
-	Notemos que al trabajar con la norma infinito tengo que comprobar que los máximos de los valores absolutos de las componentes son menores que la cota.	
+	Notemos que al trabajar con la norma infinito lo que tenemos que comprobar es que los máximos de los valores absolutos de las componentes son menores que la cota, es decir:	
 	\[ \begin{rcases}
 	 |t-t_0|< \hat{\delta}\\
 	 \text{ y }\qquad\\
@@ -772,7 +788,7 @@ BEGIN MANU 13/2
 		$\rho_i (t)=\rho_{i-1}(t_{i-1})+f(t_{i-1},x_{i-1})(t-t_{i-1})  $, con $ x_{i-1}=\rho_{i-1}(t_{i-1}) $
 	\end{adjustwidth}
 
-	Entonces $ \pi: t \in [t_0, t_0+\delta]\longrightarrow \pi(t)=\rho_i(t), t \in [t_{i-1}, t_i], i=1\dots k  $ es solución $ \varepsilon $-aproximada de la ecuación diferencial del enunciado en $ [t_0, t_0+\delta] $. Falta el caso $ t\leq t_0 $ para en $ [t_0-\delta, t_0] $
+	Entonces $ \pi: t \in [t_0, t_0+\delta]\longrightarrow \pi(t)=\rho_i(t), t \in [t_{i-1}, t_i], i=1\dots k  $ es solución $ \varepsilon $-aproximada de la ecuación diferencial del enunciado en $ [t_0, t_0+\delta] $. Falta el caso $ t\leq t_0 $ para en $ [t_0-\delta, t_0] $, que es análogo.
 \end{proof}
 
 \begin{exercise}
@@ -783,8 +799,12 @@ BEGIN MANU 13/2
 	2) $ \pi $ es lipschitziana con constante $ H $, i.e., $ ||\pi(t)- \pi(s)|| \leq H |t-s| \ \forall t,s \in [t_0-\delta, t_0+\delta] $
 \end{exercise}
 
+\begin{note}
+	La solución $ \varepsilon $-aproximada construida es local en $ (t_0,x_0) $, es decir, solamente está definida en un entorno del punto.
+\end{note}
+
 \begin{definition}
-	Diremos que un conjunto $ M $ es relativamente compacto si verifica: toda sucesión de elementos de de $ M $ posee una subsucesión convergente
+	Diremos que un conjunto $ M $ es \emph{relativamente compacto} si verifica: toda sucesión de elementos de de $ M $ posee una subsucesión convergente.
 \end{definition}
 \begin{theorem}[Ascoli-Arzelá]
 	Sea $ I\subset \mathbb{R} $ intervalo compacto, $ M \subset \mathcal{C} (I, \mathbb{R}^n) $.
@@ -792,13 +812,13 @@ BEGIN MANU 13/2
 	$ M $ es relativamente compacto si y solo si:
 	\begin{enumerate}[\quad 1)]
 		\item $ M $ es equicontinuo.
-		\item  $ M $ es puntualmente acotado ($ \forall t \in I,\exists K $ cte $ :||h(t)||\leq k , \forall h \in M$)
+		\item  $ M $ es puntualmente acotado ($ \forall t \in I,\exists K $ cte $ :||h(t)||\leq K , \forall h \in M$)
 	\end{enumerate}
 \end{theorem}
 \begin{theorem}[Cauchy-Peano]
-	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación:
-	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
-	con $  x'=f(t,x) $ su ecuación diferencial asociada. Si $ f $ es continua en $ A $, fijado un punto $ (t_0,x_0) \in A $ existe solución de la ecuación pasando por $ (t_0,x_0) $, definida en un entorno de $ t_0 $.
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
+	
+	Fijado un punto $ (t_0,x_0) \in A $, si $ f $ es continua en $ A $, existe solución de la ecuación pasando por $ (t_0,x_0) $, definida en un entorno de $ t_0 $.
 \end{theorem}
 \begin{proof} \ \\
 	\begin{figure}[h]
@@ -815,7 +835,7 @@ BEGIN MANU 13/2
 		\end{tikzpicture}
 		\caption{Esquema de la demostración.} \label{M2}
 	\end{figure}
-	Sea $ \{\varepsilon_n \} $ sucesión de números reales, $ \varepsilon_n>0  $ tal que $ \lim\limits_{n\to\infty} \{\varepsilon_n\} =0$.
+	Sea $ \{\varepsilon_m \} $ sucesión de números reales, $ \varepsilon_m>0  $ tal que $ \lim\limits_{m\to\infty} \{\varepsilon_m\} =0$.
 	
 	Sea $ K $ compacto ($ K $ bola de centro $ (t_0,x_0) $ y radio $ r<d_\infty((t_0,x_0), \text{Fr}(A)), K\subset A, (t_0,x_0) \in \mathring{K} $).
 	
@@ -824,7 +844,7 @@ BEGIN MANU 13/2
 	f \text{ continua en } K
 	\end{rcases} \Rightarrow  f $ acotada en $ K $.
 	
-	Aplicando el teorema de construcción de solución $ \varepsilon $-aproximada, $ \exists I=[t_0-\delta, t_0+\delta] $ en el cual esta definida $ \pi_m $ solución  $ \varepsilon $-aproximada para cada $ \varepsilon_n $.
+	Aplicando el teorema de construcción de solución $ \varepsilon $-aproximada, $ \exists I=[t_0-\delta, t_0+\delta] $ en el cual esta definida $ \pi_m $ solución  $ \varepsilon $-aproximada para cada $ \varepsilon_m $.
 	
 	Por el ejercicio, $ \begin{cases}
 		||\pi_m(t)||< x_0+H\delta \ \forall m \text{ con } H \text{ cota para } f.\ (1)\\
@@ -835,16 +855,15 @@ BEGIN MANU 13/2
 	
 	$ M $ es puntualmente acotado por (1). 
 	
-	Como $ M $ es puntualmente acotado y equicontinuo, por el Teorema de Ascoli-Arzelá, $ M$ es relativamente compacto $ \Rightarrow \ \exists \{\pi_{n_k}\}$ subsucesión de $ \{\pi_n\} $ que converge a una función $ \varphi\in \mathcal{C}(I, \mathbb{R}^n) $.
+	Como $ M $ es puntualmente acotado y equicontinuo, por el Teorema de Ascoli-Arzelá, $ M$ es relativamente compacto $ \Rightarrow \ \exists \{\pi_{m_k}\}$ subsucesión de $ \{\pi_m\} $ que converge a una función $ \varphi\in \mathcal{C}(I, \mathbb{R}^n) $.
 	
 	$ \begin{rcases}
-		\text{Por tanto } \exists \varphi: I\longrightarrow \mathbb{R}^n \text{ tal que } \{\pi_{n_k} \}\longrightarrow \varphi \text{ uniformemente }\\
-		\{\varepsilon_{n_k}\xrightarrow{k\to \infty}0  \} \text{ por ser subsucesión.}
+		\text{Por tanto } \exists \varphi: I\longrightarrow \mathbb{R}^n \text{ tal que } \{\pi_{m_k} \}\longrightarrow \varphi \text{ uniformemente }\\
+		\{\varepsilon_{m_k}\xrightarrow{k\to \infty}0  \} \text{ por ser subsucesión.}
 	\end{rcases} \Rightarrow \varphi$ solución de $ x'=f(t,x) $, por el Teorema \ref{thm:sucesion}.
 	
-	Por construcción, $ \pi_{n_k}(t_0)=x_0 \Rightarrow \varphi(t_0) = \lim\limits_{k\to \infty}\pi_{n_k}(t_0)=x_0$.
+	Por construcción, $ \pi_{m_k}(t_0)=x_0 \Rightarrow \varphi(t_0) = \lim\limits_{k\to \infty}\pi_{m_k}(t_0)=x_0$.
 \end{proof}
-marca impresion 18/02 prada
 BEGIN PRADA 18/02
 
 BEGIN JORGE 20/02
