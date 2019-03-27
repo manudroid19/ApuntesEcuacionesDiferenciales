@@ -1425,7 +1425,39 @@ BEGIN PRADA 20/03
 	\end{enumerate}
 \end{theorem}
 \begin{proof}\ \\
-	Se hará en un laboratorio COMPLETAR.
+	\begin{enumerate}
+		\item $ i) \Rightarrow ii) $. \\
+		\begin{enumerate}[\quad a)]
+			\item Forma 1: \\
+			Recordemos que $ \phi (t)= \begin{pmatrix}
+			\varphi_1(t) & ... & \varphi_n(t)
+			\end{pmatrix} $
+			
+			Supongamos que existe $ t_1 $ tal que  $ \det(\phi)(t_1)=0\Rightarrow \{ \varphi_1(t_1), \cdots \varphi_n (t_1) \} $ son vectores de $ \mathbb{R}^n  $ linealmente dependientes. Es decir, existen $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no todos nulos tal que $ \lambda_1 \varphi_1 + \cdots +\lambda_n\varphi_n=0 $.
+			
+			Sea $ \psi(t)=\lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) $. $ \psi $ es solución de $ x'=A(t)x $ (por la estructura de espacio vectorial de $ S $) pasando por $ (t_1,\psi(t_1))=(t_1,0) $.
+			
+			Pero $ x(t)=0 $ es solución de $ x'=A(t)x$ pasando por $ (t_1,0) $.
+			Por la unicidad de la solución $ \psi(t)=0 \ \forall t \in I$. Es decir, $ \lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) =0 \ \forall t \in I $. Como   $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no son  todos nulos, tenemos que $ \phi(t) $ no es matriz fundamental.
+			\item Forma 2 (Reducción al absurdo): \\
+			Si $ \phi(t) $ es matriz fundamental, entonces $ \phi(t)=(\varphi_1(t), ... , \varphi_n(t)) $ base de $ S $.
+			Veamos si xiste un $ t_1 \in I : \det(\phi(t_1))=0$.
+			Entonces $ F:\varphi\in S\longrightarrow \varphi(t_1)\in  \mathbb{R}^n $ isomorfismo lineal, es decir, $ \{ \varphi_1(t_1), ... , \varphi_n(t_n) \}  $ base de $ \mathbb{R}^n $ pero no puede ser ya que $ \det(\phi(t_1))=0 \Rightarrow \{ \varphi_1(t_1), ... , \varphi_n(t_n) \} $ son linealmente dependientes.
+		\end{enumerate}
+	\item $ ii) \Rightarrow iii) $. \\
+	Trivial
+	\item $ iii) \Rightarrow i) $. \\
+	Supongamos que existe un $ t_0 \in I : \det \phi (t_0)\neq 0 $. Por lo tanto, las columnas de $ \phi(t_0) $ son linealmente independientes y forman una base de $ \mathbb{R}^n $.
+	
+	Sea el isomorfismo $ F:\varphi\in S\longrightarrow \varphi(t_0)\in \mathbb{R}^n $. 
+	
+	$ \qquad F^{-1}(\varphi_1(t_0))=\varphi_1 $ es solución de $ x'=A(t)x $ pasando por $ (t_0,\varphi_1(t_0)) $ 
+	
+	$ \qquad \qquad \vdots $ 
+	
+	$ \qquad F^{-1}(\varphi_n(t_0))=\varphi_n $ es solución de $ x'=A(t)x $ pasando por $ (t_0,\varphi_n(t_0)) $ \\
+	Por tanto, $ \{ \varphi_1, \cdots, \varphi_n \} $ base de $ S $ y $ \phi(t) $ es matriz fundamental. 
+	\end{enumerate}
 \end{proof}
 \begin{definition}
 	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es principal en $ t_0\in I $ si $ \phi(t_0)=I_n $
