@@ -1448,4 +1448,61 @@ BEGIN PRADA 20/03
 		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.
 	\end{enumerate}
 \end{proof}
+\section{Tema 6.}
+\subsection{Sistemas de ecuaciones lineales con coeficientes constantes.}
+\begin{definition}
+	Llamamos \emph{sistema lineal de coeficientes constantes} a una ecuación diferencial de la forma:
+	\[ x'=A(t)x+b(t) \]
+	con $ x'\in \mathbb{R}^n, x\in\mathbb{R}^n $, $ A\in M_{n\times n} $ constante y $ b:t\in I\subset\mathbb{R}\longrightarrow b(t)\in\mathbb{R}^n $ continua.
+\end{definition}
+\begin{definition}
+	Sea $ M \in M_{n\times n} $, llamamos \emph{$ e^M $} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
+	¿Es esta serie convergente?
+	\[ \sum_{n=0}^{\infty}\norm{\frac{1}{n!}M^n}=\sum_{n=0}^{\infty}\frac{1}{n!}\norm{M}^n=e^{\norm{M}} \]
+\end{definition}
+\begin{proposition}[Propiedades de la exponencial de una matriz] \ 
+	\begin{enumerate}[\quad i)]
+		\item $ e^0 =I, 0 \in M_{n\times n}$
+		\item Si $ AB=BA $, $ e^{A+B}=e^Ae^B=e^{B+A} $, con $ A,B\in M_{n\times n} $
+		\item $ e^{-A}=(e^A)^{-1} $
+	\end{enumerate}
+\end{proposition}
+\begin{theorem}
+	Si $ A\in M_{n\times n} $ constante, entonces $ e^{tA} $ es una matriz fundamental para $ x'=Ax $.
+\end{theorem}
+\begin{proof} \ \\
+	Tengo que demostrar dos casos:
+	\begin{enumerate}[\quad i)]
+		\item $ e^{tA} $ es matriz solución. 
+		
+		Para probarlo, usamos el resultado del ejercicio 2.6 de Series Funcionales. Tenemos que existe $ \frac{\partial}{\partial t}e^{tA} \forall t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $. Por el resultado, si $ \sum f_n $ converge puntualmente a $ f $, existe $ f_n'\forall n \in \mathbb{N} $ y converge uniformemente a $ g $, entonces existe $ f' $ y $ f'=g $.
+		
+		Entonces, para probar este apartado, vamos a ver:
+		\begin{enumerate}[\quad a)]
+			\item $ e^{tA} $ converge para $ t $ fijo.
+			\item La serie que resulta de derivar término a término converge uniformemente.
+			\item Existe $ \frac{\partial}{\partial t} (e^{tA}) $ y es la suma de la serie que resulta de derivar término a término.
+		\end{enumerate}
+		Para a), tenemos:
+		\[ e^{tA}=\sum_{n=0}^{\infty} \frac{1}{n!}t^nA^n=I+tA+\frac{t^2A^2}{2!}+\dots \]
+		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}(\norm{t}\norm{A})^n = e^{\abs{t}\norm{A}}\]
+		Para b), la serie que resulta de derivar término a término:
+		\[ 0+A+ \frac{2t}{2!}A^2+\dots =A+tA^2+\frac{t^2}{2!}A^3+\dots =\lim\limits_{k\to\infty} A(I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k)=A\lim\limits_{k\to\infty} (I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k) = Ae^{tA} \]
+		Por lo tanto la serie de las derivadas converge para cada $ t $ fijo a $ Ae^{tA} $.
+		Para c), veamos entonces que la serie converge uniformemente. Sea $ J $ un compacto cualquiera. Entonces existe $ \alpha : \forall t \in J \abs{t}\leq \alpha$.
+		
+		La serie de las derivadas $ \sum_{k=0}^{\infty} \frac{1}{k!}t^kA^{k+1} $ converge uniformemente en $ J $ ya que:
+		\[ \sum_{k=0}^{\infty} \norm{\frac{1}{k!}t^kA^{k+1}}\leq \sum_{k=0}^{\infty} \frac{1}{k!}\abs{t}^k\norm{A}^{k+1}\leq \sum_{k=0}^{\infty} \frac{1}{k!}p^k\norm{A}^{k+1} \]
+		con $ p=\max\{ \abs{t}, t\in J \} $. 
+		
+		Entonces la serie en norma, esta mayorada por una serie numérica convergente, por lo que por el criterio del mayorante, la serie es convergente uniformemente. Por tanto, existe $ \frac{\partial}{\partial t }e^{tA} $, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA} $ en cualquier compacto $ J\subset \mathbb{R} $.
+		
+		Por último, para c), como para dado $ t\in \mathbb{R} $, existe $ J $ compacto tal que $ t\in J $. Por tanto, existe $ \frac{\partial}{\partial t }e^{tA} \forall t \in \mathbb{R}$, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA}, t\in\mathbb{R}$.
+		
+		Así, $ e^{tA} $ es matriz solución.
+		
+		\item $ e^{tA} $ es fundamental.
+	\end{enumerate}
+	
+\end{proof}
 \end{document}
