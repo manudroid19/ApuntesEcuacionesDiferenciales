@@ -143,15 +143,16 @@
 \newtheorem{corollary}[theorem]{Corolario} % [theorem] indica que comparte el contador con theorem
 \newtheorem{lemma}[theorem]{Lema}
 \newtheorem{proposition}[theorem]{Proposición}
+\newtheorem*{question}{Cuestión}
 
 % Definiciones, notas, conjeturas
-\theoremstyle{definition}
+\theoremstyle{definition-style}
 \newtheorem{definition}{Definición}[section]
 \newtheorem{conjecture}{Conjetura}[section]
 \newtheorem*{note}{Nota} % * indica que no tiene contador
 \newtheorem*{observation}{Observación} % * indica que no tiene contador
 \newtheorem*{properties}{Propiedades}
-\newtheorem*{comment}{Comentario clase}
+\newtheorem*{comment}{Comentario}
 
 % Ejemplos, ejercicios
 \theoremstyle{example-style}
@@ -999,81 +1000,85 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		X = B_{C(I, \mathbb{R}^n)} [x_0, H\delta] \subset C(I, \mathbb{R}^n) \text{ cerrado } \\
 	\end{rcases} \Rightarrow (X, d) \text{ completo.}\]
 	\footnotetext{Un espacio métrico completo es aquel en el que toda sucesión de Cauchy converge a un punto en el mismo conjunto. En la demostración usamos el siguiente resultado: Un subconjunto cerrado de un espacio métrico completo es completo.}
-	Definimos ahora, 
+	
+	Nótese que $ x_0 $ puede ser entendido como la función constante $ x_0 $, en el contexto de un espacio de funciones. Definimos ahora:
 	\[T:\varphi \in X \longrightarrow T\varphi = x_0 + \int_{t_0}^{t} f(s, \varphi(s))ds\]
-	Quiero usar el teorema de la aplicación contractiva, por tanto, tengo que demostrar:
+	Queremos usar el Teorema \ref{transformada} de la transformada contractiva, por tanto, tenemos que demostrar:
 	\begin{enumerate}
 		\item $T\varphi \in X$.
-		\item $T$ en $\lambda$-contracción.
+		\item $T$ es $\lambda$-contracción.
 	\end{enumerate}
-	Para ver que $T\varphi \in X$ tengo que ver:
+	Para ver que $T\varphi \in X$ tenemos que ver:
 	\begin{enumerate}[	i.]
 		\item $T\varphi$ continua
 		\item $\norm{T\varphi (t) - x_0} \leq H\delta$, $\forall t \in I$
 	\end{enumerate}
 	En primer lugar, tenemos que:
-	\[s \stackrel{g}{\longrightarrow} (s, \varphi (s)) \stackrel{f}{\longrightarrow} f(s, \varphi (s))\]
-	por lo que, $T\varphi$ continua por composición de funciones continuas. \\
+	\[s \stackrel{g}{\longrightarrow} (s, \varphi (s)) \stackrel{f}{\longrightarrow} f(s, \varphi (s)) \longrightarrow x_0 + \int_{t_0}^{t}f(s,\varphi (s))ds  \]
+	por lo que $T\varphi$ es continua por composición de funciones continuas. \\
 	En segundo lugar, 
 	\[\norm{T\varphi - x_0} = \norm{x_0 + \int_{t_0}^{t} f(s, \varphi (s)) ds - x_0} = \norm{\int_{t_0}^{t} f(s, \varphi (s)) ds} \leq \]
 	\[\abs{\int_{t_0}^{t} \norm{f(s, \varphi (s))}ds} \leq \abs{\int_{t_0}^{t} H ds} = \abs{H(t - t_0)} = H\abs{t - t_0} \leq H\delta \]
 	Veamos ahora que $T$ es una $\lambda$-contracción, es decir, $\exists \lambda \in \mathbb{R}$, $0 \leq \lambda < 1$ tal que
-	\[d(T\varphi, T\psi) \leq \lambda d(\varphi, \psi) \hspace{0,2cm} \forall \varphi \psi \in X\]
+	\[d(T\varphi, T\psi) \leq \lambda d(\varphi, \psi) \hspace{0,2cm} \forall \varphi, \psi \in X\]
 	Sean $\varphi, \psi \in X$, \\
-	\[d(\varphi, \psi) = sup_{t \in I} \norm{\varphi (t) - \psi (t)} = sup_{t \in I} \norm{x_0 + \int_{t_0}^{t} f(s, \varphi(s))ds - x_0 - \int_{t_0}^{t} f(s, \psi(s))ds} = \]
+	\[d(T\varphi, T\psi) = sup_{t \in I} \norm{T\varphi (t) - T\psi (t)} = sup_{t \in I} \norm{x_0 + \int_{t_0}^{t} f(s, \varphi(s))ds - x_0 - \int_{t_0}^{t} f(s, \psi(s))ds} = \]
 	\[sup_{t \in I} \norm{\int_{t_0}^{t} (f(s, \varphi(s)) - f(s, \psi(s)))ds} \leq sup_{t \in I} \abs{\int_{t_0}^{t} \norm{(f(s, \varphi(s)) - f(s, \psi(s)))}ds} \stackrel{f \in L_{loc} (A, x)}{\leq} \] 
 	\[sup_{t \in I} \abs{\int_{t_0}^{t} k\norm{\varphi(s) - \psi(s)}ds} \leq sup_{t \in I} \abs{\int_{t_0}^{t} k sup\norm{\varphi(s) - \psi(s)}ds} \leq sup_{t \in I} \abs{\int_{t_0}^{t} k d(\varphi, \psi)ds} = \]
 	\[sup_{t \in I} kd(\varphi, \psi)\abs{t - t_0} \leq kd(\varphi, \psi)\delta \leq \lambda d(\varphi, \psi)\]
-	tomando $\lambda = \delta k$, como $\delta < \frac{1}{k}$ tenemos que $\lambda < 1$.
-	Por lo tanto, $T$ es $\lambda$-contracción. Por tanto, por el Teorema de la transformada contractiva:
+	Tomando $\lambda = \delta k$, como $\delta < \frac{1}{k}$ tenemos que $\lambda < 1$. Nótese que podemos aplicar que $ f $ es $ L_{\text{loc}} $ en $ A $ respecto de $ x $ ya que al ser $ \psi $ y $ \varphi $ funciones de $ X $, están definidas en un entorno de $ t_0 $ en el que $ f $ es lipschitziana, y siempre trabajamos con $ t $ dentro de ese entorno, por como estamos construyendo la prueba.
+	
+	Por lo tanto, $T$ es $\lambda$-contracción. Es decir, por el Teorema \ref{transformada} de la transformada contractiva:
 	\[\exists ! \varphi \in X : \varphi \text{ punto fijo de } T\]
-	por lo que $\varphi (t) = T\varphi (t) = x_0 + \int_{t_0}^{t} f(s, \varphi (s))ds$, con $\varphi$ continua.
+	por lo que $\varphi (t) = T\varphi (t) = x_0 + \int_{t_0}^{t} f(s, \varphi (s))ds$, y como $\varphi$ continua, cumple las dos hipótesis del Teorema \ref{carac-sol} de caracterización de soluciones.	
 BEGIN PRADA 27/02
 
-	¿Podría existir una función que fuera solución pasando por el punto y que el grafo no esté en $ R $? Probemos que no.
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}
 		\draw[->] (-1,0) -- (5,0) node[right] {$t \in \mathbb{R}$}; %eje x, en este caso t
 		\draw[->] (0,-0.5) -- (0,3.5) node[above] {$x \in \mathbb{R}^n$};% eje y
 		\draw  plot[tension=.7] coordinates {(1,1) (1,2.5) (4,2.5) (4,1) (1,1) }; %conjunto R
-		\draw  plot[scale=0.53,shift={(4.3,2.75)},smooth, tension=.7] coordinates {(-3.5,0.5) (-3,2.5) (-1,3.5) (1.5,3) (4,3.5) (5,2.5) (5,0.5) (2.5,-2) (0.5,-1) (-3,-2) (-3.5,0.5)}; % conjunto A
+		\draw  plot[scale=0.53,shift={(4.3,2.75)},smooth, tension=.7] coordinates {(-3.5,0.5) (-3,2.5) (-1,3.5) (1.5,3) (4,3.5) (5,2.5) (5,0.5) (2.5,-2) (0.5,-1.5) (-3,-2) (-3.5,0.5)}; % conjunto A
 		\draw[-] (2.5,0.10) -- (2.5,-0.10) node[below][scale=0.8]{$t_0$}; %t0 y puntos de x
 		\draw[-] (1,0.10) -- (1,-0.10) node[below][scale=0.8]{$t_0-\delta$};
 		\draw[-] (4,0.10) -- (4,-0.10) node[below][scale=0.8]{$t_0+\delta$};
 		\draw[-] (-0.10,1.75) -- (0.10,1.75) node[left=2mm][scale=0.8]{$x_0$}; %x_0 y puntos de y
 		\coordinate[label=above:A] (A) at (5.2,2.8); %etiqueta de A
 		\coordinate[label=above:R] (R) at (4.2,2.2); %etiqueta de R
-		\draw  plot[smooth,tension=.7] coordinates {(1.25,1.75) (1.5,2.2) (1.7,2) (2.25,2.6) (2.8,0.75) (3.2, 2.6) (3.4, 1.9) (3.7, 2.3)}; %linea poligonal
+		\draw  plot[smooth,tension=.7] coordinates {(1,1.75) (1.5,2.2) (1.7,2) (2.25,2.6) (2.8,0.75) (3.2, 2.6) (3.4, 1.9) (4, 2.3)}; %linea poligonal
 		\fill (2.5,1.75)  circle[radius=1pt]; %punto en t0,x_0
 		\coordinate[label={[scale=0.6] right:$(t_0,x_0)$}] (p0) at (2.5,1.7); %etiqueta de t0 x0
 		\end{tikzpicture}
-		\caption{Esquema de la demostración.} \label{M1}
+		\caption{Situación en la que el grafo no está en $ R $.} \label{M1}
 	\end{figure}
+	¿Podría existir una función que fuera solución pasando por el punto y que el grafo no esté en $ R $? Probemos que no.
+	\begin{adjustwidth}{1cm}{}
+		Veamos que si $ \psi : I \longrightarrow\mathbb{R}^n $ solución de $ x'=f(t,x) $ pasando por $ (t_0,x_0) $, entonces $ \psi \in X $, es decir, $ ||\psi(t)-x_0||\leq H\delta \ \forall t \in I $.
+		
+		Probémoslo por reducción al absurdo. Supongamos que $ \exists t_1\in I : ||\psi(t_1)-x_0||>H\delta$, por ser $ \psi $ continua $ \exists t_2\in (t_0,t_1) $ en el cual $ ||\psi(t_2)-x_0||=H\delta $.
+		
+		Sea $ t^* = \inf \{t : ||\psi(t)-x_0||=H\delta, t>t_0 \} \Rightarrow ||\psi(t^*)-\psi(t_0)||=H\delta$, con $ \psi(t_0)=x_0 $.
+		
+		Por otra parte, $ ||\psi(t^*)-\psi(t_0)||\leq ||\psi'(t)||\cdot |t^*-t_0|<H\delta $, lo cual es una contradicción.
+	\end{adjustwidth}
 	
-	Veamos que si $ \psi : I \longrightarrow\mathbb{R}^n $ solución de $ x'=f(t,x) $ pasando por $ (t_0,x_0) $, entonces $ \psi \in X $, es decir, $ ||\psi(t)-x_0||\leq H\delta \ \forall t \in I $.
-	
-	Probémoslo por reducción al absurdo. Supongamos que $ \exists H_1\in I : ||\psi(t_1)-x_0||>H\delta$, por ser $ \psi $ continua $ \exists t_2\in (t_0,t_1) $ en el cual $ ||\psi(t_2)-x_0||H\delta $.
-	
-	Sea $ t^* = \inf \{t : ||\psi(t)-x_0||=H\delta, t>t_0 \} \Rightarrow ||\psi(t^*)-\psi(t_0)||=H\delta$, con $ \psi(t_0)=x_0 $.
-	
-	Por otra parte, $ ||\psi(t^*)-\psi(t_0)||\leq ||\psi'(t)||\cdot |t^*-t_0|<H\delta $, lo cual es una contradicción.
-	
-	
-	Veamos que esto tampoco puede pasar. Supongamos que $ \varphi_1: I_1\longrightarrow\mathbb{R}^n, \varphi_2:I_2 \longrightarrow \mathbb{R}^n $ son soluciones de $ x'=f(t,x) $ pasando por $ (t_0,x_=) $ y $ \exists t\in I_1\cap I_2 : \varphi_1(t)\neq \varphi_2(t) $.
-	
-	Sea por ejemplo $ t>t_0 $. Sea $ t_1=\inf \{t \in I_1\cap I_2 :t>t_0, \varphi_1(t)\neq \varphi_2(t)  \} $.
-	
-	Por definición de ínfimo $ \varphi_1(t)=\varphi_2(t) \ \forall t \in [t_0, t_1) $ y además $ \varphi_1(t_1)=\lim\limits_{t\to t_1^-} \varphi_1(t) $ por ser $ \varphi_1 $ continua.
-	
-	$ \varphi_1(t_1)=\lim\limits_{t\to t_1^-} \varphi_1(t)=\lim\limits_{t\to t_1^-} \varphi_2(t)= \varphi_2(t_1) $.
-	
-	Entonces $ \varphi_1(t)=\varphi_2(t) \ \forall t \in [t_0,t_1], \varphi_1(t_1)=\varphi_2(t_1)=x_1 $.
-	
-	Hacemos en $ (t_1, x_1) $ lo mismo que en $ (t_0,x_0) $ (construyo el rectángulo, etc...) y llego a que en $ (t_1-\delta_1, t_1+\delta _1), \varphi_1(t)=\varphi_2(t) $ y esto NO es posible ya que, por construcción, $ t_1=\inf \{t\in I_1\cap I_2 : t>t_0, \varphi_1(t)\neq \varphi_2(t)\} $.
+	¿Podría existir otra solución distinta que pasase por el punto?
+	\begin{adjustwidth}{1cm}{}
+		Veamos que esto tampoco puede pasar. Supongamos que $ \varphi_1: I_1\longrightarrow\mathbb{R}^n, \varphi_2:I_2 \longrightarrow \mathbb{R}^n $ son soluciones de $ x'=f(t,x) $ pasando por $ (t_0,x_0) $ y $ \exists t\in I_1\cap I_2 : \varphi_1(t)\neq \varphi_2(t) $.
+		
+		Sea por ejemplo $ t>t_0 $. Sea $ t_1=\inf \{t \in I_1\cap I_2 :t>t_0, \varphi_1(t)\neq \varphi_2(t)  \} $.
+		
+		Por definición de ínfimo $ \varphi_1(t)=\varphi_2(t) \ \forall t \in [t_0, t_1) $ y además $ \varphi_1(t_1)=\lim\limits_{t\to t_1^-} \varphi_1(t) $ por ser $ \varphi_1 $ continua.
+		
+		$ \varphi_1(t_1)=\lim\limits_{t\to t_1^-} \varphi_1(t)=\lim\limits_{t\to t_1^-} \varphi_2(t)= \varphi_2(t_1) $.
+		
+		Entonces $ \varphi_1(t)=\varphi_2(t) \ \forall t \in [t_0,t_1], \varphi_1(t_1)=\varphi_2(t_1)=x_1 $.
+		
+		Hacemos en $ (t_1, x_1) $ lo mismo que en $ (t_0,x_0) $ (construimos el rectángulo, etc...) y llegamos a que en $ (t_1-\delta_1, t_1+\delta _1), \varphi_1(t)=\varphi_2(t) $ y esto NO es posible ya que, por construcción, $ t_1=\inf \{t\in I_1\cap I_2 : t>t_0, \varphi_1(t)\neq \varphi_2(t)\} $.
+	\end{adjustwidth}
 \end{proof}
-
-
+\pagebreak
 \section{Tema 3.}
 BEGIN PRADA 6/3
 \begin{example}
@@ -1087,80 +1092,68 @@ BEGIN PRADA 6/3
 \end{example}
 
 \begin{note}
-	Los teoremas de Cauchy-Peano como Picard-Lipschitz definen existencia y unicidad de soluciones a nivel local, en un entorno arbitrariamente pequeño. Son preguntas naturales: \begin{itemize}
+	Los teoremas de Cauchy-Peano y Picard-Lipschitz definen existencia y unicidad de soluciones a nivel local, en un entorno arbitrariamente pequeño. Son preguntas naturales: \begin{itemize}
 		\item ¿Cuál es el mayor intervalo en el que están definidas esas soluciones?
 		\item ¿Hasta donde puedo prolongar las mismas?
 	\end{itemize}
 \end{note}
 \subsection{Prolongación de soluciones. Soluciones maximales.}
 \begin{definition}
-	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
-	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
-	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
-	Sean además $ \varphi_1:I_1\longrightarrow \mathbb{R} $ y  $ \varphi_2:I_2\longrightarrow \mathbb{R} $ soluciones de dicha ecuación diferencial. Diremos que $ \varphi_2 $ es una prolongación de $ \varphi_1 $ si:
+	Sean además $ \varphi_1:I_1\longrightarrow \mathbb{R} $ y  $ \varphi_2:I_2\longrightarrow \mathbb{R} $ soluciones de dicha ecuación diferencial. Diremos que $ \varphi_2 $ es una \emph{prolongación} de $ \varphi_1 $ si:
 	\begin{enumerate}
 		\item $ I_1\subseteq I_2 $
-		\item $ \varphi_1(t) =\varphi_2(t) \forall t \in I_1$
+		\item $ \varphi_1(t) =\varphi_2(t) \ \forall t \in I_1$
 	\end{enumerate}
 
-	Además, si $ I_1 \varsubsetneq I_2 $ diremos que $ \varphi_2 $ es una prolongación propia de $ \varphi_1 $.
+	Además, si $ I_1 \varsubsetneq I_2 $ diremos que $ \varphi_2 $ es una \emph{prolongación propia} de $ \varphi_1 $.
 \end{definition}
 \begin{note}
 	Una solución es prolongación de si misma, pero no es prolongación propia.
 \end{note}
 \begin{definition}
-	Si $ \varphi $ es solución de una ecuación diferencial, diremos que $ \varphi $ es maximal si no admite prolongación propia. En este caso, el intervalo de definición es llamado intervalo maximal.
+	Si $ \varphi $ es solución de una ecuación diferencial, diremos que $ \varphi $ es una \emph{solución maximal} si no admite prolongación propia. En este caso, el intervalo de definición es llamado \emph{intervalo maximal}.
 \end{definition}
 \begin{lemma}[Lema de Zorn]
 	Todo conjunto parcialmente ordenado no vacío, en el que toda cadena (subconjunto parcialmente ordenado) admite cota superior, contiene elementos maximales.
 \end{lemma}
 \begin{theorem}
-	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
-	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
-	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
 	Dado $ (t_0,x_0)\in A $, existe una solución maximal de la ecuación diferencial que pasa por $ (t_0,x_0) $.
 	
 \end{theorem}
 \begin{proof} \ \\	
-	Haremos uso del Lema de Zorn. Representaremos las soluciones de la ecuación diferencial mediante el par $ (I,\varphi) $ donde $ \varphi $ es la solución e $ I $ su intervalo de definición.
+	Haremos uso del lema de Zorn. Representaremos las soluciones de la ecuación diferencial mediante el par $ (I,\varphi) $ donde $ \varphi $ es la solución e $ I $ su intervalo de definición.
 	
 	En este conjunto definimos la relación de orden parcial "ser prolongación". Si $ \psi $ es prolongación de $ \varphi $:
 	\[ (I,\varphi)\leq (J,\psi)\Leftrightarrow I\subseteq J, \varphi(t)=\psi(t) \ \forall t \in I \]
 	Ahora, sea $ (I_0,\varphi_0) $ solución de $ x'=f(t,x) $ y veamos que se puede prolongar hasta una solución maximal.
 	
-	Trabajamos solo con soluciones que sean prolongación de $ \varphi_0 $. Es un conjunto no vacío, ya que $ (I_0,\varphi_0) $ es prolongación de si mismo.Utilizamos la relación de orden parcial definida anteriormente y comprobaremos que se cumplen las hipótesis del Lema de Zorn.
+	Trabajamos solo con soluciones que sean prolongación de $ \varphi_0 $. Es un conjunto no vacío, ya que $ (I_0,\varphi_0) $ es prolongación de si mismo. Utilizamos la relación de orden parcial definida anteriormente y comprobamos que se cumple la otra hipótesis del lema de Zorn:
 	
 	Sea $ \{(I_j,\varphi_j) \}_{j\in I} $ una cadena de ese conjunto y veamos que admite cota superior. Sea $ \varphi $ la función definida en $ I=\bigcup_{j\in I}I_j $ mediante $ \varphi(t)=\varphi_j(t) \forall j \in I $. $ \varphi $ es claramente cota superior de la cadena.
 	
-	Por tanto, por el lema de Zorn, existen elementos maximales que son las soluciones maximales que prolongan a $ \varphi_0 $.
-	
+	Por tanto, por el lema de Zorn, existen elementos maximales que son las soluciones maximales que prolongan a $ \varphi_0 $.	
 \end{proof}
-
 \begin{definition}
-	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
-	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
-	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
-	Sean $ \varphi_1:(a,b)\longrightarrow \mathbb{R}^n $ y $ \varphi_2:(c,d)\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y $ b\in(c,d) $, diremos que $ \varphi_2 $ es prolongación de $ \varphi_1 $ a través de $ b $.
+	Sean $ \varphi_1:(a,b)\longrightarrow \mathbb{R}^n $ y $ \varphi_2:(c,d)\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y $ b\in(c,d) $, diremos que $ \varphi_2 $ es \emph{prolongación de $ \varphi_1 $ a través de $ b $}.
 \end{definition}
-
 \begin{definition}[General]
-	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
-	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
-	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
-	Sean $ \varphi_1:I_1\longrightarrow \mathbb{R}^n $ y $ \varphi_2:I_2\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y existe $ q\in \text{Fr}(I_1) $ tal que $ q\in \mathring{I_2}$, diremos que $ \varphi_2 $ es prolongación de $ \varphi_1 $ a través de $ q $.
+	Sean $ \varphi_1:I_1\longrightarrow \mathbb{R}^n $ y $ \varphi_2:I_2\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y existe $ q\in \text{Fr}(I_1) $ tal que $ q\in \mathring{I_2}$, diremos que $ \varphi_2 $ es \emph{prolongación de $ \varphi_1 $ a través de $ q $}.
 \end{definition}
 \begin{theorem}[Teorema de prolongación]
-	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ continua:
-	\[ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n \]
-	con $  x'=f(t,x) $ su ecuación diferencial asociada.
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
+	
 	Además de estas condiciones habituales, pediremos que $ f\in L_{\text{loc}}(A,x) $, es decir, que $ f $ sea lipschitziana localmente.
 	
 	Si $ \varphi:(a,b)\longrightarrow\mathbb{R}^n $ es solución de la ecuación diferencial anterior, entonces;
-	\begin{enumerate}[i)]
+	\begin{enumerate}[\quad i)]
 		\item $ \varphi $ prolongable a través de $ b \Leftrightarrow \exists \lim\limits_{t\to b^-}\varphi(t)=p, \text{ con } (b,p) \in A $
 		\item $ \varphi $ prolongable a través de $ a \Leftrightarrow \exists \lim\limits_{t\to a^-}\varphi(t)=q, \text{ con } (a,q) \in A $
 	\end{enumerate}
@@ -1169,7 +1162,7 @@ BEGIN PRADA 6/3
 BEGIN JORGE 11/3
 
 \begin{proof}\ 
-	\begin{enumerate} [i)]
+	\begin{enumerate} [\quad i)]
 		\item "$\Rightarrow$" \\
 		Si $\varphi$ prolongable a través de $b$, entonces $\exists \varphi_2 : (a, d) \longrightarrow \mathbb{R}^n$ prolongación de $\varphi$ (es decir, $\varphi_2 = \varphi$ $\forall t \in (a, b)$, $b \in (a, b)$). Por ser $\varphi_2$ solución, $\varphi_2$ es continua por la izquierda en $t = b$, por lo que:
 		\[\lim\limits_{t \to b^-} \varphi_2(t) = \varphi_2(b) \text{, } \lim\limits_{t \to b^-} \varphi_2(t) = \lim\limits_{t \to b^-} \varphi(t)\]
@@ -1183,7 +1176,7 @@ BEGIN JORGE 11/3
 		
 		DIBUJO
 		
-		Como $\lim\limits_{t \to b^-} \varphi (t) = p$ y, por ser continua, es secuencialmente continua, lo que implica que existe una sucesión $\{t_m\} \longrightarrow b^-$ tal que $\{\varphi(t_n) \longrightarrow p\}$. Elegimos entonces un $n_0 \in \mathbb{N}$ tal que $\abs{t_{n_0} - b} < \delta$ y $(t_{n_0}, \varphi (t_{n_0})) \in \overline{B}$. Para la condición inicial $(t_{n_0}, \varphi (t_{n_0}))$ existe una solución única pasando por el punto definido en $[t_{n_0} - \delta, t_{n_0} + \delta]$ que denoto $\overline{\varPhi}$. Entonces la función:
+		Como $\lim\limits_{t \to b^-} \varphi (t) = p$ y, por ser continua, $ \varphi $ es secuencialmente continua, existe una sucesión $\{t_n\} \longrightarrow b^-$ tal que $\{\varphi(t_n) \longrightarrow p\}$. Elegimos entonces un $n_0 \in \mathbb{N}$ tal que $\abs{t_{n_0} - b} < \delta$ y $(t_{n_0}, \varphi (t_{n_0})) \in \overline{B}$. Para la condición inicial $(t_{n_0}, \varphi (t_{n_0}))$ existe una solución única pasando por el punto definido en $[t_{n_0} - \delta, t_{n_0} + \delta]$ que denoto $\overline{\varphi}$. Entonces la función:
 		\[\psi: (a, t_{n_0} + \delta] \longrightarrow \psi (t) = \begin{cases}
 		\varphi(t) &t \in (a, b) \\ 
 		\overline{\varphi} (t) &t \in [b, t_{n_0} + \delta).
@@ -1191,41 +1184,42 @@ BEGIN JORGE 11/3
 		Así, tenemos que $\psi$ es solución de $x' = f(t. x)$ y, de hecho, $\psi$ prolonga a $\varphi$ a través de $b$.
 		
 		DIBUJO
-		
+		\item Análogo.
 	\end{enumerate} 
 \end{proof}
 \begin{observation}
 	En primer lugar, la afirmación $i)$ es equivalente a decir:
 	\[\exists \{t_m\} \longrightarrow b^- : \exists \lim\limits_{t_n \to b^-} \varphi(t_n) = p \hspace{0.2cm} (b, p) \in A\]
-	Llega trabajar con una sucesión. Además, no es necesario pedir que $f \in L_{loc}(A, x)$, sin ella no podemos concluir la unicidad y la demostración sería mucho más complicada.
+	Llega trabajar con una sucesión. Además, no es necesario pedir que $f \in L_{loc}(A, x)$, simplemente sin ella no podemos concluir la unicidad y la demostración sería mucho más complicada.
 \end{observation}
 \begin{corollary}
-	Si $A$ está acotado, yo puedo prolongar hasta la frontera.
+	Si $A$ está acotado, la solución se puede prolongar hasta la frontera.
 \end{corollary}
 \begin{theorem}
 	(Teorema de la banda) \\
-	Dada $x' = f(t, x)$, $f: (t, x) \in \mathbb{R} \times \mathbb{R}^n \longrightarrow f(t, x) \in \mathbb{R}^n$ siendo $A = (a, b) \times \mathbb{R}^n$. Si se cumpla una de las siguientes condiciones:
+	Dada la ecuación diferencial $x' = f(t, x)$, con $f: (t, x) \in \mathbb{R} \times \mathbb{R}^n \longrightarrow f(t, x) \in \mathbb{R}^n$ siendo $A = (a, b) \times \mathbb{R}^n$. Si se cumple una de las siguientes condiciones:
 	\begin{enumerate}
-		\item  $f$ continua en $A$, $f \in L_k (A, x)$ ó
+		\item  $f$ continua en $A$, $f \in L_k (A, x)$.
 		\item  $f$ continua y acotada en $A$ ($f \in L{loc} (A, x)$).
 	\end{enumerate}
 	
 	DIBUJO
 	
-	entonces, fijado $(t_0, x) \in (a, b) \times \mathbb{R}^n$, la solución maximal que pasa por él, está definida en $(a, b)$.
+	entonces, fijado $(t_0, x_0) \in (a, b) \times \mathbb{R}^n$, la solución maximal que pasa por él, está definida en $(a, b)$.
 \end{theorem}
-\begin{observation}
+\begin{observation} \ 
 	\begin{enumerate}
 		\item No es necesario pedir $f \in L_{loc} (A, x)$.
-		\item $a$, $b$ no tienen porque ser finitos, es decir, puedo tener intervalos de la forma $(- \infty, b)$.
+		\item $a$, $b$ no tienen porque ser finitos, es decir, puede tratarse de intervalos de la forma $(- \infty, b)$.
 	\end{enumerate}
 \end{observation}
 \begin{theorem}
-	Dado $x' = f(t, x)$, $f: [a, b] \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Si se cumple una de las siguientes condiciones:
+	Dada la ecuación diferencial $x' = f(t, x)$, con $f: [a, b] \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Si se cumple una de las siguientes condiciones:
 	\begin{enumerate}
-		\item $f$ continua en $A = [a, b] \times \mathbb{R}^n$, $f \in L_k (A, x)$ ó
-		\item $f$ continua en $A$, $f \in L_{loc} (A, x)$ entonces, fijado $(t_0, x) \in A$ la solución pasando por ese punto y la solución maximal está definida en $[a, b]$. 
+		\item $f$ continua en $A = [a, b] \times \mathbb{R}^n$, $f \in L_k (A, x)$.
+		\item $f$ continua en $A$, $f \in L_{loc} (A, x)$.
 	\end{enumerate}
+	entonces, fijado $(t_0, x_0) \in A$ la solución maximal pasando por ese punto está definida en $[a, b]$. 
 \end{theorem}
 \begin{proof}\ \\
 	Definimos la siguiente función, donde $A \subset (c, d) \times \mathbb{R}^n$:
@@ -1239,93 +1233,56 @@ BEGIN JORGE 11/3
 		\item Si $f \in L_k(A, x) \Rightarrow g \in L_k ((c, d) \times \mathbb{R}^n)$
 		\item Si $f$ acotado y $f \in L_{loc} (A, x)$, entonces $g$ acotada y $g \in L_{loc} ((c, d) \times \mathbb{R}^n, x)$.
 	\end{enumerate}
-	Por tanto, fijado $(t_0, x_0) \in A \subset (c, d) \times \mathbb{R}^n$ existe la solución maximal pasando por $(t_0, x_0)$ y definida en $(c, d)$. Por tanto,
-	\[\varphi = \psi|_{[a, b]} \text{es la solución maximal}\]
-	de $x' = f(t, x)$ pasando por $(t_0, x_0)$.
+	Por tanto, fijado $(t_0, x_0) \in A \subset (c, d) \times \mathbb{R}^n$ existe la solución maximal pasando por $(t_0, x_0)$ y definida en $(c, d)$. Por tanto, $\varphi = \psi|_{[a, b]}$ es la solución maximal de $x' = f(t, x)$ pasando por $(t_0, x_0)$.
 	
 	DIBUJO
 	\end{proof}
-\subsection{Dependencia de la solución respecto de las soluciones iniciales.}
-
 BEGIN PRADA 13/03
 
-\begin{exercise}
-	Razona veracidad o falsedad:
-		\begin{enumerate}[\quad a)]
-			\item Si $ \varphi_1, \varphi_2 $ son soluciones de (1), definidas en $ [a, t_0], [t_0,b] $, y además sea $ \varphi_1(t_0)=\varphi_2(t_0) $, entonces $ \varphi $ definida en $ [a,b] $ como:
-			\[ \varphi(t)=\begin{cases}
-			\varphi_1(t), \quad t\in [a,t_0]\\
-			\varphi_2(t), \quad t\in [t_0,b]
-			\end{cases} \]
-			es solución de (1).
-			\item Sea (1), entonces toda solución maximal está definida en un abierto.
-		\end{enumerate}
-\end{exercise}
-\begin{proof}[Solución]\ 
-	\begin{enumerate}[\quad a)]
-			\item Verdadero. Veamos si $ \varphi $ es solución.
-			\begin{enumerate}[\quad i)]
-				\item $ (t,\varphi(t))\in A \forall t \in [a,b], ya que \begin{cases}
-				\forall t\in [a,t_0] \quad (t, \varphi_1(t)) \in A, \text{ ya que }\varphi_1 \text{ es solución.}\\
-				\forall t\in [t_0,b] \quad (t, \varphi_2(t)) \in A, \text{ ya que }\varphi_2 \text{ es solución.}\\
-				\text{Además, } \varphi_1(t)=\varphi_2(t).
-				\end{cases}$
-				\item $ \forall t \in [a,t_0) \exists \varphi_1'(t)$
-				
-				$ \forall t \in []t_0,b) \exists \varphi_2'(t) $
-				
-				Veamos si existe la derivada en $ t_0 $, utilizando la continuidad de $ \varphi_1 $ y $ \varphi_2 $:
-				\[ \lim\limits_{t \to t_0^-} \varphi'_1(t)=\lim\limits_{t \to t_0^-} f(t, \varphi_1(t))=f(t_0,\varphi_1(t_0)) \]
-				\[ \lim\limits_{t \to t_0^+} \varphi'_2(t)=\lim\limits_{t \to t_0^+} f(t, \varphi_2(t))=f(t_0,\varphi_2(t_0)) \]
-				Como $ \varphi_1(t_0)=\varphi_2(t_0) \Rightarrow \lim\limits_{t \to t_0^-} \varphi'(t)=\lim\limits_{t \to t_0^+} \varphi'(t)$, y $\varphi $ continua en $ t_0 $, entonces $ \exists \varphi'(t_0) $
-				\item Inmediata visto lo anterior.
-			\end{enumerate} 
-		\item Probemos que es falso por reducción al absurdo. Supongamos que está definida en un intervalo de la forma $ (a,b] $.
-		Como $ A $ es abierto, $ (b,\varphi(b))\in A \Rightarrow (b, \varphi(b)) \in \mathring{A} $.
+\begin{proposition}
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
+	
+	Si $ \varphi_1, \varphi_2 $ son soluciones de la ecuación, definidas en $ [a, t_0]$ y $ [t_0,b] $, respectivamente, y además $ \varphi_1(t_0)=\varphi_2(t_0) $, entonces $ \varphi $ definida en $ [a,b] $ como:
+	\[ \varphi(t)=\begin{cases}
+	\varphi_1(t), \quad t\in [a,t_0]\\
+	\varphi_2(t), \quad t\in [t_0,b]
+	\end{cases} \]
+	es solución de la ecuación diferencial.
+\end{proposition}
+\begin{proof}\ \\
+	Veamos que $ \varphi $ es solución por definición:
+	\begin{enumerate}[\quad i)]
+		\item $ (t,\varphi(t))\in A \ \forall t \in [a,b], $ ya que $ \begin{cases}
+		\forall t\in [a,t_0] \quad (t, \varphi_1(t)) \in A, \text{ ya que }\varphi_1 \text{ es solución.}\\
+		\forall t\in [t_0,b] \quad (t, \varphi_2(t)) \in A, \text{ ya que }\varphi_2 \text{ es solución.}\\
+		\text{Además, } \varphi_1(t)=\varphi_2(t).
+		\end{cases}$
+		\item $ \forall t \in [a,t_0) \ \exists \varphi_1'(t)$
 		
-		Estamos en la hipótesis de Cauchy-Peano. Por lo tanto, pasando por $ (b, \varphi(b)) $ existe solución. Podemos construir una prolongación que sea solución (por el apartado a) y entonces no es maximal.
-		\end{enumerate}
+		$ \forall t \in [t_0,b) \ \exists \varphi_2'(t) $
+		
+		Veamos si existe la derivada en $ t_0 $, utilizando la continuidad de $ \varphi_1 $ y $ \varphi_2 $:
+		\[ \lim\limits_{t \to t_0^-} \varphi'_1(t)=\lim\limits_{t \to t_0^-} f(t, \varphi_1(t))=f(t_0,\varphi_1(t_0)) \]
+		\[ \lim\limits_{t \to t_0^+} \varphi'_2(t)=\lim\limits_{t \to t_0^+} f(t, \varphi_2(t))=f(t_0,\varphi_2(t_0)) \]
+		Como $ \varphi_1(t_0)=\varphi_2(t_0) \Rightarrow \lim\limits_{t \to t_0^-} \varphi'(t)=\lim\limits_{t \to t_0^+} \varphi'(t)$, y $\varphi $ continua en $ t_0 $, entonces efectivamente existe $ \varphi'(t_0) $.
+		\item Inmediata visto lo anterior.
+	\end{enumerate} 
 \end{proof}
+\begin{proposition}
+	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
+	
+	Entonces, toda solución maximal está definida en un abierto.
+\end{proposition}
+\begin{proof}\ \\
+	Probémoslo por reducción al absurdo. Supongamos que está definida en un intervalo de la forma $ (a,b] $.
+	Como $ A $ es abierto, $ (b,\varphi(b))\in A \Rightarrow (b, \varphi(b)) \in \mathring{A} $.
+	
+	Estamos en la hipótesis del Teorema de Cauchy-Peano. Por lo tanto, pasando por $ (b, \varphi(b)) $ existe solución. Podemos construir una prolongación que sea solución (por el apartado a) y entonces no es maximal.
+\end{proof}
+
 \pagebreak
 \section{Tema 4.}
 \subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
-\begin{definition}
-	Sea $ f:A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow \mathbb{R}^n$
-	
-	Se llama Ecuación Diferencial Ordinaria de primer orden (solo aparece la primera derivada) en forma normal ($ x' $ aparece separada en uno de los miembros de la ecuación) relativa a la función $ f $ a la expresión $ x'=f(t,x) $.
-\end{definition}
-\begin{definition}
-	Dada $ \varphi : t\in I\subset \mathbb{R} \longrightarrow \varphi(t)\in \mathbb{R}^n  $, con $ \varphi $ definida en $ I $ un intervalo cualquiera.
-	
-	Decimos que $ \varphi $ es solución de $ x'=f(t,x) $ si verifica:
-	\begin{enumerate}[i)]
-		\item $(t,\varphi(t)) \in A, \forall t \in I$.
-		\item $ \exists \varphi'(t), \forall t\in I $. (Si $ I $ contiene a uno de sus extremos entenderemos la condición como la existencia de la derivada lateral)
-		\item $ \varphi'(t)=f(t,\varphi(t)), \forall t \in I $.
-	\end{enumerate}
-\end{definition}
-\begin{observation}
-	\[ \varphi : t\in\mathbb{R} \longrightarrow\mathbb{R}^n\]
-	\[ t \longmapsto (\varphi_1(t), \dots \varphi_n(t)) \]
-	Por tanto, $ \varphi'(t)=f(t,\varphi(t)) $ significa lo siguiente: 
-	\[ \varphi'(t)=(\varphi'_1(t), \dots,\varphi'_n(t))  \]
-	\[ f(t,(x_1, \dots , x_n))=(f_1(t, x_1, \dots , x_n), \dots , f_n(t,x_1, \dots , x_n) \]
-	\[ \begin{pmatrix}
-	\varphi'_1(t) \\
-	\vdots \\
-	\varphi'_n(t)
-	\end{pmatrix}=
-	 \begin{pmatrix}
-	 f_1(t, \varphi_1(t), \dots, \varphi_n(t))\\
-	 \vdots \\
-	 f_n(t,\varphi_1(t), \dots, \varphi_1(t))
-	 \end{pmatrix} 
-	 \text{, i.e: }\begin{cases}
-	 \varphi'_1(t)=f_1(t, \varphi_1(t), \dots, \varphi_n(t))\\
-	 \qquad\qquad\qquad\vdots\\
-	 \varphi'_n(t)=f_n(t, \varphi_1(t), \dots, \varphi_n(t))
-	 \end{cases}\]
-\end{observation}
 \subsubsection{EDOs de variables separadas.}
 Son ecuaciones de la forma $ x'=\frac{\partial x}{\partial t}=h(t)g(x) $. 
 \paragraph{Método de resolución}
@@ -1354,10 +1311,12 @@ Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $: REVISAR
 		\item Resolver $ u'(t)=\frac{g(u)-u}{t} $, que es una EDO de variables separadas.
 	\end{enumerate}
 
-\subsection{EDOs reducibles a homogéneas.}
+\subsubsection{EDOs reducibles a homogéneas.}
 
 
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
+
+\pagebreak
 \section{Tema 5. Sistemas de ecuacións lineais. Propiedades das solucións. Matriz fundamental.}
 BEGIN JORGE 18/03
 Consideramos el sistema lineal en $\mathbb{R}^n$.
@@ -1482,7 +1441,39 @@ BEGIN PRADA 20/03
 	\end{enumerate}
 \end{theorem}
 \begin{proof}\ \\
-	Se hará en un laboratorio COMPLETAR.
+	\begin{enumerate}
+		\item $ i) \Rightarrow ii) $. \\
+		\begin{enumerate}[\quad a)]
+			\item Forma 1: \\
+			Recordemos que $ \phi (t)= \begin{pmatrix}
+			\varphi_1(t) & ... & \varphi_n(t)
+			\end{pmatrix} $
+			
+			Supongamos que existe $ t_1 $ tal que  $ \det(\phi)(t_1)=0\Rightarrow \{ \varphi_1(t_1), \cdots \varphi_n (t_1) \} $ son vectores de $ \mathbb{R}^n  $ linealmente dependientes. Es decir, existen $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no todos nulos tal que $ \lambda_1 \varphi_1 + \cdots +\lambda_n\varphi_n=0 $.
+			
+			Sea $ \psi(t)=\lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) $. $ \psi $ es solución de $ x'=A(t)x $ (por la estructura de espacio vectorial de $ S $) pasando por $ (t_1,\psi(t_1))=(t_1,0) $.
+			
+			Pero $ x(t)=0 $ es solución de $ x'=A(t)x$ pasando por $ (t_1,0) $.
+			Por la unicidad de la solución $ \psi(t)=0 \ \forall t \in I$. Es decir, $ \lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) =0 \ \forall t \in I $. Como   $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no son  todos nulos, tenemos que $ \phi(t) $ no es matriz fundamental.
+			\item Forma 2 (Reducción al absurdo): \\
+			Si $ \phi(t) $ es matriz fundamental, entonces $ \phi(t)=(\varphi_1(t), ... , \varphi_n(t)) $ base de $ S $.
+			Veamos si xiste un $ t_1 \in I : \det(\phi(t_1))=0$.
+			Entonces $ F:\varphi\in S\longrightarrow \varphi(t_1)\in  \mathbb{R}^n $ isomorfismo lineal, es decir, $ \{ \varphi_1(t_1), ... , \varphi_n(t_n) \}  $ base de $ \mathbb{R}^n $ pero no puede ser ya que $ \det(\phi(t_1))=0 \Rightarrow \{ \varphi_1(t_1), ... , \varphi_n(t_n) \} $ son linealmente dependientes.
+		\end{enumerate}
+	\item $ ii) \Rightarrow iii) $. \\
+	Trivial
+	\item $ iii) \Rightarrow i) $. \\
+	Supongamos que existe un $ t_0 \in I : \det \phi (t_0)\neq 0 $. Por lo tanto, las columnas de $ \phi(t_0) $ son linealmente independientes y forman una base de $ \mathbb{R}^n $.
+	
+	Sea el isomorfismo $ F:\varphi\in S\longrightarrow \varphi(t_0)\in \mathbb{R}^n $. 
+	
+	$ \qquad F^{-1}(\varphi_1(t_0))=\varphi_1 $ es solución de $ x'=A(t)x $ pasando por $ (t_0,\varphi_1(t_0)) $ 
+	
+	$ \qquad \qquad \vdots $ 
+	
+	$ \qquad F^{-1}(\varphi_n(t_0))=\varphi_n $ es solución de $ x'=A(t)x $ pasando por $ (t_0,\varphi_n(t_0)) $ \\
+	Por tanto, $ \{ \varphi_1, \cdots, \varphi_n \} $ base de $ S $ y $ \phi(t) $ es matriz fundamental. 
+	\end{enumerate}
 \end{proof}
 \begin{definition}
 	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es principal en $ t_0\in I $ si $ \phi(t_0)=I_n $
@@ -1513,5 +1504,62 @@ BEGIN PRADA 20/03
 		
 		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.
 	\end{enumerate}
+\end{proof}
+\section{Tema 6.}
+\subsection{Sistemas de ecuaciones lineales con coeficientes constantes.}
+\begin{definition}
+	Llamamos \emph{sistema lineal de coeficientes constantes} a una ecuación diferencial de la forma:
+	\[ x'=A(t)x+b(t) \]
+	con $ x'\in \mathbb{R}^n, x\in\mathbb{R}^n $, $ A\in M_{n\times n} $ constante y $ b:t\in I\subset\mathbb{R}\longrightarrow b(t)\in\mathbb{R}^n $ continua.
+\end{definition}
+\begin{definition}
+	Sea $ M \in M_{n\times n} $, llamamos \emph{$ e^M $} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
+	¿Es esta serie convergente?
+	\[ \sum_{n=0}^{\infty}\norm{\frac{1}{n!}M^n}=\sum_{n=0}^{\infty}\frac{1}{n!}\norm{M}^n=e^{\norm{M}} \]
+\end{definition}
+\begin{proposition}[Propiedades de la exponencial de una matriz] \ 
+	\begin{enumerate}[\quad i)]
+		\item $ e^0 =I, 0 \in M_{n\times n}$
+		\item Si $ AB=BA $, $ e^{A+B}=e^Ae^B=e^{B+A} $, con $ A,B\in M_{n\times n} $
+		\item $ e^{-A}=(e^A)^{-1} $
+	\end{enumerate}
+\end{proposition}
+\begin{theorem}
+	Si $ A\in M_{n\times n} $ constante, entonces $ e^{tA} $ es una matriz fundamental para $ x'=Ax $.
+\end{theorem}
+\begin{proof} \ \\
+	Tengo que demostrar dos casos:
+	\begin{enumerate}[\quad i)]
+		\item $ e^{tA} $ es matriz solución. 
+		
+		Para probarlo, usamos el resultado del ejercicio 2.6 de Series Funcionales. Tenemos que existe $ \frac{\partial}{\partial t}e^{tA} \forall t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $. Por el resultado, si $ \sum f_n $ converge puntualmente a $ f $, existe $ f_n'\forall n \in \mathbb{N} $ y converge uniformemente a $ g $, entonces existe $ f' $ y $ f'=g $.
+		
+		Entonces, para probar este apartado, vamos a ver:
+		\begin{enumerate}[\quad a)]
+			\item $ e^{tA} $ converge para $ t $ fijo.
+			\item La serie que resulta de derivar término a término converge uniformemente.
+			\item Existe $ \frac{\partial}{\partial t} (e^{tA}) $ y es la suma de la serie que resulta de derivar término a término.
+		\end{enumerate}
+		Para a), tenemos:
+		\[ e^{tA}=\sum_{n=0}^{\infty} \frac{1}{n!}t^nA^n=I+tA+\frac{t^2A^2}{2!}+\dots \]
+		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}(\norm{t}\norm{A})^n = e^{\abs{t}\norm{A}}\]
+		Para b), la serie que resulta de derivar término a término:
+		\[ 0+A+ \frac{2t}{2!}A^2+\dots =A+tA^2+\frac{t^2}{2!}A^3+\dots =\lim\limits_{k\to\infty} A(I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k)=A\lim\limits_{k\to\infty} (I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k) = Ae^{tA} \]
+		Por lo tanto la serie de las derivadas converge para cada $ t $ fijo a $ Ae^{tA} $.
+		Para c), veamos entonces que la serie converge uniformemente. Sea $ J $ un compacto cualquiera. Entonces existe $ \alpha : \forall t \in J \abs{t}\leq \alpha$.
+		
+		La serie de las derivadas $ \sum_{k=0}^{\infty} \frac{1}{k!}t^kA^{k+1} $ converge uniformemente en $ J $ ya que:
+		\[ \sum_{k=0}^{\infty} \norm{\frac{1}{k!}t^kA^{k+1}}\leq \sum_{k=0}^{\infty} \frac{1}{k!}\abs{t}^k\norm{A}^{k+1}\leq \sum_{k=0}^{\infty} \frac{1}{k!}p^k\norm{A}^{k+1} \]
+		con $ p=\max\{ \abs{t}, t\in J \} $. 
+		
+		Entonces la serie en norma, esta mayorada por una serie numérica convergente, por lo que por el criterio del mayorante, la serie es convergente uniformemente. Por tanto, existe $ \frac{\partial}{\partial t }e^{tA} $, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA} $ en cualquier compacto $ J\subset \mathbb{R} $.
+		
+		Por último, para c), como para dado $ t\in \mathbb{R} $, existe $ J $ compacto tal que $ t\in J $. Por tanto, existe $ \frac{\partial}{\partial t }e^{tA} \forall t \in \mathbb{R}$, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA}, t\in\mathbb{R}$.
+		
+		Así, $ e^{tA} $ es matriz solución.
+		
+		\item $ e^{tA} $ es fundamental.
+	\end{enumerate}
+	
 \end{proof}
 \end{document}
