@@ -1318,7 +1318,7 @@ Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $: REVISAR
 
 \pagebreak
 \section{Tema 5. Sistemas de ecuacións lineais. Propiedades das solucións. Matriz fundamental.}
-BEGIN JORGE 18/03
+BEGIN JORGE 18/03 \\
 Consideramos el sistema lineal en $\mathbb{R}^n$.
 \[x'= A(t) + b(t)\]
 Así que, $A$ y $b$ aplicaciones tal que:\\
@@ -1374,13 +1374,27 @@ lo que también quiere decir que:
 		\item $f \in C([c, d] \times \mathbb{R}^n)$
 		\item $\norm{f(t, x) - f(t, y)} \leq k \norm{x - y}$
 	\end{enumerate}
-	ya que 
+	ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ y vemos que la solución maximal está definida en $I$. \\
+	Sea $t \in I$ fijado arbitrario y escojo un compacto $[c, d]/subset I$ tal que $t, t_0 \in [c, d]$ \\
+	\begin{center}
+		DIBUJO
+	\end{center}
+	Por el resultado probado tendría que la solución está definida en $[c, d]$ y, por tanto, en $t$. Si esto lo repito para todo $t \in I$, tenemos que la solución maximal está definida en $t \in I$.
 \end{proof}
-
+\begin{note}
+	El resultado es cierto aunque $I$ no sea abierto, es decir, la solución maximal estará definida en el intervalo donde $A$ y $b$ sean continuas.
+\end{note}
+\begin{theorem}
+	Sea el sistema homogéneo $x' = A(t) x$ con $I$ intervalo y $A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R})$ continua. El conjunto $S$ de soluciones del sistema es un espacio vectorial de dimensión $n$.
+\end{theorem}
+\begin{proof}
+	Definimos:
+	\begin{align*}
+		F : \ &S \longrightarrow \mathbb{R}^n \\
+		&\varphi \longrightarrow F(\varphi) = \varphi (t_0)
+	\end{align*}
+	con $t_0 \in I$ fijado. Tenemos que demostrar que: \\ \\
 BEGIN PRADA 20/03
-\begin{proof}\ \\
-	$ F:\varphi\in S\longrightarrow F(\varphi)=\varphi(t_=)\in \mathbb{R}^n $, para un $ t_0\in I $ fijado. 
-	Tenemos que demostrar:
 	\begin{enumerate}
 		\item $ S $ espacio vectorial. 
 		\begin{enumerate}[\quad i)]
@@ -1440,9 +1454,9 @@ BEGIN PRADA 20/03
 		\item $ \exists t_0 \in I, \det(\phi(t_0))\neq 0 $
 	\end{enumerate}
 \end{theorem}
-\begin{proof}\ \\
+\begin{proof}\
 	\begin{enumerate}
-		\item $ i) \Rightarrow ii) $. \\
+		\item $ i) \Rightarrow ii) $. 
 		\begin{enumerate}[\quad a)]
 			\item Forma 1: \\
 			Recordemos que $ \phi (t)= \begin{pmatrix}
@@ -1504,6 +1518,47 @@ BEGIN PRADA 20/03
 		
 		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.
 	\end{enumerate}
+	"$ \Rightarrow$": Sea $\psi (t)$ matriz fundamental y vemos que:
+	\[\Delta = \phi^{-1} (t) \psi(t)\]
+	verifica:
+	\begin{enumerate}
+		\item  $\psi = \phi \Delta$. Esto se debe a que:
+		\[\phi(t) \varOmega (t) = \phi(t) \phi^{-1}(t) \psi(t) = \psi(t) \]
+		\item  $\varOmega$ es constante. Para ver esto veamos que $\varOmega' = 0$.
+		\begin{align*}
+			\Delta' &= (\phi^{-1} \psi)' = (\phi^{-1})'\psi + \phi^{-1}\psi' \\ 
+			&= -\phi^{-1} \phi' \phi^{-1} \psi + \phi^{-1}\psi'\\
+			&= -\phi^{-1} A \phi \phi^{-1} \psi + \phi^{-1} \psi'\\
+			&= -\phi^{-1} A \psi + \phi^{-1} \psi' \\
+			&\stackrel{\psi' = A \psi}{=} -\phi^{-1} A \psi + \phi^{-1} A \psi = 0
+		\end{align*}
+		\item  $\varOmega$ es no singular. Esto se cumple debido a que:
+		\[det(\varOmega) = det(\phi^{-1} \psi) = det(\phi^{-1}) det(\psi) \neq 0\]
+		ya que $det(\phi^{-1}) \neq 0$, $det(\psi) \neq 0$.
+	\end{enumerate}
+\end{proof}
+Sea ahora el sistema completo (S.C.) $x' = A(t)x + b(t)$, tal que:
+\begin{align*}
+	A &: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R}) \\
+	b &: t \in I \subset \mathbb{R} \longrightarrow b(t) \in \mathbb{R}^n
+\end{align*}
+siendo $A$, $b$ continuas.\\
+Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax$. Sea además $S_C$ el conjunto de soluciones del sistema completo $x' = Ax + b$.
+\begin{theorem}
+	Sea $\varphi \in S_H$. Entonces tenemos que:
+	\begin{center}
+		$S_C = \{ \varphi^C + \varphi \ : \ \varphi^C \text{ solución particular del S.C. } x' = A(t)x + b \} = \varphi^C + S_H$
+	\end{center}
+\end{theorem}
+\begin{proof}\ \\ 
+	"$\subset$": Sea $\psi \in S_C$, tenemos entonces que $\psi = \varphi^C + (\psi - \varphi^C)$. Por tanto, sólo es necesario probar que $(\psi - \varphi^C) \in S_H$. Veámoslo: 
+	\[ (\psi - \varphi^C )' = \psi' - \varphi^C{'} \stackrel{\varphi^C \in S_C}{=} A \psi + b - \varphi^C \stackrel{\psi \in S_C}{=} A\psi + b - A \varphi^C - b = A (\psi - \varphi^C) \]
+	Obteniendo entonces que $\psi - \varphi^C$ es solución del sistema homogéneo.\\
+	"$\supset$": Tenemos en este caso que:
+	$\begin{rcases}
+		\varphi \text{solución del sistema homogéneo} \\
+		\varphi^C \text{solución particular completo}
+	\end{rcases}$
 \end{proof}
 \section{Tema 6.}
 \subsection{Sistemas de ecuaciones lineales con coeficientes constantes.}
