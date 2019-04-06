@@ -1360,6 +1360,63 @@ Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $: REVISAR
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 \section{Tema 5. Sistemas de ecuacións lineais. Propiedades das solucións. Matriz fundamental.}
 BEGIN JORGE 18/03
+Consideramos el sistema lineal en $\mathbb{R}^n$.
+\[x'= A(t) + b(t)\]
+Así que, $A$ y $b$ aplicaciones tal que:\\
+\begin{align*}
+	&A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n}(\mathbb{R}) \\ 
+	&b: t \in I \subset \mathbb{R} \longrightarrow b(t) \in \mathbb{R} \text{ $I$ intervalo}
+\end{align*}
+pediremos que $A$ y $b$ continuas.
+\[ \begin{pmatrix}
+x_1' \\
+\vdots \\
+x_n'  
+\end{pmatrix} = \begin{pmatrix}
+a_{11}(t) & \cdots & a_{1n}(t) \\
+\vdots & \ddots & \vdots \\
+a_{n1}(t) & \cdots & a_{nn}(t)
+\end{pmatrix} \begin{pmatrix}
+x_1 \\
+\vdots \\
+x_n
+\end{pmatrix} + \begin{pmatrix}
+b_1 \\
+\vdots \\
+b_n
+\end{pmatrix}\]
+lo que también quiere decir que:
+\[\begin{cases}
+	x_1' = &f_1(t, x_1, \dots, x_n) \\
+	&\vdots \\
+	x_n' = &f_n(t, x_1, \dots, x_n) 
+\end{cases}\]
+\begin{definition}
+	Si $b(t) = 0$ $\forall$ diremos que el sistema es homogéneo. Si $\exists t \in I$ diremos que el sistema es no hemogéneo o completo.
+\end{definition}
+\begin{theorem}
+	Sea $I$ intervalo abierto $I = (a, b)$ y $A$, $b$ funciones continuas en $I$. Entonces, fijado $(t_0, x_0) \in I \times \mathbb{R}^n$ existe solución para $x'= A(t)x + b(t)$ pasando por $(t_0, x_0)$, es única y la solución maximal definida en I.
+\end{theorem}
+\begin{proof}\ \\
+	Tomando
+	\[f:(t, x) \in I \times \mathbb{R}^n \longrightarrow \mathbb{R}^n\]
+	continua con $D = I \times \mathbb{R}^n$ abierto existe solución pasando por $(t_0, x_0) \in D$. Veamos la unicidad:
+	\[\frac{\partial f}{\partial x} (t, x) = A(t) \text{ continua} \Rightarrow f \in L_{loc} (D, x)\]
+	por lo que, por Picar-Lipschitz, $\forall (t_0, x_0) \in D$ existe solución única pasando por $(t_0, x_0)$. \\
+	Veamos que la solución maximal está definida en $I$. Para ello veremos si podemos aplicar el teorema de la banda. Para ello veremos si:
+	\begin{enumerate}
+		\item $f$ continua en $D$.
+		\item $f \in L_k (D, x)$.
+	\end{enumerate}
+	Ya tenemos que $f$ es continua por hipótesis. Vemos que $f$ es localmente Lipschitziana en $D$ respecto a la variable $x$ empezando porque:
+	\[\norm{f(t, x) - f(t, y)} = \norm{A(t)x + b(t) - A(t)y - b(t)} = \norm{A(t) (x-y)} \leq \norm{A(t)} \norm{x - y} \]
+	pero $A(t)$ no tiene porque estar acotado. Así, considero $[c, d] \subset I$ y utilizaremos el teorema de la banda cerrada. Para ello, veamos ahora que:
+	\begin{enumerate}
+		\item $f \in C([c, d] \times \mathbb{R}^n)$
+		\item $\norm{f(t, x) - f(t, y)} \leq k \norm{x - y}$
+	\end{enumerate}
+	ya que 
+\end{proof}
 
 BEGIN PRADA 20/03
 \begin{proof}\ \\
