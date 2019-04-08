@@ -1553,12 +1553,44 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax$. Sea además $S_C$ el 
 \begin{proof}\ \\ 
 	"$\subset$": Sea $\psi \in S_C$, tenemos entonces que $\psi = \varphi^C + (\psi - \varphi^C)$. Por tanto, sólo es necesario probar que $(\psi - \varphi^C) \in S_H$. Veámoslo: 
 	\[ (\psi - \varphi^C )' = \psi' - \varphi^C{'} \stackrel{\varphi^C \in S_C}{=} A \psi + b - \varphi^C \stackrel{\psi \in S_C}{=} A\psi + b - A \varphi^C - b = A (\psi - \varphi^C) \]
-	Obteniendo entonces que $\psi - \varphi^C$ es solución del sistema homogéneo.\\
+	Obteniendo entonces que $\psi - \varphi^C$ es solución del sistema homogéneo.\\ \\
 	"$\supset$": Tenemos en este caso que:
-	$\begin{rcases}
-		\varphi \text{solución del sistema homogéneo} \\
-		\varphi^C \text{solución particular completo}
-	\end{rcases}$
+	\begin{enumerate}
+		\item $\varphi$ solución del sistema homogéneo.
+		\item $\varphi^C$ solución particular completo.
+	\end{enumerate}
+	Veremos que estas dos condiciones implican que $\varphi + \varphi^C$ solución del sistema completo. Esto se debe a que:
+	\begin{center}
+		$(\varphi^C + \varphi)' = (\varphi^C)' + \varphi' = A\varphi^C + b + \varphi' \stackrel{\varphi' \in S_C}{=} A\varphi^C + b + A\varphi =
+		A(\varphi^C + \varphi) + b$ \\
+		$ \Rightarrow (\varphi^C + \varphi) \in S_C$
+	\end{center}
+\end{proof}
+\begin{theorem}[Fórmula de Lagrange o método de variación de constantes]
+	La solución de S.C. $x' = A(t)x + b(t)$ que pasa por $(t_0, x_0)$ viene dada por:
+	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \int_{t}^{t_0}\phi(t) \phi^{-1}(s) b(s) \ ds\]
+	donde $\phi(t)$ es matriz fundamental para el S.H.
+\end{theorem}
+\begin{proof}
+	La solución general de S.H. vendría dada por $x(t) = \phi (t) c$, $c \in \mathbb{R}^n$. Buscamos una solución de S.C. de la forma $x(t) = \phi (t) c(t)$, $c(t) \in \mathbb{R}^n$.\\
+	Para que sea solución del S.C. ha de verificar:
+	\begin{align*}
+		&\phi'(t)c(t) + \phi(t)c'(t) = A(t)\phi(t)c(t) + b(t) \\
+		\Leftrightarrow \ &A(t)\phi(t)c(t) + \phi(t)c'(t)= A(t)\phi(t)c(t) + b(t) \\
+		\Leftrightarrow \ &\phi(t)c'(t) = b(t) \Leftrightarrow \ c'(t) = \phi^{-1}(t) b(t)
+	\end{align*}
+	Por lo que:
+	\begin{align*}
+	& \int_{t_0}^{t} c'(t) ds = \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\\
+	\Leftrightarrow \ &c(t) - c(t_0) = \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\\
+	\Leftrightarrow \ &c(t) = c(t_0) + \int_{t_0}^{t} \phi^{-1}(t) b(t) ds
+	\end{align*}
+	Entonces:
+	\[x(t) = \phi(t) c(t_0) + \phi(t) \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\]
+	para que pase por $(t_0, x_0)$:
+	\[x_0 = x(t_0) = \phi (t_0) c(t_0) \Rightarrow c(t_0) = \phi^{-1}(t_0) x_0 \] 
+	por lo que:
+	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \phi(t) \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\]
 \end{proof}
 \section{Tema 6.}
 \subsection{Sistemas de ecuaciones lineales con coeficientes constantes.}
