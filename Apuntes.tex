@@ -1631,7 +1631,9 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax$. Sea además $S_C$ el 
 		\[ e^{tA}=\sum_{n=0}^{\infty} \frac{1}{n!}t^nA^n=I+tA+\frac{t^2A^2}{2!}+\dots \]
 		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}(\norm{t}\norm{A})^n = e^{\abs{t}\norm{A}}\]
 		Para b), la serie que resulta de derivar término a término:
-		\[ 0+A+ \frac{2t}{2!}A^2+\dots =A+tA^2+\frac{t^2}{2!}A^3+\dots =\lim\limits_{k\to\infty} A(I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k)=A\lim\limits_{k\to\infty} (I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k) = Ae^{tA} \]
+		\[ 0+A+ \frac{2t}{2!}A^2+\dots =A+tA^2+\frac{t^2}{2!}A^3+\dots =\lim\limits_{k\to\infty} A(I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k)
+		\]
+		\[=A\lim\limits_{k\to\infty} (I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k) = Ae^{tA} \]
 		Por lo tanto la serie de las derivadas converge para cada $ t $ fijo a $ Ae^{tA} $.
 		Para c), veamos entonces que la serie converge uniformemente. Sea $ J $ un compacto cualquiera. Entonces existe $ \alpha : \forall t \in J \abs{t}\leq \alpha$.
 		
@@ -1645,8 +1647,59 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax$. Sea además $S_C$ el 
 		
 		Así, $ e^{tA} $ es matriz solución.
 		
-		\item $ e^{tA} $ es fundamental.
+		\item $ e^{tA} $ es fundamental. Tomemos $t = 0$:
+		\[det(e^{tA}) = det(e^0) = det(I) = 1 \neq 0\]
+		Por tanto, por el teorema de caracterización de matrices fundamentales, $e^{tA}$ es fundamental.
 	\end{enumerate}
-	
+\end{proof}
+\begin{theorem}
+	Sea $x' = Ax$ con $A \in M_{n \times n}$ constante. La solución para el sistema homogéneo pasando por $(t_0, x_0)$ viene dada por:
+	\[x(t) = e^{(t - t_0)A}x_0\]
+\end{theorem}
+\begin{proof}\ \\
+	Sabemos que, en el caso general, $x(t) = \phi (t) \phi^{-1} (t_0) x_0$. Como en nuestro caso tenemos que $\phi (t) = e^{tA}$:
+	\[x(t) = e^{tA}(e^{t_0A})^{-1}x_0 \stackrel{3)}{=} e^{tA}(e^{-t_0A})x_0 \stackrel{tA \text{ y } t_0A \text{ conmutan}}{=} e^{(t - t_0)A}.\]
+\end{proof}
+\begin{theorem}
+	Sea $x' = Ax + b(t)$ con $A \in M_{n \times n}$ constante y:
+	\[b:I \subset \mathbb{R} \longrightarrow \mathbb{R}^n\]
+	continua con $I$ abierto. La solución pasando por $(t_0, x_0)$ vendrá dada por:
+	\[x(t) = e^{(t - t_0)A}x_0 + \int_{t}^{t_0}e^{(t - s)A}b(s) \ ds.\]
+\end{theorem}
+\begin{proof}
+	Por la fórmula de Lagrange y teniendo en cuenta que $\phi (t) = e^{tA}$, tenemos que:
+	\begin{align*}
+	x(t) =& \ e^{tA}(e^{t_0A})^{-1}x_0 + \int_{t}^{t_0} e^{tA}(e^{sA})^{-1} b(s) \ ds  \\
+	\stackrel{1)}{=}& \ e^{tA}e^{-t_0A}x_0 + \int_{t}^{t_0}e^{tA}e^{-sA} b(s) \ ds \\
+	\stackrel{2)}{=}& \ e^{(t-t_0)A}x_0 + \int_{t}^{t_0}e^{(t-s)A} b(s) \ ds
+	\end{align*}
+	Tenemos que se cumple la igualdad $1)$ ya que $(e^A)^{-1} = e^{-A}$ y la igualdad $2)$ ya que $t_0A$ y $tA$ conmutan y porque $tA$ y $sA$ también conmutan.
+\end{proof}
+\begin{theorem}
+	Si $A$ y $B$ son semejantes ($\exists P$ no singular tal que $A = PBP^{-1}$) entonces:
+	\[e^A = Pe^BP^{-1}\]
+	con $P$ no singular.
+\end{theorem}
+\begin{proof} \ \\
+	Tenemos que:
+	\[e^A = \lim\limits_{k \to +\infty} (I + A + \frac{1}{2!}A^2 + \dots + \frac{1}{k!}A^k)\]
+	y como:
+	\[A = PBP^{-1} \text{, } A^2 = (PBP^{-1})(PBP^{-1}) = PB^2P^{-1}\]
+	entonces:
+	\begin{align*}
+		e^A =& \lim\limits_{k \to +\infty} (PIP^{-1} + PBP^{-1} + \frac{1}{2!}PB^2P^{-1} + \dots + \frac{1}{k!}PB^kP^{-1}) \\
+		=& \lim\limits_{k \to +\infty} P(I + B + \frac{1}{2!}B^2 + \dots + \frac{1}{k!}B^k)P^{-1} \\
+		=& P(\lim\limits_{k \to +\infty} (I + B + \frac{1}{2!}B^2 + \dots + \frac{1}{k!}B^k))P^{-1} = Pe^BP^{-1}
+	\end{align*}
+\end{proof}
+\begin{corollary}
+	Si $A$ es una matriz $M_{n \times n}$ constante y $J$ es su forma canónica de Jordan asociada ($A=PJP^{-1}$), entonces:
+	\[e^{tA} = Pe^{tJ}P^{-1}\]
+	con $P$ no singular.
+\end{corollary}
+\begin{proof}\ \\
+	Como $A=PJP^{-1}$, entonces $tA$, $tJ$ son semejantes, ya que $A=PJP^{-1}$ implica $tA=P(tJ)P^{-1}$. Aplicando el teorema anterior:
+	\[e^{tA} = Pe^{tJ}P^{-1}\]
+	concluyendo entonces la prueba.
 \end{proof}
 \end{document}
