@@ -960,7 +960,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	Sea $(M, d)$ un espacio métrico completo y $T: M \longrightarrow M$ una $\lambda$-contracción entonces $T$ tiene un único punto fijo, es decir,
 	\[\exists! \, x \in M \,/\, T(x) = x\]
 \end{theorem}
-\begin{theorem}[Teorema de Picard - Lipschitz]
+\begin{theorem}[Teorema de Picard - Lipschitz] \label{picard}
 	Sea $f : A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ y $x' = f(t, x)$ su ecuación diferencial asociada. Si:
 	\begin{enumerate}[\quad i)]
 		\item $A$ abierto.
@@ -1195,8 +1195,7 @@ BEGIN JORGE 11/3
 \begin{corollary}
 	Si $A$ está acotado, la solución se puede prolongar hasta la frontera.
 \end{corollary}
-\begin{theorem}
-	(Teorema de la banda) \\
+\begin{theorem}[Teorema de la banda]\label{banda} \ \\ 
 	Dada la ecuación diferencial $x' = f(t, x)$, con $f: (t, x) \in \mathbb{R} \times \mathbb{R}^n \longrightarrow f(t, x) \in \mathbb{R}^n$ siendo $A = (a, b) \times \mathbb{R}^n$. Si se cumple una de las siguientes condiciones:
 	\begin{enumerate}
 		\item  $f$ continua en $A$, $f \in L_k (A, x)$.
@@ -1213,7 +1212,7 @@ BEGIN JORGE 11/3
 		\item $a$, $b$ no tienen porque ser finitos, es decir, puede tratarse de intervalos de la forma $(- \infty, b)$.
 	\end{enumerate}
 \end{observation}
-\begin{theorem}
+\begin{theorem}[Teorema de la banda cerrada] \label{bandacerrada} \ \\
 	Dada la ecuación diferencial $x' = f(t, x)$, con $f: [a, b] \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Si se cumple una de las siguientes condiciones:
 	\begin{enumerate}
 		\item $f$ continua en $A = [a, b] \times \mathbb{R}^n$, $f \in L_k (A, x)$.
@@ -1317,16 +1316,16 @@ Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $: REVISAR
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
 \pagebreak
-\section{Tema 5. Sistemas de ecuacións lineais. Propiedades das solucións. Matriz fundamental.}
+\section{Tema 5. Sistemas de ecuaciones lineales. Propiedades de las soluciones. Matriz fundamental.}
 BEGIN JORGE 18/03 \\
 Consideramos el sistema lineal en $\mathbb{R}^n$.
 \[x'= A(t) + b(t)\]
-Así que, $A$ y $b$ aplicaciones tal que:\\
+En el que $A$ y $b$ son aplicaciones continuas cumpliendo:\\
 \begin{align*}
 	&A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n}(\mathbb{R}) \\ 
-	&b: t \in I \subset \mathbb{R} \longrightarrow b(t) \in \mathbb{R} \text{ $I$ intervalo}
+	&b: t \in I \subset \mathbb{R} \longrightarrow b(t) \in \mathbb{R}^n \text{, con $I$ intervalo}
 \end{align*}
-pediremos que $A$ y $b$ continuas.
+Matricialmente:
 \[ \begin{pmatrix}
 x_1' \\
 \vdots \\
@@ -1340,65 +1339,66 @@ x_1 \\
 \vdots \\
 x_n
 \end{pmatrix} + \begin{pmatrix}
-b_1 \\
+b_1(t) \\
 \vdots \\
-b_n
+b_n(t)
 \end{pmatrix}\]
 lo que también quiere decir que:
 \[\begin{cases}
-	x_1' = &f_1(t, x_1, \dots, x_n) \\
-	&\vdots \\
-	x_n' = &f_n(t, x_1, \dots, x_n) 
+	x_1' = f_1(t, x_1, \dots, x_n)=a_{11}(t)x_1+\dots+a_{1n}(t)x_n+b_1(t) \\
+	\qquad \vdots \\
+	x_n' = f_n(t, x_1, \dots, x_n)=a_{n1}(t)x_1+\dots+a_{nn}(t)x_n+b_n(t) 
 \end{cases}\]
 \begin{definition}
-	Si $b(t) = 0$ $\forall$ diremos que el sistema es homogéneo. Si $\exists t \in I$ diremos que el sistema es no hemogéneo o completo.
+	Si $b(t) = 0$ para todo $ t $ diremos que es un \emph{sistema homogéneo}. Si $\exists t \in I$, para el que $ b(t)\neq0 $ diremos que es un \emph{sistema no homogéneo o completo}.
 \end{definition}
 \begin{theorem}
-	Sea $I$ intervalo abierto $I = (a, b)$ y $A$, $b$ funciones continuas en $I$. Entonces, fijado $(t_0, x_0) \in I \times \mathbb{R}^n$ existe solución para $x'= A(t)x + b(t)$ pasando por $(t_0, x_0)$, es única y la solución maximal definida en I.
+	Sea $I = (a, b)$ intervalo abierto y $A(t)$, $b(t)$ funciones continuas en $I$. Entonces, fijado $(t_0, x_0) \in I \times \mathbb{R}^n$ existe solución para $x'= A(t)x + b(t)$ pasando por $(t_0, x_0)$, es única y la solución maximal está definida en $ I $.
 \end{theorem}
 \begin{proof}\ \\
 	Tomando
-	\[f:(t, x) \in I \times \mathbb{R}^n \longrightarrow \mathbb{R}^n\]
+	\[f:(t, x) \in I \times \mathbb{R}^n \longrightarrow f(t,x)=A(t)x+b(t)\in\mathbb{R}^n\]
 	continua con $D = I \times \mathbb{R}^n$ abierto existe solución pasando por $(t_0, x_0) \in D$. Veamos la unicidad:
 	\[\frac{\partial f}{\partial x} (t, x) = A(t) \text{ continua} \Rightarrow f \in L_{loc} (D, x)\]
-	por lo que, por Picar-Lipschitz, $\forall (t_0, x_0) \in D$ existe solución única pasando por $(t_0, x_0)$. \\
-	Veamos que la solución maximal está definida en $I$. Para ello veremos si podemos aplicar el teorema de la banda. Para ello veremos si:
+	por lo que, por el teorema \ref{picard} de Picard-Lipschitz, para todo $ (t_0, x_0) \in D$ existe solución única pasando por $(t_0, x_0)$. \\
+	Veamos que la solución maximal está definida en $I$. Para ello veremos si podemos aplicar el teorema \ref{banda} de la banda. Comprobemos las hipótesis:
 	\begin{enumerate}
 		\item $f$ continua en $D$.
 		\item $f \in L_k (D, x)$.
 	\end{enumerate}
-	Ya tenemos que $f$ es continua por hipótesis. Vemos que $f$ es localmente Lipschitziana en $D$ respecto a la variable $x$ empezando porque:
+	Ya tenemos que $f$ es continua por hipótesis. Vemos que $f$ es localmente lipschitziana en $D$ respecto a la variable $x$:
 	\[\norm{f(t, x) - f(t, y)} = \norm{A(t)x + b(t) - A(t)y - b(t)} = \norm{A(t) (x-y)} \leq \norm{A(t)} \norm{x - y} \]
 	pero $A(t)$ no tiene porque estar acotado. Así, considero $[c, d] \subset I$ y utilizaremos el teorema de la banda cerrada. Para ello, veamos ahora que:
 	\begin{enumerate}
 		\item $f \in C([c, d] \times \mathbb{R}^n)$
 		\item $\norm{f(t, x) - f(t, y)} \leq k \norm{x - y}$
 	\end{enumerate}
-	ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ y vemos que la solución maximal está definida en $I$. \\
-	Sea $t \in I$ fijado arbitrario y escojo un compacto $[c, d]/subset I$ tal que $t, t_0 \in [c, d]$ \\
+2. se cumple ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ la solución maximal está definida en $I$. \\
+	Sea $t \in I$ fijado arbitrario y escojo un compacto $[c, d]\subset I$ tal que $t, t_0 \in [c, d]$. \\
 	\begin{center}
 		DIBUJO
 	\end{center}
-	Por el resultado probado tendría que la solución está definida en $[c, d]$ y, por tanto, en $t$. Si esto lo repito para todo $t \in I$, tenemos que la solución maximal está definida en $t \in I$.
+	Por el resultado probado tendría que la solución está definida en $[c, d]$ y, por tanto, en $t$. Si esto lo repito para todo punto en $I$, tenemos que la solución maximal está definida en $I$.
 \end{proof}
 \begin{note}
 	El resultado es cierto aunque $I$ no sea abierto, es decir, la solución maximal estará definida en el intervalo donde $A$ y $b$ sean continuas.
 \end{note}
+\subsection{Sistemas homogéneos.}
 \begin{theorem}
 	Sea el sistema homogéneo $x' = A(t) x$ con $I$ intervalo y $A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R})$ continua. El conjunto $S$ de soluciones del sistema es un espacio vectorial de dimensión $n$.
 \end{theorem}
-\begin{proof}
+\begin{proof}\ \\
 	Definimos:
 	\begin{align*}
 		F : \ &S \longrightarrow \mathbb{R}^n \\
-		&\varphi \longrightarrow F(\varphi) = \varphi (t_0)
+		&\varphi \longmapsto F(\varphi) = \varphi (t_0)
 	\end{align*}
-	con $t_0 \in I$ fijado. Tenemos que demostrar que: \\ \\
+	con $t_0 \in I$ fijado. Tenemos que demostrar que:
 BEGIN PRADA 20/03
 	\begin{enumerate}
 		\item $ S $ espacio vectorial. 
 		\begin{enumerate}[\quad i)]
-			\item $ \varphi_1, \varphi_2 \in S \Rightarrow \varphi_1 + \varphi_2 \in S$.
+			\item $ \varphi_1, \varphi_2 \in S \Rightarrow \varphi_1 + \varphi_2 \in S$. Se cumple ya que:
 			
 			$ (\varphi_1 + \varphi_2)' =\varphi_1'+\varphi_2'=A(t)\varphi_1 +A(t)\varphi_2 = A(t)(\varphi_1 + \varphi_2)\Rightarrow (\varphi_1+\varphi_2)\in S$
 			\item $ \lambda\in \mathbb{R}, \varphi\in S $
@@ -1433,46 +1433,46 @@ BEGIN PRADA 20/03
 	$ F^i(e_i)=\varphi_i $ solución de $ x'=A(t)x $ que pasa por $ (t_0, e_i) $.
 \end{observation}
 \begin{definition}
-	Sea $ \phi(t) \in M_{n\times n}(\mathbb{R}), t\in I$, diremos que $ \phi $ es una matriz solución para el sistema homogéneo $ x'=A(t)x $ si cada columna es solución de él. 
+	Sea $ \phi(t) \in M_{n\times n}(\mathbb{R}), t\in I$, diremos que $ \phi $ es una \emph{matriz solución para el sistema homogéneo} $ x'=A(t)x $ si cada columna es solución de él. 
 	\[ \begin{pmatrix}
-	\vdots & \vdots  \\
-	\varphi_1  & \varphi_2 & \dots \\
-	\vdots & \vdots  
+	\vdots & \vdots  &&\vdots\\
+	\varphi_1  & \varphi_2 & \dots&\varphi_n \\
+	\vdots & \vdots  &&\vdots
 	\end{pmatrix}  \]
 \end{definition}
 \begin{exercise}
 	$ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
 \end{exercise}
 \begin{definition}
-	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que esta es fundamental para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
+	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que es una \emph{matriz fundamental} para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
 \end{definition}
-\begin{theorem}[Caracterización de matrices fundamentales]
+\begin{theorem}[Caracterización de matrices fundamentales]\ \\
 	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
 	\begin{enumerate}[\quad i)]
-		\item $ \phi(t) $ matriz fundamental.
+		\item $ \phi(t)$ matriz fundamental.
 		\item $ \det(\phi(t))\neq 0, \ \forall t \in I $.
-		\item $ \exists t_0 \in I, \det(\phi(t_0))\neq 0 $
+		\item $ \exists \ t_0 \in I,$ tal que $ \det(\phi(t_0))\neq 0 $
 	\end{enumerate}
 \end{theorem}
 \begin{proof}\
 	\begin{enumerate}
-		\item $ i) \Rightarrow ii) $. 
+		\item $ i) \Rightarrow ii) $. Esta implicación podemos probarla de dos formas:
 		\begin{enumerate}[\quad a)]
 			\item Forma 1: \\
 			Recordemos que $ \phi (t)= \begin{pmatrix}
 			\varphi_1(t) & ... & \varphi_n(t)
 			\end{pmatrix} $
 			
-			Supongamos que existe $ t_1 $ tal que  $ \det(\phi)(t_1)=0\Rightarrow \{ \varphi_1(t_1), \cdots \varphi_n (t_1) \} $ son vectores de $ \mathbb{R}^n  $ linealmente dependientes. Es decir, existen $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no todos nulos tal que $ \lambda_1 \varphi_1 + \cdots +\lambda_n\varphi_n=0 $.
+			Supongamos que existe $ t_1 $ tal que  $ \det(\phi)(t_1)=0\Rightarrow \{ \varphi_1(t_1), \cdots \varphi_n (t_1) \} $ son vectores de $ \mathbb{R}^n  $ linealmente dependientes. Es decir, existen $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no todos nulos tal que $ \lambda_1 \varphi_1(t_1) + \cdots +\lambda_n\varphi_n(t_1)=0 $.
 			
 			Sea $ \psi(t)=\lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) $. $ \psi $ es solución de $ x'=A(t)x $ (por la estructura de espacio vectorial de $ S $) pasando por $ (t_1,\psi(t_1))=(t_1,0) $.
 			
 			Pero $ x(t)=0 $ es solución de $ x'=A(t)x$ pasando por $ (t_1,0) $.
-			Por la unicidad de la solución $ \psi(t)=0 \ \forall t \in I$. Es decir, $ \lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) =0 \ \forall t \in I $. Como   $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no son  todos nulos, tenemos que $ \phi(t) $ no es matriz fundamental.
+			Por la unicidad de la solución $ \psi(t)=0 \ \forall t \in I$. Es decir, $ \lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) =0 \ \forall t \in I $. Como   $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no son  todos nulos, tenemos que $ \varphi_1, \dots, \varphi_n $ son linealmente dependientes para todo $ t $ y $ \phi(t) $ no es matriz fundamental, pues las soluciones no pueden formar una base.
 			\item Forma 2 (Reducción al absurdo): \\
-			Si $ \phi(t) $ es matriz fundamental, entonces $ \phi(t)=(\varphi_1(t), ... , \varphi_n(t)) $ base de $ S $.
-			Veamos si xiste un $ t_1 \in I : \det(\phi(t_1))=0$.
-			Entonces $ F:\varphi\in S\longrightarrow \varphi(t_1)\in  \mathbb{R}^n $ isomorfismo lineal, es decir, $ \{ \varphi_1(t_1), ... , \varphi_n(t_n) \}  $ base de $ \mathbb{R}^n $ pero no puede ser ya que $ \det(\phi(t_1))=0 \Rightarrow \{ \varphi_1(t_1), ... , \varphi_n(t_n) \} $ son linealmente dependientes.
+			Si $ \phi(t) $ es matriz fundamental, entonces $ \phi(t)=(\varphi_1(t), ... , \varphi_n(t)) $ es base de $ S $.
+			Veamos si existe un $ t_1 \in I : \det(\phi(t_1))=0$.
+			Entonces como $ F:\varphi\in S\longrightarrow \varphi(t_1)\in  \mathbb{R}^n $ isomorfismo lineal, tenemos que $ \{ \varphi_1(t_1), ... , \varphi_n(t_n) \}  $ es base de $ \mathbb{R}^n $, pero no puede ser ya que $ \det(\phi(t_1))=0 \Rightarrow \{ \varphi_1(t_1), ... , \varphi_n(t_n) \} $ son linealmente dependientes.
 		\end{enumerate}
 	\item $ ii) \Rightarrow iii) $. \\
 	Trivial
@@ -1486,47 +1486,56 @@ BEGIN PRADA 20/03
 	$ \qquad \qquad \vdots $ 
 	
 	$ \qquad F^{-1}(\varphi_n(t_0))=\varphi_n $ es solución de $ x'=A(t)x $ pasando por $ (t_0,\varphi_n(t_0)) $ \\
-	Por tanto, $ \{ \varphi_1, \cdots, \varphi_n \} $ base de $ S $ y $ \phi(t) $ es matriz fundamental. 
+	Por tanto, $ \{ \varphi_1, \cdots, \varphi_n \} $ es base de $ S $ y $ \phi(t) $ es matriz fundamental. 
 	\end{enumerate}
 \end{proof}
 \begin{definition}
-	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es principal en $ t_0\in I $ si $ \phi(t_0)=I_n $
+	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es \emph{matriz principal en $ t_0$}$\in I $ si $ \phi(t_0)=I_n $.
 \end{definition}
-\begin{proposition}[Solución general del sistema homogéneo]
-	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces las soluciones del sistema son de la forma $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $.	
+\begin{proposition}[Solución general del sistema homogéneo] \ \\
+	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces la solución general del sistema es $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $ (todas las soluciones son de esta forma).	
+	
+	Las soluciones particulares pasando por $ (t_0,x_0) $ son de la forma  $ x(t)=\phi(t)\phi^{-1}(t_0)x_0 $.
 \end{proposition}
 \begin{proof}\ \\
-	$ \phi(t)= (\varphi_1 | \varphi_2 | \dots | \varphi_n) $ matriz fundamental.
+	$ \phi(t)= (\varphi_1 | \varphi_2 | \dots | \varphi_n) $ matriz fundamental, por lo tanto, $ \{\varphi_1, \varphi_2, \dots,  \varphi_n \} $ es base de $ S $.
 	
-	$ \{\varphi_1, \varphi_2, \dots,  \varphi_n \} $ base de $ S $.
+	Si $ \varphi $ es solución, $ \varphi = c_1\varphi_1(t)+ \dots + c_n \varphi_n(t) $, con $ c_1, \dots, c_n\in \mathbb{R} $, lo cual se puede escribir de forma matricial como $ \phi(t)c $.
 	
-	Si $ \varphi $ es solución, $ \varphi = c_1\varphi_1(t)+ \dots + c_n \varphi_n(t) $, con $ c_1, \dots, c_n\in \mathbb{R} $, lo cual se puede escribir de forma matricial.
-	
-	Por tanto, $ x(t)=\phi(t)\phi^{-1}(t_0)x_0 $.
+	En particular, las soluciones pasando por un punto serán de esta forma. Buscando que $ x(t_0)=x_0 $, es decir, $ \phi(t_0)c=x_0 $, tenemos que la solución particular es $ x(t)=\phi(t)\phi^{-1}(t_0)x_0 $.
 \end{proof}
+\subsubsection{Cambios de base en la matriz fundamental}
 ¿Que ocurre si cambiamos de base?
-\begin{theorem}
-	$ \phi(t) $ matriz fundamental para $ x'=A(t)x $.
+\begin{proposition}\label{derivinversa}\ \\
+	Sea $ \phi(t) $ matriz fundamental (y por lo tanto no singular). Entonces $ (\phi^{-1}(t))'=-\phi^{-1}(t)\phi'(t)\phi^{-1}(t) $
+\end{proposition}
+\begin{proof}\ \\
+	De aquí en adelante, podemos denotar matrices fundamentales sin especificar que son funciones de $ t $ para facilitar la lectura.
 	
-	$ \psi(t) \in M_{n\times n}(\mathbb{R})$ es matriz fundamental para SH $ \Leftrightarrow \exists \varOmega \in M_{n\times n}(\mathbb{R})$ constante y no singular tal que $ \psi(t) = \phi(t)\varOmega $.
+	\[ \phi \phi^{-1}=I\Rightarrow \phi'\phi^{-1}+\phi (\phi^{-1})'=0\Rightarrow \phi (\phi^{-1})'=-\phi'\phi^{-1} \Rightarrow (\phi^{-1})'=-\phi^{-1}\phi'\phi^{-1}\]
+\end{proof}
+\begin{theorem}\ \\
+	Sea $ \phi(t) $ matriz fundamental para $ x'=A(t)x $.
+	
+	$ \psi(t) \in M_{n\times n}(\mathbb{R})$ es matriz fundamental para el sistema homogéneo $ \Leftrightarrow \exists \varOmega \in M_{n\times n}(\mathbb{R})$ constante y no singular ($ \det \varOmega \neq 0 $) tal que $ \psi(t) = \phi(t)\varOmega $.
 \end{theorem}
 \begin{proof}\ \\
 	"$ \Leftarrow $": Veamos que $ \psi(t)=\phi(t)\varOmega $ es matriz fundamental:
 	\begin{enumerate}[\quad i)]
-		\item $ \psi(t)=\phi(t)\varOmega $ es solución de $ x'=A(t)x $ pues $ (\varphi(t))'=(\phi(t)\varOmega)'=\phi'(t)\varOmega=A(t)\phi(t)\varOmega =A(t)\psi $
+		\item $ \psi(t)=\phi(t)\varOmega $ es solución de $ x'=A(t)x $ pues $ (\psi(t))'=(\phi(t)\varOmega)'=\phi'(t)\varOmega=A(t)\phi(t)\varOmega =A(t)\psi(t) $
 		\item $ \psi(t) $ es fundamental.
 		
 		$ \det (\psi(t))=\det(\phi(t))\det(\varOmega)\neq 0 $, por ser $ \phi $ fundamental y $ \varOmega $ no singular. Es decir, $ \psi(t) $ fundamental.
 	\end{enumerate}
-	"$ \Rightarrow$": Sea $\psi (t)$ matriz fundamental y vemos que:
-	\[\Delta = \phi^{-1} (t) \psi(t)\]
+	"$ \Rightarrow$": Sea $\psi (t)$ matriz fundamental y veamos que:
+	\[\varOmega = \phi^{-1} (t) \psi(t)\]
 	verifica:
 	\begin{enumerate}
-		\item  $\psi = \phi \Delta$. Esto se debe a que:
+		\item  $\psi(t) = \phi(t) \varOmega(t)$. Esto se debe a que:
 		\[\phi(t) \varOmega (t) = \phi(t) \phi^{-1}(t) \psi(t) = \psi(t) \]
-		\item  $\varOmega$ es constante. Para ver esto veamos que $\varOmega' = 0$.
+		\item  $\varOmega$ es constante. Para ver esto probemos que $\varOmega' = 0$, usando la proposición \ref{derivinversa}.
 		\begin{align*}
-			\Delta' &= (\phi^{-1} \psi)' = (\phi^{-1})'\psi + \phi^{-1}\psi' \\ 
+			\varOmega' &= (\phi^{-1} \psi)' = (\phi^{-1})'\psi + \phi^{-1}\psi' \\ 
 			&= -\phi^{-1} \phi' \phi^{-1} \psi + \phi^{-1}\psi'\\
 			&= -\phi^{-1} A \phi \phi^{-1} \psi + \phi^{-1} \psi'\\
 			&= -\phi^{-1} A \psi + \phi^{-1} \psi' \\
@@ -1537,49 +1546,49 @@ BEGIN PRADA 20/03
 		ya que $det(\phi^{-1}) \neq 0$, $det(\psi) \neq 0$.
 	\end{enumerate}
 \end{proof}
-Sea ahora el sistema completo (S.C.) $x' = A(t)x + b(t)$, tal que:
+\subsection{Sistemas completos.}
+Sea ahora el sistema completo $x' = A(t)x + b(t)$, tal que:
 \begin{align*}
 	A &: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R}) \\
 	b &: t \in I \subset \mathbb{R} \longrightarrow b(t) \in \mathbb{R}^n
 \end{align*}
 siendo $A$, $b$ continuas.\\
-Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax$. Sea además $S_C$ el conjunto de soluciones del sistema completo $x' = Ax + b$.
+Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ el conjunto de soluciones del sistema completo $x' = Ax + b$.
 \begin{theorem}
-	Sea $\varphi \in S_H$. Entonces tenemos que:
+	Sea $\varphi \in S_H$. Entonces , si $ \varphi^C $ es una solución particular del sistema completo $  x' = A(t)x + b(t) $, tenemos que:
 	\begin{center}
-		$S_C = \{ \varphi^C + \varphi \ : \ \varphi^C \text{ solución particular del S.C. } x' = A(t)x + b \} = \varphi^C + S_H$
+		$S_C = \{ \varphi^C + \varphi \ : \ \varphi \in S_H  \} = \varphi^C + S_H$
 	\end{center}
 \end{theorem}
 \begin{proof}\ \\ 
 	"$\subset$": Sea $\psi \in S_C$, tenemos entonces que $\psi = \varphi^C + (\psi - \varphi^C)$. Por tanto, sólo es necesario probar que $(\psi - \varphi^C) \in S_H$. Veámoslo: 
-	\[ (\psi - \varphi^C )' = \psi' - \varphi^C{'} \stackrel{\varphi^C \in S_C}{=} A \psi + b - \varphi^C \stackrel{\psi \in S_C}{=} A\psi + b - A \varphi^C - b = A (\psi - \varphi^C) \]
+	\[ (\psi - \varphi^C )' = \psi' - \varphi^C{'} \stackrel{(\varphi^C \in S_C)}{=} A \psi + b - \varphi^C{'} \stackrel{(\psi \in S_C)}{=} A\psi + b - A \varphi^C - b = A (\psi - \varphi^C) \]
 	Obteniendo entonces que $\psi - \varphi^C$ es solución del sistema homogéneo.\\ \\
 	"$\supset$": Tenemos en este caso que:
 	\begin{enumerate}
 		\item $\varphi$ solución del sistema homogéneo.
-		\item $\varphi^C$ solución particular completo.
+		\item $\varphi^C$ solución particular del sistema completo.
 	\end{enumerate}
-	Veremos que estas dos condiciones implican que $\varphi + \varphi^C$ solución del sistema completo. Esto se debe a que:
+	Veamos que estas dos condiciones implican que $\varphi + \varphi^C$ es solución del sistema completo:
 	\begin{center}
-		$(\varphi^C + \varphi)' = (\varphi^C)' + \varphi' = A\varphi^C + b + \varphi' \stackrel{\varphi' \in S_C}{=} A\varphi^C + b + A\varphi =
+		$(\varphi^C + \varphi)' = (\varphi^C)' + \varphi' = A\varphi^C + b + \varphi' \stackrel{(\varphi' \in S_C)}{=} A\varphi^C + b + A\varphi =
 		A(\varphi^C + \varphi) + b$ \\
 		$ \Rightarrow (\varphi^C + \varphi) \in S_C$
 	\end{center}
 \end{proof}
-\begin{theorem}[Fórmula de Lagrange o método de variación de constantes]
-	La solución de S.C. $x' = A(t)x + b(t)$ que pasa por $(t_0, x_0)$ viene dada por:
+\begin{theorem}[Fórmula de Lagrange o método de variación de constantes]\ \\
+	La solución del sistema completo $x' = A(t)x + b(t)$ que pasa por $(t_0, x_0)$ viene dada por:
 	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \int_{t}^{t_0}\phi(t) \phi^{-1}(s) b(s) \ ds\]
-	donde $\phi(t)$ es matriz fundamental para el S.H.
+	donde $\phi(t)$ es matriz fundamental para el sistema homogéneo.
 \end{theorem}
-\begin{proof}
-	La solución general de S.H. vendría dada por $x(t) = \phi (t) c$, $c \in \mathbb{R}^n$. Buscamos una solución de S.C. de la forma $x(t) = \phi (t) c(t)$, $c(t) \in \mathbb{R}^n$.\\
-	Para que sea solución del S.C. ha de verificar:
+\begin{proof}\ \\
+	La solución general del sistema homogéneo vendría dada por $x(t) = \phi (t) c$, $c \in \mathbb{R}^n$. Buscamos una solución del sistema completo de la forma $x(t) = \phi (t) c(t)$, $c(t) \in \mathbb{R}^n$.\\
+	Para que sea solución del sistema completo ha de verificar $ x'(t)=A(t)\phi(t)c(t)+b(t) $, pero como $ x(t)=  \phi (t) c(t) $, entonces derivando $ x'(t)= \phi'(t)c(t) + \phi(t)c'(t)=A(t)\phi(t)c(t) + \phi(t)c'(t)$. Por lo tanto, tenemos la igualdad:
 	\begin{align*}
-		&\phi'(t)c(t) + \phi(t)c'(t) = A(t)\phi(t)c(t) + b(t) \\
-		\Leftrightarrow \ &A(t)\phi(t)c(t) + \phi(t)c'(t)= A(t)\phi(t)c(t) + b(t) \\
-		\Leftrightarrow \ &\phi(t)c'(t) = b(t) \Leftrightarrow \ c'(t) = \phi^{-1}(t) b(t)
+		&A(t)\phi(t)c(t) + \phi(t)c'(t)= A(t)\phi(t)c(t) + b(t) \\
+		&\Leftrightarrow \ \phi(t)c'(t) = b(t) \Leftrightarrow \ c'(t) = \phi^{-1}(t) b(t)
 	\end{align*}
-	Por lo que:
+	Obtenida la condición sobre $ c'(t) $, integramos:
 	\begin{align*}
 	& \int_{t_0}^{t} c'(t) ds = \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\\
 	\Leftrightarrow \ &c(t) - c(t_0) = \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\\
@@ -1592,6 +1601,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax$. Sea además $S_C$ el 
 	por lo que:
 	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \phi(t) \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\]
 \end{proof}
+\pagebreak
 \section{Tema 6.}
 \subsection{Sistemas de ecuaciones lineales con coeficientes constantes.}
 \begin{definition}
