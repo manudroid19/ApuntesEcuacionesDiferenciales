@@ -816,7 +816,7 @@ BEGIN MANU 13/2
 		\item  $ M $ es puntualmente acotado ($ \forall t \in I,\exists K $ cte $ :||h(t)||\leq K , \forall h \in M$)
 	\end{enumerate}
 \end{theorem}
-\begin{theorem}[Cauchy-Peano]
+\begin{theorem}[Teorema de Cauchy-Peano]\label{cauchy-peano}
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
 	Fijado un punto $ (t_0,x_0) \in A $, si $ f $ es continua en $ A $, existe solución de la ecuación pasando por $ (t_0,x_0) $, definida en un entorno de $ t_0 $.
@@ -1297,58 +1297,139 @@ Otra forma de llegar a este resultado es observar:
 \subsubsection{EDOs homogéneas.}
 Son ecuaciones de la forma $ x'=g(\frac{x}{t}), $ o bien $ x'=\frac{f(t,x)}{h(t,x)} $, con $ f,h $ funciones homogéneas del mismo grado.
 \begin{definition}
-	$ f $ homogénea de grado $ k $ si $ \forall r \in \mathbb{R}, f(rt,rx)=r^kf(t,x)$.
+	Decimos que $ f $ es una \emph{función homogénea de grado $ k $} si $ \forall r \in \mathbb{R}, f(rt,rx)=r^kf(t,x)$.
 \end{definition}
-\paragraph{Método de resolución}
-Sean $ f,h $ homogéneas del mismo grado. Todas las homogéneas se pueden dejar como $ x'=g(\frac{x}{t})$:
-Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $: REVISAR
-	\[ x'= \frac{f(t,x)}{h(t,x)}=\frac{r^kf(rt,rx)}{r^kh(rt,rx)}=\frac{f(rt,rx)}{h(rt,rx)}=\frac{f(1,\frac{x}{t})}{h(1,\frac{x}{t})}=g(\frac{x}{t})\]
+\paragraph{Método de resolución} \ \\
+Sean $ f,h $ homogéneas del mismo grado. Todas las EDOs homogéneas se pueden reducir a $ x'=g(\frac{x}{t})$.
+Reducción de  $ x'=\frac{f(t,x)}{h(t,x)} $, tomando $ r=\frac{1}{t} $:
+	\[ x'= \frac{f(t,x)}{h(t,x)}=\frac{(\frac{1}{t})^kf(t,x)}{(\frac{1}{t})^kh(t,x)}=\frac{f((\frac{1}{t})t,\frac{x}{t})}{h((\frac{1}{t})t,\frac{x}{t})}=\frac{f(1,\frac{x}{t})}{h(1,\frac{x}{t})}=g(\frac{x}{t})\]
 	Una vez tenemos la ecuación en la forma $ x'=g(\frac{x}{t}) $:
 	\begin{enumerate}
 		\item $ \frac{x}{t}=u\Rightarrow x=u\cdot t $.
-		\item $ x'(t)=u(t)+tu'(t)=g(u) \Rightarrow tu'(t)=g(u)-u(t) $
-		\item Resolver $ u'(t)=\frac{g(u)-u}{t} $, que es una EDO de variables separadas.
+		\item Derivando la expresión anterior respecto a $t,\  x'(t)=u(t)+tu'(t)=g(u) \Rightarrow tu'(t)=g(u)-u(t) $
+		\item Resolver $ u'(t)=\frac{g(u)-u}{t} $, que es una EDO de variables separadas en $ u $ y $ t $.
+		\item Deshacer el cambio de variable, teniendo en cuenta que $ u=\frac{x}{t} $.
 	\end{enumerate}
 
 \subsubsection{EDOs reducibles a homogéneas.}
-
+Son ecuaciones de la forma \[ x'=f(\frac{at+bx+c}{mt+nx+p}) \]con $ a,b,c,m,n,p \in \mathbb{R} $.
+\paragraph{Método de resolución} \ \\
+Para resolverlas, consideramos la ecuación como el cociente de dos rectas en el plano y razonamos su posición relativa para reducir la ecuación a un tipo ya conocido:
+\begin{align*}
+r&:at+bx+c=0\\
+l&:mt+nx+p=0
+\end{align*}
+Por casos, ¿las rectas pasan por el origen?:
+\begin{enumerate}[\quad i)]
+	\item $ c=p=0 $, es decir, las dos pasan por el origen.
+	\[ x'=f(\frac{at+bx}{mt+nx})=f(\frac{a+b(\frac{x}{t})}{m+n(\frac{x}{t})}) \text{ homogénea.} \]
+	\item $ c $ y $ p $ no son ambos nulos.
+	\begin{enumerate}
+		\item $ r $ y $ l $ se cortan en otro punto. En el apartado anterior vimos que si se cortaban en otro punto era homogénea. Podemos trasladar los ejes al punto de corte aplicando un cambio de variable y repetir el razonamiento anterior.
+		
+		\begin{figure}[h]
+			\centering
+			\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]	
+			%Shape: Axis 2D [id:dp4031260299087579] 
+			\draw[line width=0.75pt]   (163,207.7) -- (333.5,207.7)(180.05,70) -- (180.05,223) (326.5,202.7) -- (333.5,207.7) -- (326.5,212.7) (175.05,77) -- (180.05,70) -- (185.05,77)  ;
+			%Straight Lines [id:da2069863440207952] 
+			\draw [line width=0.75pt]    (230.5,73) -- (273.5,219) ;
+			
+			%Straight Lines [id:da7364525271296537] 
+			\draw[line width=0.75pt]    (167.5,152) -- (318.5,78) ;
+			
+			%Shape: Circle [id:dp6288291967071182] 
+			\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (240.83,115) .. controls (240.83,113.8) and (241.8,112.83) .. (243,112.83) .. controls (244.2,112.83) and (245.17,113.8) .. (245.17,115) .. controls (245.17,116.2) and (244.2,117.17) .. (243,117.17) .. controls (241.8,117.17) and (240.83,116.2) .. (240.83,115) -- cycle ;
+			
+			% Text Node
+			\draw (268,123.67) node [scale=0.9] [align=left] {$\displaystyle ( \alpha ,\beta )$};
+			% Text Node
+			\draw (319,89.67) node  [align=left] {$\displaystyle l$};
+			% Text Node
+			\draw (229,88.67) node  [align=left] {$\displaystyle r$};
+			\end{tikzpicture}
+			\caption{Cambio de ejes.}
+		\end{figure}
+		
+		$ (t,x) = (\alpha,\beta)+(s,y) $, por lo que $ \begin{cases}
+		t=\alpha+s\\
+		s=\beta+y
+		\end{cases} $
+		
+		Además, como \[  x'=\frac{\partial x}{\partial t}=\frac{\partial (\beta+y)}{\partial t}=\frac{\partial y}{\partial s}\frac{\partial s}{\partial t}=\frac{\partial y}{\partial s}   \]tenemos:
+		
+		\[  x'=\frac{\partial y}{\partial s}= f(\frac{a(\alpha+s)+b(\beta+y)+c}{m(\alpha+s)+n(\beta+y)+p})= f(\frac{as+by+a\alpha+b\beta+c}{ms+ny+m\alpha+n\beta+p})  \]
+		Pero como las rectas se cortan en $ (\alpha, \beta) $, tenemos que $ a\alpha+b\beta+c=0 $ y $ m\alpha+n\beta+p=0 $. Es decir:
+		\[ x'=f(\frac{as+by}{ms+ny})=f(\frac{a+b(\frac{y}{s})}{m+n(\frac{y}{s})})=g(\frac{y}{s}) \text{ homogénea.}\]
+		\item $ r $ y $ l $ son paralelas. En este caso, que sean paralelas quiere decir que $ (a,b)=k(m,n) $, ya que su vector dirección debe ser proporcional. Por lo tanto,
+		\[ x'=f(\frac{at+bx+c}{mt+nx+p})=f(\frac{kmt+knx+c}{mt+nx+p})=f(\frac{k(mt+nx)+c}{(mt+nx)+p})\]
+		Realizando el cambio de variable $ z=mt+nx $:
+		\[ \frac{\partial z}{\partial t}=z'=m+nx'=m+nf(\frac{kz+c}{z+p}) \text{ ecuación de variables separadas.} \]
+		Nótese que es necesario deshacer el cambio de variable tras la resolución.
+	\end{enumerate}
+\subsubsection{EDOs lineales.}
+Son ecuaciones de la forma $ x'=a(t)x+b(t) $ con $ a,b: I\in\mathbb{R}\longrightarrow \mathbb{R} $ continuas.
+\begin{definition}\ 
+	\begin{enumerate}[\quad i)]
+		\item Si $ b(t)=0 $, es una \emph{EDO lineal homogénea}.
+		\item Si $ b(t)\neq 0 $, para algún $ t\in I $, es una \emph{EDO lineal no homogénea o completa}.
+	\end{enumerate}
+\end{definition}
+\paragraph{Método de resolución} \ \\
+Distinguiremos según el tipo de ecuación lineal:
+\begin{enumerate}[\quad i)]
+	\item Ecuación lineal homogénea, $ x'=a(t)x $. Es una ecuación de variables separadas.
+	\[ \int\frac{1}{x}dx=\int a(t)dt\Rightarrow\ln\abs{x}=\int a(t)dt+k, \ k\in\mathbb{R}\Rightarrow\abs{x}=e^{k+\int a(t)dt}=k'e^{\int a(t)dt}, \ k'>0 \]
+	\[ \abs{x}=\begin{cases}
+	\ \ x=k'e^{\int a(t)dt}, \ x>0, k'>0\\
+	-x=k'e^{\int a(t)dt}, \ x<0, k'>0
+	\end{cases}\Rightarrow x=ce^{\int a(t)dt}, \ c\in \mathbb{R}  \]
+	Para hallar una solución concreta, sustituyo teniendo en cuenta que $ x(t_0)=x_0 $ y hallo $ c $. Nótese que si $ x_0>0,\ x(t)>0\ \forall t $, ya que al ser $ x(t)= \psi(t)=0 \ \forall t$ una solución de la EDO, si $ x(t)= \varphi(t)\neq0 $ para algún t y existe un $ t_0 $ tal que $ \varphi(t_0)=0 $, tendríamos dos soluciones por $ (t_0,0) $ ($ \psi $ y $ \varphi $), pero las EDOs lineales están en las hipótesis del teorema \ref{picard} de Picard-Lipschitz que nos asegura unicidad de la solución.
+	
+	Análogamente, si $ x_0<0,\ x(t)<0\ \forall t $.
+	\item Ecuación lineal completa, $ x'=a(t)x +b(t) $. Usaremos el método de las variación de constantes.
+\end{enumerate}
+	
+\end{enumerate}
 
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
 \pagebreak
 \section{Tema 5. Sistemas de ecuaciones lineales. Propiedades de las soluciones. Matriz fundamental.}
 BEGIN JORGE 18/03 \\
-Consideramos el sistema lineal en $\mathbb{R}^n$.
-\[x'= A(t) + b(t)\]
-En el que $A$ y $b$ son aplicaciones continuas cumpliendo:\\
-\begin{align*}
+\begin{definition}
+	Llamaremos \emph{sistema de ecuaciones lineales} a una ecuación diferencial de la forma:
+	\[x'= A(t)x + b(t)\]
+	En el que $ x,x'\in \mathbb{R}^n $ y $A$ y $b$ son aplicaciones continuas cumpliendo:\\
+	\begin{align*}
 	&A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n}(\mathbb{R}) \\ 
 	&b: t \in I \subset \mathbb{R} \longrightarrow b(t) \in \mathbb{R}^n \text{, con $I$ intervalo}
-\end{align*}
-Matricialmente:
-\[ \begin{pmatrix}
-x_1' \\
-\vdots \\
-x_n'  
-\end{pmatrix} = \begin{pmatrix}
-a_{11}(t) & \cdots & a_{1n}(t) \\
-\vdots & \ddots & \vdots \\
-a_{n1}(t) & \cdots & a_{nn}(t)
-\end{pmatrix} \begin{pmatrix}
-x_1 \\
-\vdots \\
-x_n
-\end{pmatrix} + \begin{pmatrix}
-b_1(t) \\
-\vdots \\
-b_n(t)
-\end{pmatrix}\]
-lo que también quiere decir que:
-\[\begin{cases}
+	\end{align*}
+	Matricialmente:
+	\[ \begin{pmatrix}
+	x_1' \\
+	\vdots \\
+	x_n'  
+	\end{pmatrix} = \begin{pmatrix}
+	a_{11}(t) & \cdots & a_{1n}(t) \\
+	\vdots & \ddots & \vdots \\
+	a_{n1}(t) & \cdots & a_{nn}(t)
+	\end{pmatrix} \begin{pmatrix}
+	x_1 \\
+	\vdots \\
+	x_n
+	\end{pmatrix} + \begin{pmatrix}
+	b_1(t) \\
+	\vdots \\
+	b_n(t)
+	\end{pmatrix}\]
+	y ecuación a ecuación quiere decir:
+	\[\begin{cases}
 	x_1' = f_1(t, x_1, \dots, x_n)=a_{11}(t)x_1+\dots+a_{1n}(t)x_n+b_1(t) \\
 	\qquad \vdots \\
 	x_n' = f_n(t, x_1, \dots, x_n)=a_{n1}(t)x_1+\dots+a_{nn}(t)x_n+b_n(t) 
-\end{cases}\]
+	\end{cases}\]
+\end{definition}
 \begin{definition}
 	Si $b(t) = 0$ para todo $ t $ diremos que es un \emph{sistema homogéneo}. Si $\exists t \in I$, para el que $ b(t)\neq0 $ diremos que es un \emph{sistema no homogéneo o completo}.
 \end{definition}
@@ -1446,7 +1527,7 @@ BEGIN PRADA 20/03
 \begin{definition}
 	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que es una \emph{matriz fundamental} para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
 \end{definition}
-\begin{theorem}[Caracterización de matrices fundamentales]\ \\
+\begin{theorem}[Caracterización de matrices fundamentales]\label{matfund-carac}\ \\
 	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
 	\begin{enumerate}[\quad i)]
 		\item $ \phi(t)$ matriz fundamental.
@@ -1576,7 +1657,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		$ \Rightarrow (\varphi^C + \varphi) \in S_C$
 	\end{center}
 \end{proof}
-\begin{theorem}[Fórmula de Lagrange o método de variación de constantes]\ \\
+\begin{theorem}[Fórmula de Lagrange o método de variación de constantes]\label{lagrange-formula}\ \\
 	La solución del sistema completo $x' = A(t)x + b(t)$ que pasa por $(t_0, x_0)$ viene dada por:
 	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \int_{t}^{t_0}\phi(t) \phi^{-1}(s) b(s) \ ds\]
 	donde $\phi(t)$ es matriz fundamental para el sistema homogéneo.
@@ -1602,12 +1683,11 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \phi(t) \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\]
 \end{proof}
 \pagebreak
-\section{Tema 6.}
-\subsection{Sistemas de ecuaciones lineales con coeficientes constantes.}
+\section{Tema 6. Sistemas de ecuaciones lineales con coeficientes constantes.}
 \begin{definition}
 	Llamamos \emph{sistema lineal de coeficientes constantes} a una ecuación diferencial de la forma:
-	\[ x'=A(t)x+b(t) \]
-	con $ x'\in \mathbb{R}^n, x\in\mathbb{R}^n $, $ A\in M_{n\times n} $ constante y $ b:t\in I\subset\mathbb{R}\longrightarrow b(t)\in\mathbb{R}^n $ continua.
+	\[ x'=Ax+b(t) \]
+	con $ x', x\in\mathbb{R}^n $, $ A(t)=A\in M_{n\times n} $ constante en $ t $ y $ b:t\in I\subset\mathbb{R}\longrightarrow b(t)\in\mathbb{R}^n $ continua.
 \end{definition}
 \begin{definition}
 	Sea $ M \in M_{n\times n} $, llamamos \emph{$ e^M $} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
@@ -1621,19 +1701,20 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		\item $ e^{-A}=(e^A)^{-1} $
 	\end{enumerate}
 \end{proposition}
+\subsection{Sistemas homogéneos}
 \begin{theorem}
 	Si $ A\in M_{n\times n} $ constante, entonces $ e^{tA} $ es una matriz fundamental para $ x'=Ax $.
 \end{theorem}
 \begin{proof} \ \\
-	Tengo que demostrar dos casos:
+	Tenemos que demostrar que es matriz solución y que es fundamental:
 	\begin{enumerate}[\quad i)]
 		\item $ e^{tA} $ es matriz solución. 
 		
-		Para probarlo, usamos el resultado del ejercicio 2.6 de Series Funcionales. Tenemos que existe $ \frac{\partial}{\partial t}e^{tA} \forall t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $. Por el resultado, si $ \sum f_n $ converge puntualmente a $ f $, existe $ f_n'\forall n \in \mathbb{N} $ y converge uniformemente a $ g $, entonces existe $ f' $ y $ f'=g $.
+		Para probarlo, usamos el resultado del ejercicio 2.6 de Series Funcionales. Tenemos que existe $ \frac{\partial}{\partial t}e^{tA} \ \forall t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $. Por el resultado, si $ \sum f_n $ converge puntualmente a $ f $, existe $ f_n'\ \forall n \in \mathbb{N} $ y converge uniformemente a $ g $, entonces existe $ f' $ y $ f'=g $.
 		
 		Entonces, para probar este apartado, vamos a ver:
 		\begin{enumerate}[\quad a)]
-			\item $ e^{tA} $ converge para $ t $ fijo.
+			\item $ e^{tA} $ converge para $ t $ fijo ($ e^{tA} $ converge puntualmente).
 			\item La serie que resulta de derivar término a término converge uniformemente.
 			\item Existe $ \frac{\partial}{\partial t} (e^{tA}) $ y es la suma de la serie que resulta de derivar término a término.
 		\end{enumerate}
@@ -1645,6 +1726,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		\]
 		\[=A\lim\limits_{k\to\infty} (I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k) = Ae^{tA} \]
 		Por lo tanto la serie de las derivadas converge para cada $ t $ fijo a $ Ae^{tA} $.
+		
 		Para c), veamos entonces que la serie converge uniformemente. Sea $ J $ un compacto cualquiera. Entonces existe $ \alpha : \forall t \in J \abs{t}\leq \alpha$.
 		
 		La serie de las derivadas $ \sum_{k=0}^{\infty} \frac{1}{k!}t^kA^{k+1} $ converge uniformemente en $ J $ ya que:
@@ -1653,15 +1735,16 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		
 		Entonces la serie en norma, esta mayorada por una serie numérica convergente, por lo que por el criterio del mayorante, la serie es convergente uniformemente. Por tanto, existe $ \frac{\partial}{\partial t }e^{tA} $, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA} $ en cualquier compacto $ J\subset \mathbb{R} $.
 		
-		Por último, para c), como para dado $ t\in \mathbb{R} $, existe $ J $ compacto tal que $ t\in J $. Por tanto, existe $ \frac{\partial}{\partial t }e^{tA} \forall t \in \mathbb{R}$, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA}, t\in\mathbb{R}$.
+		Por último, para c), como para dado $ t\in \mathbb{R} $, existe $ J $ compacto tal que $ t\in J $, tenemos que existe $ \frac{\partial}{\partial t }e^{tA} \forall t \in \mathbb{R}$, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA}, t\in\mathbb{R}$.
 		
 		Así, $ e^{tA} $ es matriz solución.
 		
 		\item $ e^{tA} $ es fundamental. Tomemos $t = 0$:
 		\[det(e^{tA}) = det(e^0) = det(I) = 1 \neq 0\]
-		Por tanto, por el teorema de caracterización de matrices fundamentales, $e^{tA}$ es fundamental.
+		Por tanto, por el teorema \ref{matfund-carac} de caracterización de matrices fundamentales, $e^{tA}$ es fundamental.
 	\end{enumerate}
 \end{proof}
+\subsection{Sistema completo.}
 \begin{theorem}
 	Sea $x' = Ax$ con $A \in M_{n \times n}$ constante. La solución para el sistema homogéneo pasando por $(t_0, x_0)$ viene dada por:
 	\[x(t) = e^{(t - t_0)A}x_0\]
@@ -1671,20 +1754,19 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	\[x(t) = e^{tA}(e^{t_0A})^{-1}x_0 \stackrel{3)}{=} e^{tA}(e^{-t_0A})x_0 \stackrel{tA \text{ y } t_0A \text{ conmutan}}{=} e^{(t - t_0)A}.\]
 \end{proof}
 \begin{theorem}
-	Sea $x' = Ax + b(t)$ con $A \in M_{n \times n}$ constante y:
-	\[b:I \subset \mathbb{R} \longrightarrow \mathbb{R}^n\]
-	continua con $I$ abierto. La solución pasando por $(t_0, x_0)$ vendrá dada por:
+	Sea $x' = Ax + b(t)$ con $A \in M_{n \times n}$ constante y $ b:I \subset \mathbb{R} \longrightarrow \mathbb{R}^n $	continua con $I$ abierto. La solución pasando por $(t_0, x_0)$ vendrá dada por:
 	\[x(t) = e^{(t - t_0)A}x_0 + \int_{t}^{t_0}e^{(t - s)A}b(s) \ ds.\]
 \end{theorem}
 \begin{proof}
-	Por la fórmula de Lagrange y teniendo en cuenta que $\phi (t) = e^{tA}$, tenemos que:
+	Por el teorema \ref{lagrange-formula}, aplicamos la fórmula de Lagrange y teniendo en cuenta que $\phi (t) = e^{tA}$, tenemos que:
 	\begin{align*}
 	x(t) =& \ e^{tA}(e^{t_0A})^{-1}x_0 + \int_{t}^{t_0} e^{tA}(e^{sA})^{-1} b(s) \ ds  \\
 	\stackrel{1)}{=}& \ e^{tA}e^{-t_0A}x_0 + \int_{t}^{t_0}e^{tA}e^{-sA} b(s) \ ds \\
 	\stackrel{2)}{=}& \ e^{(t-t_0)A}x_0 + \int_{t}^{t_0}e^{(t-s)A} b(s) \ ds
 	\end{align*}
-	Tenemos que se cumple la igualdad $1)$ ya que $(e^A)^{-1} = e^{-A}$ y la igualdad $2)$ ya que $t_0A$ y $tA$ conmutan y porque $tA$ y $sA$ también conmutan.
+	Tenemos que se cumple la igualdad $1)$ ya que $(e^A)^{-1} = e^{-A}$ y la igualdad $2)$ ya que $t_0A$ y $tA$ conmutan y $tA$ y $sA$ también conmutan.
 \end{proof}
+\subsection{Herramientas de cálculo de exponenciales}
 \begin{theorem}
 	Si $A$ y $B$ son semejantes ($\exists P$ no singular tal que $A = PBP^{-1}$) entonces:
 	\[e^A = Pe^BP^{-1}\]
