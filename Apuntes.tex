@@ -1367,6 +1367,7 @@ Por casos, ¿las rectas pasan por el origen?:
 		\[ \frac{\partial z}{\partial t}=z'=m+nx'=m+nf(\frac{kz+c}{z+p}) \text{ ecuación de variables separadas.} \]
 		Nótese que es necesario deshacer el cambio de variable tras la resolución.
 	\end{enumerate}
+\end{enumerate}
 \subsubsection{EDOs lineales.}
 Son ecuaciones de la forma $ x'=a(t)x+b(t) $ con $ a,b: I\in\mathbb{R}\longrightarrow \mathbb{R} $ continuas.
 \begin{definition}\ 
@@ -1387,10 +1388,55 @@ Distinguiremos según el tipo de ecuación lineal:
 	Para hallar una solución concreta, sustituyo teniendo en cuenta que $ x(t_0)=x_0 $ y hallo $ c $. Nótese que si $ x_0>0,\ x(t)>0\ \forall t $, ya que al ser $ x(t)= \psi(t)=0 \ \forall t$ una solución de la EDO, si $ x(t)= \varphi(t)\neq0 $ para algún t y existe un $ t_0 $ tal que $ \varphi(t_0)=0 $, tendríamos dos soluciones por $ (t_0,0) $ ($ \psi $ y $ \varphi $), pero las EDOs lineales están en las hipótesis del teorema \ref{picard} de Picard-Lipschitz que nos asegura unicidad de la solución.
 	
 	Análogamente, si $ x_0<0,\ x(t)<0\ \forall t $.
-	\item Ecuación lineal completa, $ x'=a(t)x +b(t) $. Usaremos el método de las variación de constantes.
-\end{enumerate}
+	\item Ecuación lineal completa, $ x'=a(t)x +b(t) $. Usaremos el método de las variación de constantes. Buscaremos una función $ c(t) $ tal que $ x(t)=c(t)e^{\int a(t) dt} $ sea solución. La justificación formal de porque tiene esta forma la solución se desarrolla en la proposición \ref{ecLinCompleta}.
 	
+	A partir de este resultado, construimos un método práctico de resolución. Por ser $ x(t) $ solución, ha de verificar$ x'(t)=a(t)x+b(t) $, s decir,
+	\[ c'(t)e^{\int a(t)dt}+c(t)e^{\int a(t)dt}a(t)=a(t)c(t)e^{\int a(t)dt}+b(t) \]
+	Por tanto, $ c'(t)e^{\int a(t)dt}=b(t) $. Después de reordenar, por ser continua podemos integrar y obtenemos:
+	\[ c(t)=\int \frac{b(t)}{e^{\int a(t)dt}}=h(t)+k, \ k\in \mathbb{R} \]
+	Por lo que la solución general de la completa será:
+	\[ x(t)=(h(t)+k)\cdot e^{\int a(t)dt}=ke^{\int a(t)dt}+h(t)e^{\int a(t)dt} \]
+	Es decir, será la suma de la solución de la homogénea con la solución particular de la completa para $ k=0 $.
 \end{enumerate}
+\begin{proposition}\label{ecLinCompleta}
+	Sea $ x'=a(t)x $ la ecuación lineal homogénea que tiene solución $ x(t)=c e^{\int a(t) dt} $, con $ c\in \mathbb{R} $ (como vimos en su resolución como ecuación de variables separadas). 
+	
+	La ecuación lineal completa $ x'(t)=a(t)x+b(t) $ tiene solución de la forma: \[ x(t)= c(t)e^{\int a(t) dt}\text{ , con } c(t)= b(t)e^{-\int a(t) dt}+k\]
+\end{proposition}
+\begin{proof}
+	Queremos encontrar una solución para $ x'(t)=a(t)x+b(t) $. Multiplicamos por $ e^{-\int a(t)dt} $  toda la igualdad.
+	\[ x'(t)e^{-\int a(t)dt}=a(t)x(t)e^{-\int a(t)dt}+b(t)e^{-\int a(t)dt}\]
+	Reordenando:
+	\[  x'(t)e^{-\int a(t)dt}-a(t)x(t)e^{-\int a(t)dt}=b(t)e^{-\int a(t)dt} \]
+	Calculamos ahora, por la regla del producto:	
+	\[ \begin{split}
+	\frac{d}{dt}(x(t)e^{-\int a(t)dt})&=x'(t)e^{-\int a(t)dt}+\frac{d}{dt}(e^{-\int a(t)dt})x(t)\\
+	&=x'(t)e^{-\int a(t)dt}-a(t)e^{-\int a(t)dt}x(t)\\
+	&=b(t)e^{-\int a(t)dt}
+	\end{split} \]
+	utilizando que $ \frac{d}{dt}e^{-\int a(t)dt}=-a(t)e^{-\int a(t)dt} $ y el término reordenado de arriba.
+	Ahora, integramos para obtener la solución general:
+	\[ \frac{x(t)}{e^{\int a(t)dt}}+k= \int b(t)e^{-\int a(t)dt} dt\Rightarrow x(t)= (\int b(t)e^{-\int a(t)dt} dt+k)e^{\int a(t)dt}=c(t)e^{\int a(t)dt} \]
+	Como observación final, la solución de la ecuación completa puede escribirse como:
+	\[ x(t)= ke^{\int a(t)dt}+\int b(t)e^{-\int a(t)dt} dt\cdot e^{\int a(t)dt} \]
+	 expresión que corresponde a la suma de la solución general de la ecuación homogénea asociada y la solución particular de la completa con $ k=0 $.
+\end{proof}
+\begin{proposition}
+	Sea $ x'=a(t)x +b(t) $ ecuación diferencial lineal completa.
+	\begin{enumerate}
+		\item El conjunto de soluciones particulares de la ecuación homogénea $ x'=a(t)x $ es un espacio vectorial de dimensión 1. Es decir:
+		\begin{enumerate}[\quad a)]
+			\item Si $ x_1(t) $ es una solución particular de la ecuación homogénea, entonces $ kx_1(t) $ también es una solución de la ecuación homogénea, para todo $ k\in \mathbb{R} $.
+			\item Si $ x_1 $ y $ x_2(t) $ son soluciones particulares de la ecuación homogénea, entonces $ x_1-x_2 $ también es una solución de la ecuación homogénea.
+		\end{enumerate}
+	\item El conjunto de soluciones particulares de la ecuación completa $  x'=a(t)x +b(t) $ es un espacio vectorial afín de dimensión 1. Es decir:
+	\begin{enumerate}[\quad a)]
+		\item Si $ z(t) $ es una solución particular de la ecuación completa, entonces dada $ x_1(t) $ solución particular de la ecuación homogénea, $ z(t)+x_1(t) $ es una solución particular de la ecuación completa.
+		\item Si $ z(t) $ y $ y(t) $ son soluciones particulares de la ecuación completa, entonces $ z(t)-y(t) $ es una solución particular de la ecuación homogénea.
+	\end{enumerate}
+	\end{enumerate}
+	DEMOSTRAR
+\end{proposition}
 
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
