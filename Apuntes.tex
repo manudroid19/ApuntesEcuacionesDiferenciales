@@ -210,6 +210,19 @@
 }
 \makeatother
 
+
+%% Indice con enlaces
+
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
 \begin{document}
 
 %\maketitle
@@ -935,7 +948,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 \begin{definition}
 	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Decimos que $f$ es \emph{localmente lipschitziana} en $A$ con respecto a la variable $x$ si $\forall (t_0, x_0) \in A$, $\exists\xi_0$ entorno de $(t_0, x_0)$ tal que $f \in L(\xi_0, x)$. Se denota como $f \in L_{loc}(A, x)$.
 \end{definition}
-\begin{theorem}
+\begin{theorem}\label{lloc_suf}
 	Sea $A = I \times V$, con $I$ intervalo e $V$ convexo. Se tiene:
 	\begin{enumerate}
 		\item Si $\exists D_x f$ y está acotada $\Rightarrow f \in L(A, x)$
@@ -1283,7 +1296,19 @@ BEGIN PRADA 13/03
 \section{Tema 4.}
 \subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
 \subsubsection{EDOs de variables separadas.}
-Son ecuaciones de la forma $ x'=\frac{\partial x}{\partial t}=h(t)g(x) $. 
+Son ecuaciones de la forma $ x'=\frac{\partial x}{\partial t}=h(t)g(x) $, con $ h:I_1\longrightarrow\mathbb{R} $ y $ g:I_2\longrightarrow\mathbb{R} $ continuas. 
+\paragraph{Justificación de existencia y unicidad de la solución} \ \\
+Como $ A=I_1\times I_2 $ debe ser abierto, los intervalos deben ser abiertos. Por la continuidad de $ h $ y $ g $ se deduce la continuidad de $ f(t,x)=h(t)g(x) $, lo que nos permite aplicar el teorema \ref{cauchy-peano} de existencia de solución.
+
+Si además queremos la unicidad de la misma, necesitamos que $ f $ sea localmente lipschitziana respecto a $ x $ para poder aplicar el teorema \ref{picard}, es decir, que $ g $ sea localmente lipschitziana respecto a $ x $. Tal y como vimos en el teorema \ref{lloc_suf}, es suficiente que $ g\in C'(I_2) $.
+
+En estas condiciones, fijado $ (t_0,x_0)\in I_1\times I_2=A $, comprobemos que cumplimos las hipótesis del teorema \ref{picard}:
+\begin{enumerate}[i)]
+	\item $ I_1\times I_2 $ abierto.
+	\item $ f(t,x)=h(t)g(x) $ continua por producto de funciones continuas.
+	\item $ f\in L_{loc} (A,x) $ ya que $ g\in L_{loc}(I_2,x) $
+\end{enumerate}
+
 \paragraph{Método de resolución}
 \begin{enumerate}
 	\item $ \frac{1}{g(x)}\cdot\frac{\partial x}{\partial t}=h(t) $
@@ -1294,6 +1319,32 @@ Si se pide la solución pasando por $ (t_0,x_0) $, hallamos la $ c $ que cumple 
 
 Otra forma de llegar a este resultado es observar:
 \[ \int_{x_0}^{x} \frac{1}{g(x)} \partial x= \int_{t_0}^{t} h(t) \partial t \Rightarrow G(x)-G(x_0)=H(t)-H(t_0)\]
+
+Nótese que si $ g(x_0)=0 $, entonces $ x(t)=x_0 $ es la solución.
+
+\paragraph{Justificación de que la solución está bien definida}
+\begin{theorem}
+	Sea $ M:(t,x)\longrightarrow M(t,x)=G(x)-G(x_0)-(H(t)-H(t_0)) $. Entonces $ M(t,x) $ define implícitamente una solución de $ x'=f(t,x)=h(t)g(x) $, es decir, la expresión obtenida en el método de resolución es correcta y la solución viene dada por $ M(t,x)=0 $.
+\end{theorem}
+\begin{proof}
+	Probémoslo utilizando el teorema de la implícita. Nótese que 
+	\[  M(t,x)=G(x)-G(x_0)-(H(t)-H(t_0))= \int_{x_0}^{x} \frac{1}{g(x)} \partial x- \int_{t_0}^{t} h(t) \partial t \]
+	Comprobamos las hipótesis:
+	\begin{enumerate}
+		\item $ M\in C'(A) $, ya que $ h $ y $ g $ continuas.
+		\item $ M(t_0,x_0)=0 $
+		\item $ \frac{\partial M}{\partial x}(t_0,x_0)=\frac{1}{g(x_0)}\neq 0 $.
+	\end{enumerate}
+	Como se cumplen las hipótesis, el teorema de la implícita nos asegura que existen $ \varepsilon_{t_0} $ entorno de $ t_0 $, $ \varepsilon_{x_0} $ entorno de $ x_0 $ y $ x:t\in\varepsilon_{t_0}\longrightarrow x(t)\in\varepsilon_{x_0}$. Además, nos dice que $ x(t) $ cumple:
+	\begin{enumerate}
+		\item $ x $ continua en el entorno.
+		\item $ x(t_0)=x_0 $.
+		\item $ M(t,x(t))=0 $ para todo $ t\in \varepsilon_{t_0} $, y $ x(t) $ es la única solución de $ M(t,x(t))=0 $.
+		\item $ D x(t)=-[D_x M(t,x(t))]^{-1}D_tM(t,x(t)) $. Es decir:
+		\[ Dx(t)=x'(t)=\frac{\partial x}{\partial t}= -[\frac{1}{g(x)}]^{-1}(-h(t))=h(t)g(x)=f(t,x) \]
+	\end{enumerate}
+	Por lo que efectivamente, la función $ x(t) $ definida implícitamente cumple las condiciones para ser solución de la ecuación diferencial.
+\end{proof}
 \subsubsection{EDOs homogéneas.}
 Son ecuaciones de la forma $ x'=g(\frac{x}{t}), $ o bien $ x'=\frac{f(t,x)}{h(t,x)} $, con $ f,h $ funciones homogéneas del mismo grado.
 \begin{definition}
@@ -1385,19 +1436,22 @@ Distinguiremos según el tipo de ecuación lineal:
 	\ \ x=k'e^{\int a(t)dt}, \ x>0, k'>0\\
 	-x=k'e^{\int a(t)dt}, \ x<0, k'>0
 	\end{cases}\Rightarrow x=ce^{\int a(t)dt}, \ c\in \mathbb{R}  \]
-	Para hallar una solución concreta, sustituyo teniendo en cuenta que $ x(t_0)=x_0 $ y hallo $ c $. Nótese que si $ x_0>0,\ x(t)>0\ \forall t $, ya que al ser $ x(t)= \psi(t)=0 \ \forall t$ una solución de la EDO, si $ x(t)= \varphi(t)\neq0 $ para algún t y existe un $ t_0 $ tal que $ \varphi(t_0)=0 $, tendríamos dos soluciones por $ (t_0,0) $ ($ \psi $ y $ \varphi $), pero las EDOs lineales están en las hipótesis del teorema \ref{picard} de Picard-Lipschitz que nos asegura unicidad de la solución.
+	Para hallar una solución particular, sustituyo teniendo en cuenta que $ x(t_0)=x_0 $ y hallo $ c $. Nótese que si $ x_0>0,\ x(t)>0\ \forall t $, ya que al ser $ x(t)= \psi(t)=0 \ \forall t$ una solución de la EDO, si $ x(t)= \varphi(t)\neq0 $ para algún t y existe un $ t_0 $ tal que $ \varphi(t_0)=0 $, tendríamos dos soluciones por $ (t_0,0) $ ($ \psi $ y $ \varphi $), pero las EDOs lineales están en las hipótesis del teorema \ref{picard} de Picard-Lipschitz que nos asegura unicidad de la solución.
 	
 	Análogamente, si $ x_0<0,\ x(t)<0\ \forall t $.
 	\item Ecuación lineal completa, $ x'=a(t)x +b(t) $. Usaremos el método de las variación de constantes. Buscaremos una función $ c(t) $ tal que $ x(t)=c(t)e^{\int a(t) dt} $ sea solución. La justificación formal de porque tiene esta forma la solución se desarrolla en la proposición \ref{ecLinCompleta}.
 	
-	A partir de este resultado, construimos un método práctico de resolución. Por ser $ x(t) $ solución, ha de verificar$ x'(t)=a(t)x+b(t) $, s decir,
+	A partir de este resultado, construimos un método práctico de resolución. Por ser $ x(t) $ solución, ha de verificar$ x'(t)=a(t)x+b(t) $, es decir,
 	\[ c'(t)e^{\int a(t)dt}+c(t)e^{\int a(t)dt}a(t)=a(t)c(t)e^{\int a(t)dt}+b(t) \]
 	Por tanto, $ c'(t)e^{\int a(t)dt}=b(t) $. Después de reordenar, por ser continua podemos integrar y obtenemos:
 	\[ c(t)=\int \frac{b(t)}{e^{\int a(t)dt}}=h(t)+k, \ k\in \mathbb{R} \]
 	Por lo que la solución general de la completa será:
 	\[ x(t)=(h(t)+k)\cdot e^{\int a(t)dt}=ke^{\int a(t)dt}+h(t)e^{\int a(t)dt} \]
-	Es decir, será la suma de la solución de la homogénea con la solución particular de la completa para $ k=0 $.
+	Es decir, la solución general de la completa será la suma de la solución general de la homogénea con la solución particular de la completa para $ k=0 $.
 \end{enumerate}
+\paragraph{Justificación de existencia y unicidad de la solución}\ \\
+En este caso, $ f(t,x)=a(t)x+b(t) $. Si $ t_0\in I $ intervalo abierto, $ (t_0, x_0)\in I\times \mathbb{R}=A $. Es decir, $ A $ es abierto. Además $ f $ es continua ya que $ a(t) $ y $ b(t) $ son continuas. Como también $ \frac{\partial f}{\partial x}=a(t) $ es continua, tenemos por el teorema \ref{lloc_suf} que $ f\in L{loc}(A,x) $ y por el teorema \ref{picard} de Picard-Lipschitz, existe una solución que pasa por $ (t_0, x_0)\in A$ y es única.
+
 \begin{proposition}\label{ecLinCompleta}
 	Sea $ x'=a(t)x $ la ecuación lineal homogénea que tiene solución $ x(t)=c e^{\int a(t) dt} $, con $ c\in \mathbb{R} $ (como vimos en su resolución como ecuación de variables separadas). 
 	
@@ -1435,8 +1489,45 @@ Distinguiremos según el tipo de ecuación lineal:
 		\item Si $ z(t) $ y $ y(t) $ son soluciones particulares de la ecuación completa, entonces $ z(t)-y(t) $ es una solución particular de la ecuación homogénea.
 	\end{enumerate}
 	\end{enumerate}
-	DEMOSTRAR
 \end{proposition}
+\begin{proof} \ 
+	\begin{enumerate}
+		\item \ 
+		\begin{enumerate}[\quad a)]
+			\item Si $ x_1(t) $ es una solución particular de la ecuación homogénea, $ x_1'=ax_1 $. Pero como $ (kx_1)'=k(x_1')=k(ax_1)=a(kx_1) $, $ kx_1 $ es solución de la homogénea.
+			\item Si $ x_1 $ y $ x_2(t) $ son soluciones particulares de la ecuación homogénea,  $ x_1'=ax_1 $ y  $ x_2'=ax_2 $. Como $ (x_1-x_2)'=x_1'-x_2'=ax_1-ax_2=a(x_1-x_2) $, $ x_1-x_2 $ es solución de la ecuación homogénea.
+		\end{enumerate}
+		\item \ 
+		\begin{enumerate}[\quad a)]
+			\item Si $ z(t) $ es una solución particular de la ecuación completa, $ z'(t)=a(t)z+b(t) $. Si $ x_1(t) $ solución particular de la ecuación homogénea, $ x_1'(t)=a(t)x_1 $. Como $ (z(t)+x_1(t))'=z'(t)+x_1'(t)=a(t)z+b(t)+a(t)x_1 = (z+x_1)a(t)+b(t)$, tenemos que $ z(t)+x_1(t)$ es una solución particular de la ecuación completa.
+			\item Si $ z(t) $ y $ y(t) $ son soluciones particulares de la ecuación completa, $ z'(t)=a(t)z+b(t) $ y $ y'(t)=a(t)y+b(t) $. Como $ (z(t)-y(t))'=z'(t)-y'(t)=a(t)z+b(t) - a(t)y-b(t)=a(t)(z-y) $ tenemos que $ z(t)-y(t) $ es una solución particular de la ecuación completa.
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}
+\subsubsection{EDOs de Bernouilli.}
+Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longrightarrow \mathbb{R} $ continuas y $ n\in\mathbb{R} $.
+\paragraph{Método de resolución} \ 
+\begin{enumerate}
+	\item Si $ n=0,1 $, la ecuación es lineal.
+	\begin{enumerate}
+		\item Si $ n=0 $, queda $ x'=p(t)x+q(t) $ lineal.
+		\item Si $ n=1 $, queda $ x'=p(t)x+q(t)x=(p(t)+q(t))x $ lineal.
+	\end{enumerate} 
+	\item Si $ n\neq 0,1 $, tomamos $ u=x^{1-n} $. Como 
+	\[ u'=(1-n)x^{1-n-1}x'=(1-n)x^{-n}(p(t)x+q(t)x^n)=(1-n)p(t)u+(1-n)q(t) \]
+	Es decir, $ u'=a(t)u+b(t) $ ecuación lineal completa en $ u $ con $ a(t)=(1-n)p(t) $ y $ b(t)=(1-n)q(t) $. La resolvemos y deshacemos el cambio de variable.
+\end{enumerate}
+
+\begin{note}
+	Debemos tener en cuenta el dominio en el que estamos trabajando. Si $ n=1/2 $, la ecuación está definida para $ x(t)\geq 0 $ y si $ n<0 $, no está definida en $ x(t)=0 $.
+\end{note}
+
+\subsubsection{EDOs exactas}
+\paragraph{Método de resolución} \ 
+
+\subsubsection{EDOs resolubles por factor integrante.}
+\paragraph{Método de resolución} \ 
+
 
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
