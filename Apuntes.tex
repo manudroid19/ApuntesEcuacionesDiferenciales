@@ -1523,6 +1523,36 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 \end{note}
 
 \subsubsection{EDOs exactas}
+	Sea una ecuación de la forma:
+	\[M(t, x)dt + N(t, x)dx = 0 \Leftrightarrow x'=\frac{-M(t, x)}{N(t, x)}\]
+	con $M, \ N: I \times J \longrightarrow \mathbb{R}$, siendo $I, \ J$ intervalos. Además, tenemos que $M, N \in C^1$ y $N(t, x) \neq 0$ para todo $(t, x) \in I \times J$.
+\begin{definition}
+	La ecuación diferencial (1) es exacta si $\exists F(t, x)$ tal que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$. A $F$ se le llama la función potencial.
+\end{definition}
+\begin{proposition}
+	Si $F$ es una función potencial para (1), la solución de (1) pasando por $(t_0, x_0) \in I \times J$ viene dada implícitamente por $F(t, x) - F(t_0, x_0) = 0$.
+\end{proposition}	
+\begin{proof}
+	Sea $M:(t, x) \in I \times J \longleftarrow M(t, x) = F(t, x) - F(t_0, x_0)$. Tenemos entonces que:
+	\begin{enumerate}
+		\item $M \in C^1$. Esto sucede debido a que $F \in C^2$ ya que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$, además de que se cumple que $M, N \in C^1$.
+		\item $M(t_0, x_0) = F(t_0, x_0) - F(t_0, x_0) = 0$.
+		\item $\frac{dM}{dx}(t_0, x_0) = \frac{dF}{dt}(t_0, x_0) = N(t_0, x_0) \neq 0$. Esta última igualdad se debe a que $N(t, x) \neq 0$ para todo $(t, x) \in I \times J$.
+	\end{enumerate} 
+	Por lo que, por el teorema de la implícita, $\exists \varphi_{t_0}$ entorno de $t_0$ y $\exists \varphi_{x_0}$ entorno de $x_0$ y:
+	\begin{align*}
+		\exists x : \varphi_{t_0} & \longrightarrow \varphi_{x_0} \\
+		t & \longrightarrow x(t)
+	\end{align*}
+	tal que:
+	\begin{enumerate}
+		\item $x \in C^1$.
+		\item $x(t_0) = x_0$.
+		\item $x(t)$ es la única solución de $M(t, x(t)) = 0$.
+	\end{enumerate}
+	Veamos que $x(t)$ es la solución buscada de (1). Derivamos implícitamente:
+	\[\frac{dM}{dt} + \frac{dM}{dx} · \frac{dx}{dt} = 0 \Rightarrow \frac{dF}{dt} + \frac{dF}{dx}x' = 0 \Rightarrow M + Nx' = 0 \Rightarrow x' = \frac{-M}{N}.\]
+\end{proof}
 \paragraph{Método de resolución} \ 
 
 \subsubsection{EDOs resolubles por factor integrante.}
