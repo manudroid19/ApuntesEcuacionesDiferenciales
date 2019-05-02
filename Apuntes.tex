@@ -1646,7 +1646,7 @@ BEGIN PRADA 20/03
 	\end{enumerate}
 \end{proof}
 \begin{observation}
-	Si $ \{e_1, \dots, e_n\} $ base de $ \mathbb{R}^n $, $ \{ F^1(e_1), \dots F^n(e_n) \} $ base de $ S $. Es decir:
+	Si $ \{e_1, \dots, e_n\} $ base de $ \mathbb{R}^n $, $ \{ F^1(e_1), \dots, F^n(e_n) \} $ base de $ S $. Es decir:
 	
 	$ F^i(e_i)=\varphi_i $ solución de $ x'=A(t)x $ que pasa por $ (t_0, e_i) $.
 \end{observation}
@@ -1661,6 +1661,8 @@ BEGIN PRADA 20/03
 \begin{exercise}
 	$ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
 \end{exercise}
+
+\subsubsection{Matrices fundamentales.}
 \begin{definition}
 	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que es una \emph{matriz fundamental} para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
 \end{definition}
@@ -1677,20 +1679,18 @@ BEGIN PRADA 20/03
 		\item $ i) \Rightarrow ii) $. Esta implicación podemos probarla de dos formas:
 		\begin{enumerate}[\quad a)]
 			\item Forma 1: \\
-			Recordemos que $ \phi (t)= \begin{pmatrix}
-			\varphi_1(t) & ... & \varphi_n(t)
-			\end{pmatrix} $
+			Recordemos que $ (\varphi_1(t) \ | \ \cdots \ | \ \varphi_n(t)) $
 			
-			Supongamos que existe $ t_1 $ tal que  $ \det(\phi)(t_1)=0\Rightarrow \{ \varphi_1(t_1), \cdots \varphi_n (t_1) \} $ son vectores de $ \mathbb{R}^n  $ linealmente dependientes. Es decir, existen $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no todos nulos tal que $ \lambda_1 \varphi_1(t_1) + \cdots +\lambda_n\varphi_n(t_1)=0 $.
+			Supongamos que existe $ t_1 $ tal que  $ \det(\phi)(t_1)=0$ por lo que $\{ \varphi_1(t_1), \dots, \varphi_n(t_1) \} $ son vectores de $ \mathbb{R}^n  $ linealmente dependientes. Es decir, existen $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no todos nulos tal que $ \lambda_1 \varphi_1(t_1) + \cdots +\lambda_n\varphi_n(t_1)=0 $.
 			
 			Sea $ \psi(t)=\lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) $. $ \psi $ es solución de $ x'=A(t)x $ (por la estructura de espacio vectorial de $ S $) pasando por $ (t_1,\psi(t_1))=(t_1,0) $.
 			
 			Pero $ x(t)=0 $ es solución de $ x'=A(t)x$ pasando por $ (t_1,0) $.
-			Por la unicidad de la solución $ \psi(t)=0 \ \forall t \in I$. Es decir, $ \lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) =0 \ \forall t \in I $. Como   $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no son  todos nulos, tenemos que $ \varphi_1, \dots, \varphi_n $ son linealmente dependientes para todo $ t $ y $ \phi(t) $ no es matriz fundamental, pues las soluciones no pueden formar una base.
+			Por la unicidad de la solución $ \psi(t)=0 \ \forall t \in I$. Es decir, $ \lambda_1 \varphi_1(t) + \cdots +\lambda_n\varphi_n(t) =0 \ \forall t \in I $. Como   $ \lambda_1, \dots, \lambda_n \in \mathbb{R}$ no son  todos nulos, tenemos que $ \varphi_1, \dots, \varphi_n $ son linealmente dependientes para todo $ t $ y $ \phi(t) $ no es matriz fundamental, pues las soluciones no pueden formar una base.
 			\item Forma 2 (Reducción al absurdo): \\
 			Si $ \phi(t) $ es matriz fundamental, entonces $ \phi(t)=(\varphi_1(t), ... , \varphi_n(t)) $ es base de $ S $.
 			Veamos si existe un $ t_1 \in I : \det(\phi(t_1))=0$.
-			Entonces como $ F:\varphi\in S\longrightarrow \varphi(t_1)\in  \mathbb{R}^n $ isomorfismo lineal, tenemos que $ \{ \varphi_1(t_1), ... , \varphi_n(t_n) \}  $ es base de $ \mathbb{R}^n $, pero no puede ser ya que $ \det(\phi(t_1))=0 \Rightarrow \{ \varphi_1(t_1), ... , \varphi_n(t_n) \} $ son linealmente dependientes.
+			Entonces como $ F:\varphi\in S\longrightarrow \varphi(t_1)\in  \mathbb{R}^n $ isomorfismo lineal, tenemos que $ \{ \varphi_1(t_1), \dots , \varphi_n(t_n) \}  $ es base de $ \mathbb{R}^n $, pero no puede ser ya que $ \det(\phi(t_1))=0 \Rightarrow \{ \varphi_1(t_1), \dots , \varphi_n(t_n) \} $ son linealmente dependientes.
 		\end{enumerate}
 	\item $ ii) \Rightarrow iii) $. \\
 	Trivial
@@ -1704,7 +1704,7 @@ BEGIN PRADA 20/03
 	$ \qquad \qquad \vdots $ 
 	
 	$ \qquad F^{-1}(\varphi_n(t_0))=\varphi_n $ es solución de $ x'=A(t)x $ pasando por $ (t_0,\varphi_n(t_0)) $ \\
-	Por tanto, $ \{ \varphi_1, \cdots, \varphi_n \} $ es base de $ S $ y $ \phi(t) $ es matriz fundamental. 
+	Por tanto, $ \{ \varphi_1, \dots, \varphi_n \} $ es base de $ S $ y $ \phi(t) $ es matriz fundamental. 
 	\end{enumerate}
 \end{proof}
 \begin{definition}
