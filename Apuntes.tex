@@ -1567,6 +1567,7 @@ BEGIN JORGE 18/03 \\
 	x_n' = f_n(t, x_1, \dots, x_n)=a_{n1}(t)x_1+\dots+a_{nn}(t)x_n+b_n(t) 
 	\end{cases}\]
 \end{definition}
+\subsection{Sistemas homogéneos.}
 \begin{definition}
 	Si $b(t) = 0$ para todo $ t $ diremos que es un \emph{sistema homogéneo}. Si $\exists t \in I$, para el que $ b(t)\neq0 $ diremos que es un \emph{sistema no homogéneo o completo}.
 \end{definition}
@@ -1591,7 +1592,7 @@ BEGIN JORGE 18/03 \\
 		\item $f \in C([c, d] \times \mathbb{R}^n)$
 		\item $\norm{f(t, x) - f(t, y)} \leq k \norm{x - y}$
 	\end{enumerate}
-2. se cumple ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ la solución maximal está definida en $I$. \\
+El primer punto se cumple de forma directa, mientras que el segundo se cumple ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ la solución maximal está definida en $I$. \\
 	Sea $t \in I$ fijado arbitrario y escojo un compacto $[c, d]\subset I$ tal que $t, t_0 \in [c, d]$. \\
 	\begin{center}
 		DIBUJO
@@ -1601,7 +1602,6 @@ BEGIN JORGE 18/03 \\
 \begin{note}
 	El resultado es cierto aunque $I$ no sea abierto, es decir, la solución maximal estará definida en el intervalo donde $A$ y $b$ sean continuas.
 \end{note}
-\subsection{Sistemas homogéneos.}
 \begin{theorem}
 	Sea el sistema homogéneo $x' = A(t) x$ con $I$ intervalo y $A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R})$ continua. El conjunto $S$ de soluciones del sistema es un espacio vectorial de dimensión $n$.
 \end{theorem}
@@ -1633,7 +1633,7 @@ BEGIN PRADA 20/03
 			
 			$ \varphi_2 $ solución del sistema homogéneo $ x'=A(t)x $ pasando por $ (t_0,x_0) $.
 			
-			Entonces por unicidad de solución pasando por $ (t_0,x_0) \Rightarrow \varphi_1=\varphi_2\Rightarrow F$ inyectiva.
+			Pero tenemos que $A$ es continua, por lo que existe una solución única pasando por $ (t_0,x_0) $. Esto implica que $\varphi_1=\varphi_2$ y, por tanto, $F$ inyectiva.
 			\item $ F $ sobreyectiva. 
 			
 			Sea $ z \in \mathbb{R}^n $ y veamos que $ \exists \varphi \in S : F(\varphi)=z $. Tomo como $ \varphi $ la solución que pasa por $ (t_0, z) $ y por tanto $ F(\varphi)=\varphi(t_0)=z $.	
@@ -1642,7 +1642,7 @@ BEGIN PRADA 20/03
 			\[ F(\lambda\varphi)=(\lambda\varphi)(t_0)=\lambda \varphi(t_0)= \lambda F(\varphi), \quad \lambda \in \mathbb{R}, \varphi \in S \]	
 			
 		\end{enumerate}
-		Por lo tanto $ F $ es un isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n \Rightarrow \dim_\mathbb{R}S=\dim_{\mathbb{R}^n}\mathbb{R}^n=n $
+		Por lo tanto $ F $ es un isomorfismo lineal de $ S $ sobre $ \mathbb{R}^n $ y, por lo tanto, $\dim_\mathbb{R}S=\dim_{\mathbb{R}^n}\mathbb{R}^n=n $.
 	\end{enumerate}
 \end{proof}
 \begin{observation}
@@ -1847,7 +1847,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	\begin{enumerate}[\quad i)]
 		\item $ e^{tA} $ es matriz solución. 
 		
-		Para probarlo, usamos el resultado del ejercicio 2.6 de Series Funcionales. Tenemos que existe $ \frac{\partial}{\partial t}e^{tA} \ \forall t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $. Por el resultado, si $ \sum f_n $ converge puntualmente a $ f $, existe $ f_n'\ \forall n \in \mathbb{N} $ y converge uniformemente a $ g $, entonces existe $ f' $ y $ f'=g $.
+		Para probarlo, usamos un resultado de Series Funcionales. Tenemos que existe $ \frac{\partial}{\partial t}e^{tA}$ para todo $t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $. Por tal resultado, si $ \sum f_n $ converge puntualmente a $ f $, existe $ f_n'\ \forall n \in \mathbb{N} $ y converge uniformemente a $ g $, entonces existe $ f' $ y $ f'=g $.
 		
 		Entonces, para probar este apartado, vamos a ver:
 		\begin{enumerate}[\quad a)]
@@ -1855,7 +1855,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 			\item La serie que resulta de derivar término a término converge uniformemente.
 			\item Existe $ \frac{\partial}{\partial t} (e^{tA}) $ y es la suma de la serie que resulta de derivar término a término.
 		\end{enumerate}
-		Para a), tenemos:
+		Para a), tenemos que, aplicando el criterio de Mayorante:
 		\[ e^{tA}=\sum_{n=0}^{\infty} \frac{1}{n!}t^nA^n=I+tA+\frac{t^2A^2}{2!}+\dots \]
 		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}(\norm{t}\norm{A})^n = e^{\abs{t}\norm{A}}\]
 		Para b), la serie que resulta de derivar término a término:
@@ -1864,7 +1864,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		\[=A\lim\limits_{k\to\infty} (I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k) = Ae^{tA} \]
 		Por lo tanto la serie de las derivadas converge para cada $ t $ fijo a $ Ae^{tA} $.
 		
-		Para c), veamos entonces que la serie converge uniformemente. Sea $ J $ un compacto cualquiera. Entonces existe $ \alpha : \forall t \in J \abs{t}\leq \alpha$.
+		Para terminar con la prueba de b) veamos entonces que la serie converge uniformemente. Sea $ J $ un compacto cualquiera. Entonces existe $ \alpha $ tal que $ \forall t \in J, \ \abs{t}\leq \alpha$.
 		
 		La serie de las derivadas $ \sum_{k=0}^{\infty} \frac{1}{k!}t^kA^{k+1} $ converge uniformemente en $ J $ ya que:
 		\[ \sum_{k=0}^{\infty} \norm{\frac{1}{k!}t^kA^{k+1}}\leq \sum_{k=0}^{\infty} \frac{1}{k!}\abs{t}^k\norm{A}^{k+1}\leq \sum_{k=0}^{\infty} \frac{1}{k!}p^k\norm{A}^{k+1} \]
@@ -1872,7 +1872,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		
 		Entonces la serie en norma, esta mayorada por una serie numérica convergente, por lo que por el criterio del mayorante, la serie es convergente uniformemente. Por tanto, existe $ \frac{\partial}{\partial t }e^{tA} $, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA} $ en cualquier compacto $ J\subset \mathbb{R} $.
 		
-		Por último, para c), como para dado $ t\in \mathbb{R} $, existe $ J $ compacto tal que $ t\in J $, tenemos que existe $ \frac{\partial}{\partial t }e^{tA} \forall t \in \mathbb{R}$, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA}, t\in\mathbb{R}$.
+		Por último, para c), como para dado $ t\in \mathbb{R} $, existe $ J $ compacto tal que $ t\in J $, tenemos que existe $ \frac{\partial}{\partial t }e^{tA} \ \forall t \in \mathbb{R}$, con $ \frac{\partial}{\partial t }e^{tA}=Ae^{tA}, t\in\mathbb{R}$.
 		
 		Así, $ e^{tA} $ es matriz solución.
 		
