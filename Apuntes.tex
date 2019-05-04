@@ -1589,6 +1589,54 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 \paragraph{Método de resolución} \ 
 
 \subsubsection{EDOs resolubles por factor integrante.}
+Despúes de haber visto la resolución de las ecuaciones exactas nos surge la duda, como se resuelven las ecuaciones del estilo $xdt - tdx = 0$ ya que no es exacta, pero si la multiplico por $\frac{1}{t^2}$, con $t \neq 0$:
+\[(\frac{1}{t^2}x)dt + \frac{1}{t^2}(-t)dx = 0 \Leftrightarrow \frac{x}{t^2}dt + (-\frac{1}{t})dx = 0\]
+donde
+\[\frac{dM}{dx} = \frac{1}{t^2} = \frac{dN}{dt}.\]
+\begin{definition}
+	Diremos que $\mu : (t, x) \in I_1 \times I_2 \longrightarrow \mathbb{R}$ es un factor integrante para $M(t, x)dt + N(t, x)dx = 0$ si:
+	\[\mu(t, x)M(t, x)dt + \mu(t, x)N(t, x)dx = 0\]
+	es una EDO exacta o, lo que es lo mismo, $\frac{d}{dt}(M\mu) = \frac{d}{dx}(N\mu)$. Esto se reescribe de la siguiente forma:
+	\begin{equation} \label{eqInte}
+	\mu_x(t, x)M(t, x) + \mu(t, x)M_x(t, x) = \mu_t(t, x)N(t, x) + \mu(t, x)N_t(t, x).
+	\end{equation}
+\end{definition}
+\begin{enumerate}
+	\item Supongamos que $\mu$ depende solo de t, $\mu(t)$. Entonces, la ecuación (\ref{eqInte}) se reescribe:
+	\[\mu(t, x)M_x(t, x) = \mu_t(t, x)N(t, x) + \mu(t, x)N_t(t, x)\]
+	por lo que:
+	\[\mu(M_x - N_t) = \mu_t N \Rightarrow \frac{\mu_t}{\mu} = \frac{M_x - N_t}{N}.\]
+	Si depende sólo de $t$:
+	\[\int \mu(M_x - N_t)dt = \int \frac{M_x - N_t}{N}dt.\]
+	\item Supongamos ahora que $\mu$ depende solo de $x$. Entonces:
+	\[\mu_xM + \mu M_x = \mu N_t \Leftrightarrow \frac{\mu_x}{\mu} = \frac{N_t - M_x}{M}.\]
+	Si depende solo de $x$, puedo calcular $\mu (x)$.
+	\item  Supongamos que $\mu$ es función de $x+t$. Entonces, tomando $z=x+t$, tenemos que:
+	\begin{align*}
+		\mu_x = & \frac{d\mu}{dx} = \frac{d\mu}{dz} \cdot \frac{dz}{dx} = \mu_z \\
+		\mu_t = & \frac{d\mu}{dt} = \frac{d\mu}{dz} \cdot \frac{dz}{dt} = \mu_z 
+	\end{align*}
+	Por lo que, (\ref{eqInte}) se reescribe ahora:
+	\[\mu_z M + \mu M_x = \mu_z N + \mu N_t \Rightarrow \mu_z (M-N) = \mu (N_t - M_x) \Rightarrow \frac{\mu_z}{\mu} = \frac{N_t - M_x}{M - N}\]
+	que, como solo depende de $x+t$ puede hallarse.
+	\item Supongamos ahora que $\mu$ es función de $x-t$. Entonces, tomando $z=x-t$, tenemos que:
+	\begin{align*}
+	\mu_x = & \frac{d\mu}{dx} = \frac{d\mu}{dz} \cdot \frac{dz}{dx} = \mu_z \\
+	\mu_t = & \frac{d\mu}{dt} = \frac{d\mu}{dz} \cdot \frac{dz}{dt} = -\mu_z 
+	\end{align*}
+	Por lo que, (\ref{eqInte}) se reescribe ahora:
+	\[\mu_z M + \mu M_x = -\mu_z N + \mu N_t \Rightarrow \mu_z (M+N) = \mu (N_t - M_x) \Rightarrow \frac{\mu_z}{\mu} = \frac{N_t - M_x}{M + N}\]
+	que, como solo depende de $x-t$ puede hallarse.
+	\item Supongamos ahora que $\mu$ es función de $xt$. Entonces, tomando $z=xt$, tenemos que:
+	\begin{align*}
+	\mu_x = & \frac{d\mu}{dx} = \frac{d\mu}{dz} \cdot \frac{dz}{dx} = \mu_zt \\
+	\mu_t = & \frac{d\mu}{dt} = \frac{d\mu}{dz} \cdot \frac{dz}{dt} = -\mu_zx 
+	\end{align*}
+	Por lo que, (\ref{eqInte}) se reescribe ahora:
+	\[\mu_z tM + \mu M_x = \mu_z xN + \mu N_t \Rightarrow \frac{\mu_z}{\mu} = \frac{N_t - M_x}{tM + xN}\]
+	que, como solo depende de $xt$ puede hallarse.
+\end{enumerate}
+
 \paragraph{Método de resolución} \ 
 
 
