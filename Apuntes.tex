@@ -1556,6 +1556,36 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 	Veamos que $x(t)$ es la solución buscada de (\ref{eqEx}). Para ello, a partir del último punto anterior derivamos implícitamente:
 	\[\frac{dH}{dt} + \frac{dH}{dx} \cdot \frac{dx}{dt} = 0 \Rightarrow \frac{dF}{dt} + \frac{dF}{dx}x' = 0 \Rightarrow M + Nx' = 0 \Rightarrow x' = \frac{-M}{N}.\]
 \end{proof}
+\begin{theorem}
+	La ecuación diferencial (\ref{eqEx}) es exacta si y sólo si $\frac{dM}{dx} = \frac{dN}{dt}$.
+\end{theorem}
+\begin{proof}
+	"$\Rightarrow$" \\
+	Por ser exacta, si existe $F$ tal que $\frac{dF}{dt} = M$, $\frac{dF}{dx} = N$ entonces $F \in C^2$. Tenemos por tanto que existen las derivadas parciales de $F$ respecto de $x$ y $t$ y se cumple que:
+	\[ \frac{d}{dx} \cdot \frac{d}{dt} F = \frac{d}{dt} \cdot \frac{d}{dx} F\]
+	por lo que ya podemos afirmar que:
+	\[\frac{dM}{dx} = \frac{dN}{dt}\]
+	"$\Leftarrow$" \\
+	Supongamos que $\frac{dM}{dx} = \frac{dN}{dt}$  y construyo $F$ función potencial, es decir, $F$ tal que $\frac{dF}{dt} = M$, $\frac{dF}{dx} = N$. Los candidatos que tenemos son:
+	\[\int M(t, x)dt + g(x)\]
+	y
+	\[\int N(t, x)dx + h(t).\]
+	Sea entonces, por ejemplo, $F(t, x) = \int M(t, x)dt + g(x)$, ¿existe entonces $g$ tal que $\frac{dF}{dx} = N$? Vemos que:
+	\[\frac{dF}{dx} = \frac{d}{dx}\int M(t, x)dt + g'(x).\]
+	Hay que buscar entonces $g$ tal que:
+	\[\frac{d}{dx}\int M(t, x)dt + g'(x) = N(t, x),\]
+	es decir, 
+	\[g'(x) = N(t, x) - \frac{d}{dx}\int M(t, x)dt.\]
+	Por tanto basta con ver que esta expresión no depende de $t$:
+	\begin{align*}
+		& \frac{d}{dt}(N(t, x) - \frac{d}{dx}\int M(t, x)dt) =  \frac{d}{dt}N(t, x) -  \frac{d}{dt}\frac{d}{dx}\int M(t, x)dt = \\
+		& \frac{d}{dt}N(t, x) -  \frac{d}{dx}\frac{d}{dt}\int M(t, x)dt = 
+		\frac{dN}{dt} - \frac{dM}{dt} = 0
+	\end{align*}
+	siendo esta última igualdad producto de la hipótesis inicial que nos afirmaba que $\frac{dM}{dx} = \frac{dN}{dt}$. Por tanto, 
+	\[g(x) = \int[N(t, x) - \frac{d}{dx}\int M(t, x)dt]dx\]
+	teniendo así garantizado que $F$ es exacta.
+\end{proof}
 \paragraph{Método de resolución} \ 
 
 \subsubsection{EDOs resolubles por factor integrante.}
