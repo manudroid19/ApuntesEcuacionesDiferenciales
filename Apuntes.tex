@@ -1531,7 +1531,7 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 \begin{definition}
 	La ecuación diferencial dada por (\ref{eqEx}) es una \emph{EDO exacta} si $\exists F(t, x)$ tal que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$. A $F$ se le denomina \emph{función potencial}.
 \end{definition}
-\begin{proposition}
+\begin{proposition} \label{sol_exacta}
 	Si $F$ es una función potencial para la ecuación diferencial (\ref{eqEx}), la solución de (\ref{eqEx}) pasando por $(t_0, x_0) \in I \times J$ viene dada implícitamente por $F(t, x) - F(t_0, x_0) = 0$.
 \end{proposition}	
 \begin{proof}\ \\
@@ -1566,28 +1566,34 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 	por lo que ya podemos afirmar que:
 	\[\frac{dM}{dx} = \frac{dN}{dt}\]
 	"$\Leftarrow$" \\
-	Supongamos que $\frac{dM}{dx} = \frac{dN}{dt}$  y construyo $F$ función potencial, es decir, $F$ tal que $\frac{dF}{dt} = M$, $\frac{dF}{dx} = N$. Los candidatos que tenemos son:
-	\[\int M(t, x)dt + g(x)\]
+	Supongamos que $\frac{dM}{dx} = \frac{dN}{dt}$  y construyo $F$ función potencial, es decir, $F$ tal que $\frac{dF}{dt} = M$, $\frac{dF}{dx} = N$. Los candidatos naturales son:
+	\[F(t,x)=\int M(t, x)dt + g(x)\]
 	y
-	\[\int N(t, x)dx + h(t).\]
-	Sea entonces, por ejemplo, $F(t, x) = \int M(t, x)dt + g(x)$, ¿existe entonces $g$ tal que $\frac{dF}{dx} = N$? Vemos que:
+	\[F(t,x)=\int N(t, x)dx + h(t).\]
+	Sea entonces, por ejemplo, $F(t, x) = \int M(t, x)dt + g(x)$. El razonamiento para el otro caso es análogo y por ambos se deduce el resultado. Tenemos ahora una $ F(t,x) $ que por como ha sido construida, cumple $\frac{dF}{dt} = M$. Para que sea función potencial solo nos falta garantizar la existencia de una $g$ tal que $\frac{dF}{dx} = N$:
 	\[\frac{dF}{dx} = \frac{d}{dx}\int M(t, x)dt + g'(x).\]
 	Hay que buscar entonces $g$ tal que:
 	\[\frac{d}{dx}\int M(t, x)dt + g'(x) = N(t, x),\]
 	es decir, 
 	\[g'(x) = N(t, x) - \frac{d}{dx}\int M(t, x)dt.\]
-	Por tanto basta con ver que esta expresión no depende de $t$:
+	Ahora, $ g'(x) $ no puede depender de $ t $. Si no depende de $ t $, su primitiva tampoco lo hará y habremos encontrado $g(x)  $ que hará de $ F $ la función potencial que estábamos buscando. Para ello, comprobemos que su derivada respecto de $ t $ vale 0:
 	\begin{align*}
-		& \frac{d}{dt}(N(t, x) - \frac{d}{dx}\int M(t, x)dt) =  \frac{d}{dt}N(t, x) -  \frac{d}{dt}\frac{d}{dx}\int M(t, x)dt = \\
-		& \frac{d}{dt}N(t, x) -  \frac{d}{dx}\frac{d}{dt}\int M(t, x)dt = 
-		\frac{dN}{dt} - \frac{dM}{dt} = 0
+	\frac{d}{dt} g'(x)=	& \frac{d}{dt}\left( N(t, x) - \frac{d}{dx}\int M(t, x)dt\right)  =  \frac{d}{dt}N(t, x) -  \frac{d}{dt}\frac{d}{dx}\int M(t, x)dt  \\
+		=& \frac{d}{dt}N(t, x) -  \frac{d}{dx}\frac{d}{dt}\int M(t, x)dt = 
+		\frac{dN}{dt} - \frac{dM}{dx} = 0
 	\end{align*}
-	siendo esta última igualdad producto de la hipótesis inicial que nos afirmaba que $\frac{dM}{dx} = \frac{dN}{dt}$. Por tanto, 
-	\[g(x) = \int[N(t, x) - \frac{d}{dx}\int M(t, x)dt]dx\]
-	teniendo así garantizado que $F$ es exacta.
+	siendo esta última igualdad consecuencia de la hipótesis inicial que afirmaba $\frac{dM}{dx} = \frac{dN}{dt}$. Por tanto, 
+	\[g(x) = \int\left[ N(t, x) - \frac{d}{dx}\int M(t, x)dt\right] dx\]
+	teniendo así garantizado que $F$ función potencial y la ecuación del enunciado es exacta.
 \end{proof}
 \paragraph{Método de resolución} \ 
-
+\begin{enumerate}
+	\item Identificar que estamos ante una EDO exacta mediante las formas vistas en la definición.
+	\item Comprobar que se cumple la condición $\frac{dM}{dx} = \frac{dN}{dt}$.
+	\item Construir una función potencial. Por ejemplo, mediante $ F(t,x)=\int M(t, x)dt + g(x) $. La $ g(x) $ será desconocida.
+	\item Derivar toda la expresión respecto de $ x $ para obtener $ g'(x) $ despejando, con ella $ g(x) $ resolviendo su primitiva y completar $ F(t,x) $.
+	\item Utilizando la proposición \ref{sol_exacta}, dada una condición inicial la solución de la ecuación vendrá dada implicitamente por $F(t, x) - F(t_0, x_0) = 0$. Despejar $ x(t) $ si es posible. 
+\end{enumerate}
 \subsubsection{EDOs resolubles por factor integrante.}
 Despúes de haber visto la resolución de las ecuaciones exactas nos surge la duda, como se resuelven las ecuaciones del estilo $xdt - tdx = 0$ ya que no es exacta, pero si la multiplico por $\frac{1}{t^2}$, con $t \neq 0$:
 \[(\frac{1}{t^2}x)dt + \frac{1}{t^2}(-t)dx = 0 \Leftrightarrow \frac{x}{t^2}dt + (-\frac{1}{t})dx = 0\]
