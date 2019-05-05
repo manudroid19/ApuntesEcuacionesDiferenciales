@@ -18,6 +18,11 @@
 \usepackage{changepage}
 \usetikzlibrary{decorations.pathmorphing}
 \usepackage[bottom]{footmisc}
+\usepackage{imakeidx}
+
+% %comando para indice 
+
+\newcommand{\iindex}[1]{\emph{\newcommand{\iindex}[1]{#1\index{#1}} }\index{#1}} 
 
 %-----------------------------------------------------------------------------------------------------
 %	SELECCIÓN DEL LENGUAJE
@@ -1528,6 +1533,11 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 	M(t, x)dt + N(t, x)dx = 0 \Leftrightarrow x'=\frac{-M(t, x)}{N(t, x)}
 	\end{equation}
 	con $M, \ N: I \times J \longrightarrow \mathbb{R}$, siendo $I, \ J$ intervalos. Además, tenemos que $M, N \in C^1(I\times J)$ y $N(t, x) \neq 0$ para todo $(t, x) \in I \times J$.
+	
+	\paragraph{Justificación de existencia y unicidad de la solución}\ \\
+	Tenemos $ x'=f(t,x)= \frac{-M(t, x)}{N(t, x)}$. Como  $M, N \in C^1(I\times J)$ y $N(t, x) \neq 0$, tenemos que $ f(t,x) $ es continua y está definida en el producto de los intervalos abiertos $ I \times J $. Además, $ f\in L_{loc}(x) $ ya que existe $ \frac{df}{dx} $ y es continua por ser $ M $ y $ N $ continuamente diferenciables. 
+	
+	Es decir, estamos en las hipótesis del teorema \ref{picard} de existencia y unicidad de soluciones de Picard-Lipschitz y podemos afirmar que existe una única solución pasando por un punto $ (t_0,x_0) $ dado.
 \begin{definition}
 	La ecuación diferencial dada por (\ref{eqEx}) es una \emph{EDO exacta} si $\exists F(t, x)$ tal que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$. A $F$ se le denomina \emph{función potencial}.
 \end{definition}
@@ -1595,25 +1605,36 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 	\item Utilizando la proposición \ref{sol_exacta}, dada una condición inicial la solución de la ecuación vendrá dada implicitamente por $F(t, x) - F(t_0, x_0) = 0$. Despejar $ x(t) $ si es posible. 
 \end{enumerate}
 \subsubsection{EDOs resolubles por factor integrante.}
-Despúes de haber visto la resolución de las ecuaciones exactas nos surge la duda, como se resuelven las ecuaciones del estilo $xdt - tdx = 0$ ya que no es exacta, pero si la multiplico por $\frac{1}{t^2}$, con $t \neq 0$:
+Después de haber estudiado las ecuaciones exactas, nos encontramos algunas como la siguiente:
+\[ xdt - tdx = 0 \] 
+Tiene la estructura de una exacta, pero no lo es ya que 
+\[ \frac{dM}{dx}=1\neq-1=\frac{dN}{dt} \]
+Sin embargo, si la multiplicamos por \textit{el factor} $\frac{1}{t^2}$, con $t \neq 0$:
 \[(\frac{1}{t^2}x)dt + \frac{1}{t^2}(-t)dx = 0 \Leftrightarrow \frac{x}{t^2}dt + (-\frac{1}{t})dx = 0\]
 donde
 \[\frac{dM}{dx} = \frac{1}{t^2} = \frac{dN}{dt}.\]
+¿Podemos generalizar este proceso para convertir en exactas ecuaciones que a priori no lo son? De esto trata este método de resolución.
 \begin{definition}
-	Diremos que $\mu : (t, x) \in I_1 \times I_2 \longrightarrow \mathbb{R}$ es un factor integrante para $M(t, x)dt + N(t, x)dx = 0$ si:
+	Diremos que $\mu : (t, x) \in I_1 \times I_2 \longrightarrow \mathbb{R}$ es un \emph{factor integrante} para $M(t, x)dt + N(t, x)dx = 0$ si:
 	\[\mu(t, x)M(t, x)dt + \mu(t, x)N(t, x)dx = 0\]
 	es una EDO exacta o, lo que es lo mismo, $\frac{d}{dt}(M\mu) = \frac{d}{dx}(N\mu)$. Esto se reescribe de la siguiente forma:
 	\begin{equation} \label{eqInte}
 	\mu_x(t, x)M(t, x) + \mu(t, x)M_x(t, x) = \mu_t(t, x)N(t, x) + \mu(t, x)N_t(t, x).
 	\end{equation}
+	donde el subíndice $ x $ o $ t $ indica la derivada respecto a esa variable.
 \end{definition}
+
+Las posibles elecciones del factor integrante estarán condicionadas por la ecuación (\ref{eqInte}, por la forma del factor y por su dependencia respecto a las distintas variables. Se especifican a continuación:
 \begin{enumerate}
-	\item Supongamos que $\mu$ depende solo de t, $\mu(t)$. Entonces, la ecuación (\ref{eqInte}) se reescribe:
+	\item Supongamos que $\mu$ depende solo de t, siendo entonces de la forma $\mu(t)$. Entonces, la ecuación (\ref{eqInte}) se reescribe:
 	\[\mu(t, x)M_x(t, x) = \mu_t(t, x)N(t, x) + \mu(t, x)N_t(t, x)\]
 	por lo que:
-	\[\mu(M_x - N_t) = \mu_t N \Rightarrow \frac{\mu_t}{\mu} = \frac{M_x - N_t}{N}.\]
-	Si depende sólo de $t$:
-	\[\int \mu(M_x - N_t)dt = \int \frac{M_x - N_t}{N}dt.\]
+	\[\mu\left( M_x-N_t\right) = \mu_t N \Rightarrow \frac{\mu_t}{\mu} = \frac{M_x - N_t}{N}.\]
+	Como $ \mu $ sólo depende de $t$:
+	\[\int \frac{\mu_t}{\mu}dt = \int \frac{M_x - N_t}{N}dt.\]
+	De donde se deduce:
+	\[ \int \frac{\mu_t}{\mu}dt = \ln\abs{\mu(t)}= \int \frac{M_x - N_t}{N}dt\Rightarrow \mu(t)=\pm e^{\int \frac{M_x - N_t}{N}dt}\]
+	Sabemos que si $ \mu $ es un factor integrante, $ k\mu $ también lo será, ya que por la construcción del factor no afectará a la estructura de exacta y las derivadas de $ M\mu $ y $ N\mu $ seguirán coincidiendo. Es decir, puedo escoger cualquiera de los dos para resolver la ecuación.
 	\item Supongamos ahora que $\mu$ depende solo de $x$. Entonces:
 	\[\mu_xM + \mu M_x = \mu N_t \Leftrightarrow \frac{\mu_x}{\mu} = \frac{N_t - M_x}{M}.\]
 	Si depende solo de $x$, puedo calcular $\mu (x)$.
@@ -1644,7 +1665,11 @@ donde
 \end{enumerate}
 
 \paragraph{Método de resolución} \ 
-
+\begin{enumerate}
+	\item Comprobar que la ecuación tiene la forma de una exacta pero no cumple la condición  $\frac{dM}{dx} = \frac{dN}{dt}$.
+	\item Tantear los diferentes factores integrantes estudiados, tratando de encontrar alguno que de resultado la convierta en exacta.
+	\item Resolver la ecuación exacta.
+\end{enumerate}
 
 \subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
 
