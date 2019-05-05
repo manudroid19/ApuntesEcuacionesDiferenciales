@@ -22,7 +22,7 @@
 
 % %comando para indice 
 
-\newcommand{\iindex}[1]{\emph{\newcommand{\iindex}[1]{#1\index{#1}} }\index{#1}} 
+\newcommand{\iindex}[1]{\emph{#1}\index{#1}} 
 
 %-----------------------------------------------------------------------------------------------------
 %	SELECCIÓN DEL LENGUAJE
@@ -227,7 +227,7 @@
 	linkcolor=black,
 	urlcolor=black
 }
-
+\makeindex[columns=1,  intoc]
 \begin{document}
 
 %\maketitle
@@ -311,13 +311,13 @@
 BEGIN JORGE 4/2
 \subsection{Concepto de EDO y solución.}
 \begin{definition}
-	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \emph{Ecuación Diferencial Ordinaria} (EDO) de primer orden dada en forma normal relativa a la función $f$ a: 
+	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \iindex{Ecuación Diferencial Ordinaria} (EDO) de primer orden dada en forma normal relativa a la función $f$ a: 
 	\[ x' = f(t, x) \]
 	Se dice que es de primer orden porque solamente aparece la primera derivada y en forma normal ya que $x'$ está despejada (si no sería en forma implícita, es decir, $h(t, x, x')=0$).
 \end{definition}
 
 \begin{definition}
-	Dada $\varphi: t \in I \subseteq \mathbb{R} \longrightarrow \varphi (t) \in \mathbb{R}^n$ decimos que $\varphi$ es \emph{solución} de $x'=f(t, x)$ si verifica:
+	Dada $\varphi: t \in I \subseteq \mathbb{R} \longrightarrow \varphi (t) \in \mathbb{R}^n$ decimos que $\varphi$ es \iindex{solución} de $x'=f(t, x)$ si verifica:
 	\begin{enumerate}[\quad i)]
 		\item $(t, \varphi (t)) \in A$, $\forall t \in I$.
 		\item Existe $ \varphi' (t)$, $\forall t \in I$.
@@ -482,17 +482,17 @@ x_2(t)=-\sqrt{c-t^2}
 	Sea $ \varphi:t\in I \subset \mathbb{R}\longrightarrow \mathbb{R}^n $, con $ I $ intervalo, solución de la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $.
 \end{definition}
 
-Llamamos \emph{trayectoria} de $ \varphi $ al conjunto:
+Llamamos \iindex{trayectoria} de $ \varphi $ al conjunto:
 \[  \tau (\varphi)=\{ (t, \varphi(t)), t\in I\} \]
-Si $ \varphi(t_0)=x_0 $, llamaremos \emph{semitrayectoria positiva} de $ \varphi $ al conjunto:
+Si $ \varphi(t_0)=x_0 $, llamaremos \iindex{semitrayectoria positiva} de $ \varphi $ al conjunto:
 \[ \tau^+ (\varphi)=\{ (t, \varphi(t)) : t\in I, t>t_0\}  \]
-Análogamente, la \emph{semitrayectoria negativa}  de $ \varphi $ será el conjunto:
+Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el conjunto:
 \[ \tau^- (\varphi)=\{ (t, \varphi(t)) : t\in I, t\leq t_0\} \]
 
 \begin{definition}
 	Sea la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $.
 	
-	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una \emph{solución $ \varepsilon $-aproximada} si verifica:
+	Sea $ \varepsilon\in \mathbb{R}, \varepsilon\geq 0 $, y sea $ \pi : I\subset \mathbb{R} \longrightarrow \mathbb{R}^n $ continua. Diremos que $ \pi $ es una \iindex{solución $ \varepsilon $-aproximada} si verifica:
 	
 	\begin{enumerate}
 		\item $ (t,\pi (t))\in A, \forall t \in I $.
@@ -655,7 +655,7 @@ Análogamente, la \emph{semitrayectoria negativa}  de $ \varphi $ será el conju
 \end{theorem}
 
 \begin{definition}
-	Sea $I \subset \mathbb{R}$ intervalo compacto, $M \subset C(I, \mathbb{R})$ es \emph{equicontinuo}\footnote{ $ C(I, \mathbb{R})$ denota el conjunto de funciones continuas de $ I $ en $ \mathbb{R} $.} si:
+	Sea $I \subset \mathbb{R}$ intervalo compacto, $M \subset C(I, \mathbb{R})$ es \iindex{equicontinuo}\footnote{ $ C(I, \mathbb{R})$ denota el conjunto de funciones continuas de $ I $ en $ \mathbb{R} $.} si:
 	\[\forall \varepsilon > 0 \hspace{0,2cm} \exists \delta > 0 \hspace{0,2cm} / \hspace{0,2cm} \forall x, y\in |x-y| < \delta \Rightarrow \norm{h(x) - h(y)} < \varepsilon, \forall \ h \in M.\]
 	Intuitivamente, significa que todas las funciones de un conjunto sean continuas y varíen de manera parecida sobre entornos del dominio.
 \end{definition}
@@ -823,7 +823,7 @@ BEGIN MANU 13/2
 \end{note}
 
 \begin{definition}
-	Diremos que un conjunto $ M $ es \emph{relativamente compacto} si verifica: toda sucesión de elementos de de $ M $ posee una subsucesión convergente.
+	Diremos que un conjunto $ M $ es \iindex{relativamente compacto} si verifica: toda sucesión de elementos de de $ M $ posee una subsucesión convergente.
 \end{definition}
 \begin{theorem}[Ascoli-Arzelá]
 	Sea $ I\subset \mathbb{R} $ intervalo compacto, $ M \subset \mathcal{C} (I, \mathbb{R}^n) $.
@@ -929,12 +929,12 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 \begin{definition}
 	Sea la ecuación diferencial definida por  $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $. 
 	
-	Decimos que tiene \emph{solución única} pasando por $(t_0, x_0) \in A$ si cualesquiera que sean $\varphi_1 : I_1 \longrightarrow \mathbb{R}^n$ y $\varphi_2 : I_2 \longrightarrow \mathbb{R}^n$ soluciones pasando por $(t_0, x_0)$ se cumple que $\varphi_1 (t) = \varphi_2 (t)$ $\forall t \in I_1 \cap I_2$.
+	Decimos que tiene \iindex{solución única} pasando por $(t_0, x_0) \in A$ si cualesquiera que sean $\varphi_1 : I_1 \longrightarrow \mathbb{R}^n$ y $\varphi_2 : I_2 \longrightarrow \mathbb{R}^n$ soluciones pasando por $(t_0, x_0)$ se cumple que $\varphi_1 (t) = \varphi_2 (t)$ $\forall t \in I_1 \cap I_2$.
 \end{definition}
 \begin{definition}
 	Sea $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$.
 	
-	Decimos que $f$ es \emph{lipschitziana} en $A$ con respecto a la variable $x$ si $\exists k \in \mathbb{R}$, $k \geq 0$ tal que:
+	Decimos que $f$ es \iindex{lipschitziana} en $A$ con respecto a la variable $x$ si $\exists k \in \mathbb{R}$, $k \geq 0$ tal que:
 	\[\norm{f(t, x) - f(t, y)} \leq k\norm{x-y} \hspace{0,2cm} \forall (t, x), (t, y) \in A\]
 	Se denota $f\in L(A, x)$ o bien $f \in L_k (A, x)$. Conviene recordar que una función lipschitziana es uniformemente continua y por tanto continua, que si $ k=1 $ la función se denomina función corta y si $ k<1 $ es una función contractiva.
 \end{definition}
@@ -951,7 +951,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	esté acotado. 
 \end{note}
 \begin{definition}
-	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Decimos que $f$ es \emph{localmente lipschitziana} en $A$ con respecto a la variable $x$ si $\forall (t_0, x_0) \in A$, $\exists\xi_0$ entorno de $(t_0, x_0)$ tal que $f \in L(\xi_0, x)$. Se denota como $f \in L_{loc}(A, x)$.
+	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$. Decimos que $f$ es \iindex{localmente lipschitziana} en $A$ con respecto a la variable $x$ si $\forall (t_0, x_0) \in A$, $\exists\xi_0$ entorno de $(t_0, x_0)$ tal que $f \in L(\xi_0, x)$. Se denota como $f \in L_{loc}(A, x)$.
 \end{definition}
 \begin{theorem}\label{lloc_suf}
 	Sea $A = I \times V$, con $I$ intervalo e $V$ convexo. Se tiene:
@@ -968,7 +968,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	\end{enumerate}
 \end{proof}
 \begin{definition}
-	Sea $(M, d)$ un espacio métrico y sea $T: M \longrightarrow M$, $0 \leq \lambda < 1$. Se dice que $T$ es una \emph{$\lambda$-contracción} si $\forall x, y \in M$, 
+	Sea $(M, d)$ un espacio métrico y sea $T: M \longrightarrow M$, $0 \leq \lambda < 1$. Se dice que $T$ es una \iindex{$\lambda$-contracción} si $\forall x, y \in M$, 
 	\[d(T(x), T(y)) \leq k \, d(x, y) \stackrel{k < 1}{\Leftrightarrow} d(T(x), T(y)) < d(x, y)\]
 \end{definition}
 \begin{observation}
@@ -1119,19 +1119,19 @@ BEGIN PRADA 6/3
 \begin{definition}
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
-	Sean además $ \varphi_1:I_1\longrightarrow \mathbb{R} $ y  $ \varphi_2:I_2\longrightarrow \mathbb{R} $ soluciones de dicha ecuación diferencial. Diremos que $ \varphi_2 $ es una \emph{prolongación} de $ \varphi_1 $ si:
+	Sean además $ \varphi_1:I_1\longrightarrow \mathbb{R} $ y  $ \varphi_2:I_2\longrightarrow \mathbb{R} $ soluciones de dicha ecuación diferencial. Diremos que $ \varphi_2 $ es una \iindex{prolongación} de $ \varphi_1 $ si:
 	\begin{enumerate}
 		\item $ I_1\subseteq I_2 $
 		\item $ \varphi_1(t) =\varphi_2(t) \ \forall t \in I_1$
 	\end{enumerate}
 
-	Además, si $ I_1 \varsubsetneq I_2 $ diremos que $ \varphi_2 $ es una \emph{prolongación propia} de $ \varphi_1 $.
+	Además, si $ I_1 \varsubsetneq I_2 $ diremos que $ \varphi_2 $ es una \iindex{prolongación propia} de $ \varphi_1 $.
 \end{definition}
 \begin{note}
 	Una solución es prolongación de si misma, pero no es prolongación propia.
 \end{note}
 \begin{definition}
-	Si $ \varphi $ es solución de una ecuación diferencial, diremos que $ \varphi $ es una \emph{solución maximal} si no admite prolongación propia. En este caso, el intervalo de definición es llamado \emph{intervalo maximal}.
+	Si $ \varphi $ es solución de una ecuación diferencial, diremos que $ \varphi $ es una \iindex{solución maximal} si no admite prolongación propia. En este caso, el intervalo de definición es llamado \iindex{intervalo maximal}.
 \end{definition}
 \begin{lemma}[Lema de Zorn]
 	Todo conjunto parcialmente ordenado no vacío, en el que toda cadena (subconjunto parcialmente ordenado) admite cota superior, contiene elementos maximales.
@@ -1158,12 +1158,12 @@ BEGIN PRADA 6/3
 \begin{definition}
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
-	Sean $ \varphi_1:(a,b)\longrightarrow \mathbb{R}^n $ y $ \varphi_2:(c,d)\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y $ b\in(c,d) $, diremos que $ \varphi_2 $ es \emph{prolongación de $ \varphi_1 $ a través de $ b $}.
+	Sean $ \varphi_1:(a,b)\longrightarrow \mathbb{R}^n $ y $ \varphi_2:(c,d)\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y $ b\in(c,d) $, diremos que $ \varphi_2 $ es \iindex{prolongación de $ \varphi_1 $ a través de $ b $}.
 \end{definition}
 \begin{definition}[General]
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
-	Sean $ \varphi_1:I_1\longrightarrow \mathbb{R}^n $ y $ \varphi_2:I_2\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y existe $ q\in \text{Fr}(I_1) $ tal que $ q\in \mathring{I_2}$, diremos que $ \varphi_2 $ es \emph{prolongación de $ \varphi_1 $ a través de $ q $}.
+	Sean $ \varphi_1:I_1\longrightarrow \mathbb{R}^n $ y $ \varphi_2:I_2\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y existe $ q\in \text{Fr}(I_1) $ tal que $ q\in \mathring{I_2}$, diremos que $ \varphi_2 $ es \iindex{prolongación de $ \varphi_1 $ a través de $ q $}.
 \end{definition}
 \begin{theorem}[Teorema de prolongación]
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
@@ -1353,7 +1353,7 @@ Nótese que si $ g(x_0)=0 $, entonces $ x(t)=x_0 $ es la solución.
 \subsubsection{EDOs homogéneas.}
 Son ecuaciones de la forma $ x'=g(\frac{x}{t}), $ o bien $ x'=\frac{f(t,x)}{h(t,x)} $, con $ f,h $ funciones homogéneas del mismo grado.
 \begin{definition}
-	Decimos que $ f $ es una \emph{función homogénea de grado $ k $} si $ \forall r \in \mathbb{R}, f(rt,rx)=r^kf(t,x)$.
+	Decimos que $ f $ es una \iindex{función homogénea de grado $ k $} si $ \forall r \in \mathbb{R}, f(rt,rx)=r^kf(t,x)$.
 \end{definition}
 \paragraph{Método de resolución} \ \\
 Sean $ f,h $ homogéneas del mismo grado. Todas las EDOs homogéneas se pueden reducir a $ x'=g(\frac{x}{t})$.
@@ -1428,8 +1428,8 @@ Por casos, ¿las rectas pasan por el origen?:
 Son ecuaciones de la forma $ x'=a(t)x+b(t) $ con $ a,b: I\in\mathbb{R}\longrightarrow \mathbb{R} $ continuas.
 \begin{definition}\ 
 	\begin{enumerate}[\quad i)]
-		\item Si $ b(t)=0 $, es una \emph{EDO lineal homogénea}.
-		\item Si $ b(t)\neq 0 $, para algún $ t\in I $, es una \emph{EDO lineal no homogénea o completa}.
+		\item Si $ b(t)=0 $, es una \iindex{EDO lineal homogénea}.
+		\item Si $ b(t)\neq 0 $, para algún $ t\in I $, es una \iindex{EDO lineal no homogénea o completa}.
 	\end{enumerate}
 \end{definition}
 \paragraph{Método de resolución} \ \\
@@ -1539,7 +1539,7 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 	
 	Es decir, estamos en las hipótesis del teorema \ref{picard} de existencia y unicidad de soluciones de Picard-Lipschitz y podemos afirmar que existe una única solución pasando por un punto $ (t_0,x_0) $ dado.
 \begin{definition}
-	La ecuación diferencial dada por (\ref{eqEx}) es una \emph{EDO exacta} si $\exists F(t, x)$ tal que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$. A $F$ se le denomina \emph{función potencial}.
+	La ecuación diferencial dada por (\ref{eqEx}) es una \iindex{EDO exacta} si $\exists F(t, x)$ tal que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$. A $F$ se le denomina \iindex{función potencial}.
 \end{definition}
 \begin{proposition} \label{sol_exacta}
 	Si $F$ es una función potencial para la ecuación diferencial (\ref{eqEx}), la solución de (\ref{eqEx}) pasando por $(t_0, x_0) \in I \times J$ viene dada implícitamente por $F(t, x) - F(t_0, x_0) = 0$.
@@ -1615,7 +1615,7 @@ donde
 \[\frac{dM}{dx} = \frac{1}{t^2} = \frac{dN}{dt}.\]
 ¿Podemos generalizar este proceso para convertir en exactas ecuaciones que a priori no lo son? De esto trata este método de resolución.
 \begin{definition}
-	Diremos que $\mu : (t, x) \in I_1 \times I_2 \longrightarrow \mathbb{R}$ es un \emph{factor integrante} para $M(t, x)dt + N(t, x)dx = 0$ si:
+	Diremos que $\mu : (t, x) \in I_1 \times I_2 \longrightarrow \mathbb{R}$ es un \iindex{factor integrante} para $M(t, x)dt + N(t, x)dx = 0$ si:
 	\[\mu(t, x)M(t, x)dt + \mu(t, x)N(t, x)dx = 0\]
 	es una EDO exacta o, lo que es lo mismo, $\frac{d}{dt}(M\mu) = \frac{d}{dx}(N\mu)$. Esto se reescribe de la siguiente forma:
 	\begin{equation} \label{eqInte}
@@ -1677,7 +1677,7 @@ Las posibles elecciones del factor integrante estarán condicionadas por la ecua
 \section{Tema 5. Sistemas de ecuaciones lineales. Propiedades de las soluciones. Matriz fundamental.}
 BEGIN JORGE 18/03 \\
 \begin{definition}
-	Llamaremos \emph{sistema de ecuaciones lineales} a una ecuación diferencial de la forma:
+	Llamaremos \iindex{sistema de ecuaciones lineales} a una ecuación diferencial de la forma:
 	\[x'= A(t)x + b(t)\]
 	En el que $ x,x'\in \mathbb{R}^n $ y $A$ y $b$ son aplicaciones continuas cumpliendo:\\
 	\begin{align*}
@@ -1711,7 +1711,7 @@ BEGIN JORGE 18/03 \\
 \end{definition}
 \subsection{Sistemas homogéneos.}
 \begin{definition}
-	Si $b(t) = 0$ para todo $ t $ diremos que es un \emph{sistema homogéneo}. Si $\exists t \in I$, para el que $ b(t)\neq0 $ diremos que es un \emph{sistema no homogéneo o completo}.
+	Si $b(t) = 0$ para todo $ t $ diremos que es un \iindex{sistema homogéneo}. Si $\exists t \in I$, para el que $ b(t)\neq0 $ diremos que es un \iindex{sistema no homogéneo o completo}.
 \end{definition}
 \begin{theorem}
 	Sea $I = (a, b)$ intervalo abierto y $A(t)$, $b(t)$ funciones continuas en $I$. Entonces, fijado $(t_0, x_0) \in I \times \mathbb{R}^n$ existe solución para $x'= A(t)x + b(t)$ pasando por $(t_0, x_0)$, es única y la solución maximal está definida en $ I $.
@@ -1793,7 +1793,7 @@ BEGIN PRADA 20/03
 	$ F^i(e_i)=\varphi_i $ solución de $ x'=A(t)x $ que pasa por $ (t_0, e_i) $.
 \end{observation}
 \begin{definition}
-	Sea $ \phi(t) \in M_{n\times n}(\mathbb{R}), t\in I$, diremos que $ \phi $ es una \emph{matriz solución para el sistema homogéneo} $ x'=A(t)x $ si cada columna es solución de él. 
+	Sea $ \phi(t) \in M_{n\times n}(\mathbb{R}), t\in I$, diremos que $ \phi $ es una \iindex{matriz solución para el sistema homogéneo} $ x'=A(t)x $ si cada columna es solución de él. 
 	\[ \begin{pmatrix}
 	\vdots & \vdots  &&\vdots\\
 	\varphi_1  & \varphi_2 & \dots&\varphi_n \\
@@ -1806,7 +1806,7 @@ BEGIN PRADA 20/03
 
 \subsubsection{Matrices fundamentales.}
 \begin{definition}
-	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que es una \emph{matriz fundamental} para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
+	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que es una \iindex{matriz fundamental} para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
 \end{definition}
 \begin{theorem}[Caracterización de matrices fundamentales]\label{matfund-carac}\ \\
 	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
@@ -1850,7 +1850,7 @@ BEGIN PRADA 20/03
 	\end{enumerate}
 \end{proof}
 \begin{definition}
-	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es \emph{matriz principal en $ t_0$}$\in I $ si $ \phi(t_0)=I_n $.
+	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es \iindex{matriz principal en $ t_0$}$\in I $ si $ \phi(t_0)=I_n $.
 \end{definition}
 \begin{proposition}[Solución general del sistema homogéneo] \ \\
 	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces la solución general del sistema es $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $ (todas las soluciones son de esta forma).	
@@ -1964,12 +1964,12 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 \pagebreak
 \section{Tema 6. Sistemas de ecuaciones lineales con coeficientes constantes.}
 \begin{definition}
-	Llamamos \emph{sistema lineal de coeficientes constantes} a una ecuación diferencial de la forma:
+	Llamamos \iindex{sistema lineal de coeficientes constantes} a una ecuación diferencial de la forma:
 	\[ x'=Ax+b(t) \]
 	con $ x', x\in\mathbb{R}^n $, $ A(t)=A\in M_{n\times n} $ constante en $ t $ y $ b:t\in I\subset\mathbb{R}\longrightarrow b(t)\in\mathbb{R}^n $ continua.
 \end{definition}
 \begin{definition}
-	Sea $ M \in M_{n\times n} $, llamamos \emph{$ e^M $} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
+	Sea $ M \in M_{n\times n} $, llamamos \iindex{$ e^M $} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
 	¿Es esta serie convergente?
 	\[ \sum_{n=0}^{\infty}\norm{\frac{1}{n!}M^n}=\sum_{n=0}^{\infty}\frac{1}{n!}\norm{M}^n=e^{\norm{M}} \]
 \end{definition}
@@ -2073,4 +2073,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	\[e^{tA} = Pe^{tJ}P^{-1}\]
 	concluyendo entonces la prueba.
 \end{proof}
+
+\printindex
+
 \end{document}
