@@ -1803,7 +1803,7 @@ BEGIN PRADA 20/03
 \begin{theorem} 
 	Sea el sistema homogéneo $x' = A(t) x$ con $I$ intervalo y $A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R})$ continua. 
 	
-	Entonces $ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
+	Entonces $ \phi(t) $ es matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
 \end{theorem}
 \begin{proof}\ \\
 	"$\Rightarrow $"\\
@@ -1816,13 +1816,13 @@ BEGIN PRADA 20/03
 	\qquad \vdots\\
 	f_n'=A(t)f_n(t)\\
 	\end{cases} \]
-	Para ver que $ \phi $ es matriz solución, tenemos que ver que sus columnas $ (f_1 \ f_2\  \cdots\  f_n) $ son soluciones del sistema homogéneo.Es decir, para cada $ f_i $:
+	Para ver que $ \phi $ es matriz solución, tenemos que ver que sus columnas $ (f_1 \ f_2\  \cdots\  f_n) $ son soluciones del sistema homogéneo. Es decir, para cada $ f_i $:
 	\begin{enumerate}[\quad i)]
 		\item $(t, f_i (t)) \in A=\mathbb{R}\times \mathbb{R}^n$, $\forall t \in I$. Se cumple trivialmente ya que $ A(t)\in M_{n \times n} (\mathbb{R}) $, por lo que $ f_i(t)\in \mathbb{R}^n $.
 		\item Existe $ f_i' (t)$, $\forall t \in I$. Por definición de $ f_i $.
 		\item $f_i'(t)=f(t, f_i(t))$,  $\forall t \in I$. Se desprende de la igualdad anterior.
 	\end{enumerate}
-	Es decir, las $ f_i $ son soluciones del sistema homogéneo y por lo tanto $ \phi(t) $ es matriz solución.	
+	Por lo que las $ f_i $ son soluciones del sistema homogéneo y $ \phi(t) $ es matriz solución.
 \end{proof}
 
 \subsubsection{Matrices fundamentales.}
@@ -1874,7 +1874,7 @@ BEGIN PRADA 20/03
 	Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $ diremos que es \iindex{matriz principal en $ t_0$}$\in I $ si $ \phi(t_0)=I_n $.
 \end{definition}
 \begin{proposition}[Solución general del sistema homogéneo] \ \\
-	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces la solución general del sistema es $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $ (todas las soluciones son de esta forma).	
+	Sea $ x'= A(t)x, A$ continua en $ I $. Si $ \phi(t) $ es matriz fundamental para $ x'=A(t)x $, entonces la solución general del sistema homogéneo es $ x(t)=\phi(t)c, \ c\in \mathbb{R}^n $ (todas las soluciones son de esta forma).	
 	
 	Las soluciones particulares pasando por $ (t_0,x_0) $ son de la forma  $ x(t)=\phi(t)\phi^{-1}(t_0)x_0 $.
 \end{proposition}
