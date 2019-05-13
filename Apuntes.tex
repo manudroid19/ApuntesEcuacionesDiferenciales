@@ -1709,10 +1709,6 @@ BEGIN JORGE 18/03 \\
 	x_n' = f_n(t, x_1, \dots, x_n)=a_{n1}(t)x_1+\dots+a_{nn}(t)x_n+b_n(t) 
 	\end{cases}\]
 \end{definition}
-\subsection{Sistemas homogéneos.}
-\begin{definition}
-	Si $b(t) = 0$ para todo $ t $ diremos que es un \iindex{sistema homogéneo}. Si $\exists t \in I$, para el que $ b(t)\neq0 $ diremos que es un \iindex{sistema no homogéneo o completo}.
-\end{definition}
 \begin{theorem}
 	Sea $I = (a, b)$ intervalo abierto y $A(t)$, $b(t)$ funciones continuas en $I$. Entonces, fijado $(t_0, x_0) \in I \times \mathbb{R}^n$ existe solución para $x'= A(t)x + b(t)$ pasando por $(t_0, x_0)$, es única y la solución maximal está definida en $ I $.
 \end{theorem}
@@ -1734,7 +1730,7 @@ BEGIN JORGE 18/03 \\
 		\item $f \in C([c, d] \times \mathbb{R}^n)$
 		\item $\norm{f(t, x) - f(t, y)} \leq k \norm{x - y}$
 	\end{enumerate}
-El primer punto se cumple de forma directa, mientras que el segundo se cumple ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ la solución maximal está definida en $I$. \\
+	El primer punto se cumple de forma directa, mientras que el segundo se cumple ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ la solución maximal está definida en $I$. \\
 	Sea $t \in I$ fijado arbitrario y escojo un compacto $[c, d]\subset I$ tal que $t, t_0 \in [c, d]$. \\
 	\begin{center}
 		DIBUJO
@@ -1744,6 +1740,10 @@ El primer punto se cumple de forma directa, mientras que el segundo se cumple ya
 \begin{note}
 	El resultado es cierto aunque $I$ no sea abierto, es decir, la solución maximal estará definida en el intervalo donde $A$ y $b$ sean continuas.
 \end{note}
+\subsection{Sistemas homogéneos.}
+\begin{definition}
+	Si $b(t) = 0$ para todo $ t $ diremos que es un \iindex{sistema homogéneo}. Si $\exists t \in I$, para el que $ b(t)\neq0 $ diremos que es un \iindex{sistema no homogéneo o completo}.
+\end{definition}
 \begin{theorem}
 	Sea el sistema homogéneo $x' = A(t) x$ con $I$ intervalo y $A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R})$ continua. El conjunto $S$ de soluciones del sistema es un espacio vectorial de dimensión $n$.
 \end{theorem}
@@ -1800,9 +1800,30 @@ BEGIN PRADA 20/03
 	\vdots & \vdots  &&\vdots
 	\end{pmatrix}  \]
 \end{definition}
-\begin{exercise}
-	$ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
-\end{exercise}
+\begin{theorem} 
+	Sea el sistema homogéneo $x' = A(t) x$ con $I$ intervalo y $A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R})$ continua. 
+	
+	Entonces $ \phi(t) $ matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
+\end{theorem}
+\begin{proof}\ \\
+	"$\Rightarrow $"\\
+	Si $ \phi(t) $ es solución, por definición $ \phi=(\varphi_1 \ \varphi_2\  \cdots\  \varphi_n) $. Cada columna es una solución del sistema homogéneo, por lo tanto la derivada de la matriz será la derivada de las soluciones columna a columna:
+	\[ \phi' = (\varphi_1' \ \varphi_2'\  \cdots\  \varphi_n')=(f(t,\varphi_1(t)) \ f(t,\varphi_2(t))\  \cdots\  f(t,\varphi_n(t)))=A(\varphi_1 \ \varphi_2\  \cdots\  \varphi_n)=A\phi \]
+	"$\Leftarrow $"\\
+	Partiendo de $ \phi'(t)=A(t)\phi(t) $, interpretamos las columnas de $ \phi $ y $ \phi' $ como un sistema homogéneo de ecuaciones diferenciales:
+	\[ (f_1' \ f_2'\  \cdots\  f_n')=(A(t)f_1 \ A(t)f_2\  \cdots\  A(t)f_n)\Rightarrow \begin{cases}
+	f_1'=A(t)f_1(t)\\
+	\qquad \vdots\\
+	f_n'=A(t)f_n(t)\\
+	\end{cases} \]
+	Para ver que $ \phi $ es matriz solución, tenemos que ver que sus columnas $ (f_1 \ f_2\  \cdots\  f_n) $ son soluciones del sistema homogéneo.Es decir, para cada $ f_i $:
+	\begin{enumerate}[\quad i)]
+		\item $(t, f_i (t)) \in A=\mathbb{R}\times \mathbb{R}^n$, $\forall t \in I$. Se cumple trivialmente ya que $ A(t)\in M_{n \times n} (\mathbb{R}) $, por lo que $ f_i(t)\in \mathbb{R}^n $.
+		\item Existe $ f_i' (t)$, $\forall t \in I$. Por definición de $ f_i $.
+		\item $f_i'(t)=f(t, f_i(t))$,  $\forall t \in I$. Se desprende de la igualdad anterior.
+	\end{enumerate}
+	Es decir, las $ f_i $ son soluciones del sistema homogéneo y por lo tanto $ \phi(t) $ es matriz solución.	
+\end{proof}
 
 \subsubsection{Matrices fundamentales.}
 \begin{definition}
