@@ -317,7 +317,7 @@
 		$ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
 	\end{enumerate}
 \end{proof}
-%BEGIN JORGE 4/2
+
 \subsection{Concepto de EDO y solución.}
 \begin{definition}
 	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \iindex{Ecuación Diferencial Ordinaria} (EDO) de primer orden dada en forma normal relativa a la función $f$ a: 
@@ -454,7 +454,6 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 	con $I$ un intervalo, que sea solución de $x' = f(t, x)$ tal que $\varphi (t_0) = x_0$.
 \end{definition}
 
-BEGIN MANU 6/2 exp
 \begin{observation}
 ¿Una circunferencia puede ser solución de una EDO?
 \end{observation}
@@ -599,7 +598,6 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 	||g'(u)||=||\pi'(u)-f(u,\pi(u))||\leq \varepsilon 
 	\end{rcases} \Rightarrow	||\pi(t)-\pi(t_0)-\int_{t_0}^{t} f(s, \pi(s)) ds|| \leq \varepsilon |t-t_0|\]
 	
-	BEGIN JORGE 11/2
 	
 	\textbf{Caso II.}
 	En este caso el caso a analizar va a ser el de dos puntos en dos intervalos diferentes pero consecutivos. Es decir:
@@ -688,7 +686,6 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 	\end{enumerate}
 \end{example}
 
-BEGIN MANU 13/2 
 
 \begin{theorem}[Construccion de solución $ \varepsilon $-aproximada.]
 	Consideramos la ecuación diferencial definida por $ f:(t,x) \in A \subset \mathbb{R}\times \mathbb{R}^n\longrightarrow f(t,x)\in \mathbb{R}^n$, tal que $ x'=f(t,x) $, con $ A $ abierto, $ f $ continua y acotada en $ A $ y $ \varepsilon\in \mathbb{R}, \varepsilon>0$. 
@@ -794,7 +791,6 @@ BEGIN MANU 13/2
 	\[ t \longmapsto \rho_2(t)=x_1+f(t_1,x_1)(t-t_1) \]
 	veremos de forma análoga que $ \rho_2(t) $ es solución $ \varepsilon $-aproximada $  \forall t \in [t_1,t_1+\alpha]  $, repitiendo el proceso para construir la solución $ \varepsilon $-aproximada por poligonales. 
 	
-	BEGIN PRADA 18/02
 	
 	Así, $ \varphi_2 $ es solución $ \forall t \in [t_1,t_1+\alpha] $, si $ t_1+\alpha\leq t_0+\delta $ o bien $\forall t \in [t_1, t_0+\delta] $ si $ t_1+\alpha >t_0+\delta $. 
 	
@@ -891,9 +887,7 @@ BEGIN MANU 13/2
 	
 	Por construcción, $ \pi_{m_k}(t_0)=x_0 \Rightarrow \varphi(t_0) = \lim\limits_{k\to \infty}\pi_{m_k}(t_0)=x_0$.
 \end{proof}
-BEGIN PRADA 18/02
 
-BEGIN JORGE 20/02
 \subsection{Unicidad de la solución. Teorema de Picard-Lipschitz.}
 \begin{example}
 	El siguiente ejemplo es de una ecuación con varias soluciones. Es la ecuación:
@@ -1003,7 +997,6 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	\[\lim\limits_{x \to 0} \frac{1}{x^{\frac{1}{3}}} = +\infty\] 
 	vemos que en efecto, no es localmente lipschitziana.
 \end{note}
-	BEGIN JORGE 25/02
 \begin{proof}\ \\
 	La demostración se basa en dos resultados, el teorema \ref{transformada} de la transformada contractiva y el teorema \ref{carac-sol} de caracterización de la solución. En primer lugar definiremos una serie de elementos que se emplearán a lo largo de la demostración:
 	\begin{enumerate}
@@ -1057,7 +1050,6 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	Por lo tanto, $T$ es $\lambda$-contracción. Es decir, por el Teorema \ref{transformada} de la transformada contractiva:
 	\[\exists ! \varphi \in X : \varphi \text{ punto fijo de } T\]
 	por lo que $\varphi (t) = T\varphi (t) = x_0 + \int_{t_0}^{t} f(s, \varphi (s))ds$, y como $\varphi$ continua, cumple las dos hipótesis del Teorema \ref{carac-sol} de caracterización de soluciones.	
-BEGIN PRADA 27/02
 
 	\begin{figure}[h]
 		\centering
@@ -1106,7 +1098,6 @@ BEGIN PRADA 27/02
 \end{proof}
 \pagebreak
 \section{Tema 3.}
-BEGIN PRADA 6/3
 \begin{example}
 	Dada la ecuación diferencial $ x'=x^2 $, pasando por el punto $ x(1)=1 $, tenemos que $ x(t)=\frac{-1}{t} $ es solución. $ x'(t)=x(t)^2 $ es una ecuación planteada para todo $ t \in \mathbb{R} $, pero $ x(t)=\frac{-1}{t} $ está definida para $ t \in \mathbb{R}-\{0\} $.
 	
@@ -1185,7 +1176,6 @@ BEGIN PRADA 6/3
 	\end{enumerate}
 \end{theorem}
 
-BEGIN JORGE 11/3
 
 \begin{proof}\ 
 	\begin{enumerate} [\quad i)]
@@ -1262,7 +1252,6 @@ BEGIN JORGE 11/3
 	
 	DIBUJO
 	\end{proof}
-BEGIN PRADA 13/03
 
 \begin{proposition}
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
@@ -1683,7 +1672,6 @@ Las posibles elecciones del factor integrante estarán condicionadas por la ecua
 
 \pagebreak
 \section{Tema 5. Sistemas de ecuaciones lineales. Propiedades de las soluciones. Matriz fundamental.}
-BEGIN JORGE 18/03 \\
 \begin{definition}
 	Llamaremos \iindex{sistema de ecuaciones lineales} a una ecuación diferencial de la forma:
 	\[x'= A(t)x + b(t)\]
@@ -1762,7 +1750,6 @@ BEGIN JORGE 18/03 \\
 		&\varphi \longmapsto F(\varphi) = \varphi (t_0)
 	\end{align*}
 	con $t_0 \in I$ fijado. Tenemos que demostrar que:
-BEGIN PRADA 20/03
 	\begin{enumerate}
 		\item $ S $ espacio vectorial. 
 		\begin{enumerate}[\quad i)]
