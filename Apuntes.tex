@@ -188,6 +188,11 @@
 {\left.\begin{aligned}}
 	{\end{aligned}\right\rbrace}
 
+%Apilado de varias lineas en pruebas logicas
+\newenvironment{bcases}
+{\left.\begin{aligned}}
+	{\end{aligned}\right.}
+
 %-----------------------------------------------------------------------------------------------------
 %	PORTADA
 %-----------------------------------------------------------------------------------------------------
@@ -2129,7 +2134,148 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	\[e^{tA} = Pe^{tJ}P^{-1}\]
 	concluyendo entonces la prueba.
 \end{proof}
+\subsubsection{Resultados de formas de Jordan}
+\begin{definition}
+	Sexa $ A\in M_{n\times n}(\mathbb{C}) $, es una matriz diagonal por bloques si tiene la forma:
+	\[ A=\begin{pmatrix}
+	A_{1}  \\
+	& A_2  \\
+	& & \ddots \\
+	& & & A_s
+	\end{pmatrix} \]
+	con $ A_s $ matriz de $ k_s\times k_s $.
+\end{definition}
+\begin{theorem}
+	Si $ A\in M_{n\times n}(\mathbb{C}) $ es una matriz diagonal por bloques, entonces 
+	\[ e^{tA}= \begin{pmatrix}
+	e^{tA_1}  \\
+	& e^{tA_2}  \\
+	& & \ddots \\
+	& & & e^{tA_s}
+	\end{pmatrix}\] también es una matriz diagonal por bloques.
+\end{theorem}
+\begin{proof}
+	Sabemos que 
+	\[ A^2=\begin{pmatrix}
+	A_{1}^2  \\
+	& A_2^2  \\
+	& & \ddots \\
+	& & & A_s^2
+	\end{pmatrix} \]
+	Entonces, la matriz deseada es:
+	\[ e^{tA}=I+ \begin{pmatrix}
+	tA_{1}  \\
+	& tA_2  \\
+	& & \ddots \\
+	& & &t A_s
+	\end{pmatrix} + \begin{pmatrix}
+	\frac{t^2}{2}A_{1}^2  \\
+	& \frac{t^2}{2}A_2^2  \\
+	& & \ddots \\
+	& & &\frac{t^2}{2} A_s
+	\end{pmatrix}+ \ \cdots= \begin{pmatrix}
+	e^{tA_1}  \\
+	& e^{tA_2}  \\
+	& & \ddots \\
+	& & & e^{tA_s}
+	\end{pmatrix} \]
+\end{proof}
 
+\begin{theorem}
+	Si $ A\in M_{n\times n}(\mathbb{C}) $ es un bloque de Jordan, es decir:
+	\[ A=\begin{pmatrix}
+	\lambda & 1  \\
+	& \lambda & 1  \\
+	& & \ddots & \ddots \\
+	& & & \lambda & 1
+	\end{pmatrix} \] entonces 
+	\[ e^{tA}=\begin{pmatrix}
+	e^{\lambda t} & t e^{\lambda t} & \frac{t^2}{2} e^{\lambda t} & \cdots & \frac{t^{n-1}}{(n-1)!} e^{\lambda t}  \\
+	& e^{\lambda t} & 1  \\
+	& & \ddots & \ddots \\
+	& & & e^{\lambda t} & 1
+	\end{pmatrix} \]
+\end{theorem}
+
+\paragraph{Recordatorio de cálculo de formas de Jordan}\ \\
+	Sea $ A\in M_{2\times 2}(\mathbb{R}) $, con $ \lambda_1, \lambda_2 $ sus autovalores. La forma de Jordan puede tener las siguientes formas:
+	\begin{enumerate}[\quad \text{Caso }1.]
+		\item $ \lambda_1\neq \lambda_2 $. Entonces 
+		\[ J=\begin{pmatrix}
+		\lambda_1 &0\\
+		0 &\lambda_2
+		\end{pmatrix} \]
+		Como $ J $ es la misma transformación lineal pero en una base $ B_j $, $ A=PJP^{-1} \Rightarrow AP=JP$. Es decir, para cada uno de los dos vectores columna de la matriz $ P $ de cambio de base, tenemos que $ Ap_i=\lambda_ip_i \Rightarrow (A-\lambda_iI)p_i=0$.
+		\item $ \lambda_1= \lambda_2=\lambda $.
+		\begin{enumerate}[\text{Subcaso 2.}1]
+			\item $ J=\text{diag}(\lambda,\lambda) $, y por ser $ A $ e $ J $ semejantes, el rango de $ A-\lambda I $ es igual al de $ J-\lambda I $ que es 0. Es decir, $ A-\lambda I =0 \Rightarrow A=\lambda I $ con lo que $ P=I $.
+			\item \ 
+			\[ J=\begin{pmatrix}
+			\lambda &1\\
+			0 &\lambda
+			\end{pmatrix} \]
+			Como $ AP=PJ $,
+			\[ \begin{rcases}
+			 Ap_1 = \lambda p_1\\
+			 Ap_2 = p_1 + \lambda p_2
+			\end{rcases} \Rightarrow \begin{rcases}
+			&(A-\lambda I) p_1=0\\
+			&(A-\lambda I) p_2=p_1
+			\end{rcases}\Rightarrow  (A-\lambda I)^2p_2= (A-\lambda I) p_1=0   \]
+			En este subcaso, tenemos que el rango de $ A-\lambda I $ es igual al de $ J-\lambda I $ que es 1. Por lo tanto el kernel de $ A-\lambda I $ tendrá dimensión 1.
+			
+			En cambio, $ (A-\lambda I)^2 $ tiene rango 0 por tener rango 0 $ (J-\lambda I)^2 $. Es decir, manda a 0 a todos los vectores de $ \mathbb{R}^2 $. Por lo tanto, cualquier vector de $ \mathbb{R}^2 $ está en el kernel de $ (A-\lambda I)^2 $. Escogeremos uno que no esté en el kernel de $ (A-\lambda I) $, para así obtener $ p_2 $ y $ p_1 $ independientes. Una vez tengamos $ p_2 $, se obtiene $ p_1= (A-\lambda I) p_2$.			
+		\end{enumerate}
+	\end{enumerate}
+Para matrices $ 3\times 3 $ se procede de manera análoga. Hacemos un resumen de los casos posibles:
+\begin{enumerate}[\quad \text{Caso }1.]
+	\item $ \lambda_1,\lambda_2,\lambda_3 $ distintos. $ J=\text{diag}(\lambda_1,\lambda_2,\lambda_3), P=(v_1|v_2|v_3) $, con $ \begin{cases}
+	Av_1=\lambda_1v_1\\
+	Av_2=\lambda_2v_2\\
+	Av_3=\lambda_2v_3
+	\end{cases} $
+	\item $ \lambda= \lambda_1=\lambda_2\neq \lambda_3 $. Hay dos subcasos:
+	\begin{enumerate}[\text{Subcaso 2.}1]
+		\item rango$ (A-\lambda I )= 1 $. \\
+		$ J=\text{diag}(\lambda,\lambda,\lambda_3), P=(v|w|v_3) $, con $ \begin{cases}
+		Av=\lambda_1v\\
+		Av=\lambda_2w\\
+		Av_3=\lambda_3v_3
+		\end{cases}\Rightarrow <v>\neq <w> $
+		\item rango$ (A-\lambda I )= 2 $. \\
+		 $ J=\begin{pmatrix}
+		\lambda &1 &0\\
+		0 &\lambda &0\\
+		0 &0 &\lambda_3
+		\end{pmatrix} $. $ P=((A-\lambda I)v|v|v_3) $, con $ \begin{cases}
+		Av_3=\lambda_3v_3\\
+		v \in \ker\{(A-\lambda I)^2\}-\ker\{A-\lambda I\}
+		\end{cases}$.
+	\end{enumerate}
+	\item aa $ \lambda= \lambda_1=\lambda_2= \lambda_3 $. Hay tres subcasos:
+	\begin{enumerate}[\text{Subcaso 3.}1]
+		\item rango$ (A-\lambda I )= 0 $. \\
+		$ J=\text{diag}(\lambda,\lambda,\lambda), P=(u|v|w) $, con $ \begin{cases}
+		v,u,w \in \ker\{(A-\lambda I)\}
+		\end{cases}\Rightarrow u,v,w $ linealmente independientes.
+		\item rango$ (A-\lambda I )= 1 $. \\
+		$ J=\begin{pmatrix}
+		\lambda &1 &0\\
+		0 &\lambda &0\\
+		0 &0 &\lambda_3
+		\end{pmatrix} $. $ P=((A-\lambda I)v|v|w) $, con $ \begin{cases}
+		v \in \ker\{(A-\lambda I)^2\}-\ker\{A-\lambda I\} \\
+		w \in \ker\{(A-\lambda I)\}\\
+		(A-\lambda I)v,w\text{ linealmente independientes.}
+		\end{cases}$.	
+		\item rango$ (A-\lambda I )= 2 $. \\
+		$ J=\begin{pmatrix}
+		\lambda &1 &0\\
+		0 &\lambda &1\\
+		0 &0 &\lambda
+		\end{pmatrix} $. $ P=((A-\lambda I)^2v|(A-\lambda I)v|v) $, con $ v \in \ker\{(A-\lambda I)^3\}-\ker\{(A-\lambda I)^2\} $.
+	\end{enumerate}
+\end{enumerate}
 \printindex
 
 \end{document}
