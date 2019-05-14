@@ -322,6 +322,7 @@
 		$ x(t)=500(\frac{19}{25})^t$ es una exponencial decreciente en todo su dominio, $ (0, +\infty) $. Despejando $ x(t)=500(\frac{19}{25})^t=100$ obtenemos $ t=\log_{\frac{19}{25}}(\frac{1}{5})=5,86 $ y para $ x(t)=200 $, $ t=3,33 $. Por lo tanto, para mantener el medicamento entre los 100mg y 700mg debe renovarse la dosis pasadas entre 3,33 y 5,86 horas.
 	\end{enumerate}
 \end{proof}
+
 \subsection{Concepto de EDO y solución.}
 \begin{definition}
 	Sea $f: A \subset \mathbb{R} \times \mathbb{R}^n \longrightarrow \mathbb{R}^n$ con $f(t, x)$ una aplicación. Llamamos \iindex{Ecuación Diferencial Ordinaria} (EDO) de primer orden dada en forma normal relativa a la función $f$ a: 
@@ -384,12 +385,12 @@
 	Como $\varphi' (t) = f(t, \varphi (t))$, como hemos visto antes tenemos que:
 		\[t \stackrel{g}{\longrightarrow} (t, \varphi (t)) \stackrel{f}{\longrightarrow} f(t, \varphi (t)),\]
 	pero, tenemos que $f \in C^1(A)$ por lo que $f$ es continua y por la proposición anterior tenemos que $\varphi \in C^1$. Por lo tanto, la composición anterior cumple que es de clase $C^1$, por lo que concluímos que $\varphi \in C^2$. \\
-	Supongamois ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{\text{hip.}}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+2}$.
+	Supongamos ahora cierto para un $r$ arbitrario y probémoslo para $r+1$. Sea $f \in C^{r+1} (A)$ (por lo que $f \in C^r \stackrel{\text{hip.}}{\Rightarrow}$ $\varphi \in C^{r+1}$). Veamos que $\varphi \in C^{r+2}$.
 	\[t \longrightarrow (t, \varphi (t)) \longrightarrow f(t, \varphi (t)) = \varphi' (t).\]
 	En este caso, por el mismo razonamiento que en el caso $r=1$ tenemos que la composición es de clase $C^{r+1}$ por composición de funciones de clase $C^{r+1}$. Por lo tanto existe $\varphi^{r+2)}$ y es continua, por lo que $\varphi \in C^{r+2}$. 
 \end{proof}
 \subsubsection{Problema del valor inicial.}
-Con el siguiente ejemplo introducimos la problemática de elegir correctamente el intervalo de definición de la solución, entre aquellos candidatos. Nos servirá para introducir la siguiente sección.
+Con el siguiente ejemplo introducimos la problemática de elegir correctamente el intervalo de definición de la solución, entre los candidatos. Nos servirá para introducir la siguiente sección.
 \begin{example}
 	Sea $x' = x^2$, es decir, $f: (t, x) \in \mathbb{R} \times \mathbb{R} \longrightarrow f(t,x) = x^2 \in \mathbb{R}$. Comprobar que $x(t) = \frac{-1}{t+c}$, $c \in \mathbb{R}$, es solución. Estudiar en $ t=1 $.
 \end{example}
@@ -475,13 +476,13 @@ Con el siguiente ejemplo introducimos la problemática de elegir correctamente e
 	\node[below right] at (0.7cm,-0.7cm) {$x_2(t)$};
 	\end{tikzpicture}
 \end{wrapfigure}
-No, ya que no es una función. Sin embargo, si tomamos $ x_1=\sqrt{c-t^2} $ y $ x_1=\sqrt{c-t^2} $, son solución de la ecuación $ xx'+t=0 $.
+No, ya que no es una función. Sin embargo, si tomamos $ x_1=\sqrt{c-t^2} $ y $ x_2=-\sqrt{c-t^2} $, son solución de la ecuación $ xx'+t=0 $.
 
 Veámoslo para $ x_1 $.
 \[ (c-t^2)^{\frac{1}{2}}\frac{1}{2} (c-t^2)^{-\frac{1}{2}}(-2t)+t=-t+t=0 \]
 Su intervalo de definición será $ c-t^2\geq 0 \Rightarrow t \in [-\sqrt{c}, \sqrt{c}], c>0 $ y es derivable en $ (-\sqrt{c}, \sqrt{c}) $.
 
-La solución escogida será una o otra en función de la condición inicial.
+La solución escogida será una u otra en función de la condición inicial.
 \[ t\in (-\sqrt{c}, \sqrt{c}) \longrightarrow \begin{cases}
 x_1(t)=\sqrt{c-t^2}\\
 x_2(t)=-\sqrt{c-t^2}
@@ -614,7 +615,7 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 			\draw[thick] (-0.5,0)--(4.5,0);
 		\end{tikzpicture}
 	\end{center}
-	Así, en este caso, tenemos que $t_o \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_o, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo respecto al extremo común, se tiene que:
+	Así, en este caso, tenemos que $t_0 \in [t_i, t_{i+1}]$ y que $t \in [t_{i+1}, t_{i+2}]$. Por lo tanto, definiremos $J_j = [t_0, t_{i+1}]$ y $J_r = [t_{i+1}, t]$. Repitiendo el proceso en cada intervalo respecto al extremo común, se tiene que:
 	\begin{enumerate}
 		\item $\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} \leq \varepsilon |t - t_{i+1} |$ en $J_r$.
 		\item $\norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \leq \varepsilon |t_{i+1} - t_0|$ en $J_j$.
@@ -755,23 +756,21 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 	\begin{enumerate}[\qquad i)]
 		\item  $ (t,\rho(t)) \in \mathbb{R}\subset A$.
 		
-		\item $ \rho_1 $ es continua y $ C^n $ a trozos ya que $ \rho_1 \in C^\infty $.
+		\item $ \rho_1 $ es continua y $ C^1 $ a trozos ya que $ \rho_1 \in C^\infty $.
 		
 		\item ¿Se cumple $ ||\rho_1'(t)-f(t,\rho_1(t))||\leq \varepsilon $?
 	\end{enumerate}
 	
-	Por una parte, $ ||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0+f(t_0,x_0)(t-t_0))||  $
+	Por una parte,  \[||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0+f(t_0,x_0)(t-t_0))|| .\]
+	Por otra, tenemos que $f$ es continua en $A$ y $R\subset A$ es compacto, por lo que $f$ es uniformemente continua en $R$, es decir, 
+	\[\forall \varepsilon > 0 \ \exists \hat{\delta} >0 : \forall y,z \in R, ||y-z||<\hat{\delta} \Rightarrow||f(y)-f(z)||<\varepsilon .\]
+	Tenemos que demostrar entonces que:  \[||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0)+f(t_0,x_0)(t-t_0)||=||f(y)-f(z)||<\varepsilon \]
 	
-	Por otra, $ \begin{rcases}
-	f \text{ continua en } A\\
-	R\subset A \text{ compacto}
-	\end{rcases} \Rightarrow f \text{ uniformemente continua en } R\text{, es decir, } \forall \varepsilon > 0 \ \exists \hat{\delta} >0 : \forall y,z \in R, ||y-z||<\hat{\delta} \Rightarrow||f(y)-f(z)||<\varepsilon $.
-	
-	Tenemos que demostrar que $ ||\rho_1'(t)-f(t,\rho_1(t))||=||f(t_0,x_0)-f(t,x_0)+f(t_0,x_0)(t-t_0)||=||f(y)-f(z)||<\varepsilon $. 
-	
-	Por lo anterior ($ f $ uniformemente continua), si para $ \varepsilon>0 $ probamos que $||y-z||=||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} $, ya queda demostrado que $ ||f(y)-f(z)||<\varepsilon \Leftrightarrow iii) $.
-	
-	Veamos para que valores de $ t $, se tiene $ ||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} \Rightarrow ||(t_0-t),( x_0-x_0 -f(t_0,x_0)(t-t_0))||=||(t_0-t),(-f(t_0,x_0)(t-t_0))||< \hat{\delta} $.
+	por lo que, por lo anterior ($ f $ uniformemente continua), si para $ \varepsilon>0 $ probamos que 
+	\[||y-z||=||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta}, \]
+	ya queda demostrado que $ ||f(y)-f(z)||<\varepsilon $, lo cual equivale al apartado iii). Veamos para que valores de $ t $, se tiene 
+	\[||(t_0,x_0)-(t, x_0+f(t_0,x_0)(t-t_0))||< \hat{\delta} \Rightarrow ||(t_0-t),( x_0-x_0 -f(t_0,x_0)(t-t_0))||\]
+	\[=||(t_0-t),(-f(t_0,x_0)(t-t_0))||< \hat{\delta} .\]
 	
 	Notemos que al trabajar con la norma infinito lo que tenemos que comprobar es que los máximos de los valores absolutos de las componentes son menores que la cota, es decir:	
 	\[ \begin{rcases}
@@ -977,7 +976,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 \end{proof}
 \begin{definition}
 	Sea $(M, d)$ un espacio métrico y sea $T: M \longrightarrow M$, $0 \leq \lambda < 1$. Se dice que $T$ es una \iindex{$\lambda$-contracción} si $\forall x, y \in M$, 
-	\[d(T(x), T(y)) \leq k \, d(x, y) \stackrel{k < 1}{\Leftrightarrow} d(T(x), T(y)) < d(x, y)\]
+	\[d(T(x), T(y)) \leq \lambda \, d(x, y) \stackrel{\lambda < 1}{\Leftrightarrow} d(T(x), T(y)) < d(x, y)\]
 \end{definition}
 \begin{observation}
 	Las funciones en el espacio euclídeo usual lipschitzianas contractivas ($ k<0 $) son $\lambda$-contracciones con $ \lambda=k $.
@@ -1111,7 +1110,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	
 	Fijemonos en dos aspectos: con las condiciones iniciales propuestas, $ x(1)=1 $, podemos definir la solución en el intervalo $ (0,3) $. Sin embargo, esta solución podría ser prolongada a un dominio de $ (0,\infty) $, y la posibilidad de esta prolongación será objeto de estudio.
 	
-	Por otra parte, vemos que al cambiar las condiciones iniciales (por ejemplo, $ x_0=-0.0001 $ o $ x_0=0.00001 $), la solución de la ecuación no es la misma, y en otros caso, podría variar su expresión analítica. Nos interesará que para variaciones "pequeñas" de las condiciones iniciales, la solución de la ecuación no varíe "casi nada".
+	Por otra parte, vemos que al cambiar las condiciones iniciales (por ejemplo, $ x_0=-0.0001 $ o $ x_0=0.00001 $), la solución de la ecuación no es la misma y en otros caso, podría variar su expresión analítica. Nos interesará que para variaciones ''pequeñas'' de las condiciones iniciales, la solución de la ecuación no varíe ''casi nada''.
 \end{example}
 
 \begin{note}
@@ -1156,7 +1155,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	
 	Trabajamos solo con soluciones que sean prolongación de $ \varphi_0 $. Es un conjunto no vacío, ya que $ (I_0,\varphi_0) $ es prolongación de si mismo. Utilizamos la relación de orden parcial definida anteriormente y comprobamos que se cumple la otra hipótesis del lema de Zorn:
 	
-	Sea $ \{(I_j,\varphi_j) \}_{j\in I} $ una cadena de ese conjunto y veamos que admite cota superior. Sea $ \varphi $ la función definida en $ I=\bigcup_{j\in I}I_j $ mediante $ \varphi(t)=\varphi_j(t) \forall j \in I $. $ \varphi $ es claramente cota superior de la cadena.
+	Sea $ \{(I_j,\varphi_j) \}_{j\in I} $ una cadena de ese conjunto y veamos que admite cota superior. Sea $ \varphi $ la función definida en $ I=\bigcup_{j\in I}I_j $ mediante $ \varphi(t)=\varphi_j(t) \ \forall j \in I $. $ \varphi $ es claramente cota superior de la cadena.
 	
 	Por tanto, por el lema de Zorn, existen elementos maximales que son las soluciones maximales que prolongan a $ \varphi_0 $.	
 \end{proof}
@@ -1170,7 +1169,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	
 	Sean $ \varphi_1:I_1\longrightarrow \mathbb{R}^n $ y $ \varphi_2:I_2\longrightarrow \mathbb{R}^n $ soluciones de dicha ecuación diferencial. Si $ \varphi_2 $ es una prolongación de $ \varphi_1 $ y existe $ q\in \text{Fr}(I_1) $ tal que $ q\in \mathring{I_2}$, diremos que $ \varphi_2 $ es \iindex{prolongación de $ \varphi_1 $ a través de $ q $}.
 \end{definition}
-\begin{theorem}[Teorema de prolongación]
+\begin{theorem}[Teorema de prolongación] \label{prolTh}
 	Sean $ A $ un abierto de $ \mathbb{R}^{n+1} $ y $ f $ la aplicación continua $ f:(t,x)\in A\subset \mathbb{R}\times \mathbb{R}^n \longrightarrow f(t,x)\in \mathbb{R}^n $, con $  x'=f(t,x) $ su ecuación diferencial asociada. 
 	
 	Además de estas condiciones habituales, pediremos que $ f\in L_{\text{loc}}(A,x) $, es decir, que $ f $ sea lipschitziana localmente.
@@ -1178,7 +1177,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	Si $ \varphi:(a,b)\longrightarrow\mathbb{R}^n $ es solución de la ecuación diferencial anterior, entonces;
 	\begin{enumerate}[\quad i)]
 		\item $ \varphi $ prolongable a través de $ b \Leftrightarrow \exists \lim\limits_{t\to b^-}\varphi(t)=p, \text{ con } (b,p) \in A $
-		\item $ \varphi $ prolongable a través de $ a \Leftrightarrow \exists \lim\limits_{t\to a^-}\varphi(t)=q, \text{ con } (a,q) \in A $
+		\item $ \varphi $ prolongable a través de $ a \Leftrightarrow \exists \lim\limits_{t\to a^+}\varphi(t)=q, \text{ con } (a,q) \in A $
 	\end{enumerate}
 \end{theorem}
 
@@ -1189,7 +1188,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		Si $\varphi$ prolongable a través de $b$, entonces $\exists \varphi_2 : (a, d) \longrightarrow \mathbb{R}^n$ prolongación de $\varphi$ (es decir, $\varphi_2 = \varphi$ $\forall t \in (a, b)$, $b \in (a, b)$). Por ser $\varphi_2$ solución, $\varphi_2$ es continua por la izquierda en $t = b$, por lo que:
 		\[\lim\limits_{t \to b^-} \varphi_2(t) = \varphi_2(b) \text{, } \lim\limits_{t \to b^-} \varphi_2(t) = \lim\limits_{t \to b^-} \varphi(t)\]
 		y tenemos entonces que:
-		\[\lim\limits_{t \to b^-} \varphi(t) = \varphi_2(t)\]
+		\[\lim\limits_{t \to b^-} \varphi(t) = \varphi_2(b)\]
 		Además, $(b, \varphi(b)) \in A$ por ser $\varphi_2$ solución. \\
 		"$\Leftarrow$" \\
 		Suponemos que:
@@ -1198,7 +1197,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		
 		DIBUJO
 		
-		Como $\lim\limits_{t \to b^-} \varphi (t) = p$ y, por ser continua, $ \varphi $ es secuencialmente continua, existe una sucesión $\{t_n\} \longrightarrow b^-$ tal que $\{\varphi(t_n) \longrightarrow p\}$. Elegimos entonces un $n_0 \in \mathbb{N}$ tal que $\abs{t_{n_0} - b} < \delta$ y $(t_{n_0}, \varphi (t_{n_0})) \in \overline{B}$. Para la condición inicial $(t_{n_0}, \varphi (t_{n_0}))$ existe una solución única pasando por el punto definido en $[t_{n_0} - \delta, t_{n_0} + \delta]$ que denoto $\overline{\varphi}$. Entonces la función:
+		Como $\lim\limits_{t \to b^-} \varphi (t) = p$ y, por ser continua, $ \varphi $ es secuencialmente continua, existe una sucesión $\{t_n\} \longrightarrow b^-$ tal que $\{\varphi(t_n)\} \longrightarrow p$. Elegimos entonces un $n_0 \in \mathbb{N}$ tal que $\abs{t_{n_0} - b} < \delta$ y $(t_{n_0}, \varphi (t_{n_0})) \in \overline{B}$. Para la condición inicial $(t_{n_0}, \varphi (t_{n_0}))$ existe una solución única pasando por el punto definido en $[t_{n_0} - \delta, t_{n_0} + \delta]$ que denoto $\overline{\varphi}$. Entonces la función:
 		\[\psi: (a, t_{n_0} + \delta] \longrightarrow \psi (t) = \begin{cases}
 		\varphi(t) &t \in (a, b) \\ 
 		\overline{\varphi} (t) &t \in [b, t_{n_0} + \delta).
@@ -1221,12 +1220,12 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	Dada la ecuación diferencial $x' = f(t, x)$, con $f: (t, x) \in \mathbb{R} \times \mathbb{R}^n \longrightarrow f(t, x) \in \mathbb{R}^n$ siendo $A = (a, b) \times \mathbb{R}^n$. Si se cumple una de las siguientes condiciones:
 	\begin{enumerate}
 		\item  $f$ continua en $A$, $f \in L_k (A, x)$.
-		\item  $f$ continua y acotada en $A$ ($f \in L{loc} (A, x)$).
+		\item  $f$ continua y acotada en $A$ ($f \in L_{loc} (A, x)$).
 	\end{enumerate}
 	
 	DIBUJO
 	
-	entonces, fijado $(t_0, x_0) \in (a, b) \times \mathbb{R}^n$, la solución maximal que pasa por él, está definida en $(a, b)$.
+	entonces, fijado $(t_0, x_0) \in (a, b) \times \mathbb{R}^n$, la solución maximal que pasa por él está definida en $(a, b)$.
 \end{theorem}
 \begin{observation} \ 
 	\begin{enumerate}
@@ -1247,7 +1246,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	\[g: (t, x) \in (c, d) \times \mathbb{R}^n \longrightarrow g(t, x) = \begin{cases}
 	f(a, x), &t \in (c, a] \\
 	f(t, x), &t \in [a, b] \\
-	f(b, x), &t \in [b, d] 
+	f(b, x), &t \in [b, d)
 	\end{cases}\]
 	y con $g$ continua. Esta función verifica las hipótesis del teorema anterior en $(c, d) \times \mathbb{R}^n$ ya que:
 	\begin{enumerate}[-]
@@ -1297,7 +1296,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	Probémoslo por reducción al absurdo. Supongamos que está definida en un intervalo de la forma $ (a,b] $.
 	Como $ A $ es abierto, $ (b,\varphi(b))\in A \Rightarrow (b, \varphi(b)) \in \mathring{A} $.
 	
-	Estamos en la hipótesis del Teorema de Cauchy-Peano. Por lo tanto, pasando por $ (b, \varphi(b)) $ existe solución. Podemos construir una prolongación que sea solución (por el apartado a) y entonces no es maximal.
+	Estamos en la hipótesis del Teorema de Cauchy-Peano. Por lo tanto, pasando por $ (b, \varphi(b)) $ existe solución. Podemos construir una prolongación que sea solución (por el teorema \ref{prolTh} apartado i) y entonces no es maximal.
 \end{proof}
 
 \pagebreak
