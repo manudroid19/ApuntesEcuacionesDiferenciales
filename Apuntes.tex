@@ -4,7 +4,7 @@
 %	INCLUSIÓN DE PAQUETES BÁSICOS.
 %-----------------------------------------------------------------------------------------------------
 
-\documentclass{article}
+\documentclass[11pt]{article}
 \usepackage{enumerate}
 \usepackage{wrapfig}
 \usepackage{graphicx}
@@ -20,7 +20,7 @@
 \usepackage[bottom]{footmisc}
 \usepackage{imakeidx}
 
-% %comando para indice 
+% Comando para indice de términos, que los emfatice y los añada al indice
 
 \newcommand{\iindex}[1]{\emph{#1}\index{#1}} 
 
@@ -33,18 +33,6 @@
 \usepackage[utf8]{inputenc}                                    % Permite los acentos.
 \selectlanguage{spanish}                                       % Selecciono como lenguaje el Español.
 
-%flechassssss
-\def\flechaSobreyectiva{\mathrel{\mkern16mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
-		\mkern-25mu{\longrightarrow}}}
-\def\flechaInyectiva{\mathrel{\mkern0mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
-		\mkern-9mu{\longrightarrow}}}
-\def\flechaBiyectiva{\mathrel{\mkern16mu  \vcenter{\hbox{$\scriptscriptstyle+$}}\mkern-25mu{\mathrel{\mkern0mu\vcenter{\hbox{$\scriptscriptstyle+$}}\mkern-9mu{\longrightarrow}}}}}
-\def\xFlechaInyectiva #1{\mathrel{\ooalign{\thinspace\thinspace$\mapstochar\mkern5mu$\hfil\cr$\xrightarrow{#1}$\cr}}}
-\def\xFlechaSobreyectiva #1{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\thinspace\thinspace\cr$\xrightarrow{#1}$\cr}}}
-%llave a la derecha
-\newenvironment{rcases}
-{\left.\begin{aligned}}
-	{\end{aligned}\right\rbrace}
 
 %-----------------------------------------------------------------------------------------------------
 %	SELECCIÓN DE LA FUENTE
@@ -65,12 +53,11 @@
 \usepackage[parfill]{parskip}       % Crea una nueva línea entre párrafos.
 \usepackage{geometry}               % Asigna la "geometría" de las páginas.
 
-\providecommand{\norm}[1]{\lVert#1\rVert}
-\providecommand{\abs}[1]{\lvert#1\rvert}
-% Se elige el estilo fancy y márgenes de 3 centímetros.
-\pagestyle{fancy}
-\geometry{left=3cm,right=3cm,top=3cm,bottom=3cm,headheight=1cm,headsep=0.5cm} % Márgenes y cabecera.
+% Se elige el estilo fancy y márgenes de 2 centímetros.
+
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm,headheight=1cm,headsep=0.5cm} % Márgenes y cabecera.
 % Se limpia la cabecera y el pie de página para poder rehacerlos luego.
+\pagestyle{fancy} %Importante que esté despues de \geometry
 \fancyhf{}
 
 % Espacios en el documento:
@@ -150,6 +137,24 @@
 \newtheorem{proposition}[theorem]{Proposición}
 \newtheorem*{question}{Cuestión}
 
+%Hacemos que las demostraciones estén identadas
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+	\pushQED{\qed}%
+	\normalfont \topsep6\p@\@plus6\p@\relax
+	\list{}{%
+		\settowidth{\leftmargin}{\quad:\hskip\labelsep}%
+		\setlength{\labelwidth}{0pt}%
+		\setlength{\itemindent}{-\leftmargin}%
+	}%
+	\item[\hskip\labelsep\itshape#1\@addpunct{:}]\ignorespaces
+}{%
+	\popQED\endlist\@endpefalse
+}
+\makeatother
+
+
+
 % Definiciones, notas, conjeturas
 \theoremstyle{definition-style}
 \newtheorem{definition}{Definición}[section]
@@ -163,6 +168,25 @@
 \theoremstyle{example-style}
 \newtheorem{example}{Ejemplo}[section]
 \newtheorem{exercise}{Ejercicio}[section]
+
+%Operadores de matematicas
+
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert} % Norma que se adapta a la altura de lo de dentro
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert} % Valor absoluto que se adapta a la altura de lo de dentro
+
+%Flechas de inyectividad y sobreyectividad
+\def\flechaSobreyectiva{\mathrel{\mkern16mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
+		\mkern-25mu{\longrightarrow}}}
+\def\flechaInyectiva{\mathrel{\mkern0mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
+		\mkern-9mu{\longrightarrow}}}
+\def\flechaBiyectiva{\mathrel{\mkern16mu  \vcenter{\hbox{$\scriptscriptstyle+$}}\mkern-25mu{\mathrel{\mkern0mu\vcenter{\hbox{$\scriptscriptstyle+$}}\mkern-9mu{\longrightarrow}}}}}
+\def\xFlechaInyectiva #1{\mathrel{\ooalign{\thinspace\thinspace$\mapstochar\mkern5mu$\hfil\cr$\xrightarrow{#1}$\cr}}}
+\def\xFlechaSobreyectiva #1{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\thinspace\thinspace\cr$\xrightarrow{#1}$\cr}}}
+
+%Llave a la derecha de elementos, para expresar pruebas lógicas. Reciproco a \cases
+\newenvironment{rcases}
+{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
 
 %-----------------------------------------------------------------------------------------------------
 %	PORTADA
@@ -199,21 +223,6 @@
 % Puedes también dejarlo vacío, en cuyo caso no aparece en la portada.
 %\newcommand{\docabstract}{}
 \newcommand{\docabstract}{Apuntes de la materia impartida en la USC}
-
-\makeatletter
-\renewenvironment{proof}[1][\proofname]{\par
-	\pushQED{\qed}%
-	\normalfont \topsep6\p@\@plus6\p@\relax
-	\list{}{%
-		\settowidth{\leftmargin}{\quad:\hskip\labelsep}%
-		\setlength{\labelwidth}{0pt}%
-		\setlength{\itemindent}{-\leftmargin}%
-	}%
-	\item[\hskip\labelsep\itshape#1\@addpunct{:}]\ignorespaces
-}{%
-	\popQED\endlist\@endpefalse
-}
-\makeatother
 
 
 %% Indice con enlaces
@@ -612,7 +621,8 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 	\[\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds = \pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds \]
 	Por otro lado sabemos que:
 	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds + \pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{Des. Triangular}{\leq} \]
-	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. \text{ y } 2.}{\leq}  \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0|\]
+	\[\norm{\pi (t) - \pi (t_{i+1}) - \int_{t_{i+1}}^{t} f(s, \pi(s))ds} + \norm{\pi (t_{i+1}) - \pi (t_0) - \int_{t_0}^{t_{i+1}} f(s, \pi(s))ds} \stackrel{1. \text{ y } 2.}{\leq}  \]
+	\[ \leq \varepsilon |t - t_{i+1} | + \varepsilon |t_{i+1} - t_0| = \varepsilon |t-t_0| \]
 	Por lo que, como queríamos probar:
 	\[\norm{\pi (t) - \pi (t_0) - \int_{t}^{t_0} f(s, \pi(s))ds} \leq \varepsilon |t-t_0|\]
 	
@@ -1800,7 +1810,7 @@ BEGIN PRADA 20/03
 	\vdots & \vdots  &&\vdots
 	\end{pmatrix}  \]
 \end{definition}
-\begin{theorem} 
+\begin{theorem}\label{carac-sol-hom}
 	Sea el sistema homogéneo $x' = A(t) x$ con $I$ intervalo y $A: t \in I \subset \mathbb{R} \longrightarrow A(t) \in M_{n \times n} (\mathbb{R})$ continua. 
 	
 	Entonces $ \phi(t) $ es matriz solución para $ x'=A(t)x \Leftrightarrow \phi'(t)=A(t)\phi(t) $
@@ -1829,6 +1839,9 @@ BEGIN PRADA 20/03
 \begin{definition}
 	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que es una \iindex{matriz fundamental} para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
 \end{definition}
+\begin{note}
+	Si las $ n $ columnas de las matrices fundamentales son una base del espacio de soluciones, podemos interpretarlas como funcionales lineales entre $ \mathbb{R}^n $ y el espacio de soluciones.
+\end{note}
 \begin{theorem}[Caracterización de matrices fundamentales]\label{matfund-carac}\ \\
 	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
 	\begin{enumerate}[\quad i)]
@@ -1842,7 +1855,7 @@ BEGIN PRADA 20/03
 		\item $ i) \Rightarrow ii) $. Esta implicación podemos probarla de dos formas:
 		\begin{enumerate}[\quad a)]
 			\item Forma 1: \\
-			Recordemos que $ (\varphi_1(t) \ | \ \cdots \ | \ \varphi_n(t)) $
+			Recordemos que $\phi (t)= (\varphi_1(t) \ | \ \cdots \ | \ \varphi_n(t)) $
 			
 			Supongamos que existe $ t_1 $ tal que  $ \det(\phi)(t_1)=0$ por lo que $\{ \varphi_1(t_1), \dots, \varphi_n(t_1) \} $ son vectores de $ \mathbb{R}^n  $ linealmente dependientes. Es decir, existen $ \lambda_1, \cdots, \lambda_n \in \mathbb{R}$ no todos nulos tal que $ \lambda_1 \varphi_1(t_1) + \cdots +\lambda_n\varphi_n(t_1)=0 $.
 			
@@ -1927,6 +1940,10 @@ BEGIN PRADA 20/03
 		ya que $det(\phi^{-1}) \neq 0$, $det(\psi) \neq 0$.
 	\end{enumerate}
 \end{proof}
+\begin{note}
+	Al cambiar de base, podríamos interpretarlo como la composición de las siguientes aplicaciones lineales:
+	\[\mathbb{R}^n_{B}\xrightarrow{\varOmega} \mathbb{R}_{C} \xrightarrow{\phi}S \]
+\end{note}
 \subsection{Sistemas completos.}
 Sea ahora el sistema completo $x' = A(t)x + b(t)$, tal que:
 \begin{align*}
@@ -1963,7 +1980,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	donde $\phi(t)$ es matriz fundamental para el sistema homogéneo.
 \end{theorem}
 \begin{proof}\ \\
-	La solución general del sistema homogéneo vendría dada por $x(t) = \phi (t) c$, $c \in \mathbb{R}^n$. Buscamos una solución del sistema completo de la forma $x(t) = \phi (t) c(t)$, $c(t) \in \mathbb{R}^n$.\\
+	La solución general del sistema homogéneo vendría dada por $x(t) = \phi (t) c$, $c \in \mathbb{R}^n$. Buscamos una solución del sistema completo de la forma $x(t) = \phi (t) c(t)$, $c(t) \in \mathbb{R}^n$. Una idea de porque buscamos una solución de esta forma se puede ver para ecuaciones lineales en la proposición \ref{ecLinCompleta}.\\
 	Para que sea solución del sistema completo ha de verificar $ x'(t)=A(t)\phi(t)c(t)+b(t) $, pero como $ x(t)=  \phi (t) c(t) $, entonces derivando $ x'(t)= \phi'(t)c(t) + \phi(t)c'(t)=A(t)\phi(t)c(t) + \phi(t)c'(t)$. Por lo tanto, tenemos la igualdad:
 	\begin{align*}
 		&A(t)\phi(t)c(t) + \phi(t)c'(t)= A(t)\phi(t)c(t) + b(t) \\
@@ -1991,16 +2008,33 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 \end{definition}
 \begin{definition}
 	Sea $ M \in M_{n\times n} $, llamamos \iindex{$ e^M $} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
-	¿Es esta serie convergente?
-	\[ \sum_{n=0}^{\infty}\norm{\frac{1}{n!}M^n}=\sum_{n=0}^{\infty}\frac{1}{n!}\norm{M}^n=e^{\norm{M}} \]
 \end{definition}
+\begin{proposition}\ \\
+	La exponencial de una matriz (la serie $ e^M $) es convergente.
+\end{proposition}
+\begin{proof}
+	\[ \sum_{n=0}^{\infty}\norm{\frac{1}{n!}M^n}=\sum_{n=0}^{\infty}\frac{1}{n!}\norm{M^n}\leq\sum_{n=0}^{\infty}\frac{1}{n!}\norm{M}^n=e^{\norm{M}} \]
+	Justifiquemos que esto implica la convergencia. En primer lugar, definiremos la norma de una matriz. Sea $ A\in M_{n\times n}(\mathbb{R}) $, definimos $ \norm{A}=\sup_{\norm{x}\neq 0} \frac{\norm{Ax}}{\norm{x}}=\sup_{\norm{x}=1}\norm{Ax} $, ya que para vectores no unitarios, el escalar sale multiplicando. 
+	
+	Nos interesa la siguiente propiedad de esta norma de matrices para justificar la desigualdad de arriba: Para $ A,B \in M_{n\times n}(\mathbb{R}) $, tenemos que $ \norm{A\cdot B}\leq \norm{A}\cdot\norm{B} $. Esta propiedad se debe a:
+	\[ \norm{AB}=\sup_{\norm{x}\neq 0}\frac{\norm{(AB)x}}{\norm{x}}=\sup_{\norm{x}\neq 0}\frac{\norm{A(Bx)}}{\norm{Bx}} \frac{\norm{Bx}}{\norm{x}}\leq \sup_{\norm{y}\neq 0} \frac{\norm{Ay}}{\norm{y}} \sup_{\norm{x}\neq 0} \frac{\norm{Bx}}{\norm{x}}=\norm{A}\cdot \norm{B}\]
+	
+	Justifiquemos ahora que la serie es convergente. Tenemos que ver que para cada elemento de la matriz, la serie converge. Queremos probar:
+	\[ \sum_{n=0}^{\infty}\abs{\frac{(M^n)_{i,j}}{n!}}\leq \norm{\frac{M^n}{n!}} \]
+	Que en el fondo es ver que $ \abs{A_{i,j}}\leq \norm{A} $. Como la norma se define como el supremo, basta encontrar un $ x $ con $ \norm{x}=1 $ tal que  $ \abs{A_{i,j}}\leq \norm{Ax} $. Si cogemos $ e_j $ con $ \norm{e_j}=1 $, $  \abs{A_{i,j}} \leq \norm{Ae_j}$ (la norma del vector columna es mayor o igual que el valor absoluto de cualquiera de sus elementos).
+	
+	Por lo que queda probado que cada elemento converge absolutamente, por lo tanto la serie de cada elemento converge y la serie matricial también converge.
+\end{proof}	
 \begin{proposition}[Propiedades de la exponencial de una matriz] \ 
 	\begin{enumerate}[\quad i)]
 		\item $ e^0 =I, 0 \in M_{n\times n}$
-		\item Si $ AB=BA $, $ e^{A+B}=e^Ae^B=e^{B+A} $, con $ A,B\in M_{n\times n} $
+		\item Si $ AB=BA $, $ e^{A+B}=e^Ae^B=e^{B+A} $, con $ A,B\in M_{n\times n} $. 
 		\item $ e^{-A}=(e^A)^{-1} $
 	\end{enumerate}
 \end{proposition}
+\begin{note}
+	Necesitamos la conmutatividad para poder asegurar  $ e^{A+B}=e^Ae^B$. En cambio, $ e^{A+B}=e^{B+A} $ se cumple siempre.
+\end{note}
 \subsection{Sistemas homogéneos}
 \begin{theorem}
 	Si $ A\in M_{n\times n} $ constante, entonces $ e^{tA} $ es una matriz fundamental para $ x'=Ax $.
@@ -2008,19 +2042,34 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 \begin{proof} \ \\
 	Tenemos que demostrar que es matriz solución y que es fundamental:
 	\begin{enumerate}[\quad i)]
-		\item $ e^{tA} $ es matriz solución. 
+		\item $ e^{tA} $ es matriz solución.
 		
-		Para probarlo, usamos un resultado de Series Funcionales. Tenemos que existe $ \frac{\partial}{\partial t}e^{tA}$ para todo $t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $. Por tal resultado, si $ \sum f_n $ converge puntualmente a $ f $, existe $ f_n'\ \forall n \in \mathbb{N} $ y converge uniformemente a $ g $, entonces existe $ f' $ y $ f'=g $.
+		 Lo primero que hay que notar es que como hemos probado que la exponencial de una matriz es convergente, entonces la seria funcional $ e^{tA} $ converge puntualmente.
 		
-		Entonces, para probar este apartado, vamos a ver:
+		Ahora, para probar que es matriz solución, usaremos el resultado \ref{carac-sol-hom}. Tenemos que ver que $ \phi'=A\phi \Rightarrow  (e^{tA})'=\frac{\partial}{\partial t}e^{tA}=Ae^{tA}$. Sin embargo, como estamos trabajando con series funcionales, esto no es directo. Para ver claramente que estamos haciendo, denotemos a las sumas parciales de la serie funcional $ e^{tA} $ como $ f_n =\sum_{n=0}^{n} \frac{1}{n!}t^nA^n$. Sabemos por el resultado anterior que $ f_n \xrightarrow{p} f=e^{tA}$.
+		
+		Ahora, derivando término a término, tenemos que $ f_n'=0+A+ \frac{2t}{2!}A^2+\dots+\frac{nt}{n!}A^n =A+tA^2+\frac{t^2}{2!}A^3+\dots+\frac{t}{(n-1)!}A^n=Af_n $. Queremos probar que $ f_n'\rightarrow g=Af=f' $.
+		
+		Para probarlo, usamos un resultado de Series Funcionales:
+		
+		
+		\noindent\fbox{%
+			\parbox{\linewidth}{%
+				Si una sucesión $ f_n $ de funciones definidas en un compacto y derivables (existe $  f_n'\ \forall n \in \mathbb{N} $) converge puntualmente a $ f $ y $f_n'$ converge uniformemente a $ g $, entonces $ f $ es derivable, existe $ f' $ y $ f'=g $.
+			}%
+		}
+		
+		Tenemos que existe $ \frac{\partial}{\partial t}e^{tA}$ (como serie funcional) para todo $t \in \mathbb{R} $ y que $ \frac{\partial}{\partial t}e^{tA}=Ae^{tA} $ (derivando término a término). 
+		
+		Entonces, para aplicar el resultado y probar que es matriz solución, vamos a ver:
 		\begin{enumerate}[\quad a)]
-			\item $ e^{tA} $ converge para $ t $ fijo ($ e^{tA} $ converge puntualmente).
-			\item La serie que resulta de derivar término a término converge uniformemente.
-			\item Existe $ \frac{\partial}{\partial t} (e^{tA}) $ y es la suma de la serie que resulta de derivar término a término.
+			\item $ e^{tA} $ converge para $ t $ fijo (la sucesión de sumas parciales $ e^{tA} $ converge puntualmente).
+			\item La serie que resulta de derivar término a término a $ e^tA $ converge uniformemente. Aplicamos el resultado en un compacto $ J $.
+			\item Existe $ \frac{\partial}{\partial t} (e^{tA}) $ y es la suma de la serie que resulta de derivar término a término, para todo $ t $.
 		\end{enumerate}
 		Para a), tenemos que, aplicando el criterio mayorante de Weierstrass:
 		\[ e^{tA}=\sum_{n=0}^{\infty} \frac{1}{n!}t^nA^n=I+tA+\frac{t^2A^2}{2!}+\dots \]
-		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}(\norm{t}\norm{A})^n = e^{\abs{t}\norm{A}}\]
+		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}(\abs{t}\norm{A})^n = e^{\abs{t}\norm{A}}\]
 		Para b), la serie que resulta de derivar término a término:
 		\[ 0+A+ \frac{2t}{2!}A^2+\dots =A+tA^2+\frac{t^2}{2!}A^3+\dots =\lim\limits_{k\to\infty} A(I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k)
 		\]
