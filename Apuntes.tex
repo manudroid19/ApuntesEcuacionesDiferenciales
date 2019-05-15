@@ -821,12 +821,23 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 
 \begin{exercise}
 	La solución  $ \varepsilon $-aproximada construida verifica:
-	
-	1) $ ||\pi(t)||\leq |x_0|+H\delta \ \forall t \in [t_0-\delta,t_0+\delta]$
-	
-	2) $ \pi $ es lipschitziana con constante $ H $, i.e., $ ||\pi(t)- \pi(s)|| \leq H |t-s| \ \forall t,s \in [t_0-\delta, t_0+\delta] $
+	\begin{enumerate}[\quad 1)]
+		\item $ ||\pi(t)||\leq |x_0|+H\delta \ \forall t \in [t_0-\delta,t_0+\delta]$
+		\item $ \pi $ es lipschitziana con constante $ H $, i.e., $ ||\pi(t)- \pi(s)|| \leq H |t-s| \ \forall t,s \in [t_0-\delta, t_0+\delta] $
+	\end{enumerate}
 \end{exercise}
-
+\begin{proof}
+	\begin{enumerate}[\quad 1)]
+		\item Sabemos que $\norm{\pi (t)} = \norm{p_0}$ y:
+		\[\norm{p_0} = \norm{x_0 + f(t_0, x_0) (t - t_0)} \leq \norm{x_0} + \norm{f(t_0, x_0) (t - t_0)} = \]
+		\[= \norm{x_0} + \norm{f(t_0, x_0)} \abs{(t - t_0)} \leq \norm{x_0} + H\delta\]
+		Por lo que $\norm{\pi (t)} \leq \norm{x_0} + H\delta$.
+		\item En este caso, tenemos que:
+		\[\norm{\pi (t) - \pi (s)} = \norm{x_0 + f(t_0, x_0) (t - t_0) - x_0 - f(t_0, x_0) (s - t_0)} =\]
+		\[= \norm{f(t_0, x_0)} \abs{t - s} \leq H\abs{t - s}\]
+		Por lo que $ ||\pi(t)- \pi(s)|| \leq H |t-s| \ \forall t,s \in [t_0-\delta, t_0+\delta]$.
+	\end{enumerate}
+\end{proof}
 \begin{note}
 	La solución $ \varepsilon $-aproximada construida es local en $ (t_0,x_0) $, es decir, solamente está definida en un entorno del punto.
 \end{note}
@@ -1013,7 +1024,14 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		
 		\item Sea $ d=d_\infty((t_0,x_0),\text{Fr}(B)) $ y elegimos $ \delta : 0<\delta <\min \{d,\frac{d}{H},\frac{1}{K}\} $. Añadimos $ \frac{1}{K} $ para probar $ \lambda $-contracción.
 		\item Llamamos $ R=\{(t,x) : |t-t_0|\leq \delta, ||x-x_0||\leq H\delta \}\subset B $.
-		DIBUJO
+		%
+		%\begin{tikzpicture}
+		%	\draw (0,0) -- (5,0);
+		%	\draw (0,0) -- (0,3);
+		%	\draw (1,2) .. controls (1.5,4) and (4,2.5) .. (3,3);
+		%	\draw (3,3) .. controls (4,2.5) and (5,3) .. (5,2);
+		%\end{tikzpicture}
+		%
 	\end{enumerate}
 	
 	Definimos el conjunto:
