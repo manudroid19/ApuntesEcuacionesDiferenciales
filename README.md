@@ -1,8 +1,8 @@
 # Apuntes de Introducción a las Ecuaciones Diferenciales Ordinarias
-Apuntes de los primeros 6 temas de [Introducción a las Ecuaciones Diferenciales Ordinarias - G1011226](http://www.usc.gal/gl/centros/matematicas/materia.html?materia=124691) impartida en el curso 2018-2019.
+Apuntes de los 6 primeros temas de [Introducción a las Ecuaciones Diferenciales Ordinarias - G1011226](http://www.usc.gal/gl/centros/matematicas/materia.html?materia=124691) impartida en el curso 2018-2019.
 ## Setting up
 `git clone https://github.com/manudroid19/ApuntesEcuacionesDiferenciales.git`
-## Guia chula de Git
+## Guía chula de Git
 http://rogerdudler.github.io/git-guide/
 ## Resumen
 ### Subir cambios: 
