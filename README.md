@@ -1,17 +1,17 @@
-# IEDOskr
-Apuntes de IEDO
+# Apuntes de Introducción a las Ecuaciones Diferenciales Ordinarias
+Apuntes de los primeros 6 temas de [Introducción a las Ecuaciones Diferenciales Ordinarias - G1011226](http://www.usc.gal/gl/centros/matematicas/materia.html?materia=124691) impartida en el curso 2018-2019.
 ## Setting up
-`git clone https://github.com/manudroid19/ApuntesEstructuras.git`
+`git clone https://github.com/manudroid19/ApuntesEcuacionesDiferenciales.git`
 ## Guia chula de Git
 http://rogerdudler.github.io/git-guide/
 ## Resumen
 ### Subir cambios: 
 `git commit -m "Commit message"`
 ### Borrar cambios locales a última versión commiteada:
-`git checkout -- Modulos.tex`
-#### Para todos los archivos, si la lias mucho:
+`git checkout -- Apuntes.tex`
+#### Para todos los archivos, si se lia mucho:
 `git reset --hard origin/master`
-### Obtener ultimo commit del server:
+### Obtener último commit del server:
 `git pull origin master`
-### Resolver un conflicto
-Suerte... Prueba en la guia :)
+### Ver cambios no commiteados
+`git diff Apuntes.tex`
