@@ -4,7 +4,7 @@
 %	INCLUSIÓN DE PAQUETES BÁSICOS.
 %-----------------------------------------------------------------------------------------------------
 
-\documentclass[11pt]{article}
+\documentclass[11pt, a4paper,twoside]{article}
 \usepackage{enumerate}
 \usepackage{wrapfig}
 \usepackage{graphicx}
@@ -208,7 +208,7 @@
 %-----------------------------------------------------------------------------------------------------
 
 % Título del documento.
-\newcommand{\doctitle}{}%git clone https://github.com/manudroid19/ApuntesEstructuras.git
+\newcommand{\doctitle}{}
 % Subtítulo.
 \newcommand{\docsubtitle}{}
 % Fecha.
@@ -218,7 +218,7 @@
 % Autor.
 \newcommand{\docauthor}{Manuel de Prada, Jorge Vázquez}
 \newcommand{\docaddress}{Universidade de Santiago de Compostela}
-\newcommand{\docemail}{lalala@gmail.com}
+\newcommand{\docemail}{manuel.deprada@rai.usc.es\\jorge.vazquez.perez@rai.usc.es}
 
 %-----------------------------------------------------------------------------------------------------
 %	RESUMEN
@@ -227,7 +227,7 @@
 % Resumen del documento. Va en la portada.
 % Puedes también dejarlo vacío, en cuyo caso no aparece en la portada.
 %\newcommand{\docabstract}{}
-\newcommand{\docabstract}{Apuntes de la materia impartida en la USC}
+\newcommand{\docabstract}{Apuntes de la materia Introducción a las Ecuaciones Diferenciales Ordinarias impartida por Óscar Otero Zarraquiños}
 
 
 %% Indice con enlaces
@@ -242,9 +242,14 @@
 	urlcolor=black
 }
 \makeindex[columns=1,  intoc]
+
+%%Secciones empiezan en paginas impares
+\let\oldsection\section
+\def\section{\cleardoublepage\oldsection}
+
 \begin{document}
 
-%\maketitle
+\maketitle
 
 %-----------------------------------------------------------------------------------------------------
 %	ÍNDICE
@@ -488,7 +493,7 @@ x_1(t)=\sqrt{c-t^2}\\
 x_2(t)=-\sqrt{c-t^2}
 \end{cases}  \]
 
-\pagebreak
+
 \section{Tema 2.}
 
 \begin{definition}
@@ -1101,7 +1106,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		Hacemos en $ (t_1, x_1) $ lo mismo que en $ (t_0,x_0) $ (construimos el rectángulo, etc...) y llegamos a que en $ (t_1-\delta_1, t_1+\delta _1), \varphi_1(t)=\varphi_2(t) $ y esto NO es posible ya que, por construcción, $ t_1=\inf \{t\in I_1\cap I_2 : t>t_0, \varphi_1(t)\neq \varphi_2(t)\} $.
 	\end{adjustwidth}
 \end{proof}
-\pagebreak
+
 \section{Tema 3.}
 \begin{example}
 	Dada la ecuación diferencial $ x'=x^2 $, pasando por el punto $ x(1)=1 $, tenemos que $ x(t)=\frac{-1}{t} $ es solución. $ x'(t)=x(t)^2 $ es una ecuación planteada para todo $ t \in \mathbb{R} $, pero $ x(t)=\frac{-1}{t} $ está definida para $ t \in \mathbb{R}-\{0\} $.
@@ -1299,7 +1304,7 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	Estamos en la hipótesis del Teorema de Cauchy-Peano. Por lo tanto, pasando por $ (b, \varphi(b)) $ existe solución. Podemos construir una prolongación que sea solución (por el teorema \ref{prolTh} apartado i) y entonces no es maximal.
 \end{proof}
 
-\pagebreak
+
 \section{Tema 4.}
 \subsection{Métodos elementales de integración de las ecuaciones de primer orden.}
 \subsubsection{EDOs de variables separadas.}
@@ -1673,9 +1678,16 @@ Las posibles elecciones del factor integrante estarán condicionadas por la ecua
 	\item Resolver la ecuación exacta.
 \end{enumerate}
 
-\subsection{Resolución de ecuaciones diferenciales ordinarias por medio de series de potencias.}
+\subsection{Resolución de ESOs por medio de series de potencias.}
+Este método consiste en suponer que la función solución es analítica, por lo menos un cierto dominio, y expresarla como una serie de potencias. Es decir:
+\[ x(t)= \sum\limits_{n=0}^{\infty} a_n(t-t_0)^n \]
+La resolución consistirá en deducir los coeficientes de la serie, que la determinan unívocamente y comprobar que efectivamente la serie obtenida es solución.
+Para ello, tendremos que derivar implicitamente la serie y reescribir $ x'(t) $ de forma que la serie empiece en $ n=0 $, igual que $ x(t) $. 
+\[  x'(t)= \sum\limits_{n=1}^{\infty} na_n(t-t_0)^{n-1} \]
+Por último, debemos igualar los coeficientes de $ x' $ y de $ x $ de forma que se cumpla la condición que viene dada en la expresión de la ecuación diferencial. De esta igualdad podremos obtener condiciones sobre los coeficiente de $ x(t) $ que nos permitirán determinar esta serie. 
 
-\pagebreak
+Si conocemos las expresiones en serie de las principales funciones analíticas (seno, coseno, exponencial...), podemos comprobar manualmente que efectivamente la ecuación diferencial se cumple.
+
 \section{Tema 5. Sistemas de ecuaciones lineales. Propiedades de las soluciones. Matriz fundamental.}
 \begin{definition}
 	Llamaremos \iindex{sistema de ecuaciones lineales} a una ecuación diferencial de la forma:
@@ -1989,7 +2001,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	por lo que:
 	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \phi(t) \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\]
 \end{proof}
-\pagebreak
+
 \section{Tema 6. Sistemas de ecuaciones lineales con coeficientes constantes.}
 \begin{definition}
 	Llamamos \iindex{sistema lineal de coeficientes constantes} a una ecuación diferencial de la forma:
