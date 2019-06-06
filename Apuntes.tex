@@ -20,7 +20,7 @@
 \usepackage[bottom]{footmisc}
 \usepackage{imakeidx}
 
-% Comando para indice de términos, que los emfatice y los añada al indice
+% Comando para índice final de términos, que enfatice conceptos y los añada al indice final.
 
 \newcommand{\iindex}[1]{\emph{#1}\index{#1}} 
 
@@ -93,8 +93,7 @@
 
 % Paquetes para matemáticas:
 \usepackage{amsmath, amsthm, amssymb, amsfonts, amscd} % Teoremas, fuentes y símbolos.
-
-\usepackage[all]{xy} %para diagramas conmutativos
+\usepackage[all]{xy} % Diagramas conmutativos
 
 % Nuevo estilo para definiciones
 \newtheoremstyle{definition-style} % Nombre del estilo
@@ -124,7 +123,7 @@
 {5pt}                % Espacio por debajo
 {}                   % Fuente del cuerpo
 {}                   % Identación: vacío= sin identación, \parindent = identación del parráfo
-{\scshape}                % Fuente para la cabecera
+{\scshape}           % Fuente para la cabecera
 {:}                  % Puntuación tras la cabecera
 {.5em}               % Espacio tras la cabecera: { } = espacio usal entre palabras, \newline = nueva línea
 {}                   % Especificación de la cabecera (si se deja vaía implica 'normal')
@@ -135,7 +134,7 @@
 \newtheorem{corollary}[theorem]{Corolario} % [theorem] indica que comparte el contador con theorem
 \newtheorem{lemma}[theorem]{Lema}
 \newtheorem{proposition}[theorem]{Proposición}
-\newtheorem*{question}{Cuestión}
+\newtheorem*{question}{Cuestión} % * indica que no tiene contador
 
 %Hacemos que las demostraciones estén identadas
 \makeatletter
@@ -174,7 +173,7 @@
 \providecommand{\norm}[1]{\left\lVert#1\right\rVert} % Norma que se adapta a la altura de lo de dentro
 \providecommand{\abs}[1]{\left\lvert#1\right\rvert} % Valor absoluto que se adapta a la altura de lo de dentro
 
-%Flechas de inyectividad y sobreyectividad
+%Flechas de inyectividad y sobreyectividad. Notación no estándar.
 \def\flechaSobreyectiva{\mathrel{\mkern16mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
 		\mkern-25mu{\longrightarrow}}}
 \def\flechaInyectiva{\mathrel{\mkern0mu  \vcenter{\hbox{$\scriptscriptstyle+$}}%
@@ -183,12 +182,12 @@
 \def\xFlechaInyectiva #1{\mathrel{\ooalign{\thinspace\thinspace$\mapstochar\mkern5mu$\hfil\cr$\xrightarrow{#1}$\cr}}}
 \def\xFlechaSobreyectiva #1{\mathrel{\ooalign{\hfil$\mapstochar\mkern5mu$\thinspace\thinspace\cr$\xrightarrow{#1}$\cr}}}
 
-%Llave a la derecha de elementos, para expresar pruebas lógicas. Reciproco a \cases
+%Llave a la derecha de los elementos, para expresar cascadas lógicas condensando varias lineas en una conclusión. Reciproco a \cases
 \newenvironment{rcases}
 {\left.\begin{aligned}}
 	{\end{aligned}\right\rbrace}
 
-%Apilado de varias lineas en pruebas logicas
+%Apilado de varias lineas en pruebas logicas, sin llaves
 \newenvironment{bcases}
 {\left.\begin{aligned}}
 	{\end{aligned}\right.}
@@ -197,11 +196,9 @@
 %	PORTADA
 %-----------------------------------------------------------------------------------------------------
 
-% Elija uno de los siguientes formatos.
-% No olvide incluir los archivos .sty asociados en el directorio del documento.
-%\usepackage{title1}
-\usepackage{title2}
-%\usepackage{title3}
+% Formato del titulo. Archivo portada.sty asociado es necesario en el mismo directorio.
+\usepackage{portada}
+
 
 %-----------------------------------------------------------------------------------------------------
 %	TÍTULO, AUTOR Y OTROS DATOS DEL DOCUMENTO
@@ -212,7 +209,7 @@
 % Subtítulo.
 \newcommand{\docsubtitle}{}
 % Fecha.
-\newcommand{\docdate}{5 \ de \ Noviembre \ de \ 2018}
+\newcommand{\docdate}{6 \ de \ Junio \ de \ 2019}
 % Asignatura.
 \newcommand{\subject}{Introducción a las Ecuaciones Diferenciales Ordinarias}
 % Autor.
@@ -227,11 +224,10 @@
 % Resumen del documento. Va en la portada.
 % Puedes también dejarlo vacío, en cuyo caso no aparece en la portada.
 %\newcommand{\docabstract}{}
-\newcommand{\docabstract}{Apuntes de la materia Introducción a las Ecuaciones Diferenciales Ordinarias impartida por Óscar Otero Zarraquiños}
+\newcommand{\docabstract}{Apuntes de parte de la asignatura Introducción a las Ecuaciones Diferenciales Ordinarias impartida por Óscar Otero Zarraquiños y Daniel Cao Labora.}
 
 
-%% Indice con enlaces
-
+%% Indice con enlaces interactivos en el PDF
 
 \usepackage{hyperref}
 \hypersetup{
@@ -243,7 +239,7 @@
 }
 \makeindex[columns=1,  intoc]
 
-%%Secciones empiezan en paginas impares
+%%Diseño de impresión: las secciones empiezan en paginas impares.
 \let\oldsection\section
 \def\section{\cleardoublepage\oldsection}
 
@@ -261,10 +257,6 @@
 \newpage
 \tableofcontents
 \newpage
-
-%----------------------------------------------------------------------------------------
-%	Sección 1: Deficiones y teoremas
-%----------------------------------------------------------------------------------------
 
 \section{Tema 1.}
 
@@ -643,7 +635,7 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 	\begin{center}
 		$\varphi$ solución de la ecuación $\Leftrightarrow \begin{cases}
 		(1) \hspace{0,2cm} \varphi \hspace{0,2cm} continua \\
-		(2) \hspace{0,2cm} \varphi (t)= \varphi (t_0) + \int_{t_0}^{t} f(s, \pi (s))ds
+		(2) \hspace{0,2cm} \varphi (t)= \varphi (t_0) + \int_{t_0}^{t} f(s, \varphi (s))ds
 		\end{cases}$
 	\end{center}
 \end{theorem}
@@ -831,7 +823,7 @@ Análogamente, la \iindex{semitrayectoria negativa}  de $ \varphi $ será el con
 		\item $ \pi $ es lipschitziana con constante $ H $, i.e., $ ||\pi(t)- \pi(s)|| \leq H |t-s| \ \forall t,s \in [t_0-\delta, t_0+\delta] $
 	\end{enumerate}
 \end{exercise}
-\begin{proof}
+\begin{proof}[Solución:]\ 
 	\begin{enumerate}[\quad 1)]
 		\item Sabemos que $\norm{\pi (t)} = \norm{p_0}$ y:
 		\[\norm{p_0} = \norm{x_0 + f(t_0, x_0) (t - t_0)} \leq \norm{x_0} + \norm{f(t_0, x_0) (t - t_0)} = \]
@@ -1028,8 +1020,8 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		\item Sea $ B=B_1 \cap B_2 $, $ B $ abierto, $ (t_0,x_0) \in B$.
 		
 		\item Sea $ d=d_\infty((t_0,x_0),\text{Fr}(B)) $ y elegimos $ \delta : 0<\delta <\min \{d,\frac{d}{H},\frac{1}{K}\} $. Añadimos $ \frac{1}{K} $ para probar $ \lambda $-contracción.
-		\item Llamamos $ R=\{(t,x) : |t-t_0|\leq \delta, ||x-x_0||\leq H\delta \}\subset B $.
-		%
+		\item  $ R=\{(t,x) : |t-t_0|\leq \delta, ||x-x_0||\leq H\delta \}\subset B $.
+		% DIBUJO
 		%\begin{tikzpicture}
 		%	\draw (0,0) -- (5,0);
 		%	\draw (0,0) -- (0,3);
@@ -1471,7 +1463,7 @@ Distinguiremos según el tipo de ecuación lineal:
 	Análogamente, si $ x_0<0,\ x(t)<0\ \forall t $.
 	\item Ecuación lineal completa, $ x'=a(t)x +b(t) $. Usaremos el método de las variación de constantes. Buscaremos una función $ c(t) $ tal que $ x(t)=c(t)e^{\int a(t) dt} $ sea solución. La justificación formal de porque tiene esta forma la solución se desarrolla en la proposición \ref{ecLinCompleta}.
 	
-	A partir de este resultado, construimos un método práctico de resolución. Por ser $ x(t) $ solución, ha de verificar$ x'(t)=a(t)x+b(t) $, es decir,
+	A partir de este resultado, construimos un método práctico de resolución. Por ser $ x(t) $ solución, ha de verificar $ x'(t)=a(t)x+b(t) $, es decir,
 	\[ c'(t)e^{\int a(t)dt}+c(t)e^{\int a(t)dt}a(t)=a(t)c(t)e^{\int a(t)dt}+b(t) \]
 	Por tanto, $ c'(t)e^{\int a(t)dt}=b(t) $. Después de reordenar, por ser continua podemos integrar y obtenemos:
 	\[ c(t)=\int \frac{b(t)}{e^{\int a(t)dt}}=h(t)+k, \ k\in \mathbb{R} \]
@@ -1494,16 +1486,16 @@ En este caso, $ f(t,x)=a(t)x+b(t) $. Si $ t_0\in I $ intervalo abierto, $ (t_0, 
 	\[  x'(t)e^{-\int a(t)dt}-a(t)x(t)e^{-\int a(t)dt}=b(t)e^{-\int a(t)dt} \]
 	Calculamos ahora, por la regla del producto:	
 	\[ \begin{split}
-	\frac{d}{dt}(x(t)e^{-\int a(t)dt})&=x'(t)e^{-\int a(t)dt}+\frac{d}{dt}(e^{-\int a(t)dt})x(t)\\
+	\frac{d}{dt}\left( x(t)e^{-\int a(t)dt}\right) &=x'(t)e^{-\int a)(t)dt}+\frac{d}{dt}\left( e^{-\int a(t)dt}\right) x(t)\\
 	&=x'(t)e^{-\int a(t)dt}-a(t)e^{-\int a(t)dt}x(t)\\
 	&=b(t)e^{-\int a(t)dt}
 	\end{split} \]
 	utilizando que $ \frac{d}{dt}e^{-\int a(t)dt}=-a(t)e^{-\int a(t)dt} $ y el término reordenado de arriba.
 	Ahora, integramos para obtener la solución general:
-	\[ \frac{x(t)}{e^{\int a(t)dt}}+k= \int b(t)e^{-\int a(t)dt} dt\Rightarrow x(t)= (\int b(t)e^{-\int a(t)dt} dt+k)e^{\int a(t)dt}=c(t)e^{\int a(t)dt} \]
+	\[ \frac{x(t)}{e^{\int a(t)dt}}+k= \int b(t)e^{-\int a(t)dt} dt\Rightarrow x(t)= \left( \int b(t)e^{-\int a(t)dt} dt+k\right) e^{\int a(t)dt}=c(t)e^{\int a(t)dt} \]
 	Como observación final, la solución de la ecuación completa puede escribirse como:
 	\[ x(t)= ke^{\int a(t)dt}+\int b(t)e^{-\int a(t)dt} dt\cdot e^{\int a(t)dt} \]
-	 expresión que corresponde a la suma de la solución general de la ecuación homogénea asociada y la solución particular de la completa con $ k=0 $.
+	 expresión que corresponde a la suma de la solución general de la ecuación homogénea asociada y la solución particular de la completa con $ k=0 $, tal y como ya vimos.
 \end{proof}
 \begin{proposition}
 	Sea $ x'=a(t)x +b(t) $ ecuación diferencial lineal completa.
@@ -1559,13 +1551,15 @@ Son ecuaciones de la forma $ x'=p(t)x+q(t)x^n $ con $ p,q: I\in\mathbb{R}\longri
 	\end{equation}
 	con $M, \ N: I \times J \longrightarrow \mathbb{R}$, siendo $I, \ J$ intervalos. Además, tenemos que $M, N \in C^1(I\times J)$ y $N(t, x) \neq 0$ para todo $(t, x) \in I \times J$.
 	
+	\begin{definition}
+		La ecuación diferencial dada por (\ref{eqEx}) es una \iindex{EDO exacta} si $\exists F(t, x)$ tal que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$. A $F$ se le denomina \iindex{función potencial}.
+	\end{definition}
+	
 	\paragraph{Justificación de existencia y unicidad de la solución}\ \\
 	Tenemos $ x'=f(t,x)= \frac{-M(t, x)}{N(t, x)}$. Como  $M, N \in C^1(I\times J)$ y $N(t, x) \neq 0$, tenemos que $ f(t,x) $ es continua y está definida en el producto de los intervalos abiertos $ I \times J $. Además, $ f\in L_{loc}(x) $ ya que existe $ \frac{df}{dx} $ y es continua por ser $ M $ y $ N $ continuamente diferenciables. 
 	
 	Es decir, estamos en las hipótesis del teorema \ref{picard} de existencia y unicidad de soluciones de Picard-Lipschitz y podemos afirmar que existe una única solución pasando por un punto $ (t_0,x_0) $ dado.
-\begin{definition}
-	La ecuación diferencial dada por (\ref{eqEx}) es una \iindex{EDO exacta} si $\exists F(t, x)$ tal que $\frac{dF}{dt} = M$ y $\frac{dF}{dx} = N$. A $F$ se le denomina \iindex{función potencial}.
-\end{definition}
+
 \begin{proposition} \label{sol_exacta}
 	Si $F$ es una función potencial para la ecuación diferencial (\ref{eqEx}), la solución de (\ref{eqEx}) pasando por $(t_0, x_0) \in I \times J$ viene dada implícitamente por $F(t, x) - F(t_0, x_0) = 0$.
 \end{proposition}	
@@ -1642,14 +1636,14 @@ donde
 \begin{definition}
 	Diremos que $\mu : (t, x) \in I_1 \times I_2 \longrightarrow \mathbb{R}$ es un \iindex{factor integrante} para $M(t, x)dt + N(t, x)dx = 0$ si:
 	\[\mu(t, x)M(t, x)dt + \mu(t, x)N(t, x)dx = 0\]
-	es una EDO exacta o, lo que es lo mismo, $\frac{d}{dt}(M\mu) = \frac{d}{dx}(N\mu)$. Esto se reescribe de la siguiente forma:
+	es una EDO exacta o, lo que es lo mismo, $\frac{d}{dx}(M\mu) = \frac{d}{dt}(N\mu)$. Esto se reescribe de la siguiente forma:
 	\begin{equation} \label{eqInte}
 	\mu_x(t, x)M(t, x) + \mu(t, x)M_x(t, x) = \mu_t(t, x)N(t, x) + \mu(t, x)N_t(t, x).
 	\end{equation}
 	donde el subíndice $ x $ o $ t $ indica la derivada respecto a esa variable.
 \end{definition}
 
-Las posibles elecciones del factor integrante estarán condicionadas por la ecuación (\ref{eqInte}, por la forma del factor y por su dependencia respecto a las distintas variables. Se especifican a continuación:
+Las posibles elecciones del factor integrante estarán condicionadas por la ecuación (\ref{eqInte}), por la forma del factor y por su dependencia respecto a las distintas variables. Se especifican a continuación:
 \begin{enumerate}
 	\item Supongamos que $\mu$ depende solo de t, siendo entonces de la forma $\mu(t)$. Entonces, la ecuación (\ref{eqInte}) se reescribe:
 	\[\mu(t, x)M_x(t, x) = \mu_t(t, x)N(t, x) + \mu(t, x)N_t(t, x)\]
@@ -1754,7 +1748,7 @@ Si conocemos las expresiones en serie de las principales funciones analíticas (
 		\item $f$ continua en $D$.
 		\item $f \in L_k (D, x)$.
 	\end{enumerate}
-	Ya tenemos que $f$ es continua por hipótesis. Vemos que $f$ es localmente lipschitziana en $D$ respecto a la variable $x$:
+	Ya tenemos que $f$ es continua por hipótesis. Veamos si $f$ es lipschitziana en $D$ respecto a la variable $x$:
 	\[\norm{f(t, x) - f(t, y)} = \norm{A(t)x + b(t) - A(t)y - b(t)} = \norm{A(t) (x-y)} \leq \norm{A(t)} \norm{x - y} \]
 	pero $A(t)$ no tiene porque estar acotado. Así, considero $[c, d] \subset I$ y utilizaremos el teorema de la banda cerrada. Para ello, veamos ahora que:
 	\begin{enumerate}
@@ -1860,7 +1854,7 @@ Si conocemos las expresiones en serie de las principales funciones analíticas (
 	Dada $ \phi(t)\in M_{n\times n}(\mathbb{R}) $ matriz solución, decimos que es una \iindex{matriz fundamental} para $ x'=A(t)x $ si sus columnas forman una base del espacio de soluciones $ S $. Nótese que no es única, ya que las bases tampoco lo son.
 \end{definition}
 \begin{note}
-	Si las $ n $ columnas de las matrices fundamentales son una base del espacio de soluciones, podemos interpretarlas como funcionales lineales entre $ \mathbb{R}^n $ y el espacio de soluciones.
+	Si las $ n $ columnas de las matrices fundamentales son una base del espacio de soluciones, podemos interpretar estas matrices como funcionales lineales entre $ \mathbb{R}^n $ y el espacio de soluciones.
 \end{note}
 \begin{theorem}[Caracterización de matrices fundamentales]\label{matfund-carac}\ \\
 	Si $ \phi(t) $ es una matriz solución para $ x'=A(t)x $, entonces son equivalentes:
@@ -1962,7 +1956,7 @@ Si conocemos las expresiones en serie de las principales funciones analíticas (
 \end{proof}
 \begin{note}
 	Al cambiar de base, podríamos interpretarlo como la composición de las siguientes aplicaciones lineales:
-	\[\mathbb{R}^n_{B}\xrightarrow{\varOmega} \mathbb{R}_{C} \xrightarrow{\phi}S \]
+	\[\mathbb{R}^n_{B}\xrightarrow{\varOmega} \mathbb{R}^n_{C} \xrightarrow{\phi}S \]
 \end{note}
 \subsection{Sistemas completos.}
 Sea ahora el sistema completo $x' = A(t)x + b(t)$, tal que:
@@ -1996,11 +1990,11 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 \end{proof}
 \begin{theorem}[Fórmula de Lagrange o método de variación de constantes]\label{lagrange-formula}\ \\
 	La solución del sistema completo $x' = A(t)x + b(t)$ que pasa por $(t_0, x_0)$ viene dada por:
-	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \int_{t}^{t_0}\phi(t) \phi^{-1}(s) b(s) \ ds\]
+	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \phi(t)\int_{t_0}^{t} \phi^{-1}(s) b(s) \ ds\]
 	donde $\phi(t)$ es matriz fundamental para el sistema homogéneo.
 \end{theorem}
 \begin{proof}\ \\
-	La solución general del sistema homogéneo vendría dada por $x(t) = \phi (t) c$, $c \in \mathbb{R}^n$. Buscamos una solución del sistema completo de la forma $x(t) = \phi (t) c(t)$, $c(t) \in \mathbb{R}^n$. Una idea de porque buscamos una solución de esta forma se puede ver para ecuaciones lineales en la proposición \ref{ecLinCompleta}.\\
+	La solución general del sistema homogéneo vendría dada por $x(t) = \phi (t) c$, $c \in \mathbb{R}^n$. Buscamos una solución del sistema completo de la forma $x(t) = \phi (t) c(t)$, $c(t) \in \mathbb{R}^n$. Una idea de la razón de buscar una solución de esta forma particular se puede ver para ecuaciones lineales en la proposición \ref{ecLinCompleta}.\\
 	Para que sea solución del sistema completo ha de verificar $ x'(t)=A(t)\phi(t)c(t)+b(t) $, pero como $ x(t)=  \phi (t) c(t) $, entonces derivando $ x'(t)= \phi'(t)c(t) + \phi(t)c'(t)=A(t)\phi(t)c(t) + \phi(t)c'(t)$. Por lo tanto, tenemos la igualdad:
 	\begin{align*}
 		&A(t)\phi(t)c(t) + \phi(t)c'(t)= A(t)\phi(t)c(t) + b(t) \\
@@ -2008,17 +2002,20 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	\end{align*}
 	Obtenida la condición sobre $ c'(t) $, integramos:
 	\begin{align*}
-	& \int_{t_0}^{t} c'(t) ds = \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\\
-	\Leftrightarrow \ &c(t) - c(t_0) = \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\\
-	\Leftrightarrow \ &c(t) = c(t_0) + \int_{t_0}^{t} \phi^{-1}(t) b(t) ds
+	& \int_{t_0}^{t} c'(t) ds = \int_{t_0}^{t} \phi^{-1}(s) b(s) ds\\
+	\Leftrightarrow \ &c(t) - c(t_0) = \int_{t_0}^{t} \phi^{-1}(s) b(s) ds\\
+	\Leftrightarrow \ &c(t) = c(t_0) + \int_{t_0}^{t} \phi^{-1}(s) b(s) ds
 	\end{align*}
 	Entonces:
-	\[x(t) = \phi(t) c(t_0) + \phi(t) \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\]
+	\[x(t) = \phi(t) c(t_0) + \phi(t) \int_{t_0}^{t} \phi^{-1}(s) b(s) ds\]
 	para que pase por $(t_0, x_0)$:
 	\[x_0 = x(t_0) = \phi (t_0) c(t_0) \Rightarrow c(t_0) = \phi^{-1}(t_0) x_0 \] 
 	por lo que:
-	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \phi(t) \int_{t_0}^{t} \phi^{-1}(t) b(t) ds\]
+	\[x(t) = \phi(t) \phi^{-1}(t_0) x_0 + \phi(t) \int_{t_0}^{t} \phi^{-1}(s) b(s) ds\]
 \end{proof}
+\begin{note}
+	El integrando de $ \int_{t_0}^{t} \phi^{-1}(s) b(s) ds $ es un vector de dimensión $ n $, por ser producto de una matriz $ n\times n $ por un vector  $ n\times 1 $. Por lo tanto, la integral será realizada componente a componente sobre el vector $ \phi^{-1}(s) b(s) $, y el resultado será tambien un vector $ n\times 1 $.
+\end{note}
 
 \section{Tema 6. Sistemas de ecuaciones lineales con coeficientes constantes.}
 \begin{definition}
@@ -2027,7 +2024,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	con $ x', x\in\mathbb{R}^n $, $ A(t)=A\in M_{n\times n} $ constante en $ t $ y $ b:t\in I\subset\mathbb{R}\longrightarrow b(t)\in\mathbb{R}^n $ continua.
 \end{definition}
 \begin{definition}
-	Sea $ M \in M_{n\times n} $, llamamos \iindex{$ e^M $} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
+	Sea $ M \in M_{n\times n} $, llamamos \iindex{exponencial de una matriz ($ e^M $)} a la matriz definida por:\[ e^M=\sum_{n=0}^{\infty} \frac{1}{n!}M^n=I+M+\frac{M^2}{2!}+\frac{M^3}{3!}+\dots \]
 \end{definition}
 \begin{proposition}\ \\
 	La exponencial de una matriz (la serie $ e^M $) es convergente.
@@ -2064,7 +2061,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	\begin{enumerate}[\quad i)]
 		\item $ e^{tA} $ es matriz solución.
 		
-		 Lo primero que hay que notar es que como hemos probado que la exponencial de una matriz es convergente, entonces la seria funcional $ e^{tA} $ converge puntualmente.
+		 Lo primero que hay que observar es que como hemos probado que la exponencial de una matriz es convergente, entonces la serie funcional $ e^{tA} $ converge puntualmente.
 		
 		Ahora, para probar que es matriz solución, usaremos el resultado \ref{carac-sol-hom}. Tenemos que ver que $ \phi'=A\phi \Rightarrow  (e^{tA})'=\frac{\partial}{\partial t}e^{tA}=Ae^{tA}$. Sin embargo, como estamos trabajando con series funcionales, esto no es directo. Para ver claramente que estamos haciendo, denotemos a las sumas parciales de la serie funcional $ e^{tA} $ como $ f_n =\sum_{n=0}^{n} \frac{1}{n!}t^nA^n$. Sabemos por el resultado anterior que $ f_n \xrightarrow{p} f=e^{tA}$.
 		
@@ -2089,11 +2086,11 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		\end{enumerate}
 		Para a), tenemos que, aplicando el criterio mayorante de Weierstrass:
 		\[ e^{tA}=\sum_{n=0}^{\infty} \frac{1}{n!}t^nA^n=I+tA+\frac{t^2A^2}{2!}+\dots \]
-		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}(\abs{t}\norm{A})^n = e^{\abs{t}\norm{A}}\]
+		\[ \sum_{n=0}^{\infty} \norm{\frac{1}{n!}t^nA^n}=\sum_{n=0}^{\infty} \frac{\abs{t}^n}{n!}\norm{A^n}\leq \sum_{n=0}^{\infty} \frac{1}{n!}\left( \abs{t}\norm{A}\right) ^n = e^{\abs{t}\norm{A}}\]
 		Para b), la serie que resulta de derivar término a término:
-		\[ 0+A+ \frac{2t}{2!}A^2+\dots =A+tA^2+\frac{t^2}{2!}A^3+\dots =\lim\limits_{k\to\infty} A(I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k)
+		\[ 0+A+ \frac{2t}{2!}A^2+\dots =A+tA^2+\frac{t^2}{2!}A^3+\dots =\lim\limits_{k\to\infty} A\left( I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k\right) 
 		\]
-		\[=A\lim\limits_{k\to\infty} (I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k) = Ae^{tA} \]
+		\[=A\lim\limits_{k\to\infty} \left( I+tA+\frac{1}{2}t^2A^2+\dots+\frac{1}{k!}t^kA^k\right)  = Ae^{tA} \]
 		Por lo tanto la serie de las derivadas converge para cada $ t $ fijo a $ Ae^{tA} $.
 		
 		Para terminar con la prueba de b) veamos entonces que la serie converge uniformemente. Sea $ J $ un compacto cualquiera. Entonces existe $ \alpha $ tal que $ \forall t \in J, \ \abs{t}\leq \alpha$.
@@ -2113,7 +2110,6 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 		Por tanto, por el teorema \ref{matfund-carac} de caracterización de matrices fundamentales, $e^{tA}$ es fundamental.
 	\end{enumerate}
 \end{proof}
-\subsection{Sistema completo.}
 \begin{theorem}
 	Sea $x' = Ax$ con $A \in M_{n \times n}$ constante. La solución para el sistema homogéneo pasando por $(t_0, x_0)$ viene dada por:
 	\[x(t) = e^{(t - t_0)A}x_0\]
@@ -2122,6 +2118,7 @@ Sea $S_H$ el espacio vectorial de soluciones de $x' = Ax(t)$. Sea además $S_C$ 
 	Sabemos que, en el caso general, $x(t) = \phi (t) \phi^{-1} (t_0) x_0$. Como en nuestro caso tenemos que $\phi (t) = e^{tA}$:
 	\[x(t) = e^{tA}(e^{t_0A})^{-1}x_0 \stackrel{3)}{=} e^{tA}(e^{-t_0A})x_0 \stackrel{tA \text{ y } t_0A \text{ conmutan}}{=} e^{(t - t_0)A}.\]
 \end{proof}
+\subsection{Sistema completo.}
 \begin{theorem}
 	Sea $x' = Ax + b(t)$ con $A \in M_{n \times n}$ constante y $ b:I \subset \mathbb{R} \longrightarrow \mathbb{R}^n $	continua con $I$ abierto. La solución pasando por $(t_0, x_0)$ vendrá dada por:
 	\[x(t) = e^{(t - t_0)A}x_0 + \int_{t}^{t_0}e^{(t - s)A}b(s) \ ds.\]
