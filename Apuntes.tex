@@ -214,7 +214,7 @@
 \newcommand{\subject}{Introducción a las Ecuaciones Diferenciales Ordinarias}
 % Autor.
 \newcommand{\docauthor}{Manuel de Prada, Jorge Vázquez}
-\newcommand{\docaddress}{Universidade de Santiago de Compostela}
+\newcommand{\docaddress}{USC}
 \newcommand{\docemail}{manuel.deprada@rai.usc.es\\jorge.vazquez.perez@rai.usc.es}
 
 %-----------------------------------------------------------------------------------------------------
@@ -1021,15 +1021,13 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		
 		\item Sea $ d=d_\infty((t_0,x_0),\text{Fr}(B)) $ y elegimos $ \delta : 0<\delta <\min \{d,\frac{d}{H},\frac{1}{K}\} $. Añadimos $ \frac{1}{K} $ para probar $ \lambda $-contracción.
 		\item  $ R=\{(t,x) : |t-t_0|\leq \delta, ||x-x_0||\leq H\delta \}\subset B $.
-		% DIBUJO
-		%\begin{tikzpicture}
-		%	\draw (0,0) -- (5,0);
-		%	\draw (0,0) -- (0,3);
-		%	\draw (1,2) .. controls (1.5,4) and (4,2.5) .. (3,3);
-		%	\draw (3,3) .. controls (4,2.5) and (5,3) .. (5,2);
-		%\end{tikzpicture}
-		%
 	\end{enumerate}
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{picard}
+		\caption{Esquema de la demostración.}
+	\end{figure}
 	
 	Definimos el conjunto:
 	 \[X=\{\varphi : I=[t_0-\delta, t_0+\delta]\longrightarrow \mathbb{R}^n : \varphi \text{ continua, } ||\varphi(t)-x_0||\leq H \delta \hspace{0,2cm} \forall t \in I  \} \]
@@ -1210,7 +1208,11 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		\[\exists \lim\limits_{t \to b^-} \varphi(t) = p \text{, } (b, p) \in A\]
 		Sea $\overline{B} = B((b, p), r) \subset A$ con $f$ acotada en $\overline{B}$ y $f \in L_k (B, x)$. Tomamos $0 < \delta < min\{\frac{r}{2}, \frac{r/2}{H}, \frac{1}{k}\}$, siendo $H$ cota de $f$.
 		
-		DIBUJO
+		\begin{figure}[h]
+			\centering
+			\includegraphics[scale=0.3]{prolongacion}
+			\caption{Conjuntos implicados.}
+		\end{figure}
 		
 		Como $\lim\limits_{t \to b^-} \varphi (t) = p$ y, por ser continua, $ \varphi $ es secuencialmente continua, existe una sucesión $\{t_n\} \longrightarrow b^-$ tal que $\{\varphi(t_n)\} \longrightarrow p$. Elegimos entonces un $n_0 \in \mathbb{N}$ tal que $\abs{t_{n_0} - b} < \delta$ y $(t_{n_0}, \varphi (t_{n_0})) \in \overline{B}$. Para la condición inicial $(t_{n_0}, \varphi (t_{n_0}))$ existe una solución única pasando por el punto definido en $[t_{n_0} - \delta, t_{n_0} + \delta]$ que denoto $\overline{\varphi}$. Entonces la función:
 		\[\psi: (a, t_{n_0} + \delta] \longrightarrow \psi (t) = \begin{cases}
@@ -1218,8 +1220,6 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		\overline{\varphi} (t) &t \in [b, t_{n_0} + \delta).
 		\end{cases}\]
 		Así, tenemos que $\psi$ es solución de $x' = f(t. x)$ y, de hecho, $\psi$ prolonga a $\varphi$ a través de $b$.
-		
-		DIBUJO
 		\item Análogo.
 	\end{enumerate} 
 \end{proof}
@@ -1238,7 +1238,11 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 		\item  $f$ continua y acotada en $A$ ($f \in L_{loc} (A, x)$).
 	\end{enumerate}
 	
-	DIBUJO
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{banda}
+		\caption{Teorema de la banda.}
+	\end{figure}
 	
 	entonces, fijado $(t_0, x_0) \in (a, b) \times \mathbb{R}^n$, la solución maximal que pasa por él está definida en $(a, b)$.
 \end{theorem}
@@ -1270,7 +1274,11 @@ EL teorema de Cauchy-Peano no asegura nada respecto a la unicidad de la solució
 	\end{enumerate}
 	Por tanto, fijado $(t_0, x_0) \in A \subset (c, d) \times \mathbb{R}^n$ existe la solución maximal pasando por $(t_0, x_0)$ y definida en $(c, d)$. Por tanto, $\varphi = \psi|_{[a, b]}$ es la solución maximal de $x' = f(t, x)$ pasando por $(t_0, x_0)$.
 	
-	DIBUJO
+	\begin{figure}[h]
+		\centering
+		\includegraphics[scale=0.3]{banda_cerrada}
+		\caption{Teorema de la banda cerrada.}
+	\end{figure}
 	\end{proof}
 
 \begin{proposition}
@@ -1757,9 +1765,6 @@ Si conocemos las expresiones en serie de las principales funciones analíticas (
 	\end{enumerate}
 	El primer punto se cumple de forma directa, mientras que el segundo se cumple ya que $A(t)$ es continua en un compacto, por lo que $A(t)$ es acotada. Por tanto, la solución maximal está definida en $[c, d]$. Compruebo ahora que dado un punto $(t_0, x_0) \in I \times \mathbb{R}^n$ la solución maximal está definida en $I$. \\
 	Sea $t \in I$ fijado arbitrario y escojo un compacto $[c, d]\subset I$ tal que $t, t_0 \in [c, d]$. \\
-	\begin{center}
-		DIBUJO
-	\end{center}
 	Por el resultado probado tendría que la solución está definida en $[c, d]$ y, por tanto, en $t$. Si esto lo repito para todo punto en $I$, tenemos que la solución maximal está definida en $I$.
 \end{proof}
 \begin{note}
